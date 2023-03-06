@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SceneCard should match with snapshot 1`] = `
+<div>
+  <div
+    style="cursor: pointer;"
+  >
+    <div
+      class="ant-card sc-bdvvtL cFSdnJ"
+      data-testid="scene-card"
+    >
+      <div
+        class="ant-card-body"
+      >
+        <div
+          class="sc-gsDKAQ dBlFEh"
+        >
+          <img
+            alt="img"
+            class="sc-dkPtRN edONvH"
+            data-testid="cover-image"
+            src="/test-file-stub"
+          />
+        </div>
+        <div
+          class="sc-gKclnd eIvoRM"
+        >
+          <div
+            class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-multiple-line"
+          >
+            <h5
+              class="ant-typography"
+              data-testid="scene-title"
+            >
+              title
+            </h5>
+          </div>
+          <div
+            class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-multiple-line"
+          >
+            <span
+              class="sc-eCImPb apvtg"
+              data-testid="scene-description"
+            >
+              Description: 
+            </span>
+            description
+          </div>
+          <div
+            class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-multiple-line"
+          >
+            <span
+              class="sc-eCImPb apvtg"
+              data-testid="scene-artist"
+            >
+              Artists: 
+            </span>
+            spider-man
+          </div>
+          <button
+            class="ant-btn ant-btn-default sc-hKwDye buGTcB"
+            data-testid="sell-btn"
+            type="button"
+          >
+            <span
+              class="sc-jRQBWg iJuCHL"
+            >
+              Sell Scene
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

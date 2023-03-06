@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyBooksWrapper component should match with snapshot 1`] = `
+<div>
+  <div
+    class="ant-row sc-bdvvtL iyQVvI"
+  >
+    <div
+      class="ant-col ant-col-24"
+    >
+      <b>
+        BUY
+      </b>
+    </div>
+    <div
+      class="ant-divider ant-divider-horizontal"
+      role="separator"
+    />
+    <div
+      class="ant-row"
+      style="width: 100%;"
+    >
+      <div
+        class="ant-col ant-col-12"
+      >
+        <p>
+          Creator
+        </p>
+        <b>
+          0xbd72485...98f5f1595
+        </b>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <p>
+          Owner
+        </p>
+        <b>
+          0xbd72485...98f5f1595
+        </b>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        col
+      </div>
+    </div>
+    <div
+      class="ant-divider ant-divider-horizontal"
+      role="separator"
+    />
+    <div
+      class="ant-row"
+      style="width: 80%;"
+    >
+      <div
+        class="ant-col ant-col-24"
+      >
+        <b>
+          Attributes
+        </b>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <p>
+          GENRE_OPTIONS
+        </p>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <b>
+          Science Fiction
+        </b>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <p>
+          Language
+        </p>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <b>
+          Japanese
+        </b>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <p>
+          Age Rating:
+        </p>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <b>
+          23 and above
+        </b>
+      </div>
+    </div>
+    <div
+      class="ant-divider ant-divider-horizontal"
+      role="separator"
+    />
+    <div
+      class="ant-row"
+      style="width: 80%;"
+    >
+      <div
+        class="ant-col ant-col-12"
+      >
+        <b>
+          Artists
+        </b>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <b>
+          Characters
+        </b>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <p>
+          GENRE_OPTIONS
+        </p>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <p>
+          GENRE_OPTIONS
+        </p>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <p>
+          Language
+        </p>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <p>
+          GENRE_OPTIONS
+        </p>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <p>
+          Age Rating:
+        </p>
+      </div>
+      <div
+        class="ant-col ant-col-12"
+      >
+        <p>
+          Whizkid
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

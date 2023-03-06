@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharacterAdd should match with snapshot 1`] = `
+<div>
+  <div
+    style="cursor: pointer;"
+  >
+    <div
+      class="ant-card sc-gsDKAQ jFIuNG"
+    >
+      <div
+        class="ant-card-body"
+      >
+        <div
+          class="sc-hKwDye dEuGEj"
+        >
+          <i
+            class="sc-dkPtRN dKVEsJ  mc-plus-2-line"
+          />
+        </div>
+        <div
+          class="sc-eCImPb apvtg"
+          data-testid="add"
+        >
+          Add new character
+        </div>
+        <div
+          class="sc-jRQBWg jcdHyb"
+        >
+          (
+          <span
+            class="sc-gKclnd isKiau"
+          >
+            Character:
+          </span>
+           jpg, png, svg, or gif)
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

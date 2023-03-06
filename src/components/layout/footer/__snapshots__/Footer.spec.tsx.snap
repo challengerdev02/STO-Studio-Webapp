@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should match with snapshot 1`] = `
+<div>
+  <footer
+    class="sc-eCImPb hEiTOE"
+  >
+    <div
+      class="sc-crHmcD hqInhG"
+    >
+      <div
+        class="sc-egiyK gUTRyv"
+      >
+        <div
+          class="sc-iqseJM boshHq"
+        >
+          <img
+            alt="logo"
+            class="sc-jRQBWg ljlGsw"
+            src="/test-file-stub"
+          />
+          <div
+            class="sc-bdvvtL ZBEGP"
+          >
+            MetaComic
+          </div>
+        </div>
+        <div
+          class="sc-gKclnd jntxQG"
+        >
+          For Creators
+        </div>
+      </div>
+      <div
+        class="ant-divider ant-divider-horizontal sc-dkPtRN fWmImA"
+        role="separator"
+      />
+      <div
+        class="sc-hKwDye jzumDG"
+      >
+        MetaComic
+        <div
+          class="sc-iCfMLu iJNXsJ"
+        >
+          <div
+            class="sc-pVTFL jCInJp"
+          >
+            Explore
+          </div>
+          <div
+            class="sc-pVTFL jCInJp"
+          >
+            Connect wallet
+          </div>
+          <div
+            class="sc-pVTFL jCInJp"
+          >
+            Create item
+          </div>
+        </div>
+      </div>
+      <div
+        class="ant-divider ant-divider-horizontal sc-dkPtRN fWmImA"
+        role="separator"
+      />
+      <div
+        class="sc-hKwDye jzumDG last"
+      >
+        Community
+        <div
+          class="sc-iCfMLu iJNXsJ"
+        >
+          <div
+            class="sc-pVTFL jCInJp"
+          >
+            MetaComic Token
+          </div>
+          <div
+            class="sc-pVTFL jCInJp"
+          >
+            Discussion
+          </div>
+          <div
+            class="sc-pVTFL jCInJp"
+          >
+            Voting
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-divider ant-divider-horizontal sc-gsDKAQ bEvupN"
+      role="separator"
+    />
+    <div
+      class="sc-furwcr choPSI"
+    >
+      <div
+        class="sc-jrQzAO iChvoW"
+      >
+        Copyright © 2022 MetaComic. All rights reserved
+      </div>
+      <div
+        class="sc-bqiRlB jUHPkE"
+      >
+        <div
+          class="sc-kDTinF cJnHAq"
+        >
+          We use cookies for better service.
+          <span>
+            <button
+              class="ant-btn ant-btn-link"
+              style="padding-right: 0px;"
+              type="button"
+            >
+              <span>
+                Accept
+              </span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+`;

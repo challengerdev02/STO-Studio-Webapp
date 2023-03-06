@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Live Auction Card component should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdvvtL LPZmN"
+    data-testid="live-auction-card"
+  >
+    <div
+      class="sc-gsDKAQ iCkGBE"
+    >
+      <img
+        alt=""
+        class="sc-dkPtRN cxcUvX"
+        src="/zachary-kadolph-unsplash.svg"
+      />
+    </div>
+    <div
+      class="sc-hKwDye iPxAyv"
+    >
+      <div
+        class="card-content-inner"
+      >
+        <div
+          class="left-col"
+        >
+          <span
+            class="left-col-row"
+            title="Crypto Bull Society"
+          >
+             
+            Crypto Bull Society
+          </span>
+          <span
+            class="left-col-row left-col-row-variant"
+            data-testid="item-name"
+            title="Crypto Bull Society"
+          >
+            Crypto Bull Society
+          </span>
+        </div>
+        <div
+          class="right-col"
+        >
+          <div
+            class="row-wrapper"
+          >
+            <span
+              class="right-col-row"
+            >
+              <div
+                class="sc-jRQBWg cSbcyc"
+              >
+                Best Offer
+              </div>
+            </span>
+            <span
+              class="right-col-row "
+            >
+              <div
+                class="sc-gKclnd hcEPWM"
+                data-testid="best-offer"
+              >
+                <span
+                  class="last-typeof-right-col-row"
+                >
+                  <img
+                    alt=""
+                    class="sc-iCfMLu"
+                    src="/test-file-stub"
+                  />
+                  0.51
+                </span>
+              </div>
+            </span>
+          </div>
+          <div
+            class="row-wrapper"
+          >
+            <div
+              class="sc-gKclnd hcEPWM"
+              data-testid="last-offer"
+            >
+              <div
+                class="sc-jRQBWg cSbcyc"
+              >
+                Last
+              </div>
+               
+              <span
+                class="last-typeof-right-col-row"
+              >
+                 
+                <img
+                  alt=""
+                  class="sc-iCfMLu"
+                  src="/test-file-stub"
+                />
+                0.42
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ant-divider ant-divider-horizontal sc-furwcr jHNOkh"
+        role="separator"
+      />
+      <div
+        class="sc-eCImPb Snept"
+      >
+        <div
+          class="sc-gKclnd hcEPWM"
+        >
+          <span
+            class="sc-pVTFL FLoRu"
+            data-testid="options-widget"
+          >
+            ...
+          </span>
+        </div>
+         
+        <div
+          class="sc-gKclnd hcEPWM"
+          data-testid="likes"
+        >
+           
+          <span
+            class="last-typeof-right-col-row likes"
+          >
+            <img
+              class="sc-iCfMLu"
+              src="/test-file-stub"
+            />
+            1.7 k
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

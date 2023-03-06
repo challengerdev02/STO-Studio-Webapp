@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AttributeForm should match with snapshot 1`] = `
+<div>
+  <form
+    autocomplete="off"
+    class="ant-form ant-form-vertical sc-bdvvtL eoDfjt"
+    id="dynamic_form_nest_item"
+  >
+    <div
+      class="ant-row ant-form-item ant-form-text"
+    >
+      <div
+        class="ant-col ant-form-item-control"
+      >
+        <div
+          class="ant-form-item-control-input"
+        >
+          <div
+            class="ant-form-item-control-input-content"
+          >
+            <span
+              aria-label="sub-title"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-space ant-space-vertical w-100"
+    >
+      <div
+        class="ant-space-item"
+      >
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <button
+                  aria-label="add-more"
+                  class="ant-btn ant-btn-round ant-btn-primary ant-btn-background-ghost add-more-btn"
+                  type="button"
+                >
+                  <span>
+                    Add More
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;

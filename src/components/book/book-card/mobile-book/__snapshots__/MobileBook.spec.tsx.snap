@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MobileBook component should match with snapshot 1`] = `
+<div>
+  <div
+    class="ant-card sc-bdvvtL EjgXq"
+  >
+    <div
+      class="ant-card-body"
+    >
+      <div
+        class="sc-gKclnd fBXsEO"
+      >
+        <div
+          style="width: 100%;"
+        >
+          <div
+            class="sc-gsDKAQ eeJeSz"
+          >
+            <img
+              class="sc-dkPtRN bRdbyx"
+              data-testid="img"
+              src="/assets/mobile-book-img.svg"
+            />
+          </div>
+        </div>
+        <div>
+          <div
+            class="sc-hKwDye jyZsmS"
+            data-testid="mobile-book-title"
+          >
+            This is a test title
+          </div>
+          <div
+            class="sc-eCImPb bwuyDl"
+            data-testid="author"
+          >
+            by @
+            Cosmas
+          </div>
+          <div
+            class="sc-jRQBWg gDsAIL"
+            data-testid="description"
+          >
+            <div
+              aria-label="Meta NFT"
+              class="ant-typography ant-typography-ellipsis sc-iqseJM gYJxwC"
+            >
+              Meta NFT
+              <span
+                aria-hidden="true"
+                style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; word-break: keep-all; white-space: nowrap;"
+              >
+                lg
+              </span>
+              <span
+                aria-hidden="true"
+                style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; width: 0px; white-space: normal; margin: 0px; padding: 0px;"
+              >
+                <span
+                  aria-hidden="true"
+                >
+                  ...
+                </span>
+                <a
+                  aria-label="Expand"
+                  class="ant-typography-expand"
+                >
+                  Read More
+                </a>
+              </span>
+            </div>
+          </div>
+          <div
+            class="ant-space ant-space-horizontal ant-space-align-center sc-kDTinF hwEuWt"
+          >
+            <div
+              class="ant-space-item"
+              style="margin-right: 16px;"
+            >
+              <button
+                class="ant-btn ant-btn-default sc-iCfMLu cUwNdV"
+                type="button"
+              >
+                <span>
+                  Sell
+                </span>
+              </button>
+            </div>
+            <div
+              class="ant-space-item"
+            >
+              <div
+                class="sc-pVTFL eZPElS ant-dropdown-trigger"
+              >
+                <span
+                  class="sc-jrQzAO aGbEU"
+                >
+                  ...
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

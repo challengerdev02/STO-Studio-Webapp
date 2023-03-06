@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HybridHeaderComponent should match with snapshot 1`] = `
+<div>
+  <div>
+    <div
+      class="container"
+      role="dd-container"
+    >
+      <a
+        class="list-item"
+        href="/account"
+        role="dd-list-item"
+      >
+        <div>
+          Profile
+        </div>
+      </a>
+      <a
+        class="list-item"
+        href="/account/settings"
+        role="dd-list-item"
+      >
+        <div>
+          Profile Settings
+        </div>
+      </a>
+      <div
+        class="ant-divider ant-divider-horizontal"
+        role="separator"
+      />
+      <a
+        class="list-item"
+        href="/"
+        role="dd-list-item"
+      >
+        <div>
+          <i
+            class="mc-chart-bar-line mc-lg"
+          />
+          My Collections
+        </div>
+      </a>
+      <a
+        class="list-item"
+        href="/"
+        role="dd-list-item"
+      >
+        <div>
+          <i
+            class="mc-heart-line mc-lg"
+          />
+          Favorite
+        </div>
+      </a>
+      <a
+        class="list-item"
+        href="/"
+        role="dd-list-item"
+      >
+        <div>
+          <i
+            class="mc-design-grid-fill mc-lg"
+          />
+          My Books
+        </div>
+      </a>
+      <div
+        class="ant-divider ant-divider-horizontal"
+        role="separator"
+      />
+      <a
+        class="list-item"
+        href="/"
+        role="dd-list-item"
+      >
+        <div>
+          <i
+            class="mc-bar-01-average-fill mc-lg"
+          />
+          Resource Center
+        </div>
+      </a>
+      <div
+        class="ant-divider ant-divider-horizontal"
+        role="separator"
+      />
+      <a
+        class="list-item"
+        href="/account"
+        role="dd-list-item"
+      >
+        <div>
+          Account settings
+        </div>
+      </a>
+      <button
+        class="ant-btn ant-btn-text list-item"
+        role="dd-list-item"
+        style="padding-left: 0px; padding-right: 0px;"
+        type="button"
+      >
+        <span>
+          Log out
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

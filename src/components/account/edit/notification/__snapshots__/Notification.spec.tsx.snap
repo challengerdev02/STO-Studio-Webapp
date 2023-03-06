@@ -1,0 +1,600 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Edit Profile component should match with snapshot 1`] = `
+<div>
+  <div
+    class="content-notification"
+  >
+    <form
+      class="ant-form ant-form-horizontal"
+    >
+      <h1
+        class="ant-typography title"
+      >
+        <span>
+          Notification Settings
+        </span>
+      </h1>
+      <span
+        class="ant-typography sub-title"
+      >
+        Select notification you would like to recieved
+      </span>
+      <div
+        class="ant-list ant-list-split"
+      >
+        <div
+          class="ant-spin-nested-loading"
+        >
+          <div
+            class="ant-spin-container"
+          >
+            <ul
+              class="ant-list-items"
+            >
+              <li
+                class="ant-list-item"
+              >
+                <div
+                  class="ant-list-item-meta"
+                >
+                  <div
+                    class="ant-list-item-meta-avatar"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <label
+                              class="ant-checkbox-wrapper"
+                              style="line-height: 32px;"
+                            >
+                              <span
+                                class="ant-checkbox"
+                              >
+                                <input
+                                  class="ant-checkbox-input"
+                                  id="ItemSold"
+                                  type="checkbox"
+                                  value=""
+                                />
+                                <span
+                                  class="ant-checkbox-inner"
+                                />
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-list-item-meta-content"
+                  >
+                    <h4
+                      class="ant-list-item-meta-title"
+                    >
+                      Item Sold
+                    </h4>
+                    <div
+                      class="ant-list-item-meta-description"
+                    >
+                      When some purchases on one your items
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="ant-list-item"
+              >
+                <div
+                  class="ant-list-item-meta"
+                >
+                  <div
+                    class="ant-list-item-meta-avatar"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <label
+                              class="ant-checkbox-wrapper"
+                              style="line-height: 32px;"
+                            >
+                              <span
+                                class="ant-checkbox"
+                              >
+                                <input
+                                  class="ant-checkbox-input"
+                                  id="BidActivity"
+                                  type="checkbox"
+                                  value=""
+                                />
+                                <span
+                                  class="ant-checkbox-inner"
+                                />
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-list-item-meta-content"
+                  >
+                    <h4
+                      class="ant-list-item-meta-title"
+                    >
+                      Bid Activity
+                    </h4>
+                    <div
+                      class="ant-list-item-meta-description"
+                    >
+                      When some bids on one your items
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="ant-list-item"
+              >
+                <div
+                  class="ant-list-item-meta"
+                >
+                  <div
+                    class="ant-list-item-meta-avatar"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <label
+                              class="ant-checkbox-wrapper"
+                              style="line-height: 32px;"
+                            >
+                              <span
+                                class="ant-checkbox"
+                              >
+                                <input
+                                  class="ant-checkbox-input"
+                                  id="PriceChange"
+                                  type="checkbox"
+                                  value=""
+                                />
+                                <span
+                                  class="ant-checkbox-inner"
+                                />
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-list-item-meta-content"
+                  >
+                    <h4
+                      class="ant-list-item-meta-title"
+                    >
+                      Price Change
+                    </h4>
+                    <div
+                      class="ant-list-item-meta-description"
+                    >
+                      When item you made on offer on changes
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="ant-list-item"
+              >
+                <div
+                  class="ant-list-item-meta"
+                >
+                  <div
+                    class="ant-list-item-meta-avatar"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <label
+                              class="ant-checkbox-wrapper"
+                              style="line-height: 32px;"
+                            >
+                              <span
+                                class="ant-checkbox"
+                              >
+                                <input
+                                  class="ant-checkbox-input"
+                                  id="AuctionExpiration"
+                                  type="checkbox"
+                                  value=""
+                                />
+                                <span
+                                  class="ant-checkbox-inner"
+                                />
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-list-item-meta-content"
+                  >
+                    <h4
+                      class="ant-list-item-meta-title"
+                    >
+                      Auction Expiration
+                    </h4>
+                    <div
+                      class="ant-list-item-meta-description"
+                    >
+                      When a timed auction you created ends
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="ant-list-item"
+              >
+                <div
+                  class="ant-list-item-meta"
+                >
+                  <div
+                    class="ant-list-item-meta-avatar"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <label
+                              class="ant-checkbox-wrapper"
+                              style="line-height: 32px;"
+                            >
+                              <span
+                                class="ant-checkbox"
+                              >
+                                <input
+                                  class="ant-checkbox-input"
+                                  id="Outbid"
+                                  type="checkbox"
+                                  value=""
+                                />
+                                <span
+                                  class="ant-checkbox-inner"
+                                />
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-list-item-meta-content"
+                  >
+                    <h4
+                      class="ant-list-item-meta-title"
+                    >
+                      Outbid
+                    </h4>
+                    <div
+                      class="ant-list-item-meta-description"
+                    >
+                      When an offer you placed is exceeded by another user
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="ant-list-item"
+              >
+                <div
+                  class="ant-list-item-meta"
+                >
+                  <div
+                    class="ant-list-item-meta-avatar"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <label
+                              class="ant-checkbox-wrapper"
+                              style="line-height: 32px;"
+                            >
+                              <span
+                                class="ant-checkbox"
+                              >
+                                <input
+                                  class="ant-checkbox-input"
+                                  id="OwnedItemUpdates"
+                                  type="checkbox"
+                                  value=""
+                                />
+                                <span
+                                  class="ant-checkbox-inner"
+                                />
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-list-item-meta-content"
+                  >
+                    <h4
+                      class="ant-list-item-meta-title"
+                    >
+                      Owned Item Updates
+                    </h4>
+                    <div
+                      class="ant-list-item-meta-description"
+                    >
+                      When a significant update occurs for one of the items you have purchased
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="ant-list-item"
+              >
+                <div
+                  class="ant-list-item-meta"
+                >
+                  <div
+                    class="ant-list-item-meta-avatar"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <label
+                              class="ant-checkbox-wrapper"
+                              style="line-height: 32px;"
+                            >
+                              <span
+                                class="ant-checkbox"
+                              >
+                                <input
+                                  class="ant-checkbox-input"
+                                  id="SuccessfulPurchase"
+                                  type="checkbox"
+                                  value=""
+                                />
+                                <span
+                                  class="ant-checkbox-inner"
+                                />
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-list-item-meta-content"
+                  >
+                    <h4
+                      class="ant-list-item-meta-title"
+                    >
+                      Successful Purchase
+                    </h4>
+                    <div
+                      class="ant-list-item-meta-description"
+                    >
+                      When successfully buy an item
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="ant-list-item"
+              >
+                <div
+                  class="ant-list-item-meta"
+                >
+                  <div
+                    class="ant-list-item-meta-avatar"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <label
+                              class="ant-checkbox-wrapper"
+                              style="line-height: 32px;"
+                            >
+                              <span
+                                class="ant-checkbox"
+                              >
+                                <input
+                                  class="ant-checkbox-input"
+                                  id="Newsletter"
+                                  type="checkbox"
+                                  value=""
+                                />
+                                <span
+                                  class="ant-checkbox-inner"
+                                />
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-list-item-meta-content"
+                  >
+                    <h4
+                      class="ant-list-item-meta-title"
+                    >
+                      Newsletter
+                    </h4>
+                    <div
+                      class="ant-list-item-meta-description"
+                    >
+                      Occassional updates from the platform
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <h5
+        class="ant-typography bottom-title"
+      >
+        <span>
+          Minimum Bid Threshold
+        </span>
+      </h5>
+      <span
+        class="ant-typography sub-title"
+      >
+        Receive notifications only when you receive offers with a value greater than or equal to this amount of ETH.
+      </span>
+      <div
+        class="ant-row ant-form-item"
+      >
+        <div
+          class="ant-col ant-form-item-control"
+        >
+          <div
+            class="ant-form-item-control-input"
+          >
+            <div
+              class="ant-form-item-control-input-content"
+            >
+              <span
+                class="ant-input-group-wrapper buttom-input"
+              >
+                <span
+                  class="ant-input-wrapper ant-input-group"
+                >
+                  <span
+                    class="ant-input-group-addon"
+                  >
+                    <div
+                      class="addonBefore-container"
+                    >
+                      <div>
+                        <img
+                          alt="eth"
+                          src="/eth.svg"
+                        />
+                      </div>
+                      <div>
+                        <span
+                          class="ant-typography"
+                        >
+                          <strong>
+                            ETH
+                          </strong>
+                        </span>
+                        <span
+                          class="ant-typography"
+                        >
+                          Ethreum
+                        </span>
+                      </div>
+                    </div>
+                  </span>
+                  <input
+                    class="ant-input"
+                    id="min-bid"
+                    type="text"
+                    value="0.001"
+                  />
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="ant-btn ant-btn-primary submit-button"
+        type="submit"
+      >
+        <span>
+          Save
+        </span>
+      </button>
+    </form>
+  </div>
+</div>
+`;

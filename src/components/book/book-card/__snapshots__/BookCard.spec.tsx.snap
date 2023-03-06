@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookCard component should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdvvtL fbVEoT"
+    data-testid="create-book"
+  >
+    <div
+      class="sc-gsDKAQ isItYx"
+    >
+      <div
+        class="sc-dkPtRN ivtszv"
+      >
+        <img
+          class="sc-hKwDye hMpCoO"
+          data-testid="display-image"
+          src="/book-cover.png"
+        />
+      </div>
+      <div
+        class="sc-eCImPb hmCnvY"
+      >
+        <div
+          class="sc-furwcr ghJnqx"
+        >
+           
+          <div
+            class="sc-jRQBWg hgvvMF"
+            data-testid="book-title"
+          >
+            This is a test title
+          </div>
+          <div
+            class="sc-gKclnd Yeocv"
+            data-testid="book-author"
+          >
+            by @
+            John Doe
+          </div>
+          <div
+            aria-label="This is metacomic"
+            class="ant-typography ant-typography-ellipsis sc-iCfMLu cqVfIu"
+            data-testid="book-description"
+          >
+            This is metacomic
+            <span
+              aria-hidden="true"
+              style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; word-break: keep-all; white-space: nowrap;"
+            >
+              lg
+            </span>
+            <span
+              aria-hidden="true"
+              style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; width: 0px; white-space: normal; margin: 0px; padding: 0px;"
+            >
+              <span
+                aria-hidden="true"
+              >
+                ...
+              </span>
+              <a
+                aria-label="Expand"
+                class="ant-typography-expand"
+              >
+                <span
+                  class="read_more"
+                >
+                  Read More
+                </span>
+              </a>
+            </span>
+          </div>
+        </div>
+        <div
+          class="sc-pVTFL dTSExf"
+        >
+          <button
+            class="ant-btn ant-btn-default sc-jrQzAO fQSWGu"
+            type="button"
+          >
+            <span>
+              Sell
+            </span>
+          </button>
+          <div
+            class="sc-kDTinF jBCLks ant-dropdown-trigger sc-crHmcD"
+            data-testid="options"
+          >
+            <span
+              class="sc-iqseJM jFUQWc"
+            >
+              ...
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

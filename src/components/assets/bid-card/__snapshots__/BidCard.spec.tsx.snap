@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BidCard component should match with snapshot 1`] = `
+<div>
+  <div
+    class="ant-card ant-card-bordered sc-bdvvtL bxbWpv"
+    data-testid="bid-card"
+  >
+    <div
+      class="ant-card-body"
+    >
+      <div
+        class="sc-gsDKAQ irBxls"
+      >
+        <div
+          class="sc-dkPtRN gOyVxi"
+        >
+          <div
+            class="sc-hKwDye bXwPHc"
+          >
+            <div
+              class="sc-eCImPb iVIGGu"
+            >
+               
+              <img
+                alt=""
+                class="sc-ksdxgE hCdvzg"
+                data-testid="user-avatar"
+                height="28px"
+                src="../../../public/verified-account-avatar.svg"
+                width="26px"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-dkPtRN gOyVxi"
+        >
+          <div
+            class="sc-jRQBWg iXDZyk"
+          >
+            <span
+              class="sc-iCfMLu eNRNSg"
+            >
+              Highest bid by
+            </span>
+             
+            <span
+              class="sc-furwcr heaATz"
+              data-testid="block-chain-address"
+              title="0x658d224566...F0cC"
+            >
+              0x658d224566...F0cC
+            </span>
+          </div>
+          <div
+            class="sc-gKclnd jhPXGB"
+          >
+            <span
+              class="sc-pVTFL gwavzj"
+              data-testid="crypto-value"
+            >
+              1.46 ETH
+            </span>
+            <span
+              class="sc-jrQzAO dewBhk"
+              data-testid="price-equivalent"
+            >
+              $2,764.89
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ant-divider ant-divider-horizontal sc-kDTinF kQesqT"
+        role="separator"
+      />
+      <div
+        class="sc-gsDKAQ irBxls"
+      >
+        <div
+          class="sc-dkPtRN gOyVxi"
+        >
+          <div
+            class="sc-hKwDye bXwPHc"
+          >
+            <div
+              class="sc-eCImPb iVIGGu"
+            >
+               
+              <img
+                alt=""
+                class="sc-ksdxgE hCdvzg"
+                data-testid="user-avatar-2"
+                height="28px"
+                src="../../../public/verified-account-avatar.svg"
+                width="26px"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-dkPtRN gOyVxi"
+        >
+          <div
+            class="sc-jRQBWg iXDZyk"
+          >
+            <span
+              class="sc-iCfMLu eNRNSg"
+            >
+              Auction ends in
+            </span>
+          </div>
+          <div
+            class="sc-gKclnd jhPXGB"
+          >
+            <div
+              class="sc-crHmcD lgANCv"
+            >
+              <span
+                class="sc-egiyK ilBKaU"
+                data-testid="days-timeblock"
+              />
+               
+              <span
+                class="sc-bqiRlB JQzJU"
+              >
+                Days
+              </span>
+               
+            </div>
+            <div
+              class="sc-crHmcD lgANCv"
+            >
+              <span
+                class="sc-egiyK ilBKaU"
+                data-testid="hours-timeblock"
+              />
+               
+              <span
+                class="sc-bqiRlB JQzJU"
+              >
+                Hours
+              </span>
+               
+            </div>
+            <div
+              class="sc-crHmcD lgANCv"
+            >
+              <span
+                class="sc-egiyK ilBKaU"
+                data-testid="minutes-timeblock"
+              />
+               
+              <span
+                class="sc-bqiRlB JQzJU"
+              >
+                Minutes
+              </span>
+               
+            </div>
+            <div
+              class="sc-crHmcD lgANCv"
+            >
+              <span
+                class="sc-egiyK ilBKaU"
+                data-testid="seconds-timeblock"
+              />
+               
+              <span
+                class="sc-bqiRlB JQzJU"
+              >
+                Seconds
+              </span>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="ant-btn ant-btn-primary ant-btn-block sc-iqseJM cBDWUJ"
+        type="button"
+      >
+        <span>
+          Place a bid
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

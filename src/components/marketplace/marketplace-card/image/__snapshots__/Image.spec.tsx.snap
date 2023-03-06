@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container should match with snapshot "generateStackedImage" 1`] = `
+<div>
+  <div
+    role="stack-container"
+    style="display: flex; position: relative;"
+  >
+    <div
+      class="sc-dkPtRN sc-hKwDye kToXgV rBElr stacked-img"
+      height="24px"
+      role="stackImages"
+      width="24px"
+    >
+      <img
+        alt="stack-image"
+        class="sc-gKclnd fRPrfE"
+        src="https://robohash.org/962440efdb9e25e8ff4360a7037acfb4?set=set4&bgset=&size=400x400"
+        width="100%"
+      />
+    </div>
+    <div
+      class="sc-dkPtRN sc-hKwDye kToXgV kFSgPO stacked-img"
+      height="24px"
+      role="stackImages"
+      width="24px"
+    >
+      <img
+        alt="stack-image"
+        class="sc-gKclnd fRPrfE"
+        src="https://robohash.org/887f430666b7d04d90b82a4b988df961?set=set4&bgset=&size=400x400"
+        width="100%"
+      />
+    </div>
+    <div
+      class="sc-dkPtRN sc-hKwDye kToXgV heHuFZ stacked-img"
+      height="24px"
+      role="stackImages"
+      width="24px"
+    >
+      <img
+        alt="stack-image"
+        class="sc-gKclnd fRPrfE"
+        src="https://robohash.org/15b76d2ec3afc53e3af6c4a316090c94?set=set4&bgset=&size=400x400"
+        width="100%"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Container should match with snapshot 1`] = `
+<div>
+  <img
+    class="sc-gKclnd dXTNPF"
+    height="256px"
+    width="256px"
+  />
+</div>
+`;

@@ -1,0 +1,96 @@
+version: 2.1
+
+references:
+  main_only: &main_only
+    filters:
+      branches:
+        only: develop
+  not_main_branch: &not_main_branch
+    filters:
+      branches:
+        ignore: develop
+
+orbs:
+  node: circleci/node@3.0.0
+  gke: circleci/gcp-gke@1.4.0
+  gcr: circleci/gcp-gcr@0.13.0
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:14
+
+commands:
+  checkout_with_submodules:
+    steps:
+      - run:
+          name: Install local git and ssh client (in alpine only)
+          command: |
+            if which apk; then
+              apk add --no-cache git openssh-client
+            fi
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
+
+  yarn_install:
+    steps:
+      - restore_cache:
+          name: Restore node_modules from cache
+          keys:
+            - v1-dependency-npm-{{ checksum "yarn.lock" }}
+            - v1-dependency-npm
+      - run: yarn --frozen-lockfile
+      - save_cache:
+          name: Save node_modules to cache
+          key: v1-dependency-npm-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+
+jobs:
+  build-dependencies:
+    executor: node
+    steps:
+      - checkout_with_submodules
+      - yarn_install
+      - run: yarn build
+      #      - run: yarn test
+      - run: echo $BASE_URL
+
+  deploy-stg:
+    description: Deploy Stagging application to Google Kubernetes Engine
+    machine: true
+    steps:
+      - gcr/gcr-auth
+      - gke/install
+      - gke/rollout-image:
+          cluster: cluster-dev
+          container: mc-app
+          namespace: 'stg'
+          deployment: mc-app-dpl
+          image: gcr.io/$GOOGLE_PROJECT_ID/mc-app
+          tag: $CIRCLE_SHA1
+
+workflows:
+  version: 2
+
+  deploy-stg-approve-prod:
+    jobs:
+      - build-dependencies:
+          <<: *main_only
+      - gcr/build-and-push-image:
+          <<: *main_only
+          requires:
+            - build-dependencies
+          image: mc-app
+          docker-context: ./
+          dockerfile: ./docker/Dockerfile
+          tag: $CIRCLE_SHA1
+      - deploy-stg:
+          requires:
+            - gcr/build-and-push-image
+
+  build-dependencies:
+    jobs:
+      - build-dependencies:
+          <<: *not_main_branch

@@ -1,0 +1,1056 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Asset Container should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-kfPuZi cYSDXf meta-form-container"
+    data-testid="wrapper"
+  >
+    <div
+      class="ant-space ant-space-horizontal ant-space-align-center"
+      style="flex-wrap: wrap; margin-bottom: -8px;"
+    >
+      <div
+        class="ant-space-item"
+        style="margin-right: 8px; padding-bottom: 8px;"
+      >
+        <button
+          class="ant-btn ant-btn-text ant-btn-icon-only"
+          type="button"
+        >
+          <i
+            class="mc-arrow-left-2-line mc-3x"
+            style="font-size: 2em;"
+          />
+        </button>
+      </div>
+      <div
+        class="ant-space-item"
+        style="padding-bottom: 8px;"
+      >
+        <div
+          class="sc-llYSUQ frnTYy"
+        >
+          book_title_0x9c1b1c10406d11757067f03ce14a875c18a24e88_6_5_3: Revised
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-fKVqWL cJmGcU"
+    >
+      <form
+        class="ant-form ant-form-vertical ant-form-hide-required-mark"
+      >
+        <div
+          class="ant-row ant-form-item sc-hBUSln bHEpwO"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="coverImage"
+              title=""
+            >
+              <div>
+                <div
+                  class="sc-bBHxTw fDAyny"
+                >
+                  Cover Image
+                </div>
+                <div
+                  class="sc-cxpSdN cDYDkN"
+                >
+                  File types supported: JPG, PNG, GIF, SVG, GLB, GLTF. Max size: 100 MB
+                </div>
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <span>
+                  <div
+                    class="ant-upload ant-upload-drag sc-egiyK gYnNqF"
+                  >
+                    <span
+                      class="ant-upload ant-upload-btn"
+                      role="button"
+                      tabindex="0"
+                    >
+                      <input
+                        accept=""
+                        id="coverImage"
+                        style="display: none;"
+                        type="file"
+                      />
+                      <div
+                        class="ant-upload-drag-container"
+                      >
+                        <div
+                          class="w-100 h-100"
+                        >
+                          <div
+                            class="sc-bGaVxB leCRls"
+                            height="100%"
+                            style="border-radius: 12px;"
+                            width="100%"
+                          >
+                            <i
+                              class="mc-pencil-fill"
+                              style="font-size: 1.5em;"
+                            />
+                          </div>
+                          <div
+                            class="ant-image"
+                            style="width: 100%;"
+                          >
+                            <img
+                              alt=""
+                              class="ant-image-img ant-image-img-placeholder book-cover-image"
+                              src="https://storage.googleapis.com/bytegum_dev/1643286935082-file"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                  <div
+                    class="ant-upload-list ant-upload-list-picture"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-bBHxTw fDAyny"
+          style="margin: 40px 0px 32px;"
+        >
+          Book Details
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="title"
+              title=""
+            >
+              <div
+                class="sc-iwjdpV hdxDrU"
+              >
+                TITLE
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input sc-iJKOTD kTwTSZ"
+                  data-testid="inputVal"
+                  id="title"
+                  placeholder="e. g. \\"Redeemable One Comic”"
+                  type="text"
+                  value="book_title_0x9c1b1c10406d11757067f03ce14a875c18a24e88_6_5_3"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="infoLink"
+              title=""
+            >
+              <div
+                class="sc-iwjdpV hdxDrU"
+              >
+                INFO LINK/WEBSITE
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input sc-iJKOTD kTwTSZ"
+                  id="infoLink"
+                  placeholder="e. g. “https://your-url.com”"
+                  type="text"
+                  value="www.hafiz.com"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="description"
+              title=""
+            >
+              <div
+                class="sc-iwjdpV hdxDrU"
+              >
+                 DESCRIBE BOOK
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <textarea
+                  class="ant-input sc-giYglK cFNauV"
+                  data-testid="textArea"
+                  id="description"
+                  placeholder="Provide a detailed description of your item"
+                  rows="7"
+                >
+                  Book description 623963e50870e0a8f9db9742_6_5_3
+                </textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-divider ant-divider-horizontal sc-kLwhqv bOkOWq"
+          role="separator"
+        />
+        <div
+          class="ant-row"
+          style="margin: -8px -8px -8px -8px;"
+        >
+          <div
+            class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8 ant-col-xl-8"
+            style="padding: 8px 8px 8px 8px;"
+          >
+            <div
+              class="ant-row ant-form-item"
+            >
+              <div
+                class="ant-col ant-form-item-label"
+              >
+                <label
+                  class=""
+                  for="series"
+                  title=""
+                >
+                  <div
+                    class="sc-iwjdpV hdxDrU"
+                  >
+                    SERIES
+                  </div>
+                </label>
+              </div>
+              <div
+                class="ant-col ant-form-item-control"
+              >
+                <div
+                  class="ant-form-item-control-input"
+                >
+                  <div
+                    class="ant-form-item-control-input-content"
+                  >
+                    <div
+                      class="ant-select sc-ezbkAF hdCHeB ant-select-multiple ant-select-show-search"
+                      data-testid="selectSeries"
+                    >
+                      <div
+                        class="ant-select-selector"
+                      >
+                        <div
+                          class="ant-select-selection-overflow"
+                        >
+                          <div
+                            class="ant-select-selection-overflow-item"
+                            style="opacity: 1;"
+                          >
+                            <span
+                              class="ant-select-selection-item"
+                              title="Blackadder Back & Forth"
+                            >
+                              <span
+                                class="ant-select-selection-item-content"
+                              >
+                                Blackadder Back & Forth
+                              </span>
+                              <span
+                                aria-hidden="true"
+                                class="ant-select-selection-item-remove"
+                                style="user-select: none;"
+                                unselectable="on"
+                              >
+                                <span
+                                  aria-label="close"
+                                  class="anticon anticon-close"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    data-icon="close"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                            </span>
+                          </div>
+                          <div
+                            class="ant-select-selection-overflow-item"
+                            style="opacity: 1;"
+                          >
+                            <span
+                              class="ant-select-selection-item"
+                              title="Reversal of Fortune"
+                            >
+                              <span
+                                class="ant-select-selection-item-content"
+                              >
+                                Reversal of Fortune
+                              </span>
+                              <span
+                                aria-hidden="true"
+                                class="ant-select-selection-item-remove"
+                                style="user-select: none;"
+                                unselectable="on"
+                              >
+                                <span
+                                  aria-label="close"
+                                  class="anticon anticon-close"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    data-icon="close"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                            </span>
+                          </div>
+                          <div
+                            class="ant-select-selection-overflow-item"
+                            style="opacity: 1;"
+                          >
+                            <span
+                              class="ant-select-selection-item"
+                              title="Man of Aran"
+                            >
+                              <span
+                                class="ant-select-selection-item-content"
+                              >
+                                Man of Aran
+                              </span>
+                              <span
+                                aria-hidden="true"
+                                class="ant-select-selection-item-remove"
+                                style="user-select: none;"
+                                unselectable="on"
+                              >
+                                <span
+                                  aria-label="close"
+                                  class="anticon anticon-close"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    data-icon="close"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                            </span>
+                          </div>
+                          <div
+                            class="ant-select-selection-overflow-item"
+                            style="opacity: 1;"
+                          >
+                            <span
+                              class="ant-select-selection-item"
+                              title="Brake"
+                            >
+                              <span
+                                class="ant-select-selection-item-content"
+                              >
+                                Brake
+                              </span>
+                              <span
+                                aria-hidden="true"
+                                class="ant-select-selection-item-remove"
+                                style="user-select: none;"
+                                unselectable="on"
+                              >
+                                <span
+                                  aria-label="close"
+                                  class="anticon anticon-close"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    data-icon="close"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                            </span>
+                          </div>
+                          <div
+                            class="ant-select-selection-overflow-item ant-select-selection-overflow-item-suffix"
+                            style="opacity: 1;"
+                          >
+                            <div
+                              class="ant-select-selection-search"
+                              style="width: 0px;"
+                            >
+                              <input
+                                aria-activedescendant="series_list_0"
+                                aria-autocomplete="list"
+                                aria-controls="series_list"
+                                aria-haspopup="listbox"
+                                aria-owns="series_list"
+                                autocomplete="off"
+                                class="ant-select-selection-search-input"
+                                id="series"
+                                readonly=""
+                                role="combobox"
+                                style="opacity: 0;"
+                                type="search"
+                                unselectable="on"
+                                value=""
+                              />
+                              <span
+                                aria-hidden="true"
+                                class="ant-select-selection-search-mirror"
+                              >
+                                
+                                 
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8 ant-col-xl-8"
+            style="padding: 8px 8px 8px 8px;"
+          >
+            <div
+              class="ant-row ant-form-item"
+            >
+              <div
+                class="ant-col ant-form-item-label"
+              >
+                <label
+                  class="ant-form-item-required"
+                  for="genres"
+                  title=""
+                >
+                  <div
+                    class="sc-iwjdpV hdxDrU"
+                  >
+                    GENRE_OPTIONS
+                  </div>
+                </label>
+              </div>
+              <div
+                class="ant-col ant-form-item-control"
+              >
+                <div
+                  class="ant-form-item-control-input"
+                >
+                  <div
+                    class="ant-form-item-control-input-content"
+                  >
+                    <div
+                      class="ant-select sc-ezbkAF hdCHeB ant-select-multiple ant-select-show-arrow ant-select-show-search"
+                    >
+                      <div
+                        class="ant-select-selector"
+                      >
+                        <div
+                          class="ant-select-selection-overflow"
+                        >
+                          <div
+                            class="ant-select-selection-overflow-item ant-select-selection-overflow-item-suffix"
+                            style="opacity: 1;"
+                          >
+                            <div
+                              class="ant-select-selection-search"
+                              style="width: 0px;"
+                            >
+                              <input
+                                aria-activedescendant="genres_list_0"
+                                aria-autocomplete="list"
+                                aria-controls="genres_list"
+                                aria-haspopup="listbox"
+                                aria-owns="genres_list"
+                                autocomplete="off"
+                                class="ant-select-selection-search-input"
+                                id="genres"
+                                readonly=""
+                                role="combobox"
+                                style="opacity: 0;"
+                                type="search"
+                                unselectable="on"
+                                value=""
+                              />
+                              <span
+                                aria-hidden="true"
+                                class="ant-select-selection-search-mirror"
+                              >
+                                
+                                 
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <span
+                          class="ant-select-selection-placeholder"
+                        >
+                          Select GENRE_OPTIONS
+                        </span>
+                      </div>
+                      <span
+                        aria-hidden="true"
+                        class="ant-select-arrow"
+                        style="user-select: none;"
+                        unselectable="on"
+                      >
+                        <span
+                          aria-label="down"
+                          class="anticon anticon-down ant-select-suffix"
+                          role="img"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            data-icon="down"
+                            fill="currentColor"
+                            focusable="false"
+                            height="1em"
+                            viewBox="64 64 896 896"
+                            width="1em"
+                          >
+                            <path
+                              d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8 ant-col-xl-8"
+            style="padding: 8px 8px 8px 8px;"
+          >
+            <div
+              class="ant-row ant-form-item"
+            >
+              <div
+                class="ant-col ant-form-item-label"
+              >
+                <label
+                  class="ant-form-item-required"
+                  for="ageRating"
+                  title=""
+                >
+                  <div
+                    class="sc-iwjdpV hdxDrU"
+                  >
+                    AGE RATING
+                  </div>
+                </label>
+              </div>
+              <div
+                class="ant-col ant-form-item-control"
+              >
+                <div
+                  class="ant-form-item-control-input"
+                >
+                  <div
+                    class="ant-form-item-control-input-content"
+                  >
+                    <div
+                      class="ant-select sc-ezbkAF hdCHeB ant-select-single ant-select-show-arrow"
+                    >
+                      <div
+                        class="ant-select-selector"
+                      >
+                        <span
+                          class="ant-select-selection-search"
+                        >
+                          <input
+                            aria-activedescendant="ageRating_list_0"
+                            aria-autocomplete="list"
+                            aria-controls="ageRating_list"
+                            aria-haspopup="listbox"
+                            aria-owns="ageRating_list"
+                            autocomplete="off"
+                            class="ant-select-selection-search-input"
+                            id="ageRating"
+                            readonly=""
+                            role="combobox"
+                            style="opacity: 0;"
+                            type="search"
+                            unselectable="on"
+                            value=""
+                          />
+                        </span>
+                        <span
+                          class="ant-select-selection-item"
+                          title="30 - Above"
+                        >
+                          30 - Above
+                        </span>
+                      </div>
+                      <span
+                        aria-hidden="true"
+                        class="ant-select-arrow"
+                        style="user-select: none;"
+                        unselectable="on"
+                      >
+                        <span
+                          aria-label="down"
+                          class="anticon anticon-down ant-select-suffix"
+                          role="img"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            data-icon="down"
+                            fill="currentColor"
+                            focusable="false"
+                            height="1em"
+                            viewBox="64 64 896 896"
+                            width="1em"
+                          >
+                            <path
+                              d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-divider ant-divider-horizontal sc-kLwhqv bOkOWq"
+          role="separator"
+        />
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <button
+                  class="ant-btn ant-btn-round ant-btn-dashed ant-btn-block"
+                  data-testid="btn2"
+                  type="button"
+                >
+                  <span
+                    aria-label="plus"
+                    class="anticon anticon-plus"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="plus"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <defs>
+                        <style />
+                      </defs>
+                      <path
+                        d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+                      />
+                      <path
+                        d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+                      />
+                    </svg>
+                  </span>
+                  <span>
+                    Add Artist Wallet Address
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-divider ant-divider-horizontal sc-kLwhqv bOkOWq"
+          role="separator"
+        />
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="ant-row ant-row-center ant-row-middle"
+                  style="margin-left: -16px; margin-right: -16px;"
+                >
+                  <div
+                    class="ant-col ant-col-18"
+                    style="padding-left: 16px; padding-right: 16px; height: 100%;"
+                  >
+                    <div
+                      class="sc-bBHxTw fDAyny"
+                    >
+                      Explicit or sensitive content
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-6 meta-flex meta-flex-center"
+                    style="padding-left: 16px; padding-right: 16px;"
+                  >
+                    <div
+                      class="sc-bBHxTw fDAyny"
+                      style="text-align: right;"
+                    >
+                      <button
+                        aria-checked="false"
+                        class="ant-switch sc-ikJyIC dqmvmJ"
+                        id="explicitContent"
+                        role="switch"
+                        type="button"
+                      >
+                        <div
+                          class="ant-switch-handle"
+                        />
+                        <span
+                          class="ant-switch-inner"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row"
+          style="margin: -8px -8px -8px -8px;"
+        >
+          <div
+            class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8"
+            style="padding: 8px 8px 8px 8px;"
+          >
+            <div
+              class="ant-col sc-cCcXHH ikofOl ant-btn"
+              style="padding: 8px 8px 8px 8px;"
+            >
+              <div
+                class="ant-card sc-dJjYzT iyDpor"
+                data-testid="attributes-card-container"
+              >
+                <div
+                  class="ant-card-body"
+                >
+                  <div
+                    class="ant-space ant-space-vertical"
+                  >
+                    <div
+                      class="ant-space-item"
+                      style="margin-bottom: 8px;"
+                    >
+                      <div
+                        class="ant-space ant-space-horizontal ant-space-align-center"
+                      >
+                        <div
+                          class="ant-space-item"
+                        >
+                          <div
+                            class="sc-hGPBjI dPzDpm"
+                            data-testid="card-icon"
+                          >
+                            <i
+                              class="sc-jJoQJp jNrnkC  mc-plus-2-line"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-space-item"
+                    >
+                      <div
+                        class="sc-dlVxhl htHHmt"
+                        data-testid="attributes-card-container-bottom-text"
+                      >
+                        Add/Edit Attribute
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8"
+            style="padding: 8px 8px 8px 8px;"
+          >
+            <div
+              class="ant-card sc-dJjYzT iyDpor"
+              data-testid="attributes-card-container"
+            >
+              <div
+                class="ant-card-body"
+              >
+                <div
+                  class="ant-space ant-space-vertical"
+                >
+                  <div
+                    class="ant-space-item"
+                    style="margin-bottom: 8px;"
+                  >
+                    <div
+                      class="ant-space ant-space-horizontal ant-space-align-center"
+                    >
+                      <div
+                        class="ant-space-item"
+                        style="margin-right: 16px;"
+                      >
+                        <div
+                          class="sc-hGPBjI dPzDpm"
+                          data-testid="card-icon"
+                          style="background: rgb(245, 106, 0);"
+                        />
+                      </div>
+                      <div
+                        class="ant-space-item"
+                      >
+                        <div
+                          class="sc-dlVxhl htHHmt"
+                          data-testid="attributes-card-container-title"
+                          style="text-transform: uppercase;"
+                        >
+                          Country
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-space-item"
+                  >
+                    <div
+                      class="sc-dlVxhl htHHmt"
+                      data-testid="attributes-card-container-bottom-text"
+                    >
+                      Nigeria
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8"
+            style="padding: 8px 8px 8px 8px;"
+          >
+            <div
+              class="ant-card sc-dJjYzT iyDpor"
+              data-testid="attributes-card-container"
+            >
+              <div
+                class="ant-card-body"
+              >
+                <div
+                  class="ant-space ant-space-vertical"
+                >
+                  <div
+                    class="ant-space-item"
+                    style="margin-bottom: 8px;"
+                  >
+                    <div
+                      class="ant-space ant-space-horizontal ant-space-align-center"
+                    >
+                      <div
+                        class="ant-space-item"
+                        style="margin-right: 16px;"
+                      >
+                        <div
+                          class="sc-hGPBjI dPzDpm"
+                          data-testid="card-icon"
+                          style="background: rgb(62, 130, 255);"
+                        />
+                      </div>
+                      <div
+                        class="ant-space-item"
+                      >
+                        <div
+                          class="sc-dlVxhl htHHmt"
+                          data-testid="attributes-card-container-title"
+                          style="text-transform: uppercase;"
+                        >
+                          Age
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-space-item"
+                  >
+                    <div
+                      class="sc-dlVxhl htHHmt"
+                      data-testid="attributes-card-container-bottom-text"
+                    >
+                      30
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="sc-bYoBSM eiUTLo"
+                >
+                  <button
+                    class="ant-btn ant-btn-round ant-btn-primary sc-gWXbKe gqWvpC"
+                    style="display: flex; align-items: center; justify-content: center; gap: 10px;"
+                    type="submit"
+                  >
+                    <div
+                      class="ant-space ant-space-horizontal ant-space-align-center"
+                    >
+                      <div
+                        class="ant-space-item"
+                        style="margin-right: 10px;"
+                      >
+                        <span>
+                          Revise
+                           Item
+                        </span>
+                      </div>
+                      <div
+                        class="ant-space-item"
+                      >
+                        <i
+                          class="sc-hiCibw hqEpBj mc-arrow-right-2-line"
+                        />
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

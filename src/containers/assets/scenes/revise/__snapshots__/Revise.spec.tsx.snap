@@ -1,0 +1,1784 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View Book Container should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-kfPuZi cYSDXf meta-form-container"
+    data-testid="create-scene-container"
+  >
+    <div
+      class="ant-space ant-space-horizontal ant-space-align-center"
+      style="flex-wrap: wrap; margin-bottom: -8px;"
+    >
+      <div
+        class="ant-space-item"
+        style="margin-right: 8px; padding-bottom: 8px;"
+      >
+        <button
+          class="ant-btn ant-btn-text ant-btn-icon-only"
+          type="button"
+        >
+          <i
+            class="mc-arrow-left-2-line mc-3x"
+            style="font-size: 2em;"
+          />
+        </button>
+      </div>
+      <div
+        class="ant-space-item"
+        style="padding-bottom: 8px;"
+      >
+        <div
+          class="sc-llYSUQ frnTYy"
+          data-testid="scene-header"
+        >
+          book_title_0x9c1b1c10406d11757067f03ce14a875c18a24e88_6_5_3: scene title for book_title_0x9c1b1c10406d11757067f03ce14a875c18a24e88_6_5_3 22_0
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-fKVqWL cJmGcU"
+    >
+      <form
+        class="ant-form ant-form-vertical ant-form-hide-required-mark"
+      >
+        <div
+          class="ant-row ant-form-item sc-hBUSln bHEpwO"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="coverImage"
+              title=""
+            >
+              <div>
+                <div
+                  class="sc-bBHxTw fDAyny"
+                >
+                  Cover Image
+                </div>
+                <div
+                  class="sc-cxpSdN cDYDkN"
+                >
+                  File types supported: JPG, PNG, GIF, SVG, GLB, GLTF. Max size: 100 MB
+                </div>
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <span>
+                  <div
+                    class="ant-upload ant-upload-drag sc-egiyK gYnNqF"
+                  >
+                    <span
+                      class="ant-upload ant-upload-btn"
+                      role="button"
+                      tabindex="0"
+                    >
+                      <input
+                        accept=""
+                        id="coverImage"
+                        style="display: none;"
+                        type="file"
+                      />
+                      <div
+                        class="ant-upload-drag-container"
+                      >
+                        <div
+                          class="w-100 h-100"
+                        >
+                          <div
+                            class="sc-bGaVxB leCRls"
+                            height="100%"
+                            style="border-radius: 12px;"
+                            width="100%"
+                          >
+                            <i
+                              class="mc-pencil-fill"
+                              style="font-size: 1.5em;"
+                            />
+                          </div>
+                          <div
+                            class="ant-image"
+                            style="width: 100%;"
+                          >
+                            <img
+                              alt=""
+                              class="ant-image-img ant-image-img-placeholder book-cover-image"
+                              src="http://dummyimage.com/862x990.png/cc0000/ffffff"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                  <div
+                    class="ant-upload-list ant-upload-list-picture"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="title"
+              title=""
+            >
+              <div
+                class="sc-iwjdpV hdxDrU"
+              >
+                TITLE
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input sc-iJKOTD kTwTSZ"
+                  id="title"
+                  placeholder="e. g. Redeemable One Comic Sence One"
+                  type="text"
+                  value="scene title for book_title_0x9c1b1c10406d11757067f03ce14a875c18a24e88_6_5_3 22_0"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="description"
+              title=""
+            >
+              <div
+                class="sc-iwjdpV hdxDrU"
+                style="margin-top: 40px;"
+              >
+                 DESCRIBE SCENE
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <textarea
+                  class="ant-input sc-giYglK cFNauV"
+                  id="description"
+                  placeholder="Provide a detailed description of your item"
+                  rows="7"
+                >
+                  Scene description for Book description 623963e50870e0a8f9db9742_6_5_3
+                </textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="ant-row ant-row-center ant-row-middle"
+                  style="margin: -8px -8px -8px -8px;"
+                >
+                  <div
+                    class="ant-col ant-col-18"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="sc-bBHxTw fDAyny"
+                    >
+                      Explicit or sensitive content
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-6"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="sc-bBHxTw fDAyny"
+                      style="text-align: right;"
+                    >
+                      <button
+                        aria-checked="false"
+                        class="ant-switch sc-ikJyIC dqmvmJ"
+                        data-testid="explicit-content-switch"
+                        id="explicitContent"
+                        role="switch"
+                        type="button"
+                      >
+                        <div
+                          class="ant-switch-handle"
+                        />
+                        <span
+                          class="ant-switch-inner"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-divider ant-divider-horizontal sc-kLwhqv bOkOWq"
+          role="separator"
+        />
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class=""
+              title=""
+            >
+              <div
+                class="sc-iwjdpV hdxDrU"
+              >
+                ARTISTS
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="ant-row"
+                  data-testid="unit-row"
+                  style="margin-left: -8px; margin-right: -8px; display: flex;"
+                >
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-7 ant-col-lg-7 ant-col-xl-7"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <div
+                              class="ant-select ant-select-auto-complete ant-select-single ant-select-show-search"
+                              data-testid="artist-name"
+                              style="width: 100%;"
+                            >
+                              <div
+                                class="ant-select-selector"
+                              >
+                                <span
+                                  class="ant-select-selection-search"
+                                >
+                                  <input
+                                    aria-activedescendant="artists_0_name_list_0"
+                                    aria-autocomplete="list"
+                                    aria-controls="artists_0_name_list"
+                                    aria-haspopup="listbox"
+                                    aria-owns="artists_0_name_list"
+                                    autocomplete="off"
+                                    class="ant-select-selection-search-input"
+                                    id="artists_0_name"
+                                    role="combobox"
+                                    type="search"
+                                    value="Idalia Marchington"
+                                  />
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-7 ant-col-lg-7 ant-col-xl-7"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input sc-iJKOTD kTwTSZ"
+                              data-testid="artist-url"
+                              id="artists_0_url"
+                              placeholder="Artist URL"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-xs-20 ant-col-sm-20 ant-col-md-8 ant-col-lg-8 ant-col-xl-8"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input sc-iJKOTD kTwTSZ"
+                              data-testid="wallet-address"
+                              id="artists_0_address"
+                              placeholder="Wallet Address"
+                              type="text"
+                              value="0x9c1b1c10406d11757067f03ce14a875c18a24e88"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col w-100 ant-col-sm-4 ant-col-md-4 ant-col-lg-2 ant-col-xl-2"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="meta-flex-center meta-flex w-100 h-100"
+                    >
+                       
+                      <button
+                        class="ant-btn ant-btn-round ant-btn-text ant-btn-dangerous"
+                        data-testid="remove-row"
+                        type="button"
+                      >
+                        <i
+                          class="mc-close-line mc-2x"
+                          style="font-size: 1.5rem;"
+                        />
+                        <span>
+                           
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-divider ant-divider-horizontal sc-kLwhqv bOkOWq"
+          role="separator"
+        />
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class=""
+              title=""
+            >
+              <div
+                class="sc-iwjdpV hdxDrU"
+              >
+                ARTISTS
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="ant-row"
+                  data-testid="unit-row"
+                  style="margin-left: -8px; margin-right: -8px; display: flex;"
+                >
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-7 ant-col-lg-7 ant-col-xl-7"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <div
+                              class="ant-select ant-select-auto-complete ant-select-single ant-select-show-search"
+                              data-testid="artist-name"
+                              style="width: 100%;"
+                            >
+                              <div
+                                class="ant-select-selector"
+                              >
+                                <span
+                                  class="ant-select-selection-search"
+                                >
+                                  <input
+                                    aria-activedescendant="artists_1_name_list_0"
+                                    aria-autocomplete="list"
+                                    aria-controls="artists_1_name_list"
+                                    aria-haspopup="listbox"
+                                    aria-owns="artists_1_name_list"
+                                    autocomplete="off"
+                                    class="ant-select-selection-search-input"
+                                    id="artists_1_name"
+                                    role="combobox"
+                                    type="search"
+                                    value="Loralee Ellerman"
+                                  />
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-7 ant-col-lg-7 ant-col-xl-7"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input sc-iJKOTD kTwTSZ"
+                              data-testid="artist-url"
+                              id="artists_1_url"
+                              placeholder="Artist URL"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-xs-20 ant-col-sm-20 ant-col-md-8 ant-col-lg-8 ant-col-xl-8"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input sc-iJKOTD kTwTSZ"
+                              data-testid="wallet-address"
+                              id="artists_1_address"
+                              placeholder="Wallet Address"
+                              type="text"
+                              value="0x9c1b1c10406d11757067f03ce14a875c18a24e88"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col w-100 ant-col-sm-4 ant-col-md-4 ant-col-lg-2 ant-col-xl-2"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="meta-flex-center meta-flex w-100 h-100"
+                    >
+                       
+                      <button
+                        class="ant-btn ant-btn-round ant-btn-text ant-btn-dangerous"
+                        data-testid="remove-row"
+                        type="button"
+                      >
+                        <i
+                          class="mc-close-line mc-2x"
+                          style="font-size: 1.5rem;"
+                        />
+                        <span>
+                           
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <button
+                  class="ant-btn ant-btn-round ant-btn-dashed ant-btn-block"
+                  data-testid="add-artist-btn"
+                  type="button"
+                >
+                  <span
+                    aria-label="plus"
+                    class="anticon anticon-plus"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="plus"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <defs>
+                        <style />
+                      </defs>
+                      <path
+                        d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+                      />
+                      <path
+                        d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+                      />
+                    </svg>
+                  </span>
+                  <span>
+                    Add Artist Wallet Address
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-divider ant-divider-horizontal sc-kLwhqv bOkOWq"
+          role="separator"
+        />
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class=""
+              title=""
+            >
+              <div>
+                <div
+                  class="sc-bBHxTw fDAyny"
+                  style="margin-top: 32px;"
+                >
+                  Attributes
+                </div>
+                <div
+                  class="sc-cxpSdN cDYDkN"
+                >
+                  Textual traits that show up as rectangles
+                </div>
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="ant-row"
+                  style="margin: -8px -8px -8px -8px;"
+                >
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="ant-col sc-cCcXHH ikofOl ant-btn"
+                      data-testid="attributes-card"
+                      style="padding: 8px 8px 8px 8px;"
+                    >
+                      <div
+                        class="ant-card sc-dJjYzT iyDpor"
+                        data-testid="attributes-card-container"
+                      >
+                        <div
+                          class="ant-card-body"
+                        >
+                          <div
+                            class="ant-space ant-space-vertical"
+                          >
+                            <div
+                              class="ant-space-item"
+                              style="margin-bottom: 8px;"
+                            >
+                              <div
+                                class="ant-space ant-space-horizontal ant-space-align-center"
+                              >
+                                <div
+                                  class="ant-space-item"
+                                >
+                                  <div
+                                    class="sc-hGPBjI dPzDpm"
+                                    data-testid="card-icon"
+                                  >
+                                    <i
+                                      class="sc-jJoQJp jNrnkC  mc-plus-2-line"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="ant-space-item"
+                            >
+                              <div
+                                class="sc-dlVxhl htHHmt"
+                                data-testid="attributes-card-container-bottom-text"
+                              >
+                                Add/Edit Attribute
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="ant-card sc-dJjYzT iyDpor"
+                      data-testid="attributes-card-container"
+                    >
+                      <div
+                        class="ant-card-body"
+                      >
+                        <div
+                          class="ant-space ant-space-vertical"
+                        >
+                          <div
+                            class="ant-space-item"
+                            style="margin-bottom: 8px;"
+                          >
+                            <div
+                              class="ant-space ant-space-horizontal ant-space-align-center"
+                            >
+                              <div
+                                class="ant-space-item"
+                                style="margin-right: 16px;"
+                              >
+                                <div
+                                  class="sc-hGPBjI dPzDpm"
+                                  data-testid="card-icon"
+                                  style="background: rgb(245, 106, 0);"
+                                />
+                              </div>
+                              <div
+                                class="ant-space-item"
+                              >
+                                <div
+                                  class="sc-dlVxhl htHHmt"
+                                  data-testid="attributes-card-container-title"
+                                  style="text-transform: uppercase;"
+                                >
+                                  Country
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="ant-space-item"
+                          >
+                            <div
+                              class="sc-dlVxhl htHHmt"
+                              data-testid="attributes-card-container-bottom-text"
+                            >
+                              South Africa
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="sc-jcFjpl cHGgLV"
+                >
+                  <button
+                    class="ant-btn ant-btn-round ant-btn-primary sc-gWXbKe gqWvpC"
+                    data-testid="create-btn"
+                    type="submit"
+                  >
+                    <div
+                      class="ant-space ant-space-horizontal ant-space-align-center"
+                    >
+                      <div
+                        class="ant-space-item"
+                        style="margin-right: 10px;"
+                      >
+                        <span>
+                          Revise
+                           Item
+                        </span>
+                      </div>
+                      <div
+                        class="ant-space-item"
+                      >
+                        <i
+                          class="sc-hiCibw hqEpBj mc-arrow-right-2-line"
+                        />
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`View Book Container should match with snapshot 2`] = `
+<div>
+  <div
+    class="sc-kfPuZi cYSDXf meta-form-container"
+    data-testid="create-scene-container"
+  >
+    <div
+      class="ant-space ant-space-horizontal ant-space-align-center"
+      style="flex-wrap: wrap; margin-bottom: -8px;"
+    >
+      <div
+        class="ant-space-item"
+        style="margin-right: 8px; padding-bottom: 8px;"
+      >
+        <button
+          class="ant-btn ant-btn-text ant-btn-icon-only"
+          type="button"
+        >
+          <i
+            class="mc-arrow-left-2-line mc-3x"
+            style="font-size: 2em;"
+          />
+        </button>
+      </div>
+      <div
+        class="ant-space-item"
+        style="padding-bottom: 8px;"
+      >
+        <div
+          class="sc-llYSUQ frnTYy"
+          data-testid="scene-header"
+        >
+          book_title_0x9c1b1c10406d11757067f03ce14a875c18a24e88_6_5_3: scene title for book_title_0x9c1b1c10406d11757067f03ce14a875c18a24e88_6_5_3 22_0
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-fKVqWL cJmGcU"
+    >
+      <form
+        class="ant-form ant-form-vertical ant-form-hide-required-mark"
+      >
+        <div
+          class="ant-row ant-form-item sc-hBUSln bHEpwO"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="coverImage"
+              title=""
+            >
+              <div>
+                <div
+                  class="sc-bBHxTw fDAyny"
+                >
+                  Cover Image
+                </div>
+                <div
+                  class="sc-cxpSdN cDYDkN"
+                >
+                  File types supported: JPG, PNG, GIF, SVG, GLB, GLTF. Max size: 100 MB
+                </div>
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <span>
+                  <div
+                    class="ant-upload ant-upload-drag sc-egiyK gYnNqF"
+                  >
+                    <span
+                      class="ant-upload ant-upload-btn"
+                      role="button"
+                      tabindex="0"
+                    >
+                      <input
+                        accept=""
+                        id="coverImage"
+                        style="display: none;"
+                        type="file"
+                      />
+                      <div
+                        class="ant-upload-drag-container"
+                      >
+                        <div
+                          class="w-100 h-100"
+                        >
+                          <div
+                            class="sc-bGaVxB leCRls"
+                            height="100%"
+                            style="border-radius: 12px;"
+                            width="100%"
+                          >
+                            <i
+                              class="mc-pencil-fill"
+                              style="font-size: 1.5em;"
+                            />
+                          </div>
+                          <div
+                            class="ant-image"
+                            style="width: 100%;"
+                          >
+                            <img
+                              alt=""
+                              class="ant-image-img ant-image-img-placeholder book-cover-image"
+                              src="http://dummyimage.com/862x990.png/cc0000/ffffff"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                  <div
+                    class="ant-upload-list ant-upload-list-picture"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="title"
+              title=""
+            >
+              <div
+                class="sc-iwjdpV hdxDrU"
+              >
+                TITLE
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input sc-iJKOTD kTwTSZ"
+                  id="title"
+                  placeholder="e. g. Redeemable One Comic Sence One"
+                  type="text"
+                  value="scene title for book_title_0x9c1b1c10406d11757067f03ce14a875c18a24e88_6_5_3 22_0"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="description"
+              title=""
+            >
+              <div
+                class="sc-iwjdpV hdxDrU"
+                style="margin-top: 40px;"
+              >
+                 DESCRIBE SCENE
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <textarea
+                  class="ant-input sc-giYglK cFNauV"
+                  id="description"
+                  placeholder="Provide a detailed description of your item"
+                  rows="7"
+                >
+                  Scene description for Book description 623963e50870e0a8f9db9742_6_5_3
+                </textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="ant-row ant-row-center ant-row-middle"
+                  style="margin: -8px -8px -8px -8px;"
+                >
+                  <div
+                    class="ant-col ant-col-18"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="sc-bBHxTw fDAyny"
+                    >
+                      Explicit or sensitive content
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-6"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="sc-bBHxTw fDAyny"
+                      style="text-align: right;"
+                    >
+                      <button
+                        aria-checked="false"
+                        class="ant-switch sc-ikJyIC dqmvmJ"
+                        data-testid="explicit-content-switch"
+                        id="explicitContent"
+                        role="switch"
+                        type="button"
+                      >
+                        <div
+                          class="ant-switch-handle"
+                        />
+                        <span
+                          class="ant-switch-inner"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-divider ant-divider-horizontal sc-kLwhqv bOkOWq"
+          role="separator"
+        />
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class=""
+              title=""
+            >
+              <div
+                class="sc-iwjdpV hdxDrU"
+              >
+                ARTISTS
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="ant-row"
+                  data-testid="unit-row"
+                  style="margin-left: -8px; margin-right: -8px; display: flex;"
+                >
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-7 ant-col-lg-7 ant-col-xl-7"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <div
+                              class="ant-select ant-select-auto-complete ant-select-single ant-select-show-search"
+                              data-testid="artist-name"
+                              style="width: 100%;"
+                            >
+                              <div
+                                class="ant-select-selector"
+                              >
+                                <span
+                                  class="ant-select-selection-search"
+                                >
+                                  <input
+                                    aria-activedescendant="artists_0_name_list_0"
+                                    aria-autocomplete="list"
+                                    aria-controls="artists_0_name_list"
+                                    aria-haspopup="listbox"
+                                    aria-owns="artists_0_name_list"
+                                    autocomplete="off"
+                                    class="ant-select-selection-search-input"
+                                    id="artists_0_name"
+                                    role="combobox"
+                                    type="search"
+                                    value="Idalia Marchington"
+                                  />
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-7 ant-col-lg-7 ant-col-xl-7"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input sc-iJKOTD kTwTSZ"
+                              data-testid="artist-url"
+                              id="artists_0_url"
+                              placeholder="Artist URL"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-xs-20 ant-col-sm-20 ant-col-md-8 ant-col-lg-8 ant-col-xl-8"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input sc-iJKOTD kTwTSZ"
+                              data-testid="wallet-address"
+                              id="artists_0_address"
+                              placeholder="Wallet Address"
+                              type="text"
+                              value="0x9c1b1c10406d11757067f03ce14a875c18a24e88"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col w-100 ant-col-sm-4 ant-col-md-4 ant-col-lg-2 ant-col-xl-2"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="meta-flex-center meta-flex w-100 h-100"
+                    >
+                       
+                      <button
+                        class="ant-btn ant-btn-round ant-btn-text ant-btn-dangerous"
+                        data-testid="remove-row"
+                        type="button"
+                      >
+                        <i
+                          class="mc-close-line mc-2x"
+                          style="font-size: 1.5rem;"
+                        />
+                        <span>
+                           
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-divider ant-divider-horizontal sc-kLwhqv bOkOWq"
+          role="separator"
+        />
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class=""
+              title=""
+            >
+              <div
+                class="sc-iwjdpV hdxDrU"
+              >
+                ARTISTS
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="ant-row"
+                  data-testid="unit-row"
+                  style="margin-left: -8px; margin-right: -8px; display: flex;"
+                >
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-7 ant-col-lg-7 ant-col-xl-7"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <div
+                              class="ant-select ant-select-auto-complete ant-select-single ant-select-show-search"
+                              data-testid="artist-name"
+                              style="width: 100%;"
+                            >
+                              <div
+                                class="ant-select-selector"
+                              >
+                                <span
+                                  class="ant-select-selection-search"
+                                >
+                                  <input
+                                    aria-activedescendant="artists_1_name_list_0"
+                                    aria-autocomplete="list"
+                                    aria-controls="artists_1_name_list"
+                                    aria-haspopup="listbox"
+                                    aria-owns="artists_1_name_list"
+                                    autocomplete="off"
+                                    class="ant-select-selection-search-input"
+                                    id="artists_1_name"
+                                    role="combobox"
+                                    type="search"
+                                    value="Loralee Ellerman"
+                                  />
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-7 ant-col-lg-7 ant-col-xl-7"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input sc-iJKOTD kTwTSZ"
+                              data-testid="artist-url"
+                              id="artists_1_url"
+                              placeholder="Artist URL"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-xs-20 ant-col-sm-20 ant-col-md-8 ant-col-lg-8 ant-col-xl-8"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input sc-iJKOTD kTwTSZ"
+                              data-testid="wallet-address"
+                              id="artists_1_address"
+                              placeholder="Wallet Address"
+                              type="text"
+                              value="0x9c1b1c10406d11757067f03ce14a875c18a24e88"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col w-100 ant-col-sm-4 ant-col-md-4 ant-col-lg-2 ant-col-xl-2"
+                    style="padding-left: 8px; padding-right: 8px;"
+                  >
+                    <div
+                      class="meta-flex-center meta-flex w-100 h-100"
+                    >
+                       
+                      <button
+                        class="ant-btn ant-btn-round ant-btn-text ant-btn-dangerous"
+                        data-testid="remove-row"
+                        type="button"
+                      >
+                        <i
+                          class="mc-close-line mc-2x"
+                          style="font-size: 1.5rem;"
+                        />
+                        <span>
+                           
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <button
+                  class="ant-btn ant-btn-round ant-btn-dashed ant-btn-block"
+                  data-testid="add-artist-btn"
+                  type="button"
+                >
+                  <span
+                    aria-label="plus"
+                    class="anticon anticon-plus"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="plus"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <defs>
+                        <style />
+                      </defs>
+                      <path
+                        d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+                      />
+                      <path
+                        d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+                      />
+                    </svg>
+                  </span>
+                  <span>
+                    Add Artist Wallet Address
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-divider ant-divider-horizontal sc-kLwhqv bOkOWq"
+          role="separator"
+        />
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class=""
+              title=""
+            >
+              <div>
+                <div
+                  class="sc-bBHxTw fDAyny"
+                  style="margin-top: 32px;"
+                >
+                  Attributes
+                </div>
+                <div
+                  class="sc-cxpSdN cDYDkN"
+                >
+                  Textual traits that show up as rectangles
+                </div>
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="ant-row"
+                  style="margin: -8px -8px -8px -8px;"
+                >
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="ant-col sc-cCcXHH ikofOl ant-btn"
+                      data-testid="attributes-card"
+                      style="padding: 8px 8px 8px 8px;"
+                    >
+                      <div
+                        class="ant-card sc-dJjYzT iyDpor"
+                        data-testid="attributes-card-container"
+                      >
+                        <div
+                          class="ant-card-body"
+                        >
+                          <div
+                            class="ant-space ant-space-vertical"
+                          >
+                            <div
+                              class="ant-space-item"
+                              style="margin-bottom: 8px;"
+                            >
+                              <div
+                                class="ant-space ant-space-horizontal ant-space-align-center"
+                              >
+                                <div
+                                  class="ant-space-item"
+                                >
+                                  <div
+                                    class="sc-hGPBjI dPzDpm"
+                                    data-testid="card-icon"
+                                  >
+                                    <i
+                                      class="sc-jJoQJp jNrnkC  mc-plus-2-line"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="ant-space-item"
+                            >
+                              <div
+                                class="sc-dlVxhl htHHmt"
+                                data-testid="attributes-card-container-bottom-text"
+                              >
+                                Add/Edit Attribute
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="ant-card sc-dJjYzT iyDpor"
+                      data-testid="attributes-card-container"
+                    >
+                      <div
+                        class="ant-card-body"
+                      >
+                        <div
+                          class="ant-space ant-space-vertical"
+                        >
+                          <div
+                            class="ant-space-item"
+                            style="margin-bottom: 8px;"
+                          >
+                            <div
+                              class="ant-space ant-space-horizontal ant-space-align-center"
+                            >
+                              <div
+                                class="ant-space-item"
+                                style="margin-right: 16px;"
+                              >
+                                <div
+                                  class="sc-hGPBjI dPzDpm"
+                                  data-testid="card-icon"
+                                  style="background: rgb(245, 106, 0);"
+                                />
+                              </div>
+                              <div
+                                class="ant-space-item"
+                              >
+                                <div
+                                  class="sc-dlVxhl htHHmt"
+                                  data-testid="attributes-card-container-title"
+                                  style="text-transform: uppercase;"
+                                >
+                                  Country
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="ant-space-item"
+                          >
+                            <div
+                              class="sc-dlVxhl htHHmt"
+                              data-testid="attributes-card-container-bottom-text"
+                            >
+                              South Africa
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="sc-jcFjpl cHGgLV"
+                >
+                  <button
+                    class="ant-btn ant-btn-round ant-btn-primary sc-gWXbKe gqWvpC"
+                    data-testid="create-btn"
+                    type="submit"
+                  >
+                    <div
+                      class="ant-space ant-space-horizontal ant-space-align-center"
+                    >
+                      <div
+                        class="ant-space-item"
+                        style="margin-right: 10px;"
+                      >
+                        <span>
+                          Revise
+                           Item
+                        </span>
+                      </div>
+                      <div
+                        class="ant-space-item"
+                      >
+                        <i
+                          class="sc-hiCibw hqEpBj mc-arrow-right-2-line"
+                        />
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`View Book Container should render without title  1`] = `
+<div>
+  <div
+    class="meta-flex-center meta-flex"
+    style="height: 50vh;"
+  >
+    <span
+      class="sc-cidDSM cRAWQh"
+      role="1"
+    >
+      <svg
+        fill="none"
+        height="40"
+        viewBox="0 0 14 14"
+        width="40"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M7 0.333374C6.63181 0.333374 6.33333 0.631851 6.33333 1.00004V3.00004C6.33333 3.36823 6.63181 3.66671 7 3.66671C7.36819 3.66671 7.66667 3.36823 7.66667 3.00004V1.00004C7.66667 0.631851 7.36819 0.333374 7 0.333374Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M7 10.3334C6.63181 10.3334 6.33333 10.6319 6.33333 11V13C6.33333 13.3682 6.63181 13.6667 7 13.6667C7.36819 13.6667 7.66667 13.3682 7.66667 13V11C7.66667 10.6319 7.36819 10.3334 7 10.3334Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M13 6.33337C13.3682 6.33337 13.6667 6.63185 13.6667 7.00004C13.6667 7.36823 13.3682 7.66671 13 7.66671H11C10.6318 7.66671 10.3333 7.36823 10.3333 7.00004C10.3333 6.63185 10.6318 6.33337 11 6.33337H13Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M3.66667 7.00004C3.66667 6.63185 3.36819 6.33337 3 6.33337H0.999999C0.631809 6.33337 0.333332 6.63185 0.333332 7.00004C0.333332 7.36823 0.631809 7.66671 0.999999 7.66671H3C3.36819 7.66671 3.66667 7.36823 3.66667 7.00004Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M10.7713 2.28606C11.0316 2.02571 11.4537 2.02571 11.7141 2.28606C11.9744 2.54641 11.9744 2.96852 11.7141 3.22887L10.2999 4.64308C10.0395 4.90343 9.61741 4.90343 9.35706 4.64308C9.09671 4.38273 9.09671 3.96062 9.35706 3.70027L10.7713 2.28606Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M4.64295 9.35703C4.3826 9.09668 3.96049 9.09668 3.70014 9.35703L2.28593 10.7712C2.02558 11.0316 2.02558 11.4537 2.28593 11.714C2.54628 11.9744 2.96839 11.9744 3.22874 11.714L4.64295 10.2998C4.9033 10.0395 4.9033 9.61737 4.64295 9.35703Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M11.7141 10.7713C11.9744 11.0317 11.9744 11.4538 11.7141 11.7141C11.4537 11.9745 11.0316 11.9745 10.7713 11.7141L9.35704 10.2999C9.09669 10.0396 9.09669 9.61745 9.35704 9.3571C9.61739 9.09675 10.0395 9.09675 10.2998 9.3571L11.7141 10.7713Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M4.64301 4.64299C4.90336 4.38265 4.90336 3.96054 4.64301 3.70019L3.2288 2.28597C2.96845 2.02562 2.54634 2.02562 2.28599 2.28597C2.02564 2.54632 2.02564 2.96843 2.28599 3.22878L3.70021 4.64299C3.96056 4.90334 4.38267 4.90334 4.64301 4.64299Z"
+          fill="#FCFCFD"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;

@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AttributesCard should match with snapshot 1`] = `
+<div>
+  <div
+    class="ant-card sc-bdvvtL jYlmOu"
+    data-testid="attributes-card-container"
+  >
+    <div
+      class="ant-card-body"
+    >
+      <div
+        class="ant-space ant-space-vertical"
+      >
+        <div
+          class="ant-space-item"
+          style="margin-bottom: 8px;"
+        >
+          <div
+            class="ant-space ant-space-horizontal ant-space-align-center"
+          >
+            <div
+              class="ant-space-item"
+              style="margin-right: 16px;"
+            >
+              <div
+                class="sc-gsDKAQ hkxojj"
+                data-testid="card-icon"
+              >
+                <i
+                  class="mc-check-fill mc-1x"
+                />
+              </div>
+            </div>
+            <div
+              class="ant-space-item"
+            >
+              <div
+                class="sc-dkPtRN hndXjc"
+                data-testid="attributes-card-container-title"
+                style="text-transform: uppercase;"
+              >
+                Lorem ipsum lorem
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-space-item"
+        >
+          <div
+            class="sc-dkPtRN hndXjc"
+            data-testid="attributes-card-container-bottom-text"
+          >
+            story line
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

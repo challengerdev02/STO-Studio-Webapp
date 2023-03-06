@@ -1,0 +1,515 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateScene should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-kDTinF kmUlIq meta-form-container"
+    data-testid="create-scene-container"
+  >
+    <div
+      class="ant-space ant-space-horizontal ant-space-align-center"
+      style="flex-wrap: wrap; margin-bottom: -8px;"
+    >
+      <div
+        class="ant-space-item"
+        style="margin-right: 8px; padding-bottom: 8px;"
+      >
+        <button
+          class="ant-btn ant-btn-text ant-btn-icon-only"
+          type="button"
+        >
+          <i
+            class="mc-arrow-left-2-line mc-3x"
+            style="font-size: 2em;"
+          />
+        </button>
+      </div>
+      <div
+        class="ant-space-item"
+        style="padding-bottom: 8px;"
+      >
+        <div
+          class="sc-ksdxgE gCwWiy"
+          data-testid="scene-header"
+        >
+          Create Scene
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-iqseJM iTHgDQ"
+    >
+      <form
+        class="ant-form ant-form-vertical ant-form-hide-required-mark"
+      >
+        <div
+          class="ant-row ant-form-item sc-hKwDye cIllGI"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="coverImage"
+              title=""
+            >
+              <div>
+                <div
+                  class="sc-crHmcD ctyHTO"
+                >
+                  Cover Image
+                </div>
+                <div
+                  class="sc-bqiRlB gyWgOR"
+                >
+                  File types supported: JPG, PNG, GIF, SVG, GLB, GLTF. Max size: 100 MB
+                </div>
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <span>
+                  <div
+                    class="ant-upload ant-upload-drag sc-bdvvtL cpVgWO"
+                  >
+                    <span
+                      class="ant-upload ant-upload-btn"
+                      role="button"
+                      tabindex="0"
+                    >
+                      <input
+                        accept=""
+                        id="coverImage"
+                        style="display: none;"
+                        type="file"
+                      />
+                      <div
+                        class="ant-upload-drag-container"
+                      >
+                        <div
+                          class="ant-space ant-space-vertical ant-space-align-center upload-link-placeholder"
+                        >
+                          <div
+                            class="ant-space-item"
+                            style="margin-bottom: 16px;"
+                          >
+                            <i
+                              class="sc-gsDKAQ eldzfp mc-file-upload-line"
+                            />
+                          </div>
+                          <div
+                            class="ant-space-item"
+                          >
+                            <div
+                              class="sc-dkPtRN dsKwUz"
+                            >
+                              Drag file here or Click to upload
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                  <div
+                    class="ant-upload-list ant-upload-list-text"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="title"
+              title=""
+            >
+              <div
+                class="sc-egiyK iEPrHz"
+              >
+                TITLE
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input sc-hBUSln FufSQ"
+                  id="title"
+                  placeholder="e. g. Redeemable One Comic Sence One"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class="ant-form-item-required"
+              for="description"
+              title=""
+            >
+              <div
+                class="sc-egiyK iEPrHz"
+                style="margin-top: 40px;"
+              >
+                 DESCRIBE SCENE
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <textarea
+                  class="ant-input sc-fotOHu fMfDMF"
+                  id="description"
+                  placeholder="Provide a detailed description of your item"
+                  rows="7"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="ant-row ant-row-center ant-row-middle"
+                  style="margin: -8px -8px -8px -8px;"
+                >
+                  <div
+                    class="ant-col ant-col-18"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="sc-crHmcD ctyHTO"
+                    >
+                      Explicit or sensitive content
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-6"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="sc-crHmcD ctyHTO"
+                      style="text-align: right;"
+                    >
+                      <button
+                        aria-checked="false"
+                        class="ant-switch sc-dJjYzT dKflFV"
+                        data-testid="explicit-content-switch"
+                        id="explicitContent"
+                        role="switch"
+                        type="button"
+                      >
+                        <div
+                          class="ant-switch-handle"
+                        />
+                        <span
+                          class="ant-switch-inner"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-divider ant-divider-horizontal sc-ieecCq hiGExR"
+          role="separator"
+        />
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <button
+                  class="ant-btn ant-btn-round ant-btn-dashed ant-btn-block"
+                  data-testid="add-artist-btn"
+                  type="button"
+                >
+                  <span
+                    aria-label="plus"
+                    class="anticon anticon-plus"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="plus"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <defs>
+                        <style />
+                      </defs>
+                      <path
+                        d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+                      />
+                      <path
+                        d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+                      />
+                    </svg>
+                  </span>
+                  <span>
+                    Add Artist Wallet Address
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-divider ant-divider-horizontal sc-ieecCq hiGExR"
+          role="separator"
+        />
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-label"
+          >
+            <label
+              class=""
+              title=""
+            >
+              <div>
+                <div
+                  class="sc-crHmcD ctyHTO"
+                  style="margin-top: 32px;"
+                >
+                  Attributes
+                </div>
+                <div
+                  class="sc-bqiRlB gyWgOR"
+                >
+                  Textual traits that show up as rectangles
+                </div>
+              </div>
+            </label>
+          </div>
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="ant-row"
+                  style="margin: -8px -8px -8px -8px;"
+                >
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="ant-col sc-fKVqWL fbwIIj ant-btn"
+                      data-testid="attributes-card"
+                      style="padding: 8px 8px 8px 8px;"
+                    >
+                      <div
+                        class="ant-card sc-furwcr ipnAWT"
+                        data-testid="attributes-card-container"
+                      >
+                        <div
+                          class="ant-card-body"
+                        >
+                          <div
+                            class="ant-space ant-space-vertical"
+                          >
+                            <div
+                              class="ant-space-item"
+                              style="margin-bottom: 8px;"
+                            >
+                              <div
+                                class="ant-space ant-space-horizontal ant-space-align-center"
+                              >
+                                <div
+                                  class="ant-space-item"
+                                >
+                                  <div
+                                    class="sc-pVTFL jlbdkw"
+                                    data-testid="card-icon"
+                                  >
+                                    <i
+                                      class="sc-hGPBjI iNVQsM  mc-plus-2-line"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="ant-space-item"
+                            >
+                              <div
+                                class="sc-jrQzAO iuRkke"
+                                data-testid="attributes-card-container-bottom-text"
+                              >
+                                Add/Edit Attribute
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8"
+                    style="padding: 8px 8px 8px 8px;"
+                  >
+                    <div
+                      class="ant-card sc-furwcr ipnAWT"
+                      data-testid="attributes-card-container"
+                    >
+                      <div
+                        class="ant-card-body"
+                      >
+                        <div
+                          class="ant-space ant-space-vertical"
+                        >
+                          <div
+                            class="ant-space-item"
+                            style="margin-bottom: 8px;"
+                          >
+                            <div
+                              class="ant-space ant-space-horizontal ant-space-align-center"
+                            >
+                              <div
+                                class="ant-space-item"
+                                style="margin-right: 16px;"
+                              >
+                                <div
+                                  class="sc-pVTFL jlbdkw"
+                                  data-testid="card-icon"
+                                  style="background: rgb(62, 130, 255);"
+                                />
+                              </div>
+                              <div
+                                class="ant-space-item"
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="ant-space-item"
+                          >
+                            <div
+                              class="sc-jrQzAO iuRkke"
+                              data-testid="attributes-card-container-bottom-text"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <div
+                  class="sc-iwjdpV gNYjKC"
+                >
+                  <button
+                    class="ant-btn ant-btn-round ant-btn-primary sc-kfPuZi erdyux"
+                    data-testid="create-btn"
+                    type="submit"
+                  >
+                    <div
+                      class="ant-space ant-space-horizontal ant-space-align-center"
+                    >
+                      <div
+                        class="ant-space-item"
+                        style="margin-right: 10px;"
+                      >
+                        <span>
+                          Revise
+                           Item
+                        </span>
+                      </div>
+                      <div
+                        class="ant-space-item"
+                      >
+                        <i
+                          class="sc-dlVxhl eYUZRD mc-arrow-right-2-line"
+                        />
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

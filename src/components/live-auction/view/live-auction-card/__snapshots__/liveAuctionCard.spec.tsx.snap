@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LiveAuctionCard component should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdvvtL hWhPCO"
+    data-testid="live-auction-card"
+  >
+    <div
+      class="sc-gsDKAQ bGfeRP"
+    >
+      <img
+        alt=""
+        class="sc-dkPtRN dnOmnC"
+        data-testid="display-image"
+        src="/live-auction-card-cover.svg"
+      />
+    </div>
+    <div
+      class="sc-hKwDye feTgcT"
+    >
+      <div
+        class="sc-eCImPb doHkEG"
+      >
+        <h5
+          class="sc-jRQBWg cEjJxq"
+          data-testid="attribute-header"
+        >
+          Attributes
+        </h5>
+        <div
+          class="sc-gKclnd bITziK"
+        >
+          <p
+            class="sc-iCfMLu cHwwON"
+          >
+            <span
+              class="sc-furwcr MfXef"
+            >
+              GENRE_OPTIONS
+            </span>
+            <span
+              class="sc-furwcr MfXef"
+              data-testid="GENRE_OPTIONS"
+            >
+              Science Fiction
+            </span>
+          </p>
+          <p
+            class="sc-iCfMLu cHwwON"
+          >
+            <span
+              class="sc-furwcr MfXef"
+            >
+              Language
+            </span>
+            <span
+              class="sc-furwcr MfXef"
+              data-testid="language-type"
+            >
+              Japanese
+            </span>
+          </p>
+          <p
+            class="sc-iCfMLu cHwwON"
+          >
+            <span
+              class="sc-furwcr MfXef"
+            >
+              Age Rating:
+            </span>
+            <span
+              class="sc-furwcr MfXef"
+              data-testid="age-rating"
+            >
+              13 and above
+            </span>
+          </p>
+        </div>
+      </div>
+      <div
+        class="sc-eCImPb doHkEG"
+      >
+        <h5
+          class="sc-jRQBWg cEjJxq"
+          data-testid="characters-header"
+        >
+          Characters
+        </h5>
+        <div
+          class="sc-gKclnd bITziK"
+        >
+          <p
+            class="sc-iCfMLu cHwwON"
+          >
+            <span
+              class="sc-furwcr MfXef"
+              data-testid="characters"
+            >
+              Spiderman
+            </span>
+          </p>
+          <p
+            class="sc-iCfMLu cHwwON"
+          >
+            <span
+              class="sc-furwcr MfXef"
+              data-testid="characters"
+            >
+              Magnito
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

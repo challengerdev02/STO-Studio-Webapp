@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IsomorphicUpload component should match with snapshot 1`] = `
+<div>
+  <div
+    class="ant-row ant-form-item sc-hKwDye cIllGI"
+  >
+    <div
+      class="ant-col ant-form-item-control"
+    >
+      <div
+        class="ant-form-item-control-input"
+      >
+        <div
+          class="ant-form-item-control-input-content"
+        >
+          <span>
+            <div
+              class="ant-upload ant-upload-drag sc-bdvvtL cpVgWO"
+            >
+              <span
+                class="ant-upload ant-upload-btn"
+                role="button"
+                tabindex="0"
+              >
+                <input
+                  accept=""
+                  style="display: none;"
+                  type="file"
+                />
+                <div
+                  class="ant-upload-drag-container"
+                >
+                  <div>
+                    Upload file
+                  </div>
+                </div>
+              </span>
+            </div>
+            <div
+              class="ant-upload-list ant-upload-list-text"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

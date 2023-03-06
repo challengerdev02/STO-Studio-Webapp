@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/components": ["src/components"],
+      "@/containers": ["src/containers"],
+      "@/services": ["src/services"],
+      "@/actions": ["src/redux/actions"],
+      "@/middlewares": ["src/redux/middlewares"],
+      "@/reducers": ["src/redux/reducers"],
+      "@/store": ["src/redux/store.ts"],
+      "@/redux": ["src/redux/*"],
+      "@/components/*": ["src/components/*"],
+      "@/shared/*": ["src/_shared/*"],
+      "@/hooks": ["src/hooks"],
+      "@/context": ["src/context"],
+      "@/web3/*": ["src/web3/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

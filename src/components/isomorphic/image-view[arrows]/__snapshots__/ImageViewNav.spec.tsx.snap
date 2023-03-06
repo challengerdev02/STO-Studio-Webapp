@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageViewNavComponent should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-gsDKAQ gwlFDG image-view-container"
+  >
+    <div
+      class="sc-bdvvtL oKzls image-view-container main-image-view"
+      role="main-image-view"
+    >
+      <div
+        class="ant-image"
+        role="main-image-view"
+      >
+        <img
+          alt="image"
+          class="ant-image-img main-image-view"
+          src="https://i.picsum.photos/id/111/600/400.jpg?hmac=hVzgLIvxNZYaZkGV8HgOs6FO0aePt5tSEhb-sZBwbkk"
+        />
+        <div
+          class="ant-image-mask"
+        >
+          <span
+            class="expand-arrow"
+          >
+            <svg
+              fill="none"
+              height="25"
+              viewBox="0 0 26 25"
+              width="26"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M15.988 8.36399L21.1585 3.42762C21.4671 3.13296 21.3659 2.89352 20.9277 2.89671L15.5575 2.936C13.9552 2.94821 13.9735 0.653066 15.5758 0.641378L24.7061 0.500149C25.3601 0.490062 25.8935 0.993365 25.8851 1.62514L25.7633 10.3665C25.7511 11.8961 23.3474 11.9142 23.3596 10.3841L23.4013 5.25755C23.4047 4.83388 23.1555 4.74097 22.8452 5.03722L10.7023 16.6291C10.6951 16.636 10.6884 16.6424 10.6811 16.6488L5.51013 21.5851C5.20146 21.8798 5.30269 22.1192 5.74093 22.1161L11.1117 22.0762C12.714 22.0646 12.695 24.3592 11.0928 24.3714L1.94912 24.4999C1.29397 24.5089 0.760624 24.0056 0.770647 23.3749L0.905235 14.6461C0.91747 13.1166 3.32118 13.0985 3.30893 14.6281L3.26722 19.7546C3.26388 20.1788 3.51304 20.2717 3.82336 19.9749L15.9669 8.38355C15.9735 8.37665 15.9808 8.37028 15.988 8.36391L15.988 8.36399Z"
+                fill="black"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-hKwDye bCucgT"
+      role="nav-container"
+    >
+      <button
+        class="ant-btn ant-btn-text"
+        role="previous-slide-btn"
+        type="button"
+      >
+        <i
+          class="mc-arrow-left-2-line mc-2x"
+        />
+      </button>
+      <span
+        class="ant-typography"
+      >
+        <span
+          class="current"
+          role="current-slide"
+        >
+          1
+        </span>
+        <span>
+          /
+        </span>
+        <span
+          class="total"
+        >
+          2
+        </span>
+      </span>
+      <button
+        class="ant-btn ant-btn-text"
+        role="next-slide-btn"
+        type="button"
+      >
+        <i
+          class="mc-arrow-right-2-line mc-2x"
+        />
+      </button>
+    </div>
+  </div>
+</div>
+`;

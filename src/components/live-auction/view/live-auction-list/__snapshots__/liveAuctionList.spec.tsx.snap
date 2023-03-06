@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LiveAuctionList component should match with snapshot 1`] = `
+<div>
+  <div
+    class="ant-list ant-list-split"
+    data-testid="live-auction-list"
+  >
+    <div
+      class="ant-spin-nested-loading"
+    >
+      <div
+        class="ant-spin-container"
+      >
+        <ul
+          class="ant-list-items"
+        >
+          <li
+            class="ant-list-item"
+          >
+            <div
+              class="ant-list-item-meta"
+            >
+              <div
+                class="ant-list-item-meta-avatar"
+              >
+                <div
+                  class="sc-bdvvtL kGscza"
+                >
+                  <div
+                    class="sc-gsDKAQ eNKYiV"
+                  >
+                     
+                    <img
+                      alt=""
+                      class="sc-dkPtRN jsPQsZ"
+                      height="28px"
+                      src="/verified-account-avatar.svg"
+                      width="26px"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="ant-list-item-meta-content"
+              >
+                <h4
+                  class="ant-list-item-meta-title"
+                >
+                  <span
+                    class="sc-jRQBWg jfyBYj"
+                  >
+                    <span
+                      data-testid="crypto_value"
+                    >
+                      7.00698
+                    </span>
+                     
+                    <span
+                      class="sc-hKwDye emujjc"
+                      data-testid="currency_type"
+                    >
+                      ETH
+                    </span>
+                     
+                    <span>
+                      by 
+                    </span>
+                     
+                    <span
+                      data-testid="user"
+                      title="0x658d22456633334234iF0cC"
+                    >
+                      0x658d22456633334...
+                    </span>
+                  </span>
+                </h4>
+                <div
+                  class="ant-list-item-meta-description"
+                >
+                  <span
+                    class="sc-eCImPb fYSFWD"
+                    data-testid="date"
+                  >
+                    2021-11-17, 01:00 am
+                  </span>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li
+            class="ant-list-item"
+          >
+            <div
+              class="ant-list-item-meta"
+            >
+              <div
+                class="ant-list-item-meta-avatar"
+              >
+                <div
+                  class="sc-bdvvtL kGscza"
+                >
+                  <div
+                    class="sc-gsDKAQ eNKYiV"
+                  >
+                     
+                    <img
+                      alt=""
+                      class="sc-dkPtRN jsPQsZ"
+                      height="28px"
+                      src="/verified-account-avatar.svg"
+                      width="26px"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="ant-list-item-meta-content"
+              >
+                <h4
+                  class="ant-list-item-meta-title"
+                >
+                  <span
+                    class="sc-jRQBWg jfyBYj"
+                  >
+                    <span
+                      data-testid="crypto_value"
+                    >
+                      7.00698
+                    </span>
+                     
+                    <span
+                      class="sc-hKwDye emujjc"
+                      data-testid="currency_type"
+                    >
+                      ETH
+                    </span>
+                     
+                    <span>
+                      by 
+                    </span>
+                     
+                    <span
+                      data-testid="user"
+                      title="0x658d22456633334234iF0cC"
+                    >
+                      0x658d22456633334...
+                    </span>
+                  </span>
+                </h4>
+                <div
+                  class="ant-list-item-meta-description"
+                >
+                  <span
+                    class="sc-eCImPb fYSFWD"
+                    data-testid="date"
+                  >
+                    2021-11-17, 01:00 am
+                  </span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;

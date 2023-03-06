@@ -1,0 +1,417 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyBooksWrapper component should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdvvtL edrKzj"
+    data-testid="my-books-wrapper"
+  >
+    <h2
+      class="sc-gsDKAQ jseQtl"
+      data-testid="component-header"
+    >
+      My Books
+    </h2>
+    <div
+      class="sc-dkPtRN bgsINa"
+    >
+      <div
+        class="sc-hKwDye gHwwQC"
+      >
+        <div
+          class="sc-eCImPb iJzNSl"
+          data-testid="create-book"
+        >
+          <div
+            class="sc-jRQBWg jeybyp"
+          >
+            <div
+              class="sc-gKclnd ecZOjd"
+            >
+              <img
+                class="sc-iCfMLu dDQPcC"
+                data-testid="display-image"
+                src="/book-cover.png"
+              />
+            </div>
+            <div
+              class="sc-furwcr jDxtur"
+            >
+              <div
+                class="sc-iqseJM iThJwH"
+              >
+                 
+                <div
+                  class="sc-pVTFL ctWsrq"
+                  data-testid="book-title"
+                >
+                  This is a test title
+                </div>
+                <div
+                  class="sc-jrQzAO bXJmqj"
+                  data-testid="book-author"
+                >
+                  by @
+                  John Doe
+                </div>
+                <div
+                  aria-label="This is metacomic"
+                  class="ant-typography ant-typography-ellipsis sc-kDTinF fqLSMw"
+                  data-testid="book-description"
+                >
+                  This is metacomic
+                  <span
+                    aria-hidden="true"
+                    style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; word-break: keep-all; white-space: nowrap;"
+                  >
+                    lg
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; width: 0px; white-space: normal; margin: 0px; padding: 0px;"
+                  >
+                    <span
+                      aria-hidden="true"
+                    >
+                      ...
+                    </span>
+                    <a
+                      aria-label="Expand"
+                      class="ant-typography-expand"
+                    >
+                      <span
+                        class="read_more"
+                      >
+                        Read More
+                      </span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div
+                class="sc-crHmcD gruuSk"
+              >
+                <button
+                  class="ant-btn ant-btn-default sc-egiyK eanRVu"
+                  type="button"
+                >
+                  <span>
+                    Sell
+                  </span>
+                </button>
+                <div
+                  class="sc-bqiRlB LTSsU ant-dropdown-trigger sc-hBUSln"
+                  data-testid="options"
+                >
+                  <span
+                    class="sc-ksdxgE kzzeFb"
+                  >
+                    ...
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-hKwDye gHwwQC"
+      >
+        <div
+          class="sc-eCImPb iJzNSl"
+          data-testid="create-book"
+        >
+          <div
+            class="sc-jRQBWg jeybyp"
+          >
+            <div
+              class="sc-gKclnd ecZOjd"
+            >
+              <img
+                class="sc-iCfMLu dDQPcC"
+                data-testid="display-image"
+                src="/book-cover.png"
+              />
+            </div>
+            <div
+              class="sc-furwcr jDxtur"
+            >
+              <div
+                class="sc-iqseJM iThJwH"
+              >
+                 
+                <div
+                  class="sc-pVTFL ctWsrq"
+                  data-testid="book-title"
+                >
+                  This is a test title
+                </div>
+                <div
+                  class="sc-jrQzAO bXJmqj"
+                  data-testid="book-author"
+                >
+                  by @
+                  John Doe
+                </div>
+                <div
+                  aria-label="This is metacomic"
+                  class="ant-typography ant-typography-ellipsis sc-kDTinF fqLSMw"
+                  data-testid="book-description"
+                >
+                  This is metacomic
+                  <span
+                    aria-hidden="true"
+                    style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; word-break: keep-all; white-space: nowrap;"
+                  >
+                    lg
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; width: 0px; white-space: normal; margin: 0px; padding: 0px;"
+                  >
+                    <span
+                      aria-hidden="true"
+                    >
+                      ...
+                    </span>
+                    <a
+                      aria-label="Expand"
+                      class="ant-typography-expand"
+                    >
+                      <span
+                        class="read_more"
+                      >
+                        Read More
+                      </span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div
+                class="sc-crHmcD gruuSk"
+              >
+                <button
+                  class="ant-btn ant-btn-default sc-egiyK eanRVu"
+                  type="button"
+                >
+                  <span>
+                    Sell
+                  </span>
+                </button>
+                <div
+                  class="sc-bqiRlB LTSsU ant-dropdown-trigger sc-hBUSln"
+                  data-testid="options"
+                >
+                  <span
+                    class="sc-ksdxgE kzzeFb"
+                  >
+                    ...
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-hKwDye gHwwQC"
+      >
+        <div
+          class="sc-eCImPb iJzNSl"
+          data-testid="create-book"
+        >
+          <div
+            class="sc-jRQBWg jeybyp"
+          >
+            <div
+              class="sc-gKclnd ecZOjd"
+            >
+              <img
+                class="sc-iCfMLu dDQPcC"
+                data-testid="display-image"
+                src="/book-cover.png"
+              />
+            </div>
+            <div
+              class="sc-furwcr jDxtur"
+            >
+              <div
+                class="sc-iqseJM iThJwH"
+              >
+                 
+                <div
+                  class="sc-pVTFL ctWsrq"
+                  data-testid="book-title"
+                >
+                  This is a test title
+                </div>
+                <div
+                  class="sc-jrQzAO bXJmqj"
+                  data-testid="book-author"
+                >
+                  by @
+                  John Doe
+                </div>
+                <div
+                  aria-label="This is metacomic"
+                  class="ant-typography ant-typography-ellipsis sc-kDTinF fqLSMw"
+                  data-testid="book-description"
+                >
+                  This is metacomic
+                  <span
+                    aria-hidden="true"
+                    style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; word-break: keep-all; white-space: nowrap;"
+                  >
+                    lg
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; width: 0px; white-space: normal; margin: 0px; padding: 0px;"
+                  >
+                    <span
+                      aria-hidden="true"
+                    >
+                      ...
+                    </span>
+                    <a
+                      aria-label="Expand"
+                      class="ant-typography-expand"
+                    >
+                      <span
+                        class="read_more"
+                      >
+                        Read More
+                      </span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div
+                class="sc-crHmcD gruuSk"
+              >
+                <button
+                  class="ant-btn ant-btn-default sc-egiyK eanRVu"
+                  type="button"
+                >
+                  <span>
+                    Sell
+                  </span>
+                </button>
+                <div
+                  class="sc-bqiRlB LTSsU ant-dropdown-trigger sc-hBUSln"
+                  data-testid="options"
+                >
+                  <span
+                    class="sc-ksdxgE kzzeFb"
+                  >
+                    ...
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-hKwDye gHwwQC"
+      >
+        <div
+          class="sc-eCImPb iJzNSl"
+          data-testid="create-book"
+        >
+          <div
+            class="sc-jRQBWg jeybyp"
+          >
+            <div
+              class="sc-gKclnd ecZOjd"
+            >
+              <img
+                class="sc-iCfMLu dDQPcC"
+                data-testid="display-image"
+                src="/book-cover.png"
+              />
+            </div>
+            <div
+              class="sc-furwcr jDxtur"
+            >
+              <div
+                class="sc-iqseJM iThJwH"
+              >
+                 
+                <div
+                  class="sc-pVTFL ctWsrq"
+                  data-testid="book-title"
+                >
+                  This is a test title
+                </div>
+                <div
+                  class="sc-jrQzAO bXJmqj"
+                  data-testid="book-author"
+                >
+                  by @
+                  John Doe
+                </div>
+                <div
+                  aria-label="This is metacomic"
+                  class="ant-typography ant-typography-ellipsis sc-kDTinF fqLSMw"
+                  data-testid="book-description"
+                >
+                  This is metacomic
+                  <span
+                    aria-hidden="true"
+                    style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; word-break: keep-all; white-space: nowrap;"
+                  >
+                    lg
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; width: 0px; white-space: normal; margin: 0px; padding: 0px;"
+                  >
+                    <span
+                      aria-hidden="true"
+                    >
+                      ...
+                    </span>
+                    <a
+                      aria-label="Expand"
+                      class="ant-typography-expand"
+                    >
+                      <span
+                        class="read_more"
+                      >
+                        Read More
+                      </span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div
+                class="sc-crHmcD gruuSk"
+              >
+                <button
+                  class="ant-btn ant-btn-default sc-egiyK eanRVu"
+                  type="button"
+                >
+                  <span>
+                    Sell
+                  </span>
+                </button>
+                <div
+                  class="sc-bqiRlB LTSsU ant-dropdown-trigger sc-hBUSln"
+                  data-testid="options"
+                >
+                  <span
+                    class="sc-ksdxgE kzzeFb"
+                  >
+                    ...
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container should match with snapshot 1`] = `
+<div>
+  <span
+    class="ant-typography sc-bdvvtL cEDpem"
+  >
+    ABC
+  </span>
+</div>
+`;

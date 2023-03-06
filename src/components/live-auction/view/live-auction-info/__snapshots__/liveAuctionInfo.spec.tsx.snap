@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LiveAuctionInfo component should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdvvtL cvxyAe"
+    data-testid="live-auction-info"
+  >
+    <h2
+      class="sc-gsDKAQ etmZfV"
+      data-testid="bid-title"
+    >
+      Amethyst: Princess of Gemworld
+    </h2>
+    <span
+      class="sc-dkPtRN kiHugN"
+      data-testid="bid-auctioneer"
+    >
+      by @
+      macauley
+    </span>
+    <div
+      aria-label="Amaya, princess of House Amethyst in Gemworld, and her brother love magical pranks. But when one goes much too far, her parents ground the young royal. Amaya, princess of House Amethyst in Gemworld, and her brother love magical pranks."
+      class="ant-typography ant-typography-ellipsis sc-hKwDye ejdsOt"
+      data-testid="item-description"
+    >
+      Amaya, princess of House Amethyst in Gemworld, and her brother love magical pranks. But when one goes much too far, her parents ground the young royal. Amaya, princess of House Amethyst in Gemworld, and her brother love magical pranks.
+      <span
+        aria-hidden="true"
+        style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; word-break: keep-all; white-space: nowrap;"
+      >
+        lg
+      </span>
+      <span
+        aria-hidden="true"
+        style="position: fixed; display: block; left: 0px; top: 0px; z-index: -9999; visibility: hidden; pointer-events: none; width: 0px; white-space: normal; margin: 0px; padding: 0px;"
+      >
+        <span
+          aria-hidden="true"
+        >
+          ...
+        </span>
+        <a
+          aria-label="Expand"
+          class="ant-typography-expand"
+        >
+          <span
+            class="read_more"
+          >
+            Read More
+          </span>
+        </a>
+      </span>
+    </div>
+  </div>
+</div>
+`;

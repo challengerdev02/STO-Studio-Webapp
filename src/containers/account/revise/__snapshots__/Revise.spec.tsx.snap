@@ -1,0 +1,1569 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View Edit Account Container should fire submit button 1`] = `
+<div>
+  <div
+    class="sc-gnnDb kjWtGs"
+    data-testid="edit-account-component"
+  >
+    <div
+      class="ant-tabs ant-tabs-top ant-tabs-centered main-layout"
+    >
+      <div
+        class="ant-tabs-nav"
+        role="tablist"
+      >
+        <div
+          class="ant-tabs-nav-wrap"
+        >
+          <div
+            class="ant-tabs-nav-list"
+            style="transform: translate(0px, 0px);"
+          >
+            <div
+              class="ant-tabs-tab ant-tabs-tab-active"
+            >
+              <div
+                aria-controls="rc-tabs-test-panel-profile"
+                aria-selected="true"
+                class="ant-tabs-tab-btn"
+                id="rc-tabs-test-tab-profile"
+                role="tab"
+                tabindex="0"
+              >
+                Profile
+              </div>
+            </div>
+            <div
+              class="ant-tabs-tab"
+            >
+              <div
+                aria-controls="rc-tabs-test-panel-notifications"
+                aria-selected="false"
+                class="ant-tabs-tab-btn"
+                id="rc-tabs-test-tab-notifications"
+                role="tab"
+                tabindex="0"
+              >
+                Notifications
+              </div>
+            </div>
+            <div
+              class="ant-tabs-tab"
+            >
+              <div
+                aria-controls="rc-tabs-test-panel-support"
+                aria-selected="false"
+                class="ant-tabs-tab-btn"
+                id="rc-tabs-test-tab-support"
+                role="tab"
+                tabindex="0"
+              >
+                Account Support
+              </div>
+            </div>
+            <div
+              class="ant-tabs-ink-bar ant-tabs-ink-bar-animated"
+              style="left: 0px; width: 0px;"
+            />
+          </div>
+        </div>
+        <div
+          class="ant-tabs-nav-operations ant-tabs-nav-operations-hidden"
+        >
+          <button
+            aria-controls="rc-tabs-test-more-popup"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-hidden="true"
+            class="ant-tabs-nav-more"
+            id="rc-tabs-test-more"
+            style="visibility: hidden; order: 1;"
+            tabindex="-1"
+            type="button"
+          >
+            <span
+              aria-label="ellipsis"
+              class="anticon anticon-ellipsis"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                data-icon="ellipsis"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-tabs-content-holder"
+      >
+        <div
+          class="ant-tabs-content ant-tabs-content-top"
+        >
+          <div
+            aria-hidden="false"
+            aria-labelledby="rc-tabs-test-tab-profile"
+            class="ant-tabs-tabpane ant-tabs-tabpane-active"
+            id="rc-tabs-test-panel-profile"
+            role="tabpanel"
+            tabindex="0"
+          >
+            <div
+              class="content-profile"
+            >
+              <h1
+                class="ant-typography title"
+              >
+                <span>
+                  Profile Settings
+                </span>
+                <button
+                  class="ant-btn ant-btn-round ant-btn-default"
+                  data-testid="preview-button"
+                  type="button"
+                >
+                  <span
+                    aria-label="eye"
+                    class="anticon anticon-eye"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="eye"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+                      />
+                    </svg>
+                  </span>
+                  <span>
+                    Preview
+                  </span>
+                </button>
+              </h1>
+              <form
+                autocomplete="off"
+                class="ant-form ant-form-vertical"
+                id="dynamic_form_nest_item"
+              >
+                <div
+                  class="ant-row"
+                >
+                  <div
+                    class="ant-col left-fields ant-col-md-24 ant-col-lg-12 ant-col-xl-12 ant-col-xxl-12"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class="ant-form-item-required"
+                          for="dynamic_form_nest_item_username"
+                          title="Username"
+                        >
+                          Username
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input"
+                              id="dynamic_form_nest_item_username"
+                              placeholder="Your username as you'd like it to be displayed on Metacomics."
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class="ant-form-item-required"
+                          for="dynamic_form_nest_item_email"
+                          title="Email Address"
+                        >
+                          Email Address
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input"
+                              id="dynamic_form_nest_item_email"
+                              placeholder="What's your email address?"
+                              type="email"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          for="dynamic_form_nest_item_bio"
+                          title="Bio"
+                        >
+                          Bio
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <textarea
+                              class="ant-input"
+                              id="dynamic_form_nest_item_bio"
+                              placeholder="Tell the world your story!"
+                              rows="4"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <h3
+                              class="ant-typography"
+                            >
+                              Social profiles
+                            </h3>
+                            <span
+                              class="ant-typography"
+                            >
+                              Let people connect with you.
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          for="dynamic_form_nest_item_socials_twitter"
+                          title="Twitter"
+                        >
+                          Twitter
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <span
+                              class="ant-input-affix-wrapper"
+                            >
+                              <span
+                                class="ant-input-prefix"
+                              >
+                                <span
+                                  aria-label="twitter"
+                                  class="anticon anticon-twitter"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    data-icon="twitter"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M928 254.3c-30.6 13.2-63.9 22.7-98.2 26.4a170.1 170.1 0 0075-94 336.64 336.64 0 01-108.2 41.2A170.1 170.1 0 00672 174c-94.5 0-170.5 76.6-170.5 170.6 0 13.2 1.6 26.4 4.2 39.1-141.5-7.4-267.7-75-351.6-178.5a169.32 169.32 0 00-23.2 86.1c0 59.2 30.1 111.4 76 142.1a172 172 0 01-77.1-21.7v2.1c0 82.9 58.6 151.6 136.7 167.4a180.6 180.6 0 01-44.9 5.8c-11.1 0-21.6-1.1-32.2-2.6C211 652 273.9 701.1 348.8 702.7c-58.6 45.9-132 72.9-211.7 72.9-14.3 0-27.5-.5-41.2-2.1C171.5 822 261.2 850 357.8 850 671.4 850 843 590.2 843 364.7c0-7.4 0-14.8-.5-22.2 33.2-24.3 62.3-54.4 85.5-88.2z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                              <input
+                                class="ant-input"
+                                id="dynamic_form_nest_item_socials_twitter"
+                                placeholder="Your twitter handle"
+                                type="text"
+                                value=""
+                              />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          for="dynamic_form_nest_item_socials_instagram"
+                          title="Instagram"
+                        >
+                          Instagram
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <span
+                              class="ant-input-affix-wrapper"
+                            >
+                              <span
+                                class="ant-input-prefix"
+                              >
+                                <span
+                                  aria-label="instagram"
+                                  class="anticon anticon-instagram"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    data-icon="instagram"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M512 306.9c-113.5 0-205.1 91.6-205.1 205.1S398.5 717.1 512 717.1 717.1 625.5 717.1 512 625.5 306.9 512 306.9zm0 338.4c-73.4 0-133.3-59.9-133.3-133.3S438.6 378.7 512 378.7 645.3 438.6 645.3 512 585.4 645.3 512 645.3zm213.5-394.6c-26.5 0-47.9 21.4-47.9 47.9s21.4 47.9 47.9 47.9 47.9-21.3 47.9-47.9a47.84 47.84 0 00-47.9-47.9zM911.8 512c0-55.2.5-109.9-2.6-165-3.1-64-17.7-120.8-64.5-167.6-46.9-46.9-103.6-61.4-167.6-64.5-55.2-3.1-109.9-2.6-165-2.6-55.2 0-109.9-.5-165 2.6-64 3.1-120.8 17.7-167.6 64.5C132.6 226.3 118.1 283 115 347c-3.1 55.2-2.6 109.9-2.6 165s-.5 109.9 2.6 165c3.1 64 17.7 120.8 64.5 167.6 46.9 46.9 103.6 61.4 167.6 64.5 55.2 3.1 109.9 2.6 165 2.6 55.2 0 109.9.5 165-2.6 64-3.1 120.8-17.7 167.6-64.5 46.9-46.9 61.4-103.6 64.5-167.6 3.2-55.1 2.6-109.8 2.6-165zm-88 235.8c-7.3 18.2-16.1 31.8-30.2 45.8-14.1 14.1-27.6 22.9-45.8 30.2C695.2 844.7 570.3 840 512 840c-58.3 0-183.3 4.7-235.9-16.1-18.2-7.3-31.8-16.1-45.8-30.2-14.1-14.1-22.9-27.6-30.2-45.8C179.3 695.2 184 570.3 184 512c0-58.3-4.7-183.3 16.1-235.9 7.3-18.2 16.1-31.8 30.2-45.8s27.6-22.9 45.8-30.2C328.7 179.3 453.7 184 512 184s183.3-4.7 235.9 16.1c18.2 7.3 31.8 16.1 45.8 30.2 14.1 14.1 22.9 27.6 30.2 45.8C844.7 328.7 840 453.7 840 512c0 58.3 4.7 183.2-16.2 235.8z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                              <input
+                                class="ant-input"
+                                id="dynamic_form_nest_item_socials_instagram"
+                                placeholder="Your instagram handle"
+                                type="text"
+                                value=""
+                              />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          for="dynamic_form_nest_item_socials_website"
+                          title="Your website"
+                        >
+                          Your website
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input"
+                              id="dynamic_form_nest_item_socials_website"
+                              placeholder="https://www.your-site.io"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <h3
+                              class="ant-typography"
+                            >
+                              Your wallet address
+                            </h3>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          title="Wallet Address"
+                        >
+                          Wallet Address
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <span
+                              class="ant-input-group ant-input-group-compact"
+                            >
+                              <input
+                                class="ant-input ant-input-disabled"
+                                disabled=""
+                                placeholder="0xrrr"
+                                style="width: calc(100% - 200px);"
+                                type="text"
+                                value="0xrrr"
+                              />
+                              <button
+                                class="ant-btn ant-btn-default ant-btn-icon-only"
+                                type="button"
+                              >
+                                <span
+                                  aria-label="copy"
+                                  class="anticon anticon-copy"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    data-icon="copy"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"
+                                    />
+                                  </svg>
+                                </span>
+                              </button>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col right-fields ant-col-md-24 ant-col-lg-12 ant-col-xl-12 ant-col-xxl-12"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          title="Profile Image"
+                        >
+                          Profile Image
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <span
+                              class=""
+                            >
+                              <div
+                                class="ant-upload ant-upload-select ant-upload-select-text"
+                              >
+                                <span
+                                  class="ant-upload"
+                                  role="button"
+                                  tabindex="0"
+                                >
+                                  <input
+                                    accept=""
+                                    style="display: none;"
+                                    type="file"
+                                  />
+                                  <span
+                                    class="ant-avatar ant-avatar-circle ant-avatar-icon"
+                                    data-testid="user-avatar"
+                                    style="width: 80px; height: 80px; line-height: 80px; font-size: 40px; transition: 2s; opacity: 1;"
+                                  >
+                                    <svg
+                                      height="80"
+                                      version="1.1"
+                                      viewBox="0 0 80 80"
+                                      width="80"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    >
+                                      <defs>
+                                        <lineargradient
+                                          id="0xrrr"
+                                          x1="0%"
+                                          x2="100%"
+                                          y1="0%"
+                                          y2="100%"
+                                        >
+                                          <stop
+                                            offset="0%"
+                                            stop-color="rgb(0, 255, 30)"
+                                          />
+                                          <stop
+                                            offset="100%"
+                                            stop-color="rgb(30, 0, 255)"
+                                          />
+                                        </lineargradient>
+                                      </defs>
+                                      <g
+                                        fill="none"
+                                        fill-rule="evenodd"
+                                        stroke="none"
+                                        stroke-width="1"
+                                      >
+                                        <rect
+                                          fill="url(#0xrrr)"
+                                          height="80"
+                                          id="Rectangle"
+                                          width="80"
+                                          x="0"
+                                          y="0"
+                                        />
+                                      </g>
+                                    </svg>
+                                  </span>
+                                </span>
+                              </div>
+                              <div
+                                class="ant-upload-list ant-upload-list-text"
+                              />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          title="Profile Banner"
+                        >
+                          Profile Banner
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <span
+                              class=""
+                            >
+                              <div
+                                class="ant-upload ant-upload-select ant-upload-select-text"
+                              >
+                                <span
+                                  class="ant-upload"
+                                  role="button"
+                                  tabindex="0"
+                                >
+                                  <input
+                                    accept=""
+                                    data-testid="cover-image-upload"
+                                    style="display: none;"
+                                    type="file"
+                                  />
+                                  <div
+                                    class="sc-bGaVxB kCqtUw"
+                                  >
+                                    <i
+                                      class="mc-pencil-fill mc-2x"
+                                    />
+                                  </div>
+                                  <div
+                                    class="sc-fydGpi itDjlH"
+                                  >
+                                    <div
+                                      class="meta-image-placeholder-box"
+                                    />
+                                  </div>
+                                </span>
+                              </div>
+                              <div
+                                class="ant-upload-list ant-upload-list-text"
+                              />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="ant-row"
+                >
+                  <div
+                    class="ant-row ant-form-item"
+                  >
+                    <div
+                      class="ant-col ant-form-item-control"
+                    >
+                      <div
+                        class="ant-form-item-control-input"
+                      >
+                        <div
+                          class="ant-form-item-control-input-content"
+                        >
+                          <button
+                            ant-click-animating-without-extra-node="true"
+                            class="ant-btn ant-btn-round ant-btn-primary"
+                            data-testid="profile-submit-button"
+                            style="display: flex; align-items: center; justify-content: center; gap: 4px;"
+                            type="submit"
+                          >
+                            <span>
+                              Save
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            aria-labelledby="rc-tabs-test-tab-notifications"
+            class="ant-tabs-tabpane"
+            id="rc-tabs-test-panel-notifications"
+            role="tabpanel"
+            style="display: none;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="true"
+            aria-labelledby="rc-tabs-test-tab-support"
+            class="ant-tabs-tabpane"
+            id="rc-tabs-test-panel-support"
+            role="tabpanel"
+            style="display: none;"
+            tabindex="-1"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`View Edit Account Container should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-gnnDb kjWtGs"
+    data-testid="edit-account-component"
+  >
+    <div
+      class="ant-tabs ant-tabs-top ant-tabs-centered main-layout"
+    >
+      <div
+        class="ant-tabs-nav"
+        role="tablist"
+      >
+        <div
+          class="ant-tabs-nav-wrap"
+        >
+          <div
+            class="ant-tabs-nav-list"
+            style="transform: translate(0px, 0px);"
+          >
+            <div
+              class="ant-tabs-tab ant-tabs-tab-active"
+            >
+              <div
+                aria-controls="rc-tabs-test-panel-profile"
+                aria-selected="true"
+                class="ant-tabs-tab-btn"
+                id="rc-tabs-test-tab-profile"
+                role="tab"
+                tabindex="0"
+              >
+                Profile
+              </div>
+            </div>
+            <div
+              class="ant-tabs-tab"
+            >
+              <div
+                aria-controls="rc-tabs-test-panel-notifications"
+                aria-selected="false"
+                class="ant-tabs-tab-btn"
+                id="rc-tabs-test-tab-notifications"
+                role="tab"
+                tabindex="0"
+              >
+                Notifications
+              </div>
+            </div>
+            <div
+              class="ant-tabs-tab"
+            >
+              <div
+                aria-controls="rc-tabs-test-panel-support"
+                aria-selected="false"
+                class="ant-tabs-tab-btn"
+                id="rc-tabs-test-tab-support"
+                role="tab"
+                tabindex="0"
+              >
+                Account Support
+              </div>
+            </div>
+            <div
+              class="ant-tabs-ink-bar ant-tabs-ink-bar-animated"
+            />
+          </div>
+        </div>
+        <div
+          class="ant-tabs-nav-operations ant-tabs-nav-operations-hidden"
+        >
+          <button
+            aria-controls="rc-tabs-test-more-popup"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-hidden="true"
+            class="ant-tabs-nav-more"
+            id="rc-tabs-test-more"
+            style="visibility: hidden; order: 1;"
+            tabindex="-1"
+            type="button"
+          >
+            <span
+              aria-label="ellipsis"
+              class="anticon anticon-ellipsis"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                data-icon="ellipsis"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-tabs-content-holder"
+      >
+        <div
+          class="ant-tabs-content ant-tabs-content-top"
+        >
+          <div
+            aria-hidden="false"
+            aria-labelledby="rc-tabs-test-tab-profile"
+            class="ant-tabs-tabpane ant-tabs-tabpane-active"
+            id="rc-tabs-test-panel-profile"
+            role="tabpanel"
+            tabindex="0"
+          >
+            <div
+              class="content-profile"
+            >
+              <h1
+                class="ant-typography title"
+              >
+                <span>
+                  Profile Settings
+                </span>
+                <button
+                  class="ant-btn ant-btn-round ant-btn-default"
+                  data-testid="preview-button"
+                  type="button"
+                >
+                  <span
+                    aria-label="eye"
+                    class="anticon anticon-eye"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="eye"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+                      />
+                    </svg>
+                  </span>
+                  <span>
+                    Preview
+                  </span>
+                </button>
+              </h1>
+              <form
+                autocomplete="off"
+                class="ant-form ant-form-vertical"
+                id="dynamic_form_nest_item"
+              >
+                <div
+                  class="ant-row"
+                >
+                  <div
+                    class="ant-col left-fields ant-col-md-24 ant-col-lg-12 ant-col-xl-12 ant-col-xxl-12"
+                  >
+                    <div
+                      class="ant-row ant-form-item ant-form-item-has-success"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class="ant-form-item-required"
+                          for="dynamic_form_nest_item_username"
+                          title="Username"
+                        >
+                          Username
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input"
+                              id="dynamic_form_nest_item_username"
+                              placeholder="Your username as you'd like it to be displayed on Metacomics."
+                              type="text"
+                              value="mike"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item ant-form-item-has-success"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class="ant-form-item-required"
+                          for="dynamic_form_nest_item_email"
+                          title="Email Address"
+                        >
+                          Email Address
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input"
+                              id="dynamic_form_nest_item_email"
+                              placeholder="What's your email address?"
+                              type="email"
+                              value="hs@gimal.vom"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          for="dynamic_form_nest_item_bio"
+                          title="Bio"
+                        >
+                          Bio
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <textarea
+                              class="ant-input"
+                              id="dynamic_form_nest_item_bio"
+                              placeholder="Tell the world your story!"
+                              rows="4"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <h3
+                              class="ant-typography"
+                            >
+                              Social profiles
+                            </h3>
+                            <span
+                              class="ant-typography"
+                            >
+                              Let people connect with you.
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          for="dynamic_form_nest_item_socials_twitter"
+                          title="Twitter"
+                        >
+                          Twitter
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <span
+                              class="ant-input-affix-wrapper"
+                            >
+                              <span
+                                class="ant-input-prefix"
+                              >
+                                <span
+                                  aria-label="twitter"
+                                  class="anticon anticon-twitter"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    data-icon="twitter"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M928 254.3c-30.6 13.2-63.9 22.7-98.2 26.4a170.1 170.1 0 0075-94 336.64 336.64 0 01-108.2 41.2A170.1 170.1 0 00672 174c-94.5 0-170.5 76.6-170.5 170.6 0 13.2 1.6 26.4 4.2 39.1-141.5-7.4-267.7-75-351.6-178.5a169.32 169.32 0 00-23.2 86.1c0 59.2 30.1 111.4 76 142.1a172 172 0 01-77.1-21.7v2.1c0 82.9 58.6 151.6 136.7 167.4a180.6 180.6 0 01-44.9 5.8c-11.1 0-21.6-1.1-32.2-2.6C211 652 273.9 701.1 348.8 702.7c-58.6 45.9-132 72.9-211.7 72.9-14.3 0-27.5-.5-41.2-2.1C171.5 822 261.2 850 357.8 850 671.4 850 843 590.2 843 364.7c0-7.4 0-14.8-.5-22.2 33.2-24.3 62.3-54.4 85.5-88.2z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                              <input
+                                class="ant-input"
+                                id="dynamic_form_nest_item_socials_twitter"
+                                placeholder="Your twitter handle"
+                                type="text"
+                                value=""
+                              />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          for="dynamic_form_nest_item_socials_instagram"
+                          title="Instagram"
+                        >
+                          Instagram
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <span
+                              class="ant-input-affix-wrapper"
+                            >
+                              <span
+                                class="ant-input-prefix"
+                              >
+                                <span
+                                  aria-label="instagram"
+                                  class="anticon anticon-instagram"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    data-icon="instagram"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M512 306.9c-113.5 0-205.1 91.6-205.1 205.1S398.5 717.1 512 717.1 717.1 625.5 717.1 512 625.5 306.9 512 306.9zm0 338.4c-73.4 0-133.3-59.9-133.3-133.3S438.6 378.7 512 378.7 645.3 438.6 645.3 512 585.4 645.3 512 645.3zm213.5-394.6c-26.5 0-47.9 21.4-47.9 47.9s21.4 47.9 47.9 47.9 47.9-21.3 47.9-47.9a47.84 47.84 0 00-47.9-47.9zM911.8 512c0-55.2.5-109.9-2.6-165-3.1-64-17.7-120.8-64.5-167.6-46.9-46.9-103.6-61.4-167.6-64.5-55.2-3.1-109.9-2.6-165-2.6-55.2 0-109.9-.5-165 2.6-64 3.1-120.8 17.7-167.6 64.5C132.6 226.3 118.1 283 115 347c-3.1 55.2-2.6 109.9-2.6 165s-.5 109.9 2.6 165c3.1 64 17.7 120.8 64.5 167.6 46.9 46.9 103.6 61.4 167.6 64.5 55.2 3.1 109.9 2.6 165 2.6 55.2 0 109.9.5 165-2.6 64-3.1 120.8-17.7 167.6-64.5 46.9-46.9 61.4-103.6 64.5-167.6 3.2-55.1 2.6-109.8 2.6-165zm-88 235.8c-7.3 18.2-16.1 31.8-30.2 45.8-14.1 14.1-27.6 22.9-45.8 30.2C695.2 844.7 570.3 840 512 840c-58.3 0-183.3 4.7-235.9-16.1-18.2-7.3-31.8-16.1-45.8-30.2-14.1-14.1-22.9-27.6-30.2-45.8C179.3 695.2 184 570.3 184 512c0-58.3-4.7-183.3 16.1-235.9 7.3-18.2 16.1-31.8 30.2-45.8s27.6-22.9 45.8-30.2C328.7 179.3 453.7 184 512 184s183.3-4.7 235.9 16.1c18.2 7.3 31.8 16.1 45.8 30.2 14.1 14.1 22.9 27.6 30.2 45.8C844.7 328.7 840 453.7 840 512c0 58.3 4.7 183.2-16.2 235.8z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                              <input
+                                class="ant-input"
+                                id="dynamic_form_nest_item_socials_instagram"
+                                placeholder="Your instagram handle"
+                                type="text"
+                                value=""
+                              />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          for="dynamic_form_nest_item_socials_website"
+                          title="Your website"
+                        >
+                          Your website
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <input
+                              class="ant-input"
+                              id="dynamic_form_nest_item_socials_website"
+                              placeholder="https://www.your-site.io"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <h3
+                              class="ant-typography"
+                            >
+                              Your wallet address
+                            </h3>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          title="Wallet Address"
+                        >
+                          Wallet Address
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <span
+                              class="ant-input-group ant-input-group-compact"
+                            >
+                              <input
+                                class="ant-input ant-input-disabled"
+                                disabled=""
+                                placeholder="0xrrr"
+                                style="width: calc(100% - 200px);"
+                                type="text"
+                                value="0xrrr"
+                              />
+                              <button
+                                class="ant-btn ant-btn-default ant-btn-icon-only"
+                                type="button"
+                              >
+                                <span
+                                  aria-label="copy"
+                                  class="anticon anticon-copy"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    data-icon="copy"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"
+                                    />
+                                  </svg>
+                                </span>
+                              </button>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-col right-fields ant-col-md-24 ant-col-lg-12 ant-col-xl-12 ant-col-xxl-12"
+                  >
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          title="Profile Image"
+                        >
+                          Profile Image
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <span
+                              class=""
+                            >
+                              <div
+                                class="ant-upload ant-upload-select ant-upload-select-text"
+                              >
+                                <span
+                                  class="ant-upload"
+                                  role="button"
+                                  tabindex="0"
+                                >
+                                  <input
+                                    accept=""
+                                    style="display: none;"
+                                    type="file"
+                                  />
+                                  <span
+                                    class="ant-avatar ant-avatar-circle ant-avatar-icon"
+                                    data-testid="user-avatar"
+                                    style="width: 80px; height: 80px; line-height: 80px; font-size: 40px; transition: 2s; opacity: 1;"
+                                  >
+                                    <svg
+                                      height="80"
+                                      version="1.1"
+                                      viewBox="0 0 80 80"
+                                      width="80"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    >
+                                      <defs>
+                                        <lineargradient
+                                          id="0xrrr"
+                                          x1="0%"
+                                          x2="100%"
+                                          y1="0%"
+                                          y2="100%"
+                                        >
+                                          <stop
+                                            offset="0%"
+                                            stop-color="rgb(0, 255, 30)"
+                                          />
+                                          <stop
+                                            offset="100%"
+                                            stop-color="rgb(30, 0, 255)"
+                                          />
+                                        </lineargradient>
+                                      </defs>
+                                      <g
+                                        fill="none"
+                                        fill-rule="evenodd"
+                                        stroke="none"
+                                        stroke-width="1"
+                                      >
+                                        <rect
+                                          fill="url(#0xrrr)"
+                                          height="80"
+                                          id="Rectangle"
+                                          width="80"
+                                          x="0"
+                                          y="0"
+                                        />
+                                      </g>
+                                    </svg>
+                                  </span>
+                                </span>
+                              </div>
+                              <div
+                                class="ant-upload-list ant-upload-list-text"
+                              />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-label"
+                      >
+                        <label
+                          class=""
+                          title="Profile Banner"
+                        >
+                          Profile Banner
+                        </label>
+                      </div>
+                      <div
+                        class="ant-col ant-form-item-control"
+                      >
+                        <div
+                          class="ant-form-item-control-input"
+                        >
+                          <div
+                            class="ant-form-item-control-input-content"
+                          >
+                            <span
+                              class=""
+                            >
+                              <div
+                                class="ant-upload ant-upload-select ant-upload-select-text"
+                              >
+                                <span
+                                  class="ant-upload"
+                                  role="button"
+                                  tabindex="0"
+                                >
+                                  <input
+                                    accept=""
+                                    data-testid="cover-image-upload"
+                                    style="display: none;"
+                                    type="file"
+                                  />
+                                  <div
+                                    class="sc-bGaVxB kCqtUw"
+                                  >
+                                    <i
+                                      class="mc-pencil-fill mc-2x"
+                                    />
+                                  </div>
+                                  <div
+                                    class="sc-fydGpi itDjlH"
+                                  >
+                                    <div
+                                      class="meta-image-placeholder-box"
+                                    />
+                                  </div>
+                                </span>
+                              </div>
+                              <div
+                                class="ant-upload-list ant-upload-list-text"
+                              />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="ant-row"
+                >
+                  <div
+                    class="ant-row ant-form-item"
+                  >
+                    <div
+                      class="ant-col ant-form-item-control"
+                    >
+                      <div
+                        class="ant-form-item-control-input"
+                      >
+                        <div
+                          class="ant-form-item-control-input-content"
+                        >
+                          <button
+                            class="ant-btn ant-btn-round ant-btn-primary"
+                            data-testid="profile-submit-button"
+                            style="display: flex; align-items: center; justify-content: center; gap: 4px;"
+                            type="submit"
+                          >
+                            <span>
+                              Save
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            aria-labelledby="rc-tabs-test-tab-notifications"
+            class="ant-tabs-tabpane"
+            id="rc-tabs-test-panel-notifications"
+            role="tabpanel"
+            style="display: none;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="true"
+            aria-labelledby="rc-tabs-test-tab-support"
+            class="ant-tabs-tabpane"
+            id="rc-tabs-test-panel-support"
+            role="tabpanel"
+            style="display: none;"
+            tabindex="-1"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`View Edit Account Container should match with snapshot No WallatAddress  1`] = `
+<div>
+  <div
+    class="meta-flex-center meta-flex"
+    data-testid="main-loader"
+    style="height: 50vh;"
+  >
+    <span
+      class="sc-cidDSM cRAWQh"
+      role="1"
+    >
+      <svg
+        fill="none"
+        height="40"
+        viewBox="0 0 14 14"
+        width="40"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M7 0.333374C6.63181 0.333374 6.33333 0.631851 6.33333 1.00004V3.00004C6.33333 3.36823 6.63181 3.66671 7 3.66671C7.36819 3.66671 7.66667 3.36823 7.66667 3.00004V1.00004C7.66667 0.631851 7.36819 0.333374 7 0.333374Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M7 10.3334C6.63181 10.3334 6.33333 10.6319 6.33333 11V13C6.33333 13.3682 6.63181 13.6667 7 13.6667C7.36819 13.6667 7.66667 13.3682 7.66667 13V11C7.66667 10.6319 7.36819 10.3334 7 10.3334Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M13 6.33337C13.3682 6.33337 13.6667 6.63185 13.6667 7.00004C13.6667 7.36823 13.3682 7.66671 13 7.66671H11C10.6318 7.66671 10.3333 7.36823 10.3333 7.00004C10.3333 6.63185 10.6318 6.33337 11 6.33337H13Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M3.66667 7.00004C3.66667 6.63185 3.36819 6.33337 3 6.33337H0.999999C0.631809 6.33337 0.333332 6.63185 0.333332 7.00004C0.333332 7.36823 0.631809 7.66671 0.999999 7.66671H3C3.36819 7.66671 3.66667 7.36823 3.66667 7.00004Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M10.7713 2.28606C11.0316 2.02571 11.4537 2.02571 11.7141 2.28606C11.9744 2.54641 11.9744 2.96852 11.7141 3.22887L10.2999 4.64308C10.0395 4.90343 9.61741 4.90343 9.35706 4.64308C9.09671 4.38273 9.09671 3.96062 9.35706 3.70027L10.7713 2.28606Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M4.64295 9.35703C4.3826 9.09668 3.96049 9.09668 3.70014 9.35703L2.28593 10.7712C2.02558 11.0316 2.02558 11.4537 2.28593 11.714C2.54628 11.9744 2.96839 11.9744 3.22874 11.714L4.64295 10.2998C4.9033 10.0395 4.9033 9.61737 4.64295 9.35703Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M11.7141 10.7713C11.9744 11.0317 11.9744 11.4538 11.7141 11.7141C11.4537 11.9745 11.0316 11.9745 10.7713 11.7141L9.35704 10.2999C9.09669 10.0396 9.09669 9.61745 9.35704 9.3571C9.61739 9.09675 10.0395 9.09675 10.2998 9.3571L11.7141 10.7713Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M4.64301 4.64299C4.90336 4.38265 4.90336 3.96054 4.64301 3.70019L3.2288 2.28597C2.96845 2.02562 2.54634 2.02562 2.28599 2.28597C2.02564 2.54632 2.02564 2.96843 2.28599 3.22878L3.70021 4.64299C3.96056 4.90334 4.38267 4.90334 4.64301 4.64299Z"
+          fill="#FCFCFD"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;

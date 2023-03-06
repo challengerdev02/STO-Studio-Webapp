@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mc-app-srv
+  namespace: stg
+spec:
+  selector:
+    app: mc-app-pod
+  ports:
+    - protocol: TCP
+      port: 7000
+      targetPort: 7000
+  type: NodePort

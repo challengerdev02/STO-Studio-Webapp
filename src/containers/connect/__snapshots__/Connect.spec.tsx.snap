@@ -1,0 +1,683 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View Account Connect should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-jYmNlR icaNaC meta-flex meta-flex-col meta-flex-j-c meta-align-center"
+  >
+    <h2
+      class="ant-typography"
+    >
+      Connect your wallet
+    </h2>
+    <h5
+      class="ant-typography"
+    >
+      Choose one of available wallet providers or create a new wallet.
+       
+      <a
+        class="ant-typography"
+      >
+        What is a wallet?
+      </a>
+    </h5>
+    <br />
+    <br />
+    <div
+      class="ant-space ant-space-vertical connect-wallet-buttons-container"
+    >
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-primary ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Metamask"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  Sign in with 
+                  Metamask
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Coinbase"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  
+                  Coinbase
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Mobile Wallet"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  
+                  Mobile Wallet
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Binance Chain"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  
+                  Binance Chain
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+      >
+        <div
+          style="opacity: 0;"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            style="justify-content: center;"
+            type="button"
+          >
+            <span>
+              Show more options
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`View Account Connect should match with snapshot 2`] = `
+<div>
+  <div
+    class="sc-jYmNlR icaNaC meta-flex meta-flex-col meta-flex-j-c meta-align-center"
+  >
+    <h2
+      class="ant-typography"
+    >
+      Connect your wallet
+    </h2>
+    <h5
+      class="ant-typography"
+    >
+      Choose one of available wallet providers or create a new wallet.
+       
+      <a
+        class="ant-typography"
+      >
+        What is a wallet?
+      </a>
+    </h5>
+    <br />
+    <br />
+    <div
+      class="ant-space ant-space-vertical connect-wallet-buttons-container"
+    >
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          data-projection-id="1"
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-primary ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Metamask"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  Sign in with 
+                  Metamask
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          data-projection-id="2"
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Coinbase"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  
+                  Coinbase
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          data-projection-id="3"
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Mobile Wallet"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  
+                  Mobile Wallet
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          data-projection-id="4"
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Binance Chain"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  
+                  Binance Chain
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+      >
+        <div
+          data-projection-id="5"
+          style="opacity: 0;"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            style="justify-content: center;"
+            type="button"
+          >
+            <span>
+              Show more options
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`View Account Connect should match with snapshot With referrer  1`] = `
+<div>
+  <div
+    class="sc-jYmNlR icaNaC meta-flex meta-flex-col meta-flex-j-c meta-align-center"
+  >
+    <h2
+      class="ant-typography"
+    >
+      Connect your wallet
+    </h2>
+    <h5
+      class="ant-typography"
+    >
+      Choose one of available wallet providers or create a new wallet.
+       
+      <a
+        class="ant-typography"
+      >
+        What is a wallet?
+      </a>
+    </h5>
+    <br />
+    <br />
+    <div
+      class="ant-space ant-space-vertical connect-wallet-buttons-container"
+    >
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          data-projection-id="6"
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-primary ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Metamask"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  Sign in with 
+                  Metamask
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          data-projection-id="7"
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Coinbase"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  
+                  Coinbase
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          data-projection-id="8"
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Mobile Wallet"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  
+                  Mobile Wallet
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+        style="margin-bottom: 20px;"
+      >
+        <div
+          data-projection-id="9"
+          style="opacity: 0; transform: scale(0.95) translateZ(0);"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            disabled=""
+            type="button"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center w-100 meta-flex-s-b meta-align-center"
+            >
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <img
+                  alt="Binance Chain"
+                  height="24"
+                  src="/test-file-stub"
+                  width="24"
+                />
+              </div>
+              <div
+                class="ant-space-item"
+                style="margin-right: 10px;"
+              >
+                <span>
+                  
+                  Binance Chain
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+      >
+        <div
+          data-projection-id="10"
+          style="opacity: 0;"
+        >
+          <button
+            class="ant-btn ant-btn-round ant-btn-default ant-btn-block"
+            style="justify-content: center;"
+            type="button"
+          >
+            <span>
+              Show more options
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

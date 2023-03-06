@@ -1,0 +1,67 @@
+@import 'utilities.css';
+@import 'react-bookblock.css';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Jost, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-kerning: normal;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --font-family: Jost, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+html[data-theme='dark'] body {
+  --dropdown-background-color: rgba(255, 255, 255, 0.6);
+  --card-secondary-color: rgba(255, 255, 255, 0.05);
+  --card-icon-background-color: rgba(127, 110, 233, 0.2);
+  --muted-off-white: var(--disabled-color);
+  --accent-pink: rgba(255, 114, 210, 1);
+  --dropdown-arrow-color: rgba(119, 126, 144, 1);
+  --dropdown-background-color-dark: rgba(255, 255, 255, 0.05);
+  --accent-red: rgba(239, 70, 111, 1);
+  --danger: #ff3141ff;
+  --accent-green: rgba(69, 178, 107, 1);
+  --icon-dark-color: rgba(0, 0, 0, 1);
+  --card-homepage-color: rgba(16, 16, 32, 1);
+  --color-white: rgba(255, 255, 255, 1);
+
+  --web3-modal-background: rgb(39, 49, 56);
+  --web3-modal-hover: rgb(16, 26, 32);
+  --header-background: rgba(16, 16, 32, 0.7);
+
+  --plyr-color-main: var(--accent);
+}
+
+:root {
+  --adm-color-primary: #1677ff !important;
+  --adm-color-success: #00b578;
+  --adm-color-warning: #ff8f1f;
+  --adm-color-danger: #ff3141;
+  --adm-color-white: #ffffff;
+  --adm-color-weak: red;
+  --adm-color-light: red;
+  --adm-border-color: red;
+  --adm-font-size-main: 13px;
+  --adm-color-text: red;
+
+  --adm-font-family: -apple-system, blinkmacsystemfont, 'Helvetica Neue',
+    helvetica, segoe ui, arial, roboto, 'PingFang SC', 'miui',
+    'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+}

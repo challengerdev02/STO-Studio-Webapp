@@ -1,0 +1,2146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View Account Container should match with snapshot 1`] = `
+<div>
+  <div
+    class="sc-cjrPHo QbZqI"
+    data-testid="profile-screen-wrapper"
+  >
+    <div
+      class="sc-igXgud kyutmz"
+    >
+      <span
+        class=""
+      >
+        <div
+          class="ant-upload ant-upload-select ant-upload-select-text"
+        >
+          <span
+            class="ant-upload"
+            role="button"
+            tabindex="0"
+          >
+            <input
+              accept=""
+              style="display: none;"
+              type="file"
+            />
+            <div
+              class="sc-bGaVxB leCRls"
+              height="100%"
+              width="100%"
+            >
+              <i
+                class="mc-pencil-fill"
+                style="font-size: 1.5em;"
+              />
+            </div>
+          </span>
+        </div>
+        <div
+          class="ant-upload-list ant-upload-list-text"
+        />
+      </span>
+      <div
+        class="sc-fydGpi wUaWn"
+      >
+        <div
+          class="meta-image-placeholder-box"
+        />
+      </div>
+      <div
+        class="sc-gHjyzD kCZhwY"
+      >
+        <span
+          class=""
+        >
+          <div
+            class="ant-upload ant-upload-select ant-upload-select-text"
+          >
+            <span
+              class="ant-upload"
+              role="button"
+              tabindex="0"
+            >
+              <input
+                accept=""
+                style="display: none;"
+                type="file"
+              />
+              <button
+                class="ant-btn ant-btn-circle ant-btn-default ant-btn-sm ant-btn-icon-only sc-itWPBs IGcAo"
+                data-testid="change-cover-image"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M12.1129 3.17303C13.0893 2.19672 14.6722 2.19672 15.6485 3.17303L16.827 4.35154C17.8033 5.32785 17.8033 6.91076 16.827 7.88707L8.16657 16.5475C8.05023 16.6638 7.90207 16.7431 7.74074 16.7754L3.32132 17.6593C2.73822 17.7759 2.22412 17.2618 2.34074 16.6787L3.22463 12.2593C3.25689 12.098 3.33619 11.9498 3.45252 11.8335L12.1129 3.17303ZM14.47 4.35154L15.6485 5.53005C15.9739 5.85549 15.9739 6.38313 15.6485 6.70856L14.47 7.88708L12.1129 5.53005L13.2915 4.35154C13.6169 4.0261 14.1445 4.0261 14.47 4.35154ZM10.9344 6.70857L4.80944 12.8336L4.22019 15.7798L7.16647 15.1906L13.2915 9.06559L10.9344 6.70857Z"
+                    fill="#6F767E"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </span>
+          </div>
+          <div
+            class="ant-upload-list ant-upload-list-text"
+          />
+        </span>
+        <button
+          class="ant-btn ant-btn-circle ant-btn-default ant-btn-sm ant-btn-icon-only sc-itWPBs IGcAo"
+          data-testid="delete-cover-image"
+          type="button"
+        >
+          <svg
+            fill="none"
+            height="20"
+            viewBox="0 0 20 20"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M8.33333 8.33331C8.79357 8.33331 9.16667 8.70641 9.16667 9.16665V13.3333C9.16667 13.7936 8.79357 14.1666 8.33333 14.1666C7.8731 14.1666 7.5 13.7936 7.5 13.3333V9.16665C7.5 8.70641 7.8731 8.33331 8.33333 8.33331Z"
+              fill="#6F767E"
+              fill-rule="evenodd"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M11.6667 8.33331C12.1269 8.33331 12.5 8.70641 12.5 9.16665V13.3333C12.5 13.7936 12.1269 14.1666 11.6667 14.1666C11.2065 14.1666 10.8334 13.7936 10.8334 13.3333V9.16665C10.8334 8.70641 11.2065 8.33331 11.6667 8.33331Z"
+              fill="#6F767E"
+              fill-rule="evenodd"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M8.33329 1.66663C6.95258 1.66663 5.83329 2.78591 5.83329 4.16663H3.33329H2.49996C2.03972 4.16663 1.66663 4.53972 1.66663 4.99996C1.66663 5.4602 2.03972 5.83329 2.49996 5.83329H3.33329V15.8333C3.33329 17.214 4.45258 18.3333 5.83329 18.3333H14.1666C15.5473 18.3333 16.6666 17.214 16.6666 15.8333V5.83329H17.5C17.9602 5.83329 18.3333 5.4602 18.3333 4.99996C18.3333 4.53972 17.9602 4.16663 17.5 4.16663H16.6666H14.1666C14.1666 2.78591 13.0473 1.66663 11.6666 1.66663H8.33329ZM12.5 4.16663C12.5 3.70639 12.1269 3.33329 11.6666 3.33329H8.33329C7.87306 3.33329 7.49996 3.70639 7.49996 4.16663H12.5ZM5.83329 5.83329H4.99996V15.8333C4.99996 16.2935 5.37306 16.6666 5.83329 16.6666H14.1666C14.6269 16.6666 15 16.2935 15 15.8333V5.83329H14.1666H5.83329Z"
+              fill="#6F767E"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      class="w-100 h-100 meta-flex meta-flex-j-c"
+      style="padding: 24px;"
+    >
+      <div
+        class="sc-dcgwPl fCnqqW"
+      >
+        <section
+          class="sc-ehIJor cHTKem"
+        >
+          <div
+            class="sc-hGnimi lnnMVn"
+          >
+            <div
+              class="avatar-wrapper"
+            >
+              <span
+                class=""
+              >
+                <div
+                  class="ant-upload ant-upload-select ant-upload-select-text"
+                >
+                  <span
+                    class="ant-upload"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <input
+                      accept=""
+                      data-testid="photo-uploader"
+                      style="display: none;"
+                      type="file"
+                    />
+                    <div
+                      class="sc-bGaVxB cFkjRo"
+                      height="80px"
+                      shape="circle"
+                      width="100%"
+                    >
+                      <i
+                        class="mc-pencil-fill"
+                        style="font-size: 1.5em;"
+                      />
+                    </div>
+                    <span
+                      class="ant-avatar ant-avatar-circle ant-avatar-icon"
+                      data-testid="user-avatar"
+                      style="width: 80px; height: 80px; line-height: 80px; font-size: 40px; transition: 2s; opacity: 1;"
+                    >
+                      <svg
+                        height="80"
+                        version="1.1"
+                        viewBox="0 0 80 80"
+                        width="80"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <defs>
+                          <lineargradient
+                            id="0xrrr"
+                            x1="0%"
+                            x2="100%"
+                            y1="0%"
+                            y2="100%"
+                          >
+                            <stop
+                              offset="0%"
+                              stop-color="rgb(0, 255, 30)"
+                            />
+                            <stop
+                              offset="100%"
+                              stop-color="rgb(30, 0, 255)"
+                            />
+                          </lineargradient>
+                        </defs>
+                        <g
+                          fill="none"
+                          fill-rule="evenodd"
+                          stroke="none"
+                          stroke-width="1"
+                        >
+                          <rect
+                            fill="url(#0xrrr)"
+                            height="80"
+                            id="Rectangle"
+                            width="80"
+                            x="0"
+                            y="0"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </span>
+                </div>
+                <div
+                  class="ant-upload-list ant-upload-list-text"
+                />
+              </span>
+            </div>
+            <div
+              class="sc-cvlWTT gddMNE"
+            >
+              <div
+                class="ant-space ant-space-horizontal ant-space-align-center meta-flex meta-profile-username-container"
+              >
+                <div
+                  class="ant-space-item"
+                  style="margin-right: 50px;"
+                >
+                  <span
+                    class="sc-fTQvRK pQFwP"
+                    data-testid="username"
+                  >
+                    mike
+                  </span>
+                </div>
+                <div
+                  class="ant-space-item"
+                >
+                  <div
+                    class="sc-bUhFKy gjQPIu"
+                  >
+                    <span
+                      class="sc-hRMWxn gGxGcl"
+                    >
+                      <span
+                        class="sc-BHvUt sdayN"
+                        data-testid="followers"
+                      />
+                       
+                      Followers
+                    </span>
+                    <span
+                      class="sc-fTxOGA bmJPRA"
+                    >
+                      <span
+                        class="sc-BHvUt sdayN"
+                        data-testid="following"
+                      />
+                       
+                      Following
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="ant-btn ant-btn-default sc-lhMiDA JICCU"
+                data-testid="wallet-address"
+                type="button"
+              >
+                <span>
+                  0xrrr
+                </span>
+                <svg
+                  fill="none"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11.9895 9.67095C12.0045 9.92046 12.265 10.0888 12.4767 9.95592C13.7922 9.13063 14.6667 7.66744 14.6667 5.99998C14.6667 3.42265 12.5774 1.33331 10 1.33331C8.33257 1.33331 6.86938 2.20785 6.04409 3.52327C5.91125 3.73501 6.07955 3.99552 6.32906 4.01052C9.31295 4.1899 11.81 6.68964 11.9895 9.67095Z"
+                    fill="#3772FF"
+                  />
+                  <path
+                    d="M10.6667 9.99998C10.6667 12.5773 8.57737 14.6666 6.00004 14.6666C3.42271 14.6666 1.33337 12.5773 1.33337 9.99998C1.33337 7.42265 3.42271 5.33331 6.00004 5.33331C8.57737 5.33331 10.6667 7.42265 10.6667 9.99998Z"
+                    fill="#3772FF"
+                  />
+                </svg>
+              </button>
+              <div>
+                <span
+                  class="ant-typography"
+                >
+                  <strong>
+                    Joined 
+                    January 2022
+                  </strong>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-iukxot iohkVL"
+          >
+            <button
+              class="ant-btn ant-btn-circle ant-btn-default ant-btn-sm ant-btn-icon-only"
+              data-testid="settings-widget"
+              type="button"
+            >
+              <span
+                aria-label="setting"
+                class="anticon anticon-setting"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  data-icon="setting"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M512.5 390.6c-29.9 0-57.9 11.6-79.1 32.8-21.1 21.2-32.8 49.2-32.8 79.1 0 29.9 11.7 57.9 32.8 79.1 21.2 21.1 49.2 32.8 79.1 32.8 29.9 0 57.9-11.7 79.1-32.8 21.1-21.2 32.8-49.2 32.8-79.1 0-29.9-11.7-57.9-32.8-79.1a110.96 110.96 0 00-79.1-32.8zm412.3 235.5l-65.4-55.9c3.1-19 4.7-38.4 4.7-57.7s-1.6-38.8-4.7-57.7l65.4-55.9a32.03 32.03 0 009.3-35.2l-.9-2.6a442.5 442.5 0 00-79.6-137.7l-1.8-2.1a32.12 32.12 0 00-35.1-9.5l-81.2 28.9c-30-24.6-63.4-44-99.6-57.5l-15.7-84.9a32.05 32.05 0 00-25.8-25.7l-2.7-.5c-52-9.4-106.8-9.4-158.8 0l-2.7.5a32.05 32.05 0 00-25.8 25.7l-15.8 85.3a353.44 353.44 0 00-98.9 57.3l-81.8-29.1a32 32 0 00-35.1 9.5l-1.8 2.1a445.93 445.93 0 00-79.6 137.7l-.9 2.6c-4.5 12.5-.8 26.5 9.3 35.2l66.2 56.5c-3.1 18.8-4.6 38-4.6 57 0 19.2 1.5 38.4 4.6 57l-66 56.5a32.03 32.03 0 00-9.3 35.2l.9 2.6c18.1 50.3 44.8 96.8 79.6 137.7l1.8 2.1a32.12 32.12 0 0035.1 9.5l81.8-29.1c29.8 24.5 63 43.9 98.9 57.3l15.8 85.3a32.05 32.05 0 0025.8 25.7l2.7.5a448.27 448.27 0 00158.8 0l2.7-.5a32.05 32.05 0 0025.8-25.7l15.7-84.9c36.2-13.6 69.6-32.9 99.6-57.5l81.2 28.9a32 32 0 0035.1-9.5l1.8-2.1c34.8-41.1 61.5-87.4 79.6-137.7l.9-2.6c4.3-12.4.6-26.3-9.5-35zm-412.3 52.2c-97.1 0-175.8-78.7-175.8-175.8s78.7-175.8 175.8-175.8 175.8 78.7 175.8 175.8-78.7 175.8-175.8 175.8z"
+                  />
+                </svg>
+              </span>
+            </button>
+            <button
+              class="ant-btn ant-btn-circle ant-btn-ghost ant-btn-sm ant-btn-icon-only sc-dwFVFH ftbHZR ant-dropdown-trigger"
+              data-testid="share-profile"
+              type="button"
+            >
+              <svg
+                fill="none"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M8.99858 10.0399C9.02798 10.5914 8.60474 11.0623 8.05324 11.0917C7.30055 11.1318 6.7044 11.1809 6.23854 11.23C5.61292 11.296 5.23278 11.6803 5.16959 12.2331C5.07886 13.0267 5 14.2278 5 16C5 17.7723 5.07886 18.9733 5.16959 19.7669C5.23289 20.3207 5.61207 20.7039 6.23675 20.7698C7.33078 20.8853 9.13925 21 12 21C14.8608 21 16.6692 20.8853 17.7632 20.7698C18.3879 20.7039 18.7671 20.3207 18.8304 19.7669C18.9211 18.9733 19 17.7723 19 16C19 14.2278 18.9211 13.0267 18.8304 12.2331C18.7672 11.6803 18.3871 11.296 17.7615 11.23C17.2956 11.1809 16.6995 11.1318 15.9468 11.0917C15.3953 11.0623 14.972 10.5914 15.0014 10.0399C15.0308 9.48837 15.5017 9.06512 16.0532 9.09452C16.8361 9.13626 17.4669 9.18787 17.9712 9.24106C19.4556 9.39761 20.6397 10.4507 20.8175 12.0059C20.9188 12.8923 21 14.1715 21 16C21 17.8285 20.9188 19.1077 20.8175 19.9941C20.6398 21.5484 19.4585 22.602 17.9732 22.7588C16.7919 22.8834 14.9108 23 12 23C9.08922 23 7.20806 22.8834 6.02684 22.7588C4.54151 22.602 3.36021 21.5484 3.18253 19.9941C3.0812 19.1077 3 17.8285 3 16C3 14.1715 3.0812 12.8923 3.18253 12.0059C3.36031 10.4507 4.54436 9.39761 6.02877 9.24106C6.53306 9.18787 7.16393 9.13626 7.94676 9.09452C8.49827 9.06512 8.96918 9.48837 8.99858 10.0399Z"
+                  fill="#777E91"
+                  fill-rule="evenodd"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M9.20711 6.20711C8.81658 6.59763 8.18342 6.59763 7.79289 6.20711C7.40237 5.81658 7.40237 5.18342 7.79289 4.79289L11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.2071 4.79289C16.5976 5.18342 16.5976 5.81658 16.2071 6.20711C15.8166 6.59763 15.1834 6.59763 14.7929 6.20711L13 4.41421V14C13 14.5523 12.5523 15 12 15C11.4477 15 11 14.5523 11 14V4.41421L9.20711 6.20711Z"
+                  fill="#777E91"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
+        </section>
+        <div
+          class="ant-divider ant-divider-horizontal sc-bjeSbO ezIxHh"
+          role="separator"
+        />
+        <div
+          class="sc-hgKiOD ffAFWc"
+        >
+          <div
+            class="sc-fivaXQ jKKqSY"
+          >
+            <div
+              class="ant-tabs ant-tabs-top ant-tabs-card sc-lgarKF gqFAfg"
+              data-testid="tab"
+            >
+              <div
+                class="ant-tabs-nav"
+                role="tablist"
+              >
+                <div
+                  class="ant-tabs-nav-wrap"
+                >
+                  <div
+                    class="ant-tabs-nav-list"
+                    style="transform: translate(0px, 0px);"
+                  >
+                    <div
+                      class="ant-tabs-tab ant-tabs-tab-active"
+                    >
+                      <div
+                        aria-controls="rc-tabs-test-panel-1"
+                        aria-selected="true"
+                        class="ant-tabs-tab-btn"
+                        id="rc-tabs-test-tab-1"
+                        role="tab"
+                        tabindex="0"
+                      >
+                        On Sale
+                      </div>
+                    </div>
+                    <div
+                      class="ant-tabs-tab"
+                    >
+                      <div
+                        aria-controls="rc-tabs-test-panel-2"
+                        aria-selected="false"
+                        class="ant-tabs-tab-btn"
+                        id="rc-tabs-test-tab-2"
+                        role="tab"
+                        tabindex="0"
+                      >
+                        Owned
+                      </div>
+                    </div>
+                    <div
+                      class="ant-tabs-tab"
+                    >
+                      <div
+                        aria-controls="rc-tabs-test-panel-3"
+                        aria-selected="false"
+                        class="ant-tabs-tab-btn"
+                        id="rc-tabs-test-tab-3"
+                        role="tab"
+                        tabindex="0"
+                      >
+                        Created
+                      </div>
+                    </div>
+                    <div
+                      class="ant-tabs-tab"
+                    >
+                      <div
+                        aria-controls="rc-tabs-test-panel-4"
+                        aria-selected="false"
+                        class="ant-tabs-tab-btn"
+                        id="rc-tabs-test-tab-4"
+                        role="tab"
+                        tabindex="0"
+                      >
+                        My Collections
+                      </div>
+                    </div>
+                    <div
+                      class="ant-tabs-tab"
+                    >
+                      <div
+                        aria-controls="rc-tabs-test-panel-5"
+                        aria-selected="false"
+                        class="ant-tabs-tab-btn"
+                        id="rc-tabs-test-tab-5"
+                        role="tab"
+                        tabindex="0"
+                      >
+                        Liked
+                      </div>
+                    </div>
+                    <div
+                      class="ant-tabs-tab"
+                    >
+                      <div
+                        aria-controls="rc-tabs-test-panel-6"
+                        aria-selected="false"
+                        class="ant-tabs-tab-btn"
+                        id="rc-tabs-test-tab-6"
+                        role="tab"
+                        tabindex="0"
+                      >
+                        Activity
+                      </div>
+                    </div>
+                    <div
+                      class="ant-tabs-ink-bar ant-tabs-ink-bar-animated"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="ant-tabs-nav-operations ant-tabs-nav-operations-hidden"
+                >
+                  <button
+                    aria-controls="rc-tabs-test-more-popup"
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                    aria-hidden="true"
+                    class="ant-tabs-nav-more"
+                    id="rc-tabs-test-more"
+                    style="visibility: hidden; order: 1;"
+                    tabindex="-1"
+                    type="button"
+                  >
+                    <span
+                      aria-label="ellipsis"
+                      class="anticon anticon-ellipsis"
+                      role="img"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        data-icon="ellipsis"
+                        fill="currentColor"
+                        focusable="false"
+                        height="1em"
+                        viewBox="64 64 896 896"
+                        width="1em"
+                      >
+                        <path
+                          d="M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="ant-tabs-content-holder"
+              >
+                <div
+                  class="ant-tabs-content ant-tabs-content-top"
+                >
+                  <div
+                    aria-hidden="false"
+                    aria-labelledby="rc-tabs-test-tab-1"
+                    class="ant-tabs-tabpane ant-tabs-tabpane-active"
+                    id="rc-tabs-test-panel-1"
+                    role="tabpanel"
+                    tabindex="0"
+                  >
+                    <form
+                      class="ant-form ant-form-vertical ant-form-hide-required-mark"
+                    >
+                      <section
+                        class="sc-hKTqa gBZaky"
+                      >
+                        <div
+                          class="ant-row ant-form-item sc-gfqkcP cydchz"
+                        >
+                          <div
+                            class="ant-col ant-form-item-control"
+                          >
+                            <div
+                              class="ant-form-item-control-input"
+                            >
+                              <div
+                                class="ant-form-item-control-input-content"
+                              >
+                                <div
+                                  class="ant-select ant-select-borderless sc-ckRZPU bEkbyk ant-select-single ant-select-show-arrow"
+                                  data-testid="select-category"
+                                >
+                                  <div
+                                    class="ant-select-selector"
+                                  >
+                                    <span
+                                      class="ant-select-selection-search"
+                                    >
+                                      <input
+                                        aria-activedescendant="category_list_0"
+                                        aria-autocomplete="list"
+                                        aria-controls="category_list"
+                                        aria-haspopup="listbox"
+                                        aria-owns="category_list"
+                                        autocomplete="off"
+                                        class="ant-select-selection-search-input"
+                                        id="category"
+                                        readonly=""
+                                        role="combobox"
+                                        style="opacity: 0;"
+                                        type="search"
+                                        unselectable="on"
+                                        value=""
+                                      />
+                                    </span>
+                                    <span
+                                      class="ant-select-selection-placeholder"
+                                    >
+                                      <span
+                                        class="options-inner"
+                                      >
+                                         
+                                        <i
+                                          class="mc-grid-line mc-1x"
+                                        />
+                                         
+                                        Category
+                                      </span>
+                                    </span>
+                                  </div>
+                                  <span
+                                    aria-hidden="true"
+                                    class="ant-select-arrow"
+                                    style="user-select: none;"
+                                    unselectable="on"
+                                  >
+                                    <i
+                                      class="mc-arrow-down-simple-line mc-2x down-arrow"
+                                    />
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="ant-row ant-form-item sc-gfqkcP cydchz"
+                        >
+                          <div
+                            class="ant-col ant-form-item-control"
+                          >
+                            <div
+                              class="ant-form-item-control-input"
+                            >
+                              <div
+                                class="ant-form-item-control-input-content"
+                              >
+                                <div
+                                  class="ant-select ant-select-borderless sc-ckRZPU bEkbyk ant-select-single ant-select-show-arrow"
+                                  data-testid="select-collections"
+                                >
+                                  <div
+                                    class="ant-select-selector"
+                                  >
+                                    <span
+                                      class="ant-select-selection-search"
+                                    >
+                                      <input
+                                        aria-activedescendant="collections_list_0"
+                                        aria-autocomplete="list"
+                                        aria-controls="collections_list"
+                                        aria-haspopup="listbox"
+                                        aria-owns="collections_list"
+                                        autocomplete="off"
+                                        class="ant-select-selection-search-input"
+                                        id="collections"
+                                        readonly=""
+                                        role="combobox"
+                                        style="opacity: 0;"
+                                        type="search"
+                                        unselectable="on"
+                                        value=""
+                                      />
+                                    </span>
+                                    <span
+                                      class="ant-select-selection-placeholder"
+                                    >
+                                      <span
+                                        class="options-inner"
+                                      >
+                                         
+                                        <i
+                                          class="mc-heart-line mc-1x"
+                                        />
+                                         
+                                        Collections
+                                      </span>
+                                    </span>
+                                  </div>
+                                  <span
+                                    aria-hidden="true"
+                                    class="ant-select-arrow"
+                                    style="user-select: none;"
+                                    unselectable="on"
+                                  >
+                                    <i
+                                      class="mc-arrow-down-simple-line mc-2x down-arrow"
+                                    />
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="ant-row ant-form-item sc-gfqkcP cydchz"
+                        >
+                          <div
+                            class="ant-col ant-form-item-control"
+                          >
+                            <div
+                              class="ant-form-item-control-input"
+                            >
+                              <div
+                                class="ant-form-item-control-input-content"
+                              >
+                                <div
+                                  class="ant-select ant-select-borderless sc-ckRZPU bEkbyk ant-select-single ant-select-show-arrow"
+                                  data-testid="select-sale-type"
+                                >
+                                  <div
+                                    class="ant-select-selector"
+                                  >
+                                    <span
+                                      class="ant-select-selection-search"
+                                    >
+                                      <input
+                                        aria-activedescendant="saleType_list_0"
+                                        aria-autocomplete="list"
+                                        aria-controls="saleType_list"
+                                        aria-haspopup="listbox"
+                                        aria-owns="saleType_list"
+                                        autocomplete="off"
+                                        class="ant-select-selection-search-input"
+                                        id="saleType"
+                                        readonly=""
+                                        role="combobox"
+                                        style="opacity: 0;"
+                                        type="search"
+                                        unselectable="on"
+                                        value=""
+                                      />
+                                    </span>
+                                    <span
+                                      class="ant-select-selection-placeholder"
+                                    >
+                                      <span
+                                        class="options-inner"
+                                      >
+                                         
+                                        <i
+                                          class="mc-shopping-tag-line mc-1x"
+                                        />
+                                         
+                                        Sale Type
+                                      </span>
+                                    </span>
+                                  </div>
+                                  <span
+                                    aria-hidden="true"
+                                    class="ant-select-arrow"
+                                    style="user-select: none;"
+                                    unselectable="on"
+                                  >
+                                    <i
+                                      class="mc-arrow-down-simple-line mc-2x down-arrow"
+                                    />
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="ant-row ant-form-item sc-gfqkcP cydchz"
+                        >
+                          <div
+                            class="ant-col ant-form-item-control"
+                          >
+                            <div
+                              class="ant-form-item-control-input"
+                            >
+                              <div
+                                class="ant-form-item-control-input-content"
+                              >
+                                <div
+                                  class="ant-select ant-select-borderless sc-ckRZPU bEkbyk ant-select-single ant-select-show-arrow"
+                                  data-testid="select-timed-auction"
+                                >
+                                  <div
+                                    class="ant-select-selector"
+                                  >
+                                    <span
+                                      class="ant-select-selection-search"
+                                    >
+                                      <input
+                                        aria-activedescendant="timed Auction, fixed price, open for offers_list_0"
+                                        aria-autocomplete="list"
+                                        aria-controls="timed Auction, fixed price, open for offers_list"
+                                        aria-haspopup="listbox"
+                                        aria-owns="timed Auction, fixed price, open for offers_list"
+                                        autocomplete="off"
+                                        class="ant-select-selection-search-input"
+                                        id="timed Auction, fixed price, open for offers"
+                                        readonly=""
+                                        role="combobox"
+                                        style="opacity: 0;"
+                                        type="search"
+                                        unselectable="on"
+                                        value=""
+                                      />
+                                    </span>
+                                    <span
+                                      class="ant-select-selection-placeholder"
+                                    >
+                                      <span
+                                        class="options-inner"
+                                      >
+                                         
+                                        <i
+                                          class="mc-coin-line mc-1x"
+                                        />
+                                         
+                                        Timed Auction,
+  ...
+                                      </span>
+                                    </span>
+                                  </div>
+                                  <span
+                                    aria-hidden="true"
+                                    class="ant-select-arrow"
+                                    style="user-select: none;"
+                                    unselectable="on"
+                                  >
+                                    <i
+                                      class="mc-arrow-down-simple-line mc-2x down-arrow"
+                                    />
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="ant-row ant-form-item sc-gfqkcP cydchz"
+                        >
+                          <div
+                            class="ant-col ant-form-item-control"
+                          >
+                            <div
+                              class="ant-form-item-control-input"
+                            >
+                              <div
+                                class="ant-form-item-control-input-content"
+                              >
+                                <button
+                                  class="ant-btn ant-btn-text"
+                                  id="reset"
+                                  type="button"
+                                >
+                                  <span>
+                                    Reset
+                                  </span>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                      <section
+                        class="sc-hKTqa gBZaky"
+                      >
+                        <div
+                          class="ant-row ant-form-item sc-gfqkcP cydchz"
+                        >
+                          <div
+                            class="ant-col ant-form-item-control"
+                          >
+                            <div
+                              class="ant-form-item-control-input"
+                            >
+                              <div
+                                class="ant-form-item-control-input-content"
+                              >
+                                <span
+                                  class="ant-input-affix-wrapper sc-kJpAUB kTInlk"
+                                >
+                                  <input
+                                    class="ant-input"
+                                    data-testid="search"
+                                    id="search"
+                                    placeholder="Search"
+                                    type="text"
+                                    value=""
+                                  />
+                                  <span
+                                    class="ant-input-suffix"
+                                  >
+                                    <span
+                                      aria-label="close-circle"
+                                      class="anticon anticon-close-circle ant-input-clear-icon-hidden ant-input-clear-icon"
+                                      role="button"
+                                      tabindex="-1"
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        data-icon="close-circle"
+                                        fill="currentColor"
+                                        focusable="false"
+                                        height="1em"
+                                        viewBox="64 64 896 896"
+                                        width="1em"
+                                      >
+                                        <path
+                                          d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"
+                                        />
+                                      </svg>
+                                    </span>
+                                  </span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="ant-row ant-form-item sc-gfqkcP cydchz"
+                        >
+                          <div
+                            class="ant-col ant-form-item-control"
+                          >
+                            <div
+                              class="ant-form-item-control-input"
+                            >
+                              <div
+                                class="ant-form-item-control-input-content"
+                              >
+                                <div
+                                  class="ant-select ant-select-borderless sc-ckRZPU bEkbyk ant-select-single ant-select-show-arrow"
+                                >
+                                  <div
+                                    class="ant-select-selector"
+                                  >
+                                    <span
+                                      class="ant-select-selection-search"
+                                    >
+                                      <input
+                                        aria-activedescendant="singleItem_list_0"
+                                        aria-autocomplete="list"
+                                        aria-controls="singleItem_list"
+                                        aria-haspopup="listbox"
+                                        aria-owns="singleItem_list"
+                                        autocomplete="off"
+                                        class="ant-select-selection-search-input"
+                                        id="singleItem"
+                                        readonly=""
+                                        role="combobox"
+                                        style="opacity: 0;"
+                                        type="search"
+                                        unselectable="on"
+                                        value=""
+                                      />
+                                    </span>
+                                    <span
+                                      class="ant-select-selection-placeholder"
+                                    >
+                                      Single items
+                                    </span>
+                                  </div>
+                                  <span
+                                    aria-hidden="true"
+                                    class="ant-select-arrow"
+                                    style="user-select: none;"
+                                    unselectable="on"
+                                  >
+                                    <i
+                                      class="mc-arrow-down-simple-line mc-2x down-arrow"
+                                    />
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="ant-row ant-form-item sc-gfqkcP cydchz"
+                        >
+                          <div
+                            class="ant-col ant-form-item-control"
+                          >
+                            <div
+                              class="ant-form-item-control-input"
+                            >
+                              <div
+                                class="ant-form-item-control-input-content"
+                              >
+                                <div
+                                  class="ant-select ant-select-borderless sc-ckRZPU bEkbyk ant-select-single ant-select-show-arrow"
+                                >
+                                  <div
+                                    class="ant-select-selector"
+                                  >
+                                    <span
+                                      class="ant-select-selection-search"
+                                    >
+                                      <input
+                                        aria-activedescendant="recentlyReceived_list_0"
+                                        aria-autocomplete="list"
+                                        aria-controls="recentlyReceived_list"
+                                        aria-haspopup="listbox"
+                                        aria-owns="recentlyReceived_list"
+                                        autocomplete="off"
+                                        class="ant-select-selection-search-input"
+                                        id="recentlyReceived"
+                                        readonly=""
+                                        role="combobox"
+                                        style="opacity: 0;"
+                                        type="search"
+                                        unselectable="on"
+                                        value=""
+                                      />
+                                    </span>
+                                    <span
+                                      class="ant-select-selection-placeholder"
+                                    >
+                                      Recently Received
+                                    </span>
+                                  </div>
+                                  <span
+                                    aria-hidden="true"
+                                    class="ant-select-arrow"
+                                    style="user-select: none;"
+                                    unselectable="on"
+                                  >
+                                    <i
+                                      class="mc-arrow-down-simple-line mc-2x down-arrow"
+                                    />
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="ant-row ant-form-item sc-gfqkcP cydchz"
+                        >
+                          <div
+                            class="ant-col ant-form-item-control"
+                          >
+                            <div
+                              class="ant-form-item-control-input"
+                            >
+                              <div
+                                class="ant-form-item-control-input-content"
+                              >
+                                <div
+                                  class="ant-select ant-select-borderless sc-ckRZPU bEkbyk ant-select-single ant-select-show-arrow"
+                                >
+                                  <div
+                                    class="ant-select-selector"
+                                  >
+                                    <span
+                                      class="ant-select-selection-search"
+                                    >
+                                      <input
+                                        aria-activedescendant="recentlyAdded_list_0"
+                                        aria-autocomplete="list"
+                                        aria-controls="recentlyAdded_list"
+                                        aria-haspopup="listbox"
+                                        aria-owns="recentlyAdded_list"
+                                        autocomplete="off"
+                                        class="ant-select-selection-search-input"
+                                        id="recentlyAdded"
+                                        readonly=""
+                                        role="combobox"
+                                        style="opacity: 0;"
+                                        type="search"
+                                        unselectable="on"
+                                        value=""
+                                      />
+                                    </span>
+                                    <span
+                                      class="ant-select-selection-placeholder"
+                                    >
+                                      Recently Added
+                                    </span>
+                                  </div>
+                                  <span
+                                    aria-hidden="true"
+                                    class="ant-select-arrow"
+                                    style="user-select: none;"
+                                    unselectable="on"
+                                  >
+                                    <i
+                                      class="mc-arrow-down-simple-line mc-2x down-arrow"
+                                    />
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    </form>
+                    <section
+                      class="sc-ciFQTS cnyXXV"
+                      data-testid="auctions-gallery"
+                    >
+                      <div
+                        class="sc-gsNilK jLmrtH"
+                        data-testid="live-auction-card"
+                      >
+                        <div
+                          class="sc-bXTejn ipFoyE"
+                        >
+                          <img
+                            alt=""
+                            class="sc-eGRUor dEqkqA"
+                            src="/test-file-stub"
+                          />
+                        </div>
+                        <div
+                          class="sc-ctqQKy NYPGS"
+                        >
+                          <div
+                            class="card-content-inner"
+                          >
+                            <div
+                              class="left-col"
+                            >
+                              <span
+                                class="left-col-row"
+                                title="Crypto Bull Society"
+                              >
+                                 
+                                Crypto Bull Society
+                              </span>
+                              <span
+                                class="left-col-row left-col-row-variant"
+                                data-testid="item-name"
+                                title="Crypto Bull Society"
+                              >
+                                Crypto Bull Society
+                              </span>
+                            </div>
+                            <div
+                              class="right-col"
+                            >
+                              <div
+                                class="row-wrapper"
+                              >
+                                <span
+                                  class="right-col-row"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Best Offer
+                                  </div>
+                                </span>
+                                <span
+                                  class="right-col-row "
+                                >
+                                  <div
+                                    class="sc-gIDmLj gKdonA"
+                                    data-testid="best-offer"
+                                  >
+                                    <span
+                                      class="last-typeof-right-col-row"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="sc-evcjhq"
+                                        src="/test-file-stub"
+                                      />
+                                      0.51
+                                    </span>
+                                  </div>
+                                </span>
+                              </div>
+                              <div
+                                class="row-wrapper"
+                              >
+                                <div
+                                  class="sc-gIDmLj gKdonA"
+                                  data-testid="last-offer"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Last
+                                  </div>
+                                   
+                                  <span
+                                    class="last-typeof-right-col-row"
+                                  >
+                                     
+                                    <img
+                                      alt=""
+                                      class="sc-evcjhq"
+                                      src="/test-file-stub"
+                                    />
+                                    0.42
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="ant-divider ant-divider-horizontal sc-fHeRUh bgURtG"
+                            role="separator"
+                          />
+                          <div
+                            class="sc-dFtzxp gDijkZ"
+                          >
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                            >
+                              <span
+                                class="sc-dtDOqo flOLsv"
+                                data-testid="options-widget"
+                              >
+                                ...
+                              </span>
+                            </div>
+                             
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                              data-testid="likes"
+                            >
+                               
+                              <span
+                                class="last-typeof-right-col-row likes"
+                              >
+                                <img
+                                  class="sc-evcjhq"
+                                  src="/test-file-stub"
+                                />
+                                1.7 k
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="sc-gsNilK jLmrtH"
+                        data-testid="live-auction-card"
+                      >
+                        <div
+                          class="sc-bXTejn ipFoyE"
+                        >
+                          <img
+                            alt=""
+                            class="sc-eGRUor dEqkqA"
+                            src="/test-file-stub"
+                          />
+                        </div>
+                        <div
+                          class="sc-ctqQKy NYPGS"
+                        >
+                          <div
+                            class="card-content-inner"
+                          >
+                            <div
+                              class="left-col"
+                            >
+                              <span
+                                class="left-col-row"
+                                title="Crypto Bull Society"
+                              >
+                                 
+                                Crypto Bull Society
+                              </span>
+                              <span
+                                class="left-col-row left-col-row-variant"
+                                data-testid="item-name"
+                                title="Crypto Bull Society"
+                              >
+                                Crypto Bull Society
+                              </span>
+                            </div>
+                            <div
+                              class="right-col"
+                            >
+                              <div
+                                class="row-wrapper"
+                              >
+                                <span
+                                  class="right-col-row"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Best Offer
+                                  </div>
+                                </span>
+                                <span
+                                  class="right-col-row "
+                                >
+                                  <div
+                                    class="sc-gIDmLj gKdonA"
+                                    data-testid="best-offer"
+                                  >
+                                    <span
+                                      class="last-typeof-right-col-row"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="sc-evcjhq"
+                                        src="/test-file-stub"
+                                      />
+                                      0.51
+                                    </span>
+                                  </div>
+                                </span>
+                              </div>
+                              <div
+                                class="row-wrapper"
+                              >
+                                <div
+                                  class="sc-gIDmLj gKdonA"
+                                  data-testid="last-offer"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Last
+                                  </div>
+                                   
+                                  <span
+                                    class="last-typeof-right-col-row"
+                                  >
+                                     
+                                    <img
+                                      alt=""
+                                      class="sc-evcjhq"
+                                      src="/test-file-stub"
+                                    />
+                                    0.42
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="ant-divider ant-divider-horizontal sc-fHeRUh bgURtG"
+                            role="separator"
+                          />
+                          <div
+                            class="sc-dFtzxp gDijkZ"
+                          >
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                            >
+                              <span
+                                class="sc-dtDOqo flOLsv"
+                                data-testid="options-widget"
+                              >
+                                ...
+                              </span>
+                            </div>
+                             
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                              data-testid="likes"
+                            >
+                               
+                              <span
+                                class="last-typeof-right-col-row likes"
+                              >
+                                <img
+                                  class="sc-evcjhq"
+                                  src="/test-file-stub"
+                                />
+                                1.7 k
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="sc-gsNilK jLmrtH"
+                        data-testid="live-auction-card"
+                      >
+                        <div
+                          class="sc-bXTejn ipFoyE"
+                        >
+                          <img
+                            alt=""
+                            class="sc-eGRUor dEqkqA"
+                            src="/test-file-stub"
+                          />
+                        </div>
+                        <div
+                          class="sc-ctqQKy NYPGS"
+                        >
+                          <div
+                            class="card-content-inner"
+                          >
+                            <div
+                              class="left-col"
+                            >
+                              <span
+                                class="left-col-row"
+                                title="Crypto Bull Society"
+                              >
+                                 
+                                Crypto Bull Society
+                              </span>
+                              <span
+                                class="left-col-row left-col-row-variant"
+                                data-testid="item-name"
+                                title="Crypto Bull Society"
+                              >
+                                Crypto Bull Society
+                              </span>
+                            </div>
+                            <div
+                              class="right-col"
+                            >
+                              <div
+                                class="row-wrapper"
+                              >
+                                <span
+                                  class="right-col-row"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Best Offer
+                                  </div>
+                                </span>
+                                <span
+                                  class="right-col-row "
+                                >
+                                  <div
+                                    class="sc-gIDmLj gKdonA"
+                                    data-testid="best-offer"
+                                  >
+                                    <span
+                                      class="last-typeof-right-col-row"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="sc-evcjhq"
+                                        src="/test-file-stub"
+                                      />
+                                      0.51
+                                    </span>
+                                  </div>
+                                </span>
+                              </div>
+                              <div
+                                class="row-wrapper"
+                              >
+                                <div
+                                  class="sc-gIDmLj gKdonA"
+                                  data-testid="last-offer"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Last
+                                  </div>
+                                   
+                                  <span
+                                    class="last-typeof-right-col-row"
+                                  >
+                                     
+                                    <img
+                                      alt=""
+                                      class="sc-evcjhq"
+                                      src="/test-file-stub"
+                                    />
+                                    0.42
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="ant-divider ant-divider-horizontal sc-fHeRUh bgURtG"
+                            role="separator"
+                          />
+                          <div
+                            class="sc-dFtzxp gDijkZ"
+                          >
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                            >
+                              <span
+                                class="sc-dtDOqo flOLsv"
+                                data-testid="options-widget"
+                              >
+                                ...
+                              </span>
+                            </div>
+                             
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                              data-testid="likes"
+                            >
+                               
+                              <span
+                                class="last-typeof-right-col-row likes"
+                              >
+                                <img
+                                  class="sc-evcjhq"
+                                  src="/test-file-stub"
+                                />
+                                1.7 k
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="sc-gsNilK jLmrtH"
+                        data-testid="live-auction-card"
+                      >
+                        <div
+                          class="sc-bXTejn ipFoyE"
+                        >
+                          <img
+                            alt=""
+                            class="sc-eGRUor dEqkqA"
+                            src="/test-file-stub"
+                          />
+                        </div>
+                        <div
+                          class="sc-ctqQKy NYPGS"
+                        >
+                          <div
+                            class="card-content-inner"
+                          >
+                            <div
+                              class="left-col"
+                            >
+                              <span
+                                class="left-col-row"
+                                title="Crypto Bull Society"
+                              >
+                                 
+                                Crypto Bull Society
+                              </span>
+                              <span
+                                class="left-col-row left-col-row-variant"
+                                data-testid="item-name"
+                                title="Crypto Bull Society"
+                              >
+                                Crypto Bull Society
+                              </span>
+                            </div>
+                            <div
+                              class="right-col"
+                            >
+                              <div
+                                class="row-wrapper"
+                              >
+                                <span
+                                  class="right-col-row"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Best Offer
+                                  </div>
+                                </span>
+                                <span
+                                  class="right-col-row "
+                                >
+                                  <div
+                                    class="sc-gIDmLj gKdonA"
+                                    data-testid="best-offer"
+                                  >
+                                    <span
+                                      class="last-typeof-right-col-row"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="sc-evcjhq"
+                                        src="/test-file-stub"
+                                      />
+                                      0.51
+                                    </span>
+                                  </div>
+                                </span>
+                              </div>
+                              <div
+                                class="row-wrapper"
+                              >
+                                <div
+                                  class="sc-gIDmLj gKdonA"
+                                  data-testid="last-offer"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Last
+                                  </div>
+                                   
+                                  <span
+                                    class="last-typeof-right-col-row"
+                                  >
+                                     
+                                    <img
+                                      alt=""
+                                      class="sc-evcjhq"
+                                      src="/test-file-stub"
+                                    />
+                                    0.42
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="ant-divider ant-divider-horizontal sc-fHeRUh bgURtG"
+                            role="separator"
+                          />
+                          <div
+                            class="sc-dFtzxp gDijkZ"
+                          >
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                            >
+                              <span
+                                class="sc-dtDOqo flOLsv"
+                                data-testid="options-widget"
+                              >
+                                ...
+                              </span>
+                            </div>
+                             
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                              data-testid="likes"
+                            >
+                               
+                              <span
+                                class="last-typeof-right-col-row likes"
+                              >
+                                <img
+                                  class="sc-evcjhq"
+                                  src="/test-file-stub"
+                                />
+                                1.7 k
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="sc-gsNilK jLmrtH"
+                        data-testid="live-auction-card"
+                      >
+                        <div
+                          class="sc-bXTejn ipFoyE"
+                        >
+                          <img
+                            alt=""
+                            class="sc-eGRUor dEqkqA"
+                            src="/test-file-stub"
+                          />
+                        </div>
+                        <div
+                          class="sc-ctqQKy NYPGS"
+                        >
+                          <div
+                            class="card-content-inner"
+                          >
+                            <div
+                              class="left-col"
+                            >
+                              <span
+                                class="left-col-row"
+                                title="Crypto Bull Society"
+                              >
+                                 
+                                Crypto Bull Society
+                              </span>
+                              <span
+                                class="left-col-row left-col-row-variant"
+                                data-testid="item-name"
+                                title="Crypto Bull Society"
+                              >
+                                Crypto Bull Society
+                              </span>
+                            </div>
+                            <div
+                              class="right-col"
+                            >
+                              <div
+                                class="row-wrapper"
+                              >
+                                <span
+                                  class="right-col-row"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Best Offer
+                                  </div>
+                                </span>
+                                <span
+                                  class="right-col-row "
+                                >
+                                  <div
+                                    class="sc-gIDmLj gKdonA"
+                                    data-testid="best-offer"
+                                  >
+                                    <span
+                                      class="last-typeof-right-col-row"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="sc-evcjhq"
+                                        src="/test-file-stub"
+                                      />
+                                      0.51
+                                    </span>
+                                  </div>
+                                </span>
+                              </div>
+                              <div
+                                class="row-wrapper"
+                              >
+                                <div
+                                  class="sc-gIDmLj gKdonA"
+                                  data-testid="last-offer"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Last
+                                  </div>
+                                   
+                                  <span
+                                    class="last-typeof-right-col-row"
+                                  >
+                                     
+                                    <img
+                                      alt=""
+                                      class="sc-evcjhq"
+                                      src="/test-file-stub"
+                                    />
+                                    0.42
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="ant-divider ant-divider-horizontal sc-fHeRUh bgURtG"
+                            role="separator"
+                          />
+                          <div
+                            class="sc-dFtzxp gDijkZ"
+                          >
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                            >
+                              <span
+                                class="sc-dtDOqo flOLsv"
+                                data-testid="options-widget"
+                              >
+                                ...
+                              </span>
+                            </div>
+                             
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                              data-testid="likes"
+                            >
+                               
+                              <span
+                                class="last-typeof-right-col-row likes"
+                              >
+                                <img
+                                  class="sc-evcjhq"
+                                  src="/test-file-stub"
+                                />
+                                1.7 k
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="sc-gsNilK jLmrtH"
+                        data-testid="live-auction-card"
+                      >
+                        <div
+                          class="sc-bXTejn ipFoyE"
+                        >
+                          <img
+                            alt=""
+                            class="sc-eGRUor dEqkqA"
+                            src="/test-file-stub"
+                          />
+                        </div>
+                        <div
+                          class="sc-ctqQKy NYPGS"
+                        >
+                          <div
+                            class="card-content-inner"
+                          >
+                            <div
+                              class="left-col"
+                            >
+                              <span
+                                class="left-col-row"
+                                title="Crypto Bull Society"
+                              >
+                                 
+                                Crypto Bull Society
+                              </span>
+                              <span
+                                class="left-col-row left-col-row-variant"
+                                data-testid="item-name"
+                                title="Crypto Bull Society"
+                              >
+                                Crypto Bull Society
+                              </span>
+                            </div>
+                            <div
+                              class="right-col"
+                            >
+                              <div
+                                class="row-wrapper"
+                              >
+                                <span
+                                  class="right-col-row"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Best Offer
+                                  </div>
+                                </span>
+                                <span
+                                  class="right-col-row "
+                                >
+                                  <div
+                                    class="sc-gIDmLj gKdonA"
+                                    data-testid="best-offer"
+                                  >
+                                    <span
+                                      class="last-typeof-right-col-row"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="sc-evcjhq"
+                                        src="/test-file-stub"
+                                      />
+                                      0.51
+                                    </span>
+                                  </div>
+                                </span>
+                              </div>
+                              <div
+                                class="row-wrapper"
+                              >
+                                <div
+                                  class="sc-gIDmLj gKdonA"
+                                  data-testid="last-offer"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Last
+                                  </div>
+                                   
+                                  <span
+                                    class="last-typeof-right-col-row"
+                                  >
+                                     
+                                    <img
+                                      alt=""
+                                      class="sc-evcjhq"
+                                      src="/test-file-stub"
+                                    />
+                                    0.42
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="ant-divider ant-divider-horizontal sc-fHeRUh bgURtG"
+                            role="separator"
+                          />
+                          <div
+                            class="sc-dFtzxp gDijkZ"
+                          >
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                            >
+                              <span
+                                class="sc-dtDOqo flOLsv"
+                                data-testid="options-widget"
+                              >
+                                ...
+                              </span>
+                            </div>
+                             
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                              data-testid="likes"
+                            >
+                               
+                              <span
+                                class="last-typeof-right-col-row likes"
+                              >
+                                <img
+                                  class="sc-evcjhq"
+                                  src="/test-file-stub"
+                                />
+                                1.7 k
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="sc-gsNilK jLmrtH"
+                        data-testid="live-auction-card"
+                      >
+                        <div
+                          class="sc-bXTejn ipFoyE"
+                        >
+                          <img
+                            alt=""
+                            class="sc-eGRUor dEqkqA"
+                            src="/test-file-stub"
+                          />
+                        </div>
+                        <div
+                          class="sc-ctqQKy NYPGS"
+                        >
+                          <div
+                            class="card-content-inner"
+                          >
+                            <div
+                              class="left-col"
+                            >
+                              <span
+                                class="left-col-row"
+                                title="Crypto Bull Society"
+                              >
+                                 
+                                Crypto Bull Society
+                              </span>
+                              <span
+                                class="left-col-row left-col-row-variant"
+                                data-testid="item-name"
+                                title="Crypto Bull Society"
+                              >
+                                Crypto Bull Society
+                              </span>
+                            </div>
+                            <div
+                              class="right-col"
+                            >
+                              <div
+                                class="row-wrapper"
+                              >
+                                <span
+                                  class="right-col-row"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Best Offer
+                                  </div>
+                                </span>
+                                <span
+                                  class="right-col-row "
+                                >
+                                  <div
+                                    class="sc-gIDmLj gKdonA"
+                                    data-testid="best-offer"
+                                  >
+                                    <span
+                                      class="last-typeof-right-col-row"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="sc-evcjhq"
+                                        src="/test-file-stub"
+                                      />
+                                      0.51
+                                    </span>
+                                  </div>
+                                </span>
+                              </div>
+                              <div
+                                class="row-wrapper"
+                              >
+                                <div
+                                  class="sc-gIDmLj gKdonA"
+                                  data-testid="last-offer"
+                                >
+                                  <div
+                                    class="sc-brSvTw byGuVJ"
+                                  >
+                                    Last
+                                  </div>
+                                   
+                                  <span
+                                    class="last-typeof-right-col-row"
+                                  >
+                                     
+                                    <img
+                                      alt=""
+                                      class="sc-evcjhq"
+                                      src="/test-file-stub"
+                                    />
+                                    0.42
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="ant-divider ant-divider-horizontal sc-fHeRUh bgURtG"
+                            role="separator"
+                          />
+                          <div
+                            class="sc-dFtzxp gDijkZ"
+                          >
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                            >
+                              <span
+                                class="sc-dtDOqo flOLsv"
+                                data-testid="options-widget"
+                              >
+                                ...
+                              </span>
+                            </div>
+                             
+                            <div
+                              class="sc-gIDmLj gKdonA"
+                              data-testid="likes"
+                            >
+                               
+                              <span
+                                class="last-typeof-right-col-row likes"
+                              >
+                                <img
+                                  class="sc-evcjhq"
+                                  src="/test-file-stub"
+                                />
+                                1.7 k
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <div
+                      class="sc-kHdrYz bpUCxl"
+                    />
+                  </div>
+                  <div
+                    aria-hidden="true"
+                    aria-labelledby="rc-tabs-test-tab-2"
+                    class="ant-tabs-tabpane"
+                    id="rc-tabs-test-panel-2"
+                    role="tabpanel"
+                    style="display: none;"
+                    tabindex="-1"
+                  />
+                  <div
+                    aria-hidden="true"
+                    aria-labelledby="rc-tabs-test-tab-3"
+                    class="ant-tabs-tabpane"
+                    id="rc-tabs-test-panel-3"
+                    role="tabpanel"
+                    style="display: none;"
+                    tabindex="-1"
+                  />
+                  <div
+                    aria-hidden="true"
+                    aria-labelledby="rc-tabs-test-tab-4"
+                    class="ant-tabs-tabpane"
+                    id="rc-tabs-test-panel-4"
+                    role="tabpanel"
+                    style="display: none;"
+                    tabindex="-1"
+                  />
+                  <div
+                    aria-hidden="true"
+                    aria-labelledby="rc-tabs-test-tab-5"
+                    class="ant-tabs-tabpane"
+                    id="rc-tabs-test-panel-5"
+                    role="tabpanel"
+                    style="display: none;"
+                    tabindex="-1"
+                  />
+                  <div
+                    aria-hidden="true"
+                    aria-labelledby="rc-tabs-test-tab-6"
+                    class="ant-tabs-tabpane"
+                    id="rc-tabs-test-panel-6"
+                    role="tabpanel"
+                    style="display: none;"
+                    tabindex="-1"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`View Account Container should match with snapshot No WalletAddress  1`] = `
+<div>
+  <div
+    class="meta-flex-center meta-flex"
+    data-testid="main-loader"
+    style="height: 50vh;"
+  >
+    <span
+      class="sc-cidDSM cRAWQh"
+      role="1"
+    >
+      <svg
+        fill="none"
+        height="40"
+        viewBox="0 0 14 14"
+        width="40"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M7 0.333374C6.63181 0.333374 6.33333 0.631851 6.33333 1.00004V3.00004C6.33333 3.36823 6.63181 3.66671 7 3.66671C7.36819 3.66671 7.66667 3.36823 7.66667 3.00004V1.00004C7.66667 0.631851 7.36819 0.333374 7 0.333374Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M7 10.3334C6.63181 10.3334 6.33333 10.6319 6.33333 11V13C6.33333 13.3682 6.63181 13.6667 7 13.6667C7.36819 13.6667 7.66667 13.3682 7.66667 13V11C7.66667 10.6319 7.36819 10.3334 7 10.3334Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M13 6.33337C13.3682 6.33337 13.6667 6.63185 13.6667 7.00004C13.6667 7.36823 13.3682 7.66671 13 7.66671H11C10.6318 7.66671 10.3333 7.36823 10.3333 7.00004C10.3333 6.63185 10.6318 6.33337 11 6.33337H13Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M3.66667 7.00004C3.66667 6.63185 3.36819 6.33337 3 6.33337H0.999999C0.631809 6.33337 0.333332 6.63185 0.333332 7.00004C0.333332 7.36823 0.631809 7.66671 0.999999 7.66671H3C3.36819 7.66671 3.66667 7.36823 3.66667 7.00004Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M10.7713 2.28606C11.0316 2.02571 11.4537 2.02571 11.7141 2.28606C11.9744 2.54641 11.9744 2.96852 11.7141 3.22887L10.2999 4.64308C10.0395 4.90343 9.61741 4.90343 9.35706 4.64308C9.09671 4.38273 9.09671 3.96062 9.35706 3.70027L10.7713 2.28606Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M4.64295 9.35703C4.3826 9.09668 3.96049 9.09668 3.70014 9.35703L2.28593 10.7712C2.02558 11.0316 2.02558 11.4537 2.28593 11.714C2.54628 11.9744 2.96839 11.9744 3.22874 11.714L4.64295 10.2998C4.9033 10.0395 4.9033 9.61737 4.64295 9.35703Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M11.7141 10.7713C11.9744 11.0317 11.9744 11.4538 11.7141 11.7141C11.4537 11.9745 11.0316 11.9745 10.7713 11.7141L9.35704 10.2999C9.09669 10.0396 9.09669 9.61745 9.35704 9.3571C9.61739 9.09675 10.0395 9.09675 10.2998 9.3571L11.7141 10.7713Z"
+          fill="#FCFCFD"
+        />
+        <path
+          d="M4.64301 4.64299C4.90336 4.38265 4.90336 3.96054 4.64301 3.70019L3.2288 2.28597C2.96845 2.02562 2.54634 2.02562 2.28599 2.28597C2.02564 2.54632 2.02564 2.96843 2.28599 3.22878L3.70021 4.64299C3.96056 4.90334 4.38267 4.90334 4.64301 4.64299Z"
+          fill="#FCFCFD"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;

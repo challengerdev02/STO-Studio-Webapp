@@ -1,0 +1,362 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LayoutHeader should match with snapshot 1`] = `
+<div>
+  <header
+    class="sc-bdvvtL dbecOo"
+    id="main-header"
+    role="main-header"
+  >
+    <a
+      href="/"
+    >
+      <div
+        class="sc-gsDKAQ joSmdC"
+      >
+        <img
+          alt="Metacomics"
+          class="sc-dkPtRN btAiGm md-logo"
+          src="string"
+        />
+        <img
+          alt="Metacomics"
+          class="sc-dkPtRN btAiGm sm-logo"
+          src="string"
+        />
+      </div>
+    </a>
+    <div
+      class="ant-divider ant-divider-vertical"
+      role="separator"
+    />
+    <div
+      class="link-list"
+    >
+      <a
+        class="meta-text-link"
+        href="/explore-collections"
+      >
+        Explore
+      </a>
+      <a
+        class="meta-text-link"
+        href="/resources"
+      >
+        Resources
+      </a>
+      <a
+        class="meta-text-link"
+        href="/token"
+      >
+        Token
+      </a>
+      <a
+        class="meta-text-link"
+        href="/launch"
+      >
+        Launch
+      </a>
+    </div>
+    <div
+      class="button-list button-list-desktop"
+    >
+      <form
+        class="ant-form ant-form-horizontal"
+        id="search-form"
+      >
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <span
+                  class="ant-input-affix-wrapper"
+                >
+                  <input
+                    class="ant-input"
+                    id="search-form_search"
+                    placeholder="Item, Collection, Artist"
+                    type="text"
+                    value=""
+                  />
+                  <span
+                    class="ant-input-suffix"
+                  >
+                    <button
+                      class="ant-btn ant-btn-text"
+                      type="button"
+                    >
+                      <i
+                        class="mc-search-line"
+                      />
+                    </button>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div>
+        <button
+          class="ant-btn ant-btn-round ant-btn-primary"
+          data-testid="create-button"
+          type="button"
+        >
+          <span>
+            Create
+          </span>
+        </button>
+      </div>
+      <div
+        class="sc-jRQBWg HSgtc"
+      >
+        <button
+          class="ant-btn ant-btn-round ant-btn-default"
+          data-testid="wallet-address-button"
+          type="button"
+        >
+          <span>
+            string
+          </span>
+        </button>
+      </div>
+      <div
+        data-testid="drawer-balance-icon"
+        style="cursor: pointer;"
+      >
+        <span
+          class="ant-avatar ant-avatar-circle ant-avatar-icon"
+          style="width: 44px; height: 44px; line-height: 44px; font-size: 22px;"
+        >
+          <svg
+            height="44"
+            version="1.1"
+            viewBox="0 0 80 80"
+            width="44"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <defs>
+              <lineargradient
+                id="string"
+                x1="0%"
+                x2="100%"
+                y1="0%"
+                y2="100%"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="rgb(0, 68, 255)"
+                />
+                <stop
+                  offset="100%"
+                  stop-color="rgb(255, 0, 68)"
+                />
+              </lineargradient>
+            </defs>
+            <g
+              fill="none"
+              fill-rule="evenodd"
+              stroke="none"
+              stroke-width="1"
+            >
+              <rect
+                fill="url(#string)"
+                height="80"
+                id="Rectangle"
+                width="80"
+                x="0"
+                y="0"
+              />
+            </g>
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div
+      class="ant-space ant-space-horizontal ant-space-align-center button-list-mobile mobile-list-desktop"
+    >
+      <div
+        class="ant-space-item"
+        style="margin-right: 15px;"
+      >
+        <div>
+          <button
+            class="ant-btn ant-btn-circle ant-btn-default ant-btn-sm ant-btn-icon-only toggle-menu"
+            type="button"
+          >
+            <i
+              class="mc-search-line"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+        style="margin-right: 15px;"
+      >
+        <div>
+          <button
+            class="ant-btn ant-btn-circle ant-btn-default ant-btn-sm ant-btn-icon-only toggle-menu"
+            type="button"
+          >
+            <i
+              class="mc-burger-line"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        class="ant-space-item"
+      >
+        <div
+          data-testid="drawer-balance-icon-2"
+        >
+          <span
+            class="ant-avatar ant-avatar-circle ant-avatar-icon"
+            style="width: 44px; height: 44px; line-height: 44px; font-size: 22px;"
+          >
+            <svg
+              height="44"
+              version="1.1"
+              viewBox="0 0 80 80"
+              width="44"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <defs>
+                <lineargradient
+                  id="string"
+                  x1="0%"
+                  x2="100%"
+                  y1="0%"
+                  y2="100%"
+                >
+                  <stop
+                    offset="0%"
+                    stop-color="rgb(0, 68, 255)"
+                  />
+                  <stop
+                    offset="100%"
+                    stop-color="rgb(255, 0, 68)"
+                  />
+                </lineargradient>
+              </defs>
+              <g
+                fill="none"
+                fill-rule="evenodd"
+                stroke="none"
+                stroke-width="1"
+              >
+                <rect
+                  fill="url(#string)"
+                  height="80"
+                  id="Rectangle"
+                  width="80"
+                  x="0"
+                  y="0"
+                />
+              </g>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mobile-menu-layout"
+      style="display: none;"
+    >
+      <div
+        class="logo-container"
+      >
+        <img
+          alt="logo"
+          class="sc-dkPtRN btAiGm md-logo"
+          src="string"
+        />
+      </div>
+      <form
+        class="ant-form ant-form-horizontal"
+        id="search-form"
+      >
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <span
+                  class="ant-input-affix-wrapper"
+                >
+                  <input
+                    class="ant-input"
+                    id="search-form_search"
+                    placeholder="Item, Collection, Artist"
+                    type="text"
+                    value=""
+                  />
+                  <span
+                    class="ant-input-suffix"
+                  >
+                    <button
+                      class="ant-btn ant-btn-text"
+                      type="button"
+                    >
+                      <i
+                        class="mc-search-line"
+                      />
+                    </button>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div
+        class="links"
+      >
+        <span
+          class="ant-typography"
+        >
+          Explore
+        </span>
+        <span
+          class="ant-typography"
+        >
+          Resources
+        </span>
+        <span
+          class="ant-typography"
+        >
+          Token
+        </span>
+        <span
+          class="ant-typography"
+        >
+          Launch
+        </span>
+        <span
+          class="ant-typography"
+        >
+          Create
+        </span>
+      </div>
+    </div>
+  </header>
+</div>
+`;
