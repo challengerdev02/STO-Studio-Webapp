@@ -338,6 +338,7 @@ export class EVMProvider {
   };
 
   handleGetAccount = (options?: ActionOption) => {
+    console.log(options, '11111111111');
     // console.log('GETTINGACCOUNT');
     this.reduxDispatcher(
       getAccount({

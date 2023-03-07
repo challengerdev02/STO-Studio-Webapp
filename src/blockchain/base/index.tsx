@@ -17,7 +17,9 @@ import { isPlainObject } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { Modal, Typography } from 'antd';
 import { SUIWalletState, useSuiWallet } from '../sui';
+import { useSolanaWallet } from '../solana';
 import { WalletContextState as SUIWalletContextState } from '@suiet/wallet-kit';
+import { WalletContextState as SolanaWalletContextState } from '@solana/wallet-adapter-react';
 
 export interface BaseProviderState {
   isConnected?: boolean;
@@ -27,6 +29,9 @@ export interface BaseProviderState {
   near?: NearWalletConnectorState | null;
   evm?: EVMWalletConnectorState | null;
   sui?: ({ signedAddress?: string } & Partial<SUIWalletContextState>) | null;
+  solana?:
+    | ({ signedAddress?: string } & Partial<SolanaWalletContextState>)
+    | null;
 }
 
 export enum BaseProviderActionTypes {
@@ -52,6 +57,7 @@ const defaultState: BaseProviderState = {
   near: null,
   evm: null,
   sui: null,
+  solana: null,
 };
 
 export type Modify<T, R> = Omit<T, keyof R> & R;
@@ -99,6 +105,7 @@ export const BaseProvider = (props: BaseProviderProps) => {
   const reduxDispatcher = useDispatch();
 
   const suiProvider = useSuiWallet(dispatch, reduxDispatcher);
+  const solanaProvider = useSolanaWallet(dispatch, reduxDispatcher);
   const evmProvider = new EVMProvider(router, state, dispatch, reduxDispatcher);
   const nearProvider = new NearProtocolProvider(
     router,
@@ -107,8 +114,7 @@ export const BaseProvider = (props: BaseProviderProps) => {
     reduxDispatcher
   );
 
-  const connect = async (...args: string[]) => {
-    console.log('args', args);
+  const connect = async (...args: any[]) => {
     switch (args[0]) {
       case 'near':
         await nearProvider.connect();
@@ -116,6 +122,10 @@ export const BaseProvider = (props: BaseProviderProps) => {
 
       case 'sui':
         suiProvider.connect(args[1]);
+        break;
+
+      case 'solana':
+        solanaProvider.select(args[1]);
         break;
 
       case 'evm':
@@ -150,6 +160,14 @@ export const BaseProvider = (props: BaseProviderProps) => {
 
       case 'sui':
         await suiProvider.sign();
+        break;
+
+      case 'solana':
+        await solanaProvider.sign({
+          messageObject: args[1],
+          message: args[2],
+          result: args[3],
+        });
         break;
 
       case 'evm':
@@ -206,6 +224,7 @@ export const BaseProvider = (props: BaseProviderProps) => {
     {},
     state.near,
     state.evm,
+    state.solana,
     suiProvider ? suiProvider : null
   );
 

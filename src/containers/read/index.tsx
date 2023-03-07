@@ -2,7 +2,7 @@ import { ReadSeries } from '@/components';
 import { mapSeriesToCard } from '@/shared/utils';
 
 import { useSeries } from '@/hooks';
-import { CATEGORIES, GENRES } from '@/shared/constants';
+import { CATEGORIES } from '@/shared/constants';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { SeriesNamespace } from '@/shared/namespaces/series';

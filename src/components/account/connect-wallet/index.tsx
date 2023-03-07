@@ -15,6 +15,9 @@ import { providerOptions } from '../../../blockchain/evm/provider-options';
 import { IWallet } from '@suiet/wallet-kit';
 import { isMobile } from 'react-device-detect';
 import Image from 'next/image';
+import Solana from './solana';
+import { useWallet } from '@solana/wallet-adapter-react';
+
 const { Panel } = Collapse;
 
 const { Title, Link } = Typography;
@@ -23,6 +26,7 @@ interface ConnectProps extends BaseProviderContextValues {}
 
 export const Connect = (props: ConnectProps) => {
   const { connect, isConnecting, providerName, ...rest } = props;
+  const solWallet = useWallet();
   const [showFull, setShowFull] = useState(false);
   const [activeKey, setActiveKey] = useState<any>();
 
@@ -76,7 +80,7 @@ export const Connect = (props: ConnectProps) => {
   };
 
   const onToggleVisibility = () => {
-    setShowFull((prev) => !prev);
+    setShowFull(!showFull);
   };
 
   const walletSlice = walletKeys.slice(
@@ -87,9 +91,28 @@ export const Connect = (props: ConnectProps) => {
   if (isMobile) {
     showWallets = showWallets.filter((d: string) => !excludedInMobile[d]);
   }
+  const genExtraSolana = () => (
+    <Space direction={'horizontal'}>
+      {solWallet.wallets.slice(0, 4).map((wallet, index) => (
+        <Image
+          key={'sl' + index}
+          onClick={(event) => {
+            // If you don't want click extra trigger collapse, you can prevent this:
+            event.stopPropagation();
+            setActiveKey(activeKey == 1 ? 0 : 1);
+          }}
+          src={wallet.adapter.icon}
+          alt={wallet.adapter.name}
+          height={24}
+          width={24}
+        />
+      ))}
+    </Space>
+  );
+
   const genExtraWallet = () => (
     <Space direction={'horizontal'}>
-      {showWallets.map((key, index) => (
+      {showWallets.map((key: string, index: number) => (
         <Image
           key={'sl' + index}
           onClick={(event) => {
@@ -176,6 +199,7 @@ export const Connect = (props: ConnectProps) => {
       );
     });
   };
+
   const getSUIButtons = () => {
     return suiWalletTypes
       .slice(0, showFull && activeKey === '3' ? walletKeys.length : 4)
@@ -407,6 +431,33 @@ export const Connect = (props: ConnectProps) => {
               {getButtons(
                 walletKeys.filter((key) => key.toLowerCase() == 'torus')
               )}
+            </Space>
+          </div>
+        </Panel>
+        <Panel header="Solana Wallets" key="5" extra={genExtraSolana()}>
+          <div style={{ textAlign: 'center' }}>
+            <Space
+              direction={'vertical'}
+              size={20}
+              // style={{ width: "40%" }}
+              className={'connect-wallet-buttons-container'}
+            >
+              <Solana showFull={showFull} prop={props} />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                layout
+                // transition={{ duration: (walletKeys.length + 1) * 0.2 }}
+              >
+                <Button
+                  block
+                  shape={'round'}
+                  onClick={onToggleVisibility}
+                  style={{ justifyContent: 'center' }}
+                >
+                  Show {showFull ? 'fewer' : 'more'} options
+                </Button>
+              </motion.div>
             </Space>
           </div>
         </Panel>

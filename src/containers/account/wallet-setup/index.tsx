@@ -21,6 +21,7 @@ export const WalletSetupContainer = () => {
   const router = useRouter();
 
   const { accounts, chainId } = useContext(BaseWeb3Context);
+  console.log(accounts, chainId, '123213123');
   const accountKey = '@@user-account';
   const { passphrase, setPassphrase } = useAccount({
     key: accountKey,
