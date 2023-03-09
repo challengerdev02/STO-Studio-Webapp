@@ -17,7 +17,7 @@ import { isPlainObject } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { Modal, Typography } from 'antd';
 import { SUIWalletState, useSuiWallet } from '../sui';
-import { useSolanaWallet } from '../solana';
+import { SolanaWalletState, useSolanaWallet } from '../solana';
 import { WalletContextState as SUIWalletContextState } from '@suiet/wallet-kit';
 import { WalletContextState as SolanaWalletContextState } from '@solana/wallet-adapter-react';
 
@@ -60,22 +60,27 @@ const defaultState: BaseProviderState = {
   solana: null,
 };
 
-export type Modify<T, R> = Omit<T, keyof R> & R;
-export type MergeTypes<A, B> = {
-  [key in keyof A]: key extends keyof B ? B[key] : A[key];
-} & B;
+export type MergeTypes<A, B, C> = {
+  [key in keyof A]: key extends keyof B
+    ? B[key]
+    : key extends keyof C
+    ? C[key]
+    : A[key];
+} & B &
+  C;
 
 export interface BaseProviderExtendedValues
   extends EVMWalletConnectorExtendedValues {}
 
 type NearSUIStateMerge = MergeTypes<
   Partial<NearWalletConnectorState>,
-  Partial<SUIWalletState>
+  Partial<SUIWalletState>,
+  Partial<SolanaWalletState>
 >;
 
 export interface BaseProviderContextValues
   extends Partial<EVMWalletConnectorState>,
-    Pick<BaseProviderState, 'env' | 'isConnected' | 'isConnecting'>,
+    Pick<BaseProviderState, 'env' | 'solana' | 'isConnected' | 'isConnecting'>,
     BaseProviderExtendedValues,
     NearSUIStateMerge {
   connect: (...args: string[]) => Promise<void>;

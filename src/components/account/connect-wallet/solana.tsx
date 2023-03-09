@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import { Button, Modal, Space, Typography } from 'antd';
 import Image from 'next/image';
 
@@ -13,7 +12,6 @@ const Wallets: any = ({ showFull, prop }: any) => {
   const [modalState, setModalState] = useState(false);
   const { select, wallets, publicKey, disconnect, signMessage, connected } =
     useWallet();
-  const router = useRouter();
 
   const solConnect = (walletName: any) => {
     if (connected) {

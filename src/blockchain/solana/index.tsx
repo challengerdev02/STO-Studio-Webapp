@@ -54,8 +54,7 @@ export function useSolanaWallet(
       dispatch({
         type: BaseProviderActionTypes.ACCOUNT_PROPERTIES,
         payload: {
-          solana: wallet,
-          evm: {
+          solana: {
             signedAddress: messageObject.publicKey,
           },
           isConnected: true,
@@ -68,7 +67,7 @@ export function useSolanaWallet(
 
       storage.update((prevState) => {
         return {
-          chainId: 100,
+          chainId: 'solana',
           ...prevState,
           ...messageObject,
           message,

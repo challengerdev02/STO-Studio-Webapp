@@ -20,6 +20,7 @@ import {
 } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
+  PhantomWalletAdapter,
   UnsafeBurnerWalletAdapter,
   TorusWalletAdapter,
   SolletWalletAdapter,
@@ -56,6 +57,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
 
   const wallets = useMemo(
     () => [
+      new PhantomWalletAdapter(),
       new UnsafeBurnerWalletAdapter(),
       new TorusWalletAdapter(),
       new SolletWalletAdapter(),
