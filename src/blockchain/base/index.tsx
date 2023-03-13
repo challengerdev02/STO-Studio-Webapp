@@ -19,7 +19,6 @@ import { Modal, Typography } from 'antd';
 import { SUIWalletState, useSuiWallet } from '../sui';
 import { SolanaWalletState, useSolanaWallet } from '../solana';
 import { WalletContextState as SUIWalletContextState } from '@suiet/wallet-kit';
-import { WalletContextState as SolanaWalletContextState } from '@solana/wallet-adapter-react';
 import { getBtcSeedSignature } from '../evm/utils';
 import { sha256 } from '@/shared/utils';
 
@@ -31,9 +30,7 @@ export interface BaseProviderState {
   near?: NearWalletConnectorState | null;
   evm?: EVMWalletConnectorState | null;
   sui?: ({ signedAddress?: string } & Partial<SUIWalletContextState>) | null;
-  solana?:
-    | ({ signedAddress?: string } & Partial<SolanaWalletContextState>)
-    | null;
+  solana?: Partial<SolanaWalletState> | null;
 }
 
 export enum BaseProviderActionTypes {
@@ -82,18 +79,17 @@ type NearSUIStateMerge = MergeTypes<
 
 export interface BaseProviderContextValues
   extends Partial<EVMWalletConnectorState>,
-    Pick<BaseProviderState, 'env' | 'solana' | 'isConnected' | 'isConnecting'>,
+    Pick<BaseProviderState, 'env' | 'isConnected' | 'isConnecting'>,
     BaseProviderExtendedValues,
     NearSUIStateMerge {
   connect: (...args: string[]) => Promise<void>;
   sign: (...args: any[]) => Promise<void>;
   disconnect: () => Promise<void>;
   getBalance: () => Promise<string>;
-  signMessage: (...args: any[]) => Promise<string | null>;
   unlockOrdinalWallet: (
     userInf: { walletAddress: string; user: string },
     ...args: any[]
-  ) => Promise<Buffer>;
+  ) => Promise<any>;
 }
 
 export const BaseWeb3Context: Context<BaseProviderContextValues> =
@@ -102,7 +98,6 @@ export const BaseWeb3Context: Context<BaseProviderContextValues> =
     sign: async () => {},
     disconnect: async () => {},
     getBalance: async () => '0',
-    signMessage: async (_: string) => null,
     unlockOrdinalWallet: async () => null,
     ...defaultState,
   });
@@ -153,6 +148,10 @@ export const BaseProvider = (props: BaseProviderProps) => {
     switch (state.env) {
       case 'near':
         await nearProvider.disconnect();
+        break;
+
+      case 'sui':
+        await suiProvider.disconnect();
         break;
 
       case 'sui':

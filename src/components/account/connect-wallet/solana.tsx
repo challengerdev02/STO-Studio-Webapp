@@ -16,11 +16,11 @@ const Wallets: any = ({ showFull, prop }: any) => {
 
   const solConnect = (walletName: any) => {
     if (connected) {
-      prop.connect('solana', walletName);
+      prop.connect('solana', publicKey?.toBase58());
       setModalState(true);
     } else {
       select(walletName);
-      prop.connect('solana', walletName);
+      prop.connect('solana', publicKey?.toBase58());
     }
   };
 
