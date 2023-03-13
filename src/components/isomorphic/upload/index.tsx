@@ -64,7 +64,7 @@ const MultiImageUploader = (props: { draggerProps: any }) => {
         onChange={handleChange}
         accept={draggerProps.accept}
       >
-        {fileList.length >= Number(process.env.NEXT_PUBLIC_MAX_PAGES ?? 100)
+        {fileList.length >= Number(process.env.NEXT_PUBLIC_MAX_PAGES ?? 1)
           ? null
           : uploadButton}
       </Upload>

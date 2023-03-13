@@ -62,11 +62,11 @@ export const signMessage = async (
 
   // These formatting is important for displaying the signing message.
   const message = web3.utils.fromUtf8(
-    `Welcome to MetaComic! Click to sign in and 
-accept the MetaComics Terms of Service: 
+    `Welcome to SatoshiStudio! Click to sign in and 
+accept the SatoshiStudio Terms of Service: 
 ${
   process.env.NEXT_PUBLIC_TERMS_OF_SERVICE ??
-  'https://metacomic.tawk.help/article/terms-of-service'
+  'https://satoshistudio.tawk.help/article/terms-of-service'
 }
 
 This request will not trigger a blockchain transaction 
@@ -385,4 +385,15 @@ export const getSaleTypeActionTitle = (saleType: string | number) => {
   }
 };
 
+export const getBtcSeedSignature = (params: {
+  environment: 'evm' | 'solana' | 'near';
+  walletAddress: string;
+  user: string;
+}) => {
+  return `Satoshi Studio Ordinal Wallet: 
+
+Network: ${params.environment}
+Address: ${params.walletAddress.toLowerCase()}
+Nonce: ${params.user}`;
+};
 export * from './contracts';

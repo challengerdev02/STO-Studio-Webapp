@@ -4,6 +4,7 @@ import { Web3Controller } from '../controller';
 import Web3 from 'web3';
 import { Storage } from '@/shared/utils';
 import {
+  BTC_WALLET_KEY,
   WEB3_CACHED_PROVIDER_KEY,
   WEB3_SIGNATURE_STORAGE_KEY,
   WEB3_SIGNATURE_STORAGE_SET_KEY,
@@ -26,6 +27,7 @@ import {
 import { providerOptions } from '../provider-options';
 import { ActionOption } from '../../../redux/types';
 import { getAccount } from '@/actions';
+import { decryptWallet, md5 } from 'src/blockchain/bitcoin';
 
 export class EVMProvider {
   controller: Web3Controller;
@@ -52,6 +54,63 @@ export class EVMProvider {
     this.dispatch = dispatch;
     this.reduxDispatcher = reduxDispatcher;
   }
+
+  signMessage = async (message: string): Promise<string> => {
+    const web3 = new Web3(this.evmState?.provider);
+    const accounts = await web3.eth.getAccounts();
+    message = web3.utils.fromUtf8(message);
+    console.log('SIGNING', message, accounts);
+    return new Promise((resolve, reject) => {
+      web3.eth.personal.sign(
+        message,
+        accounts[0],
+        '',
+        (error: Error, signature: string) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+          console.log('SIGNATURE', signature);
+          resolve(signature);
+        }
+      );
+    });
+  };
+
+  unlockOrdinalWalletV1 = async (): Promise<string> => {
+    const web3 = new Web3(this.evmState?.provider);
+    const accounts = await web3.eth.getAccounts();
+    let storage = new Storage(
+      `${BTC_WALLET_KEY}/${accounts?.[0]?.toLowerCase()}`
+    );
+    let encryptedWallet = storage.get();
+    return new Promise((resolve, reject) => {
+      if (encryptedWallet) {
+        const { iv, encrypted, fingerprint } = JSON.parse(encryptedWallet);
+
+        web3.eth.personal.sign(
+          iv,
+          accounts[0],
+          '',
+          (error: Error, signature: string) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            const key = decryptWallet({ iv, encrypted }, signature);
+            const newFingerprint = md5(`${iv}:${key}`);
+            if (fingerprint != newFingerprint) {
+              reject(new Error('Invalid private key'));
+              return;
+            }
+            resolve(key);
+          }
+        );
+      } else {
+        reject(new Error('Ordinal wallet not found'));
+      }
+    });
+  };
 
   connect = async (providerName?: string) => {
     // if (providerName === 'metamask' && !isMetamask()) {

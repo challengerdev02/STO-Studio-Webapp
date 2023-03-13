@@ -105,7 +105,6 @@ export const CreateBookContainer = (props: CreateBookContainerProps) => {
               populate: [{ path: 'artists' }, { path: 'attributes' }],
             },
             'attributes',
-            'artists',
             'user',
             'characters',
           ]),

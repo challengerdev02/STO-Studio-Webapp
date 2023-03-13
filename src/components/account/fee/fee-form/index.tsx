@@ -1,5 +1,5 @@
 import { Col, Form, FormProps, Input, Row, Space } from 'antd';
-import { cleanInput, truncateEthAddress } from '@/shared/utils';
+import { cleanInput } from '@/shared/utils';
 import { toEther } from '../../../../blockchain/evm/utils';
 
 interface FeeFormProps extends FormProps {

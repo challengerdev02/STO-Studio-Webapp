@@ -19,7 +19,7 @@ export const ShareProfile = (props: ShareProfileProps) => {
       <Menu.Item
         icon={
           <UserCircleOutline
-            style={{ width: 24, height: 20, color: '#3772ff' }}
+            style={{ width: 24, height: 20, color: 'rgba(55, 73, 233, 1)' }}
           />
         }
         title={'Copy profile link'}

@@ -1,4 +1,4 @@
-import Img from '/public/assets/logo-dark.svg';
+import Img from '/public/assets/logo.svg';
 import { BaseLayoutHeaderProps, Footer, LayoutHeader } from '@/components';
 import { ReactNode, useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -47,8 +47,8 @@ export const MainLayoutContainer = (props: MainLayoutProps) => {
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleGetAccount = (options?: ActionOption) => {
-    if (!executeRecaptcha) return;
     try {
+      if (!executeRecaptcha) return;
       executeRecaptcha?.('subscription')
         .then((captcha) => {
           dispatchAction(

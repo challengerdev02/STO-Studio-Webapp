@@ -7,7 +7,7 @@ import { generateAvatar, timestamp } from '@/shared/utils';
 // import { Col, Form, Row, Select } from 'antd';
 // import { GENRE_OPTIONS } from '@/shared/constants';
 // import { get } from 'lodash';
-import { Image } from '@/components/layout/header/index.styled';
+// import { Image } from '@/components/layout/header/index.styled';
 
 export const LiveAuctionAndLaunchingSoonSection = () => {
   const auctionKey = '@@live-auction-marketplace-container';

@@ -7,6 +7,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { notification } from 'antd';
 import { SigninMessage } from './utils';
 import bs58 from 'bs58';
+import { getAuthMessage } from '@/shared/utils';
 
 const Wallets: any = ({ showFull, prop }: any) => {
   const [modalState, setModalState] = useState(false);
@@ -15,41 +16,29 @@ const Wallets: any = ({ showFull, prop }: any) => {
 
   const solConnect = (walletName: any) => {
     if (connected) {
-      prop.connect('solana', walletName);
+      prop.connect('solana', publicKey?.toBase58());
       setModalState(true);
     } else {
       select(walletName);
-      prop.connect('solana', walletName);
+      prop.connect('solana', publicKey?.toBase58());
     }
   };
 
   const sign = async () => {
     try {
       const encoder = new TextEncoder();
-      const statement = `Welcome to MetaComic! Click to sign in and 
-            accept the MetaComics Terms of Service: 
-            ${
-              process.env.NEXT_PUBLIC_TERMS_OF_SERVICE ??
-              'https://metacomic.tawk.help/article/terms-of-service'
-            }
-
-            This request will not trigger a blockchain transaction 
-            or cost any gas fees.
-
-            Your authentication status will reset after 24 hours.
-
-            Chain ID: solana
-
-            Address: 
-            ${publicKey}
-
-            Nonce: ${Date.now()}`;
+      const nonce = Date.now();
+      const statement = getAuthMessage({
+        walletAddress: String(publicKey),
+        environment: 'solana',
+        nonce,
+      });
 
       const message = new SigninMessage({
         domain: 'http://localhost:3000/account/wallet-setup',
         publicKey: publicKey?.toBase58(),
         statement,
-        nonce: Date.now(),
+        nonce,
       });
 
       const data = encoder.encode(message.prepare());
@@ -126,7 +115,7 @@ const Wallets: any = ({ showFull, prop }: any) => {
             <a
               href={
                 process.env.NEXT_PUBLIC_TERMS_OF_SERVICE ??
-                'https://metacomic.tawk.help/article/terms-of-service'
+                'https://satoshistudio.tawk.help/article/terms-of-service'
               }
               target={'_blank'}
               rel={'noreferrer'}
@@ -138,7 +127,7 @@ const Wallets: any = ({ showFull, prop }: any) => {
               target={'_blank'}
               href={
                 process.env.NEXT_PUBLIC_PRIVACY_POLICY ??
-                'https://metacomic.tawk.help/article/privacy-policy'
+                'https://satoshistudio.tawk.help/article/privacy-policy'
               }
               rel={'noreferrer'}
             >

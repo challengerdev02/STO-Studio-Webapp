@@ -344,14 +344,13 @@ export const CreateItem = (props: CreateItemProps) => {
                         },
                       }}
                       description={
-                        <span>
-                          Drag file here or click to upload.
-                          <br />
+                        <span className="drag-n-drop-text p-4">
+                          Drag file here <br /> or <br /> click to upload.
                         </span>
                       }
                       label={
                         <div>
-                          <Title>Thumbnail</Title>
+                          <Title>NFT Thumbnail</Title>
                           <Text>
                             File types supported: JPG, JPEG, PNG, GIF, SVG,
                             WEBP.
@@ -412,7 +411,7 @@ export const CreateItem = (props: CreateItemProps) => {
                       className={'coverUpload'}
                       label={
                         <div>
-                          <Title>Cover/Strip/Scenes</Title>
+                          <Title>NFT Image</Title>
                           {assetDomain != 'revise' && (
                             <Space>
                               <Button
@@ -458,15 +457,6 @@ export const CreateItem = (props: CreateItemProps) => {
                                 ? 'JPG, JPEG, WEBP, PNG, GIF.'
                                 : ' MP4, AVI, MOV, WEBM, WMV, MKV, FLV'}
                               .{' '}
-                              <a
-                                target={'_blank'}
-                                href={
-                                  'https://metacomic.tawk.help/article/how-to-create-a-new-asset'
-                                }
-                                rel="noreferrer"
-                              >
-                                See example
-                              </a>
                             </span>
                           </Text>
                         </div>
@@ -516,18 +506,18 @@ export const CreateItem = (props: CreateItemProps) => {
                               // style={{ maxHeight: '500px' }}
                             />
                           )}
-                          {/*{coverImageFileType === 'image' && (*/}
-                          {/*  <Image*/}
-                          {/*    // width={'100%'}*/}
-                          {/*    style={{ maxHeight: '500px' }}*/}
-                          {/*    //  className={'book-cover-image'}*/}
-                          {/*    preview={false}*/}
-                          {/*    src={coverImage}*/}
-                          {/*    fallback={uploadedFile?.thumbUrl}*/}
-                          {/*    placeholder={true}*/}
-                          {/*    alt=""*/}
-                          {/*  />*/}
-                          {/*)}*/}
+                          {coverImageFileType === 'image' && (
+                            <Image
+                              width={'100%'}
+                              style={{ maxHeight: '500px' }}
+                              className={'book-cover-image'}
+                              preview={false}
+                              src={coverImage}
+                              fallback={uploadedFile?.thumbUrl}
+                              placeholder={true}
+                              alt=""
+                            />
+                          )}
                         </div>
                       )}
                     </IsomorphicUpload>

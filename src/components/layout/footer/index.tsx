@@ -56,8 +56,6 @@ export const Footer = ({ imgSrc }: FooterProps) => {
         <LDiv>
           <LogoDiv>
             <DesktopImg src={imgSrc} alt="logo" />
-
-            <Meta>MetaComic</Meta>
           </LogoDiv>
           <Creator>For Creators and Collectors</Creator>
         </LDiv>
@@ -65,7 +63,7 @@ export const Footer = ({ imgSrc }: FooterProps) => {
         <MobileLine />
 
         <Div>
-          MetaComic
+          Satoshi Studios
           <ColWrap>
             <a
               target={'_blank'}
@@ -101,31 +99,38 @@ export const Footer = ({ imgSrc }: FooterProps) => {
           <ColWrap>
             <a
               target={'_blank'}
-              href="https://t.me/metacomicart"
+              href="https://t.me/SatoshiStudioAnnounce"
               rel="noreferrer"
             >
               <Text>Telegram</Text>
             </a>
             <a
               target={'_blank'}
-              href="https://twitter.com/metacomicart"
+              href="https://twitter.com/satoshisnft"
               rel="noreferrer"
             >
               <Text>Twitter</Text>
             </a>
             <a
               target={'_blank'}
-              href="https://www.instagram.com/metacomicart"
+              href="https://instagram.com/satoshistudio"
               rel="noreferrer"
             >
               <Text>Instagram</Text>
             </a>
             <a
               target={'_blank'}
-              href="https://www.reddit.com/r/metacomicart"
+              href="https://discord.gg/Zy7nnQCK"
               rel="noreferrer"
             >
-              <Text>Reddit</Text>
+              <Text>Discord</Text>
+            </a>
+            <a
+              target={'_blank'}
+              href="https://www.tiktok.com/@satoshisnft"
+              rel="noreferrer"
+            >
+              <Text>TikTok</Text>
             </a>
           </ColWrap>
         </Div>

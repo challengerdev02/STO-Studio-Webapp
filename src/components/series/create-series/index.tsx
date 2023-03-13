@@ -163,7 +163,7 @@ export const CreateSeries = (props: CreateSeriesProps) => {
                     onChange={onGENRE_OPTIONSChange as never}
                     mode="multiple"
                     showArrow
-                    placeholder="Select only 2 genres"
+                    placeholder="Select max of 2 categories"
                     style={{
                       width: '100%',
                       borderRadius: '12px',

@@ -14,7 +14,7 @@ import { notification } from 'antd';
 import { debugLog } from '@/shared/utils';
 import { nanoid } from 'nanoid';
 import { GetFee } from '@/components/account/fee';
-import { APP_URL } from '@/shared/constants';
+import { APP_URL, STATE_KEYS } from '@/shared/constants';
 
 export const TokenAssetContainerKey = '@@token-asset-container';
 export const TokenAssetContainer = () => {
@@ -84,6 +84,11 @@ export const TokenAssetContainer = () => {
     options: {
       key: erc20TokenKey,
     },
+  });
+
+  const { user } = useAccount({
+    key: STATE_KEYS.currentUser,
+    autoFetch: true,
   });
 
   const {
@@ -461,6 +466,8 @@ export const TokenAssetContainer = () => {
         onVisibilityChange={(visible: boolean) =>
           setFeeModalVisibility(visible)
         }
+        user={user}
+        account={accounts?.[0]}
         onPay={(data) => console.log(data)}
       />
 

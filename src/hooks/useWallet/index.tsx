@@ -52,6 +52,7 @@ interface UseWalletProps {
     onNetworkChanged?: (networkId: number) => void;
     onAccountsChanged?: (accounts: string[]) => void;
     onDisconnect?: () => void;
+    signMessage?: (_: string) => void;
   };
 }
 

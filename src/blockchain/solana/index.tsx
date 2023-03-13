@@ -20,6 +20,7 @@ export interface SolanaWalletState extends WalletContextState {
   sign: ({}: any) => void;
   getBalance: () => void;
   signedAddress?: string;
+  accounts?: string[];
 }
 
 export function useSolanaWallet(
@@ -28,13 +29,15 @@ export function useSolanaWallet(
 ): SolanaWalletState {
   const wallet = useWallet();
 
-  const select = async (walletName: any) => {
+  const select = async (account: any) => {
     dispatch({
       type: BaseProviderActionTypes.CONNECTING,
       payload: {
         isConnecting: true,
         isConnected: false,
-        solana: wallet,
+        solana: {
+          accounts: [account],
+        },
         env: 'solana',
       },
     });
@@ -56,6 +59,7 @@ export function useSolanaWallet(
         payload: {
           solana: {
             signedAddress: messageObject.publicKey,
+            accounts: [messageObject.publicKey],
           },
           isConnected: true,
           isConnecting: false,
@@ -115,10 +119,7 @@ export function useSolanaWallet(
   const detectConnection = () => {
     dispatch({
       type: BaseProviderActionTypes.CONNECTED,
-      payload: {
-        env: 'solana',
-        solana: wallet,
-      },
+      payload: {},
     });
 
     const signatureStorage = new Storage(

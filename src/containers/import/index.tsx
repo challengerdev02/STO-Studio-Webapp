@@ -11,8 +11,6 @@ import { useApiRequest } from 'src/hooks/useApiRequest';
 import { useCollections } from 'src/hooks/useCollections';
 
 export const ImportContainer = () => {
-  const KEY = '@@import/asset';
-
   const router = useRouter();
   const { makeApiRequestAsync } = useApiRequest({
     key: '@@load-collection-uri',
@@ -24,8 +22,8 @@ export const ImportContainer = () => {
     signedAddress,
     chainId: selectedChainId,
   } = useContext(BaseWeb3Context);
-  const key = '@@user-account';
-  const collectedItemKey = `${key}/collected`;
+  const userKey = '@@user-account';
+  const collectedItemKey = `${userKey}/collected`;
   const { collections, handleFetchCollections } = useCollections({
     key: collectedItemKey,
   });
@@ -84,6 +82,7 @@ export const ImportContainer = () => {
             image: metadata.image,
             tokenId: Number(c.token_id),
             description: metadata.description,
+            verified: c.verified,
           };
         })
     );

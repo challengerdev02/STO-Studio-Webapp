@@ -1,7 +1,7 @@
 import { GenreComponent } from '@/components/genre';
 import { useSeries } from '@/hooks';
 import { useRouter } from 'next/router';
-import { GENRES } from '@/shared/constants';
+import { CATEGORIES } from '@/shared/constants';
 import { SeriesNamespace } from '@/shared/namespaces/series';
 import { mapSeriesToCard } from '@/shared/utils';
 
@@ -31,11 +31,11 @@ export const GenresContainer = () => {
   // };
   const onFindSeriesByGenres = (genre: any, page = 1) => {
     //for (const genre of GENRES) {
-    genre = GENRES.find(
-      (d: string) => slugify(d) == slugify(genre ?? GENRES[0])
+    genre = CATEGORIES.find(
+      (d: string) => slugify(d) == slugify(genre ?? CATEGORIES[0])
     );
     handleBrowseSeries({
-      key: `${KEY}/${genre ?? GENRES[0]}`,
+      key: `${KEY}/${genre ?? CATEGORIES[0]}`,
       params: {
         perPage: 20,
         genres: genre,

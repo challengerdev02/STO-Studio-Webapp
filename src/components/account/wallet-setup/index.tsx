@@ -30,9 +30,11 @@ interface WalletSetupFormStyle {
   stage: number;
   wallet: any;
   creatingWallet: boolean;
-  savingWallet?: null | 'started' | 'completed';
-  encryptingState?: null | 'started' | 'completed';
+  savingWallet?: null | 'started' | 'completed' | 'error';
+  encryptingState?: null | 'started' | 'completed' | 'error';
   chainId: number;
+  step5: () => void;
+  step4: () => void;
 }
 
 export const WalletSetup = ({
@@ -47,7 +49,7 @@ export const WalletSetup = ({
   prevStep,
   savingWallet,
   chainId,
-
+  step4,
   // uploadAvatarProps,
   // uploadCoverProps,
   // handlePreview,
@@ -94,7 +96,7 @@ WalletSetupFormStyle): ReactElement => {
             wallet={wallet}
           />
         )}
-        {stage == 4 && (
+        {[4, 5].includes(stage) && (
           <EncryptForm
             loading={loading}
             onFinish={onFinish}
@@ -105,6 +107,7 @@ WalletSetupFormStyle): ReactElement => {
             encryptingState={encryptingState}
             savingWallet={savingWallet}
             wallet={wallet}
+            step4={step4}
           />
         )}
       </div>
