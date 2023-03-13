@@ -1,20 +1,21 @@
 import { toBN } from 'web3-utils';
 
-export const THEME_STORAGE_KEY = '@@metacomic-storage/theme';
-export const THEME_STORAGE_SET_KEY = '@@metacomic-storage/theme-set';
+export const THEME_STORAGE_KEY = '@@satoshistudio-storage/theme';
+export const THEME_STORAGE_SET_KEY = '@@satoshistudio-storage/theme-set';
 
 // Store: Redux
-export const STORE_KEY = '@@metacomic-storage/cache';
+export const STORE_KEY = '@@satoshistudio-storage/cache';
 
 // WEB3
-export const WEB3_SIGNATURE_STORAGE_KEY = '@@metacomic-storage/web3-signature';
+export const WEB3_SIGNATURE_STORAGE_KEY =
+  '@@satoshistudio-storage/web3-signature';
 export const WEB3_SIGNATURE_STORAGE_SET_KEY =
-  '@@metacomic-storage/web3-signature-set';
+  '@@satoshistudio-storage/web3-signature-set';
 export const WEB3_CACHED_PROVIDER_KEY =
-  '@@metacomic-storage/web3-cached-provider';
-export const REFERRED_BY_STORAGE = '@@metacomic-storage/referred-by';
-export const REFERRED_BY_KEY = '@@metacomic-storage/referred-by-key';
-export const BTC_WALLET_KEY = '@@metacomic-storage/btc-wallet';
+  '@@satoshistudio-storage/web3-cached-provider';
+export const REFERRED_BY_STORAGE = '@@satoshistudio-storage/referred-by';
+export const REFERRED_BY_KEY = '@@satoshistudio-storage/referred-by-key';
+export const BTC_WALLET_KEY = '@@satoshistudio-storage/btc-wallet';
 
 /**Http Methods **/
 export const POST = 'post';
@@ -26,6 +27,10 @@ export const DELETE = 'delete';
 export const INFINITY_VALUE = '100000000000000000000000000000000';
 export const ZERO = toBN('0');
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000';
+
+export const STATE_KEYS = {
+  currentUser: '@@user-account',
+};
 
 /**App routes **/
 export const APP_URL = {
@@ -96,6 +101,7 @@ export const APP_URL = {
     get: '/assets',
     update: '/assets',
     get_inscription_fee: '/assets/get-ordinal-mint-fee',
+    get_commit_tx: '/assets/get-commit-tx',
     inscribe: '/assets/inscribe',
   },
   competition: '/competitions',

@@ -4,7 +4,7 @@ import { getSaleTypeActionTitle, toEther } from '../../../blockchain/evm/utils';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { generateAvatar } from '@/shared/utils';
-import { GENRE_OPTIONS } from '@/shared/constants';
+import { CATEGORIES_OPTIONS } from '@/shared/constants';
 import { isEmpty } from 'lodash';
 
 export const BrowseAuctionSection = () => {
@@ -96,7 +96,7 @@ export const BrowseAuctionSection = () => {
                 !isEmpty(value) ? { GENRE_OPTIONS: value } : {}
               )
             }
-            genreselectItems={GENRE_OPTIONS}
+            genreselectItems={CATEGORIES_OPTIONS}
             onSalesTypeChange={(option) => setSaleType(option)}
             salesSelectItems={[
               { label: 'Buy Now', value: 'BuyNow' },

@@ -117,7 +117,7 @@ export function useSolanaWallet(
       type: BaseProviderActionTypes.CONNECTED,
       payload: {
         env: 'solana',
-        solana: wallet,
+        solana: { ...wallet, accounts: [wallet.publicKey] },
       },
     });
 

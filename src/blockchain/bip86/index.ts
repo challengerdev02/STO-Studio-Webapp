@@ -49,6 +49,32 @@ export default class Bip86 {
   }
 
   /**
+   * Constructor
+   * Derive accounts from seed.
+   * @param {string} mnemonic
+   * @param {string} password
+   * @param {boolean} isTestnet
+   * @param {number} coinType - slip44
+   * @param {object} network
+   * @return
+   */
+  fromSeed(
+    seed: Buffer,
+    isTestnet?: boolean,
+    network?: any,
+    coinType?: any
+  ): any {
+    this.seed = seed;
+    this.isTestnet = isTestnet === true;
+    this.coinType = this.isTestnet ? 1 : coinType ? coinType : 0; // 0 is for Bitcoin and 1 is testnet for all coins
+    this.network =
+      network || this.isTestnet
+        ? bitcoinNetworks.testnet
+        : bitcoinNetworks.mainnet;
+    return this;
+  }
+
+  /**
    * Get root master private key
    * @return {string}
    */
@@ -175,6 +201,7 @@ export default class Bip86 {
    * @param {number} purpose
    * @return {string}
    */
+
   getAddressFromPrivateKey(index: number, isChange: boolean, _?: number) {
     let change = isChange === true ? 1 : 0,
       pubkey = bip32

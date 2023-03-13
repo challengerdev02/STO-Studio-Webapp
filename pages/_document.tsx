@@ -38,7 +38,7 @@ class MyDocument extends Document {
     return (
       <Html lang={'en'} data-theme={'dark'}>
         <Head>
-          <link rel="shortcut icon" href="/favicon.png" />
+          <link rel="shortcut icon" href="/assets/favicon.png" />
           <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
         </Head>
         <body>

@@ -45,8 +45,8 @@ export const Wrapper = styled.footer`
 `;
 
 export const DesktopImg = styled.img`
-  width: 100px;
-  height: 80px;
+  width: 200px;
+  height: 180px;
   margin: -30px 0 0 -40px;
 `;
 

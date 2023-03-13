@@ -1,8 +1,6 @@
-import { MainLoader } from '@/components';
 import {
   CheckCircleFilled,
-  CopyOutlined,
-  EyeOutlined,
+  ExclamationCircleFilled,
   LoadingOutlined,
 } from '@ant-design/icons';
 import {
@@ -10,9 +8,6 @@ import {
   Col,
   Form,
   FormInstance,
-  Grid,
-  Input,
-  Progress,
   Row,
   Space,
   Spin,
@@ -21,31 +16,22 @@ import {
 
 import Title from 'antd/lib/typography/Title';
 
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { debounce, get } from 'lodash';
-import { copyToClipboard, onBeforeImageUpload, Storage } from '@/shared/utils';
-import {
-  WEB3_SIGNATURE_STORAGE_KEY,
-  WEB3_SIGNATURE_STORAGE_SET_KEY,
-} from '@/shared/constants';
-import { encode as base64_encode } from 'base-64';
 import { useRouter } from 'next/router';
 
-const { TextArea } = Input;
 const { Text } = Typography;
 interface Props {
   onFinish: (data: any) => void;
   loading: boolean;
-  encryptingState: null | 'started' | 'completed';
-  savingWallet: null | 'started' | 'completed';
+  encryptingState: null | 'started' | 'completed' | 'error';
+  savingWallet: null | 'started' | 'completed' | 'error';
   form: FormInstance;
-  // onValidatePassword: (event: ChangeEvent<HTMLInputElement>) => void;
-  // isValidPassword: boolean;
-  // validatingPassword: boolean;
   chainId: string | number;
   prevStep: () => void;
   wallet: Record<string, any>;
   nextStep: () => void;
+  step5: () => void;
+  step4: () => void;
+  environment?: string;
 }
 
 export const EncryptForm = (props: Props) => {
@@ -53,11 +39,11 @@ export const EncryptForm = (props: Props) => {
     onFinish,
     loading,
     form,
+    step4,
 
-    nextStep,
-    prevStep,
     // isValidPassword,
     // validatingPassword
+    environment,
     encryptingState,
     savingWallet,
     wallet,
@@ -69,11 +55,11 @@ export const EncryptForm = (props: Props) => {
 
   return (
     <div className="content-profile">
-      <Title level={1} className="title">
-        <span>Create your ordinal wallet</span>
-      </Title>
-      <Title level={3} className="title">
-        <span>Finalizing setup</span>
+      {/* <Title level={1} className="title">
+        <span>Generating your ordinal wallet</span>
+      </Title> */}
+      <Title level={2} className="title">
+        <span>Generating your ordinal wallet</span>
       </Title>
       <Text>
         <strong></strong>
@@ -117,23 +103,32 @@ export const EncryptForm = (props: Props) => {
             <Form.Item label="" name="password2" trigger={'onChange'}>
               <Row>
                 <Space size={10}>
-                  <Text>1. Linking your ethereum and btc ordinal wallets</Text>{' '}
+                  <Text>1. Generating your wallet</Text>{' '}
+                  {encryptingState == 'started' && (
+                    <Spin indicator={<LoadingOutlined />} />
+                  )}{' '}
+                  {encryptingState == 'completed' && (
+                    <CheckCircleFilled style={{ color: 'green' }} />
+                  )}
+                  {encryptingState == 'error' && (
+                    <ExclamationCircleFilled style={{ color: 'red' }} />
+                  )}
+                </Space>
+              </Row>
+              <Row>
+                <Space size={10}>
+                  <Text>
+                    2. Linking your {environment ?? 'ETH'} and BTC ordinal
+                    wallets
+                  </Text>{' '}
                   {savingWallet == 'started' && (
                     <Spin indicator={<LoadingOutlined />} />
                   )}{' '}
                   {savingWallet == 'completed' && (
                     <CheckCircleFilled style={{ color: 'green' }} />
                   )}
-                </Space>
-              </Row>
-              <Row>
-                <Space size={10}>
-                  <Text>2. Securing your wallet</Text>{' '}
-                  {encryptingState == 'started' && (
-                    <Spin indicator={<LoadingOutlined />} />
-                  )}{' '}
-                  {encryptingState == 'completed' && (
-                    <CheckCircleFilled style={{ color: 'green' }} />
+                  {savingWallet == 'error' && (
+                    <ExclamationCircleFilled style={{ color: 'red' }} />
                   )}
                 </Space>
               </Row>
@@ -158,42 +153,70 @@ export const EncryptForm = (props: Props) => {
             >
               <span>Back</span>
             </Button> */}
-              <Space size={10} direction="vertical">
+              <Space size={20} direction="vertical">
                 <div>
                   {done && (
-                    <Title
-                      style={{ marginBottom: 5 }}
-                      level={5}
-                      className="title"
-                    >
-                      Great job! Your ordinals wallet has been created
-                    </Title>
+                    <>
+                      <Title
+                        style={{ marginBottom: 5 }}
+                        level={5}
+                        className="title"
+                      >
+                        Great job! Your ordinals wallet has been created.
+                      </Title>
+                      <Text style={{ marginBottom: 5 }} className="title">
+                        {/* Address: {wallet.tapRootAddress} */}
+                      </Text>
+                    </>
                   )}
                   {done && (
-                    <Text>
-                      {' '}
-                      You can now begin importing your EVM NFT to BTC Ordinals
-                      Network
-                    </Text>
+                    <Space direction="vertical" size={20}>
+                      <Text>
+                        {' '}
+                        <b>
+                          You can now begin importing your EVM NFT to BTC
+                          Ordinals Network
+                        </b>
+                      </Text>
+                    </Space>
                   )}
                 </div>
-                <Button
-                  shape="round"
-                  type="primary"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '10px',
-                  }}
-                  onClick={() => router.replace(`/import?chainId=${chainId}`)}
-                  //href={'/import'}
+                {(encryptingState == 'error' || savingWallet == 'error') && (
+                  <Button
+                    shape="round"
+                    type="primary"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '10px',
+                    }}
+                    onClick={() => step4()}
+                    //href={'/import'}
+                    data-testid={'finalize-submit-button'}
+                  >
+                    Retry Setup
+                  </Button>
+                )}
+                {encryptingState != 'error' && savingWallet != 'error' && (
+                  <Button
+                    shape="round"
+                    type="primary"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '10px',
+                    }}
+                    onClick={() => router.replace(`/import?chainId=${chainId}`)}
+                    //href={'/import'}
 
-                  disabled={!done}
-                  data-testid={'finalize-submit-button'}
-                >
-                  Start Importing
-                </Button>
+                    disabled={!done}
+                    data-testid={'finalize-submit-button'}
+                  >
+                    Start Importing
+                  </Button>
+                )}
               </Space>
             </Space>
           </Form.Item>

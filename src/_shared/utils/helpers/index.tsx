@@ -5,12 +5,16 @@ import { notification, Tag } from 'antd';
 import ISBN from 'isbn-verify';
 import { RcFile } from 'antd/es/upload';
 import slugify from 'slugify';
+import { createHash } from 'crypto';
 
 export const classname = (classes: Record<string, boolean>) => {
   return Object.keys(classes)
     .filter((clsKey) => classes[clsKey])
     .join(' ');
 };
+
+export const sha256 = (data: any) =>
+  createHash('sha256').update(data).digest('hex');
 
 export function getNewLoadingState(
   currentState: Record<string, any> = {},
@@ -362,4 +366,29 @@ export function mapSeriesToCard(allSeries: any[], router: any) {
       },
     };
   });
+}
+
+export function getAuthMessage(info: {
+  walletAddress: string;
+  environment: string;
+  nonce?: any;
+}) {
+  return `Welcome to SatoshiStudio! Click to sign in and 
+  accept the Satoshi Studio Terms of Service: 
+  ${
+    process.env.NEXT_PUBLIC_TERMS_OF_SERVICE ??
+    'https://satoshistudio.tawk.help/article/terms-of-service'
+  }
+
+  This request will not trigger a blockchain transaction 
+  or cost any gas fees.
+
+  Your authentication status will reset after 24 hours.
+
+  Environment: ${info.environment}
+
+  Address: 
+  ${info.walletAddress}
+
+  Nonce: ${info.nonce ?? Date.now()}`;
 }

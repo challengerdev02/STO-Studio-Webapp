@@ -17,5 +17,6 @@ export namespace CollectionsNamespace {
     synced_at: string;
     last_token_uri_sync: string;
     last_metadata_sync: string;
+    verified?: boolean;
   }
 }

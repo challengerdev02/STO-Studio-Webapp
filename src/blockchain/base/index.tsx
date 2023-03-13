@@ -20,6 +20,8 @@ import { SUIWalletState, useSuiWallet } from '../sui';
 import { SolanaWalletState, useSolanaWallet } from '../solana';
 import { WalletContextState as SUIWalletContextState } from '@suiet/wallet-kit';
 import { WalletContextState as SolanaWalletContextState } from '@solana/wallet-adapter-react';
+import { getBtcSeedSignature } from '../evm/utils';
+import { sha256 } from '@/shared/utils';
 
 export interface BaseProviderState {
   isConnected?: boolean;
@@ -87,6 +89,11 @@ export interface BaseProviderContextValues
   sign: (...args: any[]) => Promise<void>;
   disconnect: () => Promise<void>;
   getBalance: () => Promise<string>;
+  signMessage: (...args: any[]) => Promise<string | null>;
+  unlockOrdinalWallet: (
+    userInf: { walletAddress: string; user: string },
+    ...args: any[]
+  ) => Promise<Buffer>;
 }
 
 export const BaseWeb3Context: Context<BaseProviderContextValues> =
@@ -95,6 +102,8 @@ export const BaseWeb3Context: Context<BaseProviderContextValues> =
     sign: async () => {},
     disconnect: async () => {},
     getBalance: async () => '0',
+    signMessage: async (_: string) => null,
+    unlockOrdinalWallet: async () => null,
     ...defaultState,
   });
 
@@ -182,6 +191,42 @@ export const BaseProvider = (props: BaseProviderProps) => {
     }
   };
 
+  const signMessage = async (...args: any[]) => {
+    switch (state.env) {
+      case 'near':
+      //return await nearProvider.signMessage();
+
+      case 'sui':
+      //return await suiProvider.signMessage();
+
+      case 'evm':
+      default:
+        return evmProvider.signMessage(args[0]);
+    }
+  };
+
+  const unlockOrdinalWallet = async (
+    info: { walletAddress: string; userId: string },
+    ..._: any[]
+  ) => {
+    switch (state.env) {
+      default:
+        const message = getBtcSeedSignature({
+          walletAddress: info.walletAddress,
+          user: info.userId,
+          environment: state.env,
+        });
+        return signMessage(message)
+          .then((signature) => {
+            return Buffer.from(sha256(signature), 'hex');
+          })
+          .catch((e) => {
+            console.error(e);
+            throw e;
+          });
+    }
+  };
+
   const getBalance = async (): Promise<string> => {
     switch (state.env) {
       case 'near':
@@ -241,6 +286,8 @@ export const BaseProvider = (props: BaseProviderProps) => {
     sign,
     getBalance,
     ...state,
+    signMessage,
+    unlockOrdinalWallet,
     ...extensions,
   };
 

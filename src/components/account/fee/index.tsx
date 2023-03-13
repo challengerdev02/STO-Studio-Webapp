@@ -2,7 +2,6 @@ import {
   Button,
   Col,
   Form,
-  FormProps,
   Input,
   Modal,
   Row,
@@ -12,15 +11,13 @@ import {
 } from 'antd';
 import { AnimatePresence, motion } from 'framer-motion';
 import { isDesktop, isMobile } from 'react-device-detect';
-import { StyledModal } from '@/components/layout/header/fullscreen-menu/index.styled';
-import { cleanInput, truncateEthAddress } from '@/shared/utils';
-import { toEther } from '../../../blockchain/evm/utils';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { FeeForm } from './fee-form';
+import { useContext, useEffect, useState } from 'react';
 import { useApiRequest } from 'src/hooks/useApiRequest';
 import { APP_URL } from '@/shared/constants';
-import { LoadingOutlined } from '@ant-design/icons';
+import { BaseWeb3Context } from 'src/blockchain/base';
+import { signRawTransaction } from 'src/blockchain/bitcoin';
+import { StyledModal } from '@/components/layout/header/fullscreen-menu/index.styled';
+import { UserNamespace } from '@/shared/namespaces/user';
 
 interface GetFeeProps {
   contractAddress?: string;
@@ -31,16 +28,21 @@ interface GetFeeProps {
   loading?: boolean;
   tokenId?: number;
   assetId?: string;
+  user?: UserNamespace.User;
+  account?: string;
 }
 export const GetFee = (props: GetFeeProps) => {
   const { makeApiRequest } = useApiRequest({ key: '@@fee-request' });
+  const { unlockOrdinalWallet } = useContext(BaseWeb3Context);
   const {
     onVisibilityChange,
     visibility,
     tokenId,
-    onPay,
+    // onPay,
     chainId,
     contractAddress,
+    user,
+    account,
     //  queryingContract,
   } = props;
   const [loading, setLoading] = useState(false);
@@ -68,10 +70,10 @@ export const GetFee = (props: GetFeeProps) => {
       }
     );
   };
-  const inscribe = () => {
+  const getCommitTx = () => {
     setLoading(true);
     makeApiRequest(
-      `${APP_URL.assets.inscribe}`,
+      `${APP_URL.assets.get_commit_tx}`,
       'post',
       {
         contractAddress,
@@ -79,10 +81,44 @@ export const GetFee = (props: GetFeeProps) => {
         chainId,
         fee: fees?.fees[selectedFee],
         tip: Number(form.getFieldValue('tip') ?? 0),
+        stage: 'commit',
       },
       {
-        onFinish: (d) => {
-          console.log('Inscription Data', d);
+        onFinish: async (d) => {
+          try {
+            const seed = await unlockOrdinalWallet({
+              walletAddress: String(account),
+              user: String(user?._id),
+            });
+            console.log('DATATA', d.data);
+            const signed = signRawTransaction(d.data.transaction, String(seed));
+            console.log('dddd', signed);
+            inscribe(d.data.id, signed);
+            // sign the error
+          } catch (e) {
+            console.log('ERRRORR', e);
+          }
+          setLoading(false);
+        },
+        onError: (e) => {
+          setLoading(false);
+        },
+      }
+    );
+  };
+
+  const inscribe = (id: string, signedCommitTransactionHex: string) => {
+    setLoading(true);
+    makeApiRequest(
+      `${APP_URL.assets.inscribe}`,
+      'post',
+      {
+        id,
+        signedCommitTransactionHex,
+      },
+      {
+        onFinish: async (d) => {
+          console.log('post raw', d);
           setLoading(false);
         },
         onError: (e) => {
@@ -141,7 +177,7 @@ export const GetFee = (props: GetFeeProps) => {
       >
         <Form
           form={form}
-          onFinish={() => inscribe()}
+          onFinish={() => getCommitTx()}
           layout={'horizontal'}
           scrollToFirstError
           initialValues={{ tip: 2 }}
@@ -163,7 +199,9 @@ export const GetFee = (props: GetFeeProps) => {
                       style={{
                         border: '2px solid',
                         borderColor:
-                          selectedFee == speed ? '#3772ff' : '#eeeeeedf',
+                          selectedFee == speed
+                            ? 'rgba(55, 73, 233, 1)'
+                            : '#eeeeeedf',
                         width: '100%',
                         cursor: 'pointer',
                         padding: 14,
@@ -244,7 +282,7 @@ export const GetFee = (props: GetFeeProps) => {
         loading={loading}
         onClick={form.submit}
       >
-        Continue
+        Inscribe
       </Button>
     </Space>
   );

@@ -183,9 +183,25 @@ html[data-theme='light'] .ant-input-number-handler-wrap {
   height: 300px !important;
   width: 300px !important;
 }
+html[data-theme='dark'] .ant-upload-list-picture-card-container {
+  width: 250px !important;
+  margin-top: 1rem !important;
+  height: 250px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html[data-theme='dark'] .ant-upload.ant-upload-select-picture-card {
+  width: 250px !important;
+  margin-top: 1rem !important;
+  height: 250px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .thumbnailUpload div.ant-upload-drag {
-  height: 300px !important;
-  width: 300px !important;
+  height: 150px !important;
+  width: 150px !important;
 }
 .ant-collapse-header {
   font-weight: bolder;
@@ -211,7 +227,7 @@ html[data-theme='light'] .ant-input-number-handler-wrap {
   font-weight: 400;
   white-space: nowrap;
   text-align: center;
-  border: 1px solid #3772ff !important;
+  border: 1px solid #aa20da !important;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   user-select: none;
@@ -220,7 +236,7 @@ html[data-theme='light'] .ant-input-number-handler-wrap {
   font-size: 14px;
 
   color: #fcfcfd !important;
-  background: #3772ff !important;
+  background: #aa20da !important;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 
@@ -240,6 +256,10 @@ html[data-theme='light'] .ant-input-number-handler-wrap {
   border-color: transparent !important;
   background: 0 0 !important;
   box-shadow: none;
+}
+
+.drag-n-drop-text {
+  font-size: 12px !important;
 }
 
 .meta-cookie-btn-decline:focus,

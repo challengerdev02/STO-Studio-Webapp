@@ -7,6 +7,7 @@ import { CollectionsNamespace } from '@/shared/namespaces/collections';
 import { SUPPORTED_NETWORKS } from 'src/blockchain/evm/utils';
 import Text from 'antd/lib/typography/Text';
 import { StyledMeta } from '../index.styled';
+import { truncate } from 'lodash';
 
 interface ImportViewProps {
   signedAddress?: string;
@@ -17,6 +18,7 @@ interface ImportViewProps {
     description: string;
     image: string;
     tokenId: number;
+    verified?: boolean;
   }[];
   chainId: number;
   // selectedChainId: number;
@@ -44,6 +46,7 @@ export const ImportView = (props: ImportViewProps) => {
                 <Select
                   style={{ width: 200 }}
                   value={chainId}
+                  onChange={(v) => router.push(`/import?chainId=${v}`)}
                   options={[
                     {
                       value: 1,
@@ -110,17 +113,20 @@ export const ImportView = (props: ImportViewProps) => {
                       type={'inner'}
                       size={'small'}
                       extra={
-                        <Image
-                          width={20}
-                          alt="Verified"
-                          src="/assets/verified-icon.svg"
-                        />
+                        nft.verified && (
+                          <Image
+                            width={20}
+                            alt="Verified"
+                            src="/assets/verified-icon.svg"
+                          />
+                        )
                       }
+                      title={nft.title}
                       cover={
                         <Image
                           style={{
                             cursor: 'pointer',
-                            height: '200 !important',
+                            height: '300 !important',
                           }}
                           onClick={() =>
                             router.push(
@@ -136,7 +142,14 @@ export const ImportView = (props: ImportViewProps) => {
                         />
                       }
                     >
-                      <StyledMeta title={nft.title} />
+                      <StyledMeta
+                        title={`${truncate(nft.address, {
+                          length: 8,
+                        })}${nft.address?.substring(
+                          nft?.address.length - 6,
+                          nft?.address?.length
+                        )}`}
+                      />
                     </Card>
                   </Col>
                 );
