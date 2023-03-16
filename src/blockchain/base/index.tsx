@@ -112,7 +112,7 @@ export const BaseProvider = (props: BaseProviderProps) => {
   const router = useRouter();
   const [state, dispatch] = useReducer(reducer, defaultState);
   const reduxDispatcher = useDispatch();
-
+  console.log(state, 'state');
   const suiProvider = useSuiWallet(dispatch, reduxDispatcher);
   const solanaProvider = useSolanaWallet(dispatch, reduxDispatcher);
   const evmProvider = new EVMProvider(router, state, dispatch, reduxDispatcher);
@@ -134,7 +134,7 @@ export const BaseProvider = (props: BaseProviderProps) => {
         break;
 
       case 'solana':
-        solanaProvider.select(args[1]);
+        solanaProvider.connectWallet(args[1]);
         break;
 
       case 'evm':
@@ -154,8 +154,8 @@ export const BaseProvider = (props: BaseProviderProps) => {
         await suiProvider.disconnect();
         break;
 
-      case 'sui':
-        await suiProvider.disconnect();
+      case 'solana':
+        await solanaProvider.disconnect();
         break;
 
       case 'evm':
@@ -172,15 +172,11 @@ export const BaseProvider = (props: BaseProviderProps) => {
         break;
 
       case 'sui':
-        await suiProvider.sign();
+        suiProvider.sign();
         break;
 
       case 'solana':
-        await solanaProvider.sign({
-          messageObject: args[1],
-          message: args[2],
-          result: args[3],
-        });
+        solanaProvider.sign();
         break;
 
       case 'evm':
@@ -195,8 +191,8 @@ export const BaseProvider = (props: BaseProviderProps) => {
       case 'near':
       //return await nearProvider.signMessage();
 
-      case 'sui':
-      //return await suiProvider.signMessage();
+      case 'solana':
+        return await solanaProvider.signWallet(args[0]);
 
       case 'evm':
       default:
@@ -208,13 +204,18 @@ export const BaseProvider = (props: BaseProviderProps) => {
     info: { walletAddress: string; userId: string },
     ..._: any[]
   ) => {
+    const message = getBtcSeedSignature({
+      walletAddress: info.walletAddress,
+      user: info.userId,
+      environment: state.env,
+    });
+    console.log(state.env, 'env');
     switch (state.env) {
+      case 'solana':
+        const signed = await signMessage(message);
+        console.log(signed);
+        return signed;
       default:
-        const message = getBtcSeedSignature({
-          walletAddress: info.walletAddress,
-          user: info.userId,
-          environment: state.env,
-        });
         return signMessage(message)
           .then((signature) => {
             return Buffer.from(sha256(signature), 'hex');
@@ -229,6 +230,9 @@ export const BaseProvider = (props: BaseProviderProps) => {
   const getBalance = async (): Promise<string> => {
     switch (state.env) {
       case 'near':
+        return await nearProvider.getBalance();
+
+      case 'solana':
         return await nearProvider.getBalance();
 
       case 'evm':

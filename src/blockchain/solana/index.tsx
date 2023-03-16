@@ -1,8 +1,10 @@
 import { useWallet, WalletContextState } from '@solana/wallet-adapter-react';
 import { Storage } from '@/shared/utils';
 import {
+  WEB3_CACHED_PROVIDER_KEY,
   WEB3_SIGNATURE_STORAGE_KEY,
   WEB3_SIGNATURE_STORAGE_SET_KEY,
+  THEME_STORAGE_KEY,
 } from '@/shared/constants';
 import {
   BaseProviderActions,
@@ -12,15 +14,19 @@ import {
 import { Dispatch, useEffect } from 'react';
 import { ActionOption } from '../../redux/types';
 import { getAccount } from '@/actions';
-import { clearProvider } from '../evm/utils';
+import { onWalletConnectionError } from '../evm/utils';
 import { notification } from 'antd';
+import bs58 from 'bs58';
 
 export interface SolanaWalletState extends WalletContextState {
-  select: (walletName: any) => void;
-  sign: ({}: any) => void;
+  connectWallet: (providerName: any) => void;
+  signWallet: (message: string) => Promise<string>;
+  sign: () => void;
   getBalance: () => void;
   signedAddress?: string;
   accounts?: string[];
+  providerName?: string;
+  chianId?: string;
 }
 
 export function useSolanaWallet(
@@ -29,37 +35,89 @@ export function useSolanaWallet(
 ): SolanaWalletState {
   const wallet = useWallet();
 
-  const select = async (account: any) => {
+  const connectWallet = async (providerName: any) => {
     dispatch({
       type: BaseProviderActionTypes.CONNECTING,
       payload: {
         isConnecting: true,
         isConnected: false,
         solana: {
-          accounts: [account],
+          providerName,
+          chianId: 'solana',
         },
         env: 'solana',
       },
     });
-  };
-
-  const sign = async ({ messageObject, message, result }: any) => {
-    console.log({ messageObject, message, result });
-    const storage = new Storage(
-      WEB3_SIGNATURE_STORAGE_KEY,
-      {},
-      {
-        set: WEB3_SIGNATURE_STORAGE_SET_KEY,
-      }
-    );
 
     try {
+      wallet.select(providerName);
+      const storage = new Storage(WEB3_CACHED_PROVIDER_KEY);
+      storage.set(providerName);
+    } catch (e) {
+      onToggleSignaturePrompt(false);
+      onWalletConnectionError(dispatch, e);
+    }
+  };
+
+  const signWallet = async (message: string) => {
+    const wallet = useWallet();
+    const encoder = new TextEncoder();
+    const data = encoder.encode(message);
+    const signature: any = await wallet.signMessage?.(data);
+    const serializedSignature = bs58.encode(signature);
+    return serializedSignature;
+  };
+
+  const sign = async () => {
+    try {
+      const storage = new Storage(
+        WEB3_SIGNATURE_STORAGE_KEY,
+        {},
+        {
+          set: WEB3_SIGNATURE_STORAGE_SET_KEY,
+        }
+      );
+
+      const encoder = new TextEncoder();
+      const messageObject = {
+        address: wallet.publicKey?.toBase58(),
+        chainId: 'solana',
+        timestamp: Date.now(),
+      };
+
+      const message = `Welcome to SatoshiStudio! Click to sign in and \naccept the SatoshiStudio Terms of Service: \n${
+        process.env.NEXT_PUBLIC_TERMS_OF_SERVICE ??
+        'https://satoshistudio.tawk.help/article/terms-of-service'
+      }\n This request will not trigger a blockchain transaction \nor cost any gas fees.\n\nYour authentication status will reset after 24 hours.\n\nChain ID: ${
+        messageObject.chainId
+      }\n\nAddress: ${messageObject.address}\n\nNonce: ${
+        messageObject.timestamp
+      }`;
+
+      const data = encoder.encode(message);
+      const signature: any = await wallet.signMessage?.(data);
+      const serializedSignature = bs58.encode(signature);
+
+      notification.success({
+        placement: 'bottomLeft',
+        message: 'Wallet Connected Successfully',
+      });
+
+      console.log(serializedSignature, 'aaaaasdfsadfds');
+      storage.update((prevState) => {
+        return {
+          ...prevState,
+          ...messageObject,
+          signature: serializedSignature,
+          message,
+          connectionEnvironment: 'solana',
+        };
+      });
       dispatch({
         type: BaseProviderActionTypes.ACCOUNT_PROPERTIES,
         payload: {
           solana: {
-            signedAddress: messageObject.publicKey,
-            accounts: [messageObject.publicKey],
+            signedAddress: wallet.publicKey?.toBase58(),
           },
           isConnected: true,
           isConnecting: false,
@@ -68,25 +126,8 @@ export function useSolanaWallet(
 
       onToggleSignaturePrompt(false);
       getServerAccount();
-
-      storage.update((prevState) => {
-        return {
-          chainId: 'solana',
-          ...prevState,
-          ...messageObject,
-          message,
-          signature: result,
-          ...result,
-          address: messageObject.publicKey,
-          env: 'solana',
-          connectionEnvironment: 'solana',
-        };
-      });
     } catch (e: any) {
-      console.error('%cSUI SignMessage failed', 'color: red', e);
-      disconnect();
-      onToggleSignaturePrompt(false);
-      clearProvider(dispatch);
+      console.error('%cSolana SignMessage failed', 'color: red', e);
       notification.error({
         placement: 'bottomLeft',
         message: "We couldn't connect to your wallet.",
@@ -107,7 +148,6 @@ export function useSolanaWallet(
   };
 
   const getServerAccount = (options?: ActionOption) => {
-    console.log(options, 'aaaaaaaaaaaaaaaaa');
     reduxDispatcher(
       getAccount({
         key: '@@user-account',
@@ -119,7 +159,14 @@ export function useSolanaWallet(
   const detectConnection = () => {
     dispatch({
       type: BaseProviderActionTypes.CONNECTED,
-      payload: {},
+      payload: {
+        isConnecting: false,
+        isConnected: true,
+        solana: {
+          accounts: [String(wallet.publicKey?.toBase58())],
+        },
+        env: 'solana',
+      },
     });
 
     const signatureStorage = new Storage(
@@ -140,20 +187,23 @@ export function useSolanaWallet(
   };
 
   const disconnect = async () => {
-    await wallet.disconnect();
-    clearProvider(dispatch);
+    console.log('_disconnect');
+    // await wallet.disconnect();
+    Storage.keepOnly(['persist:metacomic', THEME_STORAGE_KEY]);
     dispatch({
       type: BaseProviderActionTypes.DISCONNECTED,
       payload: {
-        env: null,
-        solana: null,
+        solana: {
+          providerName: undefined,
+          accounts: [],
+        },
         isConnected: false,
+        isConnecting: false,
       },
     });
   };
 
   useEffect(() => {
-    console.log('Wallet::::', wallet);
     if (!wallet.connected) return;
 
     // const off = wallet.on('chainChange', ({ chain }) => {
@@ -168,7 +218,8 @@ export function useSolanaWallet(
 
   return {
     ...wallet,
-    select,
+    signWallet,
+    connectWallet,
     sign,
     getBalance,
     disconnect,

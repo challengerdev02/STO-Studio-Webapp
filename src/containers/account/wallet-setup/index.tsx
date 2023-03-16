@@ -68,7 +68,10 @@ export const WalletSetupContainer = () => {
   const [savingWallet, setSavingWallet] = useState<
     null | 'started' | 'completed' | 'error'
   >();
-  const [wallet, setWallet] = useState<Wallet>({});
+  const [wallet, setWallet] = useState<Wallet>({
+    descriptor: '',
+    seed: '',
+  });
 
   const [passwordForm] = Form.useForm();
   const [keygenForm] = Form.useForm();
@@ -131,7 +134,7 @@ export const WalletSetupContainer = () => {
       }
     }
     if (stage == 4) {
-      if (!user?._id || generatingWallet) return;
+      // if (!user?._id || generatingWallet) return;
       step4();
     }
     if (stage == 5) {
@@ -150,26 +153,26 @@ export const WalletSetupContainer = () => {
     if (generatingWallet) return;
     generatingWallet = true;
     setEncryptingState('started');
-    if (user?._id && !user?.btcAccounts?.[0] && generatingWallet) {
-      unlockOrdinalWallet({
-        walletAddress: String(accounts?.[0]),
-        user: String(user?._id),
+    // if (user?._id && !user?.btcAccounts?.[0] && generatingWallet) {
+    unlockOrdinalWallet({
+      walletAddress: String(accounts?.[0]),
+      user: String(user?._id),
+    })
+      .then((seed) => {
+        setWallet(createWallet(seed));
+        setEncryptingState('completed');
+        generatingWallet = false;
+        setTimeout(() => {
+          setStage(5);
+          step5();
+        }, 1000);
       })
-        .then((seed) => {
-          setWallet(createWallet(seed));
-          setEncryptingState('completed');
-          generatingWallet = false;
-          setTimeout(() => {
-            setStage(5);
-            step5();
-          }, 1000);
-        })
-        .catch((e) => {
-          generatingWallet = false;
-          console.error(e);
-          setEncryptingState('error');
-        });
-    }
+      .catch((e) => {
+        generatingWallet = false;
+        console.error(e);
+        setEncryptingState('error');
+      });
+    // }
   };
 
   const step5 = () => {
