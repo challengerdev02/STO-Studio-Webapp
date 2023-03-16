@@ -17,6 +17,7 @@ import { getAccount } from '@/actions';
 import { onWalletConnectionError } from '../evm/utils';
 import { notification } from 'antd';
 import bs58 from 'bs58';
+import { useRouter } from 'next/router';
 
 export interface SolanaWalletState extends WalletContextState {
   connectWallet: (providerName: any) => void;
@@ -26,7 +27,7 @@ export interface SolanaWalletState extends WalletContextState {
   signedAddress?: string;
   accounts?: string[];
   providerName?: string;
-  chianId?: string;
+  chainId?: number;
 }
 
 export function useSolanaWallet(
@@ -34,7 +35,7 @@ export function useSolanaWallet(
   reduxDispatcher: ReduxDispatch
 ): SolanaWalletState {
   const wallet = useWallet();
-
+  const router = useRouter();
   const connectWallet = async (providerName: any) => {
     dispatch({
       type: BaseProviderActionTypes.CONNECTING,
@@ -43,7 +44,7 @@ export function useSolanaWallet(
         isConnected: false,
         solana: {
           providerName,
-          chianId: 'solana',
+          chainId: 1399811149,
         },
         env: 'solana',
       },
@@ -60,12 +61,10 @@ export function useSolanaWallet(
   };
 
   const signWallet = async (message: string) => {
-    const wallet = useWallet();
     const encoder = new TextEncoder();
     const data = encoder.encode(message);
     const signature: any = await wallet.signMessage?.(data);
-    const serializedSignature = bs58.encode(signature);
-    return serializedSignature;
+    return signature;
   };
 
   const sign = async () => {
@@ -81,7 +80,7 @@ export function useSolanaWallet(
       const encoder = new TextEncoder();
       const messageObject = {
         address: wallet.publicKey?.toBase58(),
-        chainId: 'solana',
+        chainId: 1399811149,
         timestamp: Date.now(),
       };
 
@@ -103,7 +102,6 @@ export function useSolanaWallet(
         message: 'Wallet Connected Successfully',
       });
 
-      console.log(serializedSignature, 'aaaaasdfsadfds');
       storage.update((prevState) => {
         return {
           ...prevState,
@@ -118,6 +116,7 @@ export function useSolanaWallet(
         payload: {
           solana: {
             signedAddress: wallet.publicKey?.toBase58(),
+            accounts: [String(wallet.publicKey?.toBase58())],
           },
           isConnected: true,
           isConnecting: false,
@@ -126,6 +125,7 @@ export function useSolanaWallet(
 
       onToggleSignaturePrompt(false);
       getServerAccount();
+      router.replace('/account/wallet-setup');
     } catch (e: any) {
       console.error('%cSolana SignMessage failed', 'color: red', e);
       notification.error({
@@ -157,18 +157,6 @@ export function useSolanaWallet(
   };
 
   const detectConnection = () => {
-    dispatch({
-      type: BaseProviderActionTypes.CONNECTED,
-      payload: {
-        isConnecting: false,
-        isConnected: true,
-        solana: {
-          accounts: [String(wallet.publicKey?.toBase58())],
-        },
-        env: 'solana',
-      },
-    });
-
     const signatureStorage = new Storage(
       WEB3_SIGNATURE_STORAGE_KEY,
       {},
@@ -187,8 +175,7 @@ export function useSolanaWallet(
   };
 
   const disconnect = async () => {
-    console.log('_disconnect');
-    // await wallet.disconnect();
+    wallet.disconnect();
     Storage.keepOnly(['persist:metacomic', THEME_STORAGE_KEY]);
     dispatch({
       type: BaseProviderActionTypes.DISCONNECTED,

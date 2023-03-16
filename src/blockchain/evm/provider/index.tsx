@@ -193,12 +193,6 @@ export class EVMProvider {
   };
 
   sign = async (callback?: () => void) => {
-    console.log(
-      this.evmState?.chainId &&
-        this.evmState.accounts &&
-        this.evmState.provider,
-      this.evmState
-    );
     try {
       if (
         this.evmState?.chainId &&

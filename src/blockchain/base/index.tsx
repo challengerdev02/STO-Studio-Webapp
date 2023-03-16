@@ -21,6 +21,7 @@ import { SolanaWalletState, useSolanaWallet } from '../solana';
 import { WalletContextState as SUIWalletContextState } from '@suiet/wallet-kit';
 import { getBtcSeedSignature } from '../evm/utils';
 import { sha256 } from '@/shared/utils';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 export interface BaseProviderState {
   isConnected?: boolean;
@@ -112,7 +113,6 @@ export const BaseProvider = (props: BaseProviderProps) => {
   const router = useRouter();
   const [state, dispatch] = useReducer(reducer, defaultState);
   const reduxDispatcher = useDispatch();
-  console.log(state, 'state');
   const suiProvider = useSuiWallet(dispatch, reduxDispatcher);
   const solanaProvider = useSolanaWallet(dispatch, reduxDispatcher);
   const evmProvider = new EVMProvider(router, state, dispatch, reduxDispatcher);
@@ -122,6 +122,7 @@ export const BaseProvider = (props: BaseProviderProps) => {
     dispatch,
     reduxDispatcher
   );
+  const { publicKey } = useWallet();
 
   const connect = async (...args: any[]) => {
     switch (args[0]) {
@@ -204,20 +205,26 @@ export const BaseProvider = (props: BaseProviderProps) => {
     info: { walletAddress: string; userId: string },
     ..._: any[]
   ) => {
-    const message = getBtcSeedSignature({
-      walletAddress: info.walletAddress,
-      user: info.userId,
-      environment: state.env,
-    });
     console.log(state.env, 'env');
     switch (state.env) {
       case 'solana':
-        const signed = await signMessage(message);
+        const msg = getBtcSeedSignature({
+          walletAddress: String(publicKey?.toBase58()),
+          user: info.userId,
+          environment: state.env,
+        });
+        const signed = await solanaProvider.signWallet(msg);
         console.log(signed);
         return signed;
       default:
+        const message = getBtcSeedSignature({
+          walletAddress: info.walletAddress,
+          user: info.userId,
+          environment: state.env,
+        });
         return signMessage(message)
           .then((signature) => {
+            console.log(Buffer.from(sha256(signature), 'hex'), 'signature');
             return Buffer.from(sha256(signature), 'hex');
           })
           .catch((e) => {

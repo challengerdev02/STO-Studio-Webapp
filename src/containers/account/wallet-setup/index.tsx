@@ -121,10 +121,11 @@ export const WalletSetupContainer = () => {
   };
 
   useEffect(() => {
-    if (user && user.btcAccounts?.length) {
-      router.replace(`/account`);
-      return;
-    }
+    // if (user && user.btcAccounts?.length) {
+    //   router.replace(`/account`);
+    //   return;
+    // }
+    console.log('stage', stage);
     if (stage == 2) {
       if (_.isEmpty(wallet)) {
         setCreatingWallet(true);
@@ -134,6 +135,7 @@ export const WalletSetupContainer = () => {
       }
     }
     if (stage == 4) {
+      console.log('here 4');
       // if (!user?._id || generatingWallet) return;
       step4();
     }
@@ -162,6 +164,7 @@ export const WalletSetupContainer = () => {
         setWallet(createWallet(seed));
         setEncryptingState('completed');
         generatingWallet = false;
+        console.log('completed');
         setTimeout(() => {
           setStage(5);
           step5();
@@ -178,27 +181,34 @@ export const WalletSetupContainer = () => {
   const step5 = () => {
     if (wallet?.tapRootAddress) {
       setSavingWallet('started');
-      makeApiRequest(
-        `${APP_URL.bitcoin.addWallet}`,
-        PUT,
-        { tr: wallet.descriptor, address: wallet.tapRootAddress },
-        {
-          onFinish: async (_: any) => {
-            setSavingWallet('completed');
-            handleGetAccount({
-              onFinish: () => {
-                setTimeout(() => {
-                  // setPassphrase(passwordForm.getFieldValue('password'));
-                }, 1000);
-              },
-            });
-          },
-          onError: (e) => {
-            setSavingWallet('error');
-            console.log('SavingWalletError', e);
-          },
-        }
-      );
+      console.log('started');
+      if (chainId !== 1399811149 && chainId) {
+        makeApiRequest(
+          `${APP_URL.bitcoin.addWallet}`,
+          PUT,
+          { tr: wallet.descriptor, address: wallet.tapRootAddress },
+          {
+            onFinish: async (_: any) => {
+              setSavingWallet('completed');
+              handleGetAccount({
+                onFinish: () => {
+                  setTimeout(() => {
+                    // setPassphrase(passwordForm.getFieldValue('password'));
+                  }, 1000);
+                },
+              });
+            },
+            onError: (e) => {
+              setSavingWallet('error');
+              console.log('SavingWalletError', e);
+            },
+          }
+        );
+      } else {
+        setTimeout(() => {
+          setSavingWallet('completed');
+        }, 2000);
+      }
     }
   };
   const step5old = () => {
@@ -238,31 +248,31 @@ export const WalletSetupContainer = () => {
 
   return (
     <>
-      {user && user._id && (
-        <WalletSetup
-          onFinish={onFinish}
-          loading={loading}
-          $record={{}}
-          forms={{
-            password: passwordForm,
-            keygen: keygenForm,
-            validateSeed: validateSeedForm,
-          }}
-          handlePreview={() => {
-            router.push(`/account`);
-          }}
-          chainId={Number(chainId)}
-          stage={stage}
-          wallet={wallet}
-          nextStep={nextStep}
-          prevStep={prevStep}
-          encryptingState={encryptingState}
-          savingWallet={savingWallet}
-          creatingWallet={creatingWallet}
-          step5={step5}
-          step4={step4}
-        />
-      )}
+      {/* {user && user._id && ( */}
+      <WalletSetup
+        onFinish={onFinish}
+        loading={loading}
+        $record={{}}
+        forms={{
+          password: passwordForm,
+          keygen: keygenForm,
+          validateSeed: validateSeedForm,
+        }}
+        handlePreview={() => {
+          router.push(`/account`);
+        }}
+        chainId={Number(chainId)}
+        stage={stage}
+        wallet={wallet}
+        nextStep={nextStep}
+        prevStep={prevStep}
+        encryptingState={encryptingState}
+        savingWallet={savingWallet}
+        creatingWallet={creatingWallet}
+        step5={step5}
+        step4={step4}
+      />
+      {/* )} */}
     </>
   );
 };
