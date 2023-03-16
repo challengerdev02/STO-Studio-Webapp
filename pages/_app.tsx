@@ -82,10 +82,10 @@ function MyApp({ Component, pageProps }: MyAppProps) {
         />
       </Head>
 
-      <WalletProvider chains={DefaultChains}>
-        <BaseProvider>
-          <ConnectionProvider endpoint={endpoint}>
-            <SolanaWalletProvider wallets={wallets} autoConnect>
+      <ConnectionProvider endpoint={endpoint}>
+        <SolanaWalletProvider wallets={wallets} autoConnect>
+          <WalletProvider chains={DefaultChains}>
+            <BaseProvider>
               <WalletModalProvider>
                 <SessionProvider
                   session={pageProps.session}
@@ -108,10 +108,10 @@ function MyApp({ Component, pageProps }: MyAppProps) {
                   </GoogleReCaptchaProvider>
                 </SessionProvider>
               </WalletModalProvider>
-            </SolanaWalletProvider>
-          </ConnectionProvider>
-        </BaseProvider>
-      </WalletProvider>
+            </BaseProvider>
+          </WalletProvider>
+        </SolanaWalletProvider>
+      </ConnectionProvider>
     </>
   );
 }
