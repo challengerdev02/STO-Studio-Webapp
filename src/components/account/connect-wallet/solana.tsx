@@ -35,6 +35,7 @@ const Wallets: any = ({ showFull, prop }: any) => {
             <span>{wallet.adapter.name}</span>
           </Space>
         </Button>
+
       </motion.div>
     ));
 };
