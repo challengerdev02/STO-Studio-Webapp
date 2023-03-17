@@ -11,7 +11,7 @@ import { createWallet, encryptWallet, md5 } from 'src/blockchain/bitcoin';
 import _ from 'lodash';
 import { useApiRequest } from 'src/hooks/useApiRequest';
 import { APP_URL, BTC_WALLET_KEY, PUT, STATE_KEYS } from '@/shared/index';
-import { sha256, Storage } from '@/shared/utils';
+import { Storage } from '@/shared/utils';
 import { BaseWeb3Context } from 'src/blockchain/base';
 
 export const WalletSetupContainer = () => {
@@ -20,27 +20,16 @@ export const WalletSetupContainer = () => {
   const { accounts, chainId, signMessage, unlockOrdinalWallet } =
     useContext(BaseWeb3Context);
 
-  // const accountKey = '@@user-account';
-  // const { passphrase, setPassphrase } = useAccount({
-  //   key: accountKey,
-  //   autoFetch: true,
-  // });
-  // const {
-  //   user: userData,
-  // } = useAccount({
-  //   key,
-  //   autoFetch: true,
-  // });
   const { uiLoaders } = useUIState();
 
   let generatingWallet = false;
 
-  // useEffect(() => {
-  //   if (!accounts?.[0]) {
-  //     router.push('/connect?referrer=/account/wallet-setup');
-  //     // console.log('SIGNEDADDRESS', accounts, signedAddress)
-  //   }
-  // }, [accounts]);
+  useEffect(() => {
+    if (!accounts?.[0]) {
+      router.push('/connect?');
+      // console.log('SIGNEDADDRESS', accounts, signedAddress)
+    }
+  }, [accounts]);
 
   const { handleGetAccount, user } = useAccount({
     key: STATE_KEYS.currentUser,

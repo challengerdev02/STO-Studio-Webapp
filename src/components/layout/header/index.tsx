@@ -162,6 +162,7 @@ export const LayoutHeader = (props: LayoutHeaderProps) => {
           hComiBalance={hComiBalance}
           onGetHCOMIBalance={onGetHCOMIBalance}
           isGettingHComiBalance={isGettingHComiBalance}
+          user={user}
         />
       )}
       {walletAddress && (
