@@ -11,7 +11,7 @@ import { createWallet, encryptWallet, md5 } from 'src/blockchain/bitcoin';
 import _ from 'lodash';
 import { useApiRequest } from 'src/hooks/useApiRequest';
 import { APP_URL, BTC_WALLET_KEY, PUT, STATE_KEYS } from '@/shared/index';
-import { sha256, Storage } from '@/shared/utils';
+import { Storage } from '@/shared/utils';
 import { BaseWeb3Context } from 'src/blockchain/base';
 
 export const WalletSetupContainer = () => {
@@ -20,24 +20,13 @@ export const WalletSetupContainer = () => {
   const { accounts, chainId, signMessage, unlockOrdinalWallet } =
     useContext(BaseWeb3Context);
 
-  // const accountKey = '@@user-account';
-  // const { passphrase, setPassphrase } = useAccount({
-  //   key: accountKey,
-  //   autoFetch: true,
-  // });
-  // const {
-  //   user: userData,
-  // } = useAccount({
-  //   key,
-  //   autoFetch: true,
-  // });
   const { uiLoaders } = useUIState();
 
   let generatingWallet = false;
 
   useEffect(() => {
     if (!accounts?.[0]) {
-      router.push('/connect?referrer=/account/wallet-setup');
+      router.push('/connect?');
       // console.log('SIGNEDADDRESS', accounts, signedAddress)
     }
   }, [accounts]);
@@ -155,60 +144,63 @@ export const WalletSetupContainer = () => {
     if (generatingWallet) return;
     generatingWallet = true;
     setEncryptingState('started');
-    // if (user?._id && !user?.btcAccounts?.[0] && generatingWallet) {
-    unlockOrdinalWallet({
-      walletAddress: String(accounts?.[0]),
-      user: String(user?._id),
-    })
-      .then((seed) => {
-        setWallet(createWallet(seed));
-        setEncryptingState('completed');
-        generatingWallet = false;
-        console.log('completed');
-        setTimeout(() => {
-          setStage(5);
-          step5();
-        }, 1000);
-      })
-      .catch((e) => {
-        generatingWallet = false;
-        console.error(e);
-        setEncryptingState('error');
-      });
-    // }
+
+    if (user?._id && !user?.btcAccounts?.[0] && generatingWallet) {
+      unlockOrdinalWallet(
+        String(accounts?.[0])
+        // user: String(user?._id),
+      )
+        .then((seed) => {
+          setWallet(createWallet(seed));
+          setEncryptingState('completed');
+          generatingWallet = false;
+          setTimeout(() => {
+            setStage(5);
+            step5();
+          }, 1000);
+        })
+        .catch((e) => {
+          generatingWallet = false;
+          console.error(e);
+          setEncryptingState('error');
+        });
+    } else {
+      if (!user?.btcAccounts?.[0]) setEncryptingState('error');
+      else router.replace('/account');
+    }
   };
 
   const step5 = () => {
     if (wallet?.tapRootAddress) {
       setSavingWallet('started');
       console.log('started');
-      if (chainId !== 1399811149 && chainId) {
-        makeApiRequest(
-          `${APP_URL.bitcoin.addWallet}`,
-          PUT,
-          { tr: wallet.descriptor, address: wallet.tapRootAddress },
-          {
-            onFinish: async (_: any) => {
-              setSavingWallet('completed');
-              handleGetAccount({
-                onFinish: () => {
-                  setTimeout(() => {
-                    // setPassphrase(passwordForm.getFieldValue('password'));
-                  }, 1000);
-                },
-              });
-            },
-            onError: (e) => {
-              setSavingWallet('error');
-              console.log('SavingWalletError', e);
-            },
-          }
-        );
-      } else {
-        setTimeout(() => {
-          setSavingWallet('completed');
-        }, 2000);
-      }
+      // if (chainId !== 1399811149 && chainId) {
+      makeApiRequest(
+        `${APP_URL.bitcoin.addWallet}`,
+        PUT,
+        { tr: wallet.descriptor, address: wallet.tapRootAddress },
+        {
+          onFinish: async (_: any) => {
+            setSavingWallet('completed');
+            handleGetAccount({
+              onFinish: () => {
+                setTimeout(() => {
+                  // setPassphrase(passwordForm.getFieldValue('password'));
+                }, 1000);
+              },
+            });
+          },
+          onError: (e) => {
+            setSavingWallet('error');
+            console.log('SavingWalletError', e);
+          },
+        }
+      );
+      // } else {
+      //   setTimeout(() => {
+      //     setSavingWallet('completed');
+      //   }, 2000);
+      // }
     }
   };
   const step5old = () => {

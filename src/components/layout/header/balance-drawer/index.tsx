@@ -40,6 +40,7 @@ interface BalanceDrawerProps extends DrawerProps {
   isGettingHComiBalance?: boolean;
   onGetHCOMIBalance: () => void;
   hComiBalance: Record<string, any>;
+  user: any;
 }
 
 export const BalanceDrawer = (props: BalanceDrawerProps) => {
@@ -56,6 +57,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     hComiBalance,
     onGetHCOMIBalance,
     isGettingHComiBalance,
+    user,
     ...rest
   } = props;
 
@@ -126,7 +128,8 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   ];
 
   useEffect(() => {
-    onGetFundMeta();
+    console.log('USERRRR', user);
+    if (user) onGetFundMeta();
   }, [visibility, currentToken]);
 
   const onGetFundMeta = () => {

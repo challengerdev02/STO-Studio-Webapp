@@ -103,11 +103,8 @@ export const loadWallet = (account: string, passphrase: string) => {
   return decryptWallet(data as { encrypted: string; iv: string }, passphrase);
 };
 
-export const signRawTransaction = (transaction: any, seed: string) => {
-  const node = bip32.fromSeed(
-    Buffer.from(seed, 'hex'),
-    bitcoin.networks.bitcoin
-  );
+export const signRawTransaction = (transaction: any, seed: Buffer) => {
+  const node = bip32.fromSeed(seed, bitcoin.networks.bitcoin);
   const psbt = new bitcoin.Psbt();
   psbt.setVersion(2);
   psbt.setLocktime(0);

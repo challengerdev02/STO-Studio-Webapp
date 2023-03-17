@@ -361,7 +361,7 @@ export const ViewAccountContainer = (props: {
     token_uri: collection.token_uri
       ? `https://${collection.token_uri.split('https://')[1]}`
       : '',
-    metadata: JSON.parse(collection.metadata ?? '{}'),
+    metadata: collection.metadata ?? {},
     synced_at: collection.synced_at ?? '',
     last_token_uri_sync: collection.last_token_uri_sync ?? '',
     last_metadata_sync: collection.last_metadata_sync ?? '',

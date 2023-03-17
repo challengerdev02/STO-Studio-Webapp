@@ -162,6 +162,7 @@ export const LayoutHeader = (props: LayoutHeaderProps) => {
           hComiBalance={hComiBalance}
           onGetHCOMIBalance={onGetHCOMIBalance}
           isGettingHComiBalance={isGettingHComiBalance}
+          user={user}
         />
       )}
       {walletAddress && (
@@ -195,6 +196,9 @@ export const LayoutHeader = (props: LayoutHeaderProps) => {
           </Link>
           <Link href={'/collect'} passHref>
             <motion.a className="meta-text-link">Market</motion.a>
+          </Link>
+          <Link href={'/import'} passHref>
+            <motion.a className="meta-text-link">Import</motion.a>
           </Link>
           {/*<Link href={'/launch'} passHref>*/}
           {/*  <motion.a className="meta-text-link">Crowdfund</motion.a>*/}

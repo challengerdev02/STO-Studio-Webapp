@@ -52,7 +52,7 @@ export const AssetViewMetadata = (props: AssetViewMetadataProps) => {
           <Space size={10} direction={'vertical'} style={{ width: '100%' }}>
             <Row justify={'space-between'} style={{ width: '100%' }}>
               <Col>
-                <Text className="left">GENRE_OPTIONS:</Text>
+                <Text className="left">Genre:</Text>
               </Col>
               <Col>
                 <Title level={5} className="right">

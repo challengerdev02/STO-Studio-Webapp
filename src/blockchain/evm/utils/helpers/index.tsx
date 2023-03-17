@@ -1,7 +1,7 @@
 import Web3 from 'web3';
 import { ChainData } from '../../types';
 import { Chains } from '../chains';
-import { Storage } from '@/shared/utils';
+import { getAuthMessage, Storage } from '@/shared/utils';
 import {
   THEME_STORAGE_KEY,
   WEB3_SIGNATURE_STORAGE_KEY,
@@ -60,28 +60,12 @@ export const signMessage = async (
     timestamp: Date.now(),
   };
 
-  // These formatting is important for displaying the signing message.
-  const message = web3.utils.fromUtf8(
-    `Welcome to SatoshiStudio! Click to sign in and 
-accept the SatoshiStudio Terms of Service: 
-${
-  process.env.NEXT_PUBLIC_TERMS_OF_SERVICE ??
-  'https://satoshistudio.tawk.help/article/terms-of-service'
-}
-
-This request will not trigger a blockchain transaction 
-or cost any gas fees.
-
-Your authentication status will reset after 24 hours.
-
-Chain ID: ${messageObject.chainId}
-
-Address: 
-${walletAddress}
-
-Nonce: ${messageObject.timestamp}`
-  );
   // //console.log(`"${message}"`);
+  const message = getAuthMessage({
+    walletAddress,
+    environment: 'evm',
+    nonce: messageObject.timestamp,
+  });
   await web3.eth.personal.sign(
     message,
     walletAddress,
@@ -385,15 +369,10 @@ export const getSaleTypeActionTitle = (saleType: string | number) => {
   }
 };
 
-export const getBtcSeedSignature = (params: {
+export const getBtcSeedSignature = (_: {
   environment: 'evm' | 'solana' | 'near';
   walletAddress: string;
-  user: string;
 }) => {
-  return `Satoshi Studio Ordinal Wallet: 
-
-Network: ${params.environment}
-Address: ${params.walletAddress.toLowerCase()}
-Nonce: ${params.user}`;
+  return `Sign this message to unlock your Satoshi Studio Ordinal Wallet`;
 };
 export * from './contracts';

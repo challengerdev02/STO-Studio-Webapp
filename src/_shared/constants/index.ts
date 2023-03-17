@@ -164,4 +164,6 @@ export const OFFER_EXPIRATION = [
   { label: 'Custom date', value: 0 },
 ];
 
+export const SOLANA_CHAIN_ID = 1399811149;
+
 export const ATTRIBUTE_TYPES = ['number', 'text', 'date'];

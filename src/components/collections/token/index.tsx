@@ -26,6 +26,7 @@ import {
 import { TokenSaleCard } from '@/components/collections/token/token-card';
 import { SaleNamespace } from '@/shared/namespaces/sale';
 import { isMobile } from 'react-device-detect';
+import { parseUrl } from '@/shared/utils';
 
 const { Panel } = Collapse;
 const { Title } = Typography;
@@ -81,6 +82,7 @@ export const TokenAsset = (props: TokenAssetProps) => {
 
   const user = enumerateUser(assetUser);
   const creator = enumerateUser(creatorUser);
+  const assetImage = parseUrl(asset.thumbnail ?? asset.coverImage);
 
   return (
     <>
@@ -89,7 +91,7 @@ export const TokenAsset = (props: TokenAssetProps) => {
           <div className="image-container meta-flex meta-flex-col ">
             <AssetViewCoverImage
               likes={asset.likes}
-              coverImage={asset.thumbnail ?? asset.coverImage}
+              coverImage={assetImage}
               blockchain={get(asset, 'blockChain', '97')}
               hidePublishedBadge={true}
               hideLikes={true}

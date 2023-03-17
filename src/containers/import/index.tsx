@@ -26,6 +26,7 @@ export const ImportContainer = () => {
   const collectedItemKey = `${userKey}/collected`;
   const { collections, handleFetchCollections } = useCollections({
     key: collectedItemKey,
+    autoFetch: true,
   });
 
   const [walletAddress, setWalletAddress] = useState<string>();
@@ -53,6 +54,7 @@ export const ImportContainer = () => {
   };
 
   useEffect(() => {
+    console.log('ChainChainged', chainId, walletAddress);
     if (chainId && walletAddress) {
       handleFetchCollections({
         params: {
@@ -65,11 +67,13 @@ export const ImportContainer = () => {
   }, [chainId, walletAddress]);
 
   useEffect(() => {
+    console.log('COLLECTION', collections);
+
     setNfts(
       collections
         .filter((c) => !_.isEmpty(c.metadata))
         .map((c) => {
-          const metadata = JSON.parse(c.metadata);
+          const metadata: any = c.metadata;
           if (String(metadata.image).startsWith('ipfs')) {
             metadata.image = metadata.image.replace(
               'ipfs://',
@@ -86,7 +90,7 @@ export const ImportContainer = () => {
           };
         })
     );
-  }, [collections]);
+  }, [collections.length]);
 
   return (
     <ImportView
@@ -94,6 +98,7 @@ export const ImportContainer = () => {
       signedAddress={accounts?.[0]}
       chainId={Number(chainId ?? selectedChainId)}
       loadingNFts={loadingForCollectedItems}
+
       // selectedChainId={selectedChainId}
     />
   );

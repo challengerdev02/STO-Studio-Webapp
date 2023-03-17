@@ -18,6 +18,8 @@ import { BaseWeb3Context } from 'src/blockchain/base';
 import { signRawTransaction } from 'src/blockchain/bitcoin';
 import { StyledModal } from '@/components/layout/header/fullscreen-menu/index.styled';
 import { UserNamespace } from '@/shared/namespaces/user';
+import { cleanInput } from '@/shared/utils';
+import QRCode from 'react-qr-code';
 
 interface GetFeeProps {
   contractAddress?: string;
@@ -46,11 +48,16 @@ export const GetFee = (props: GetFeeProps) => {
     //  queryingContract,
   } = props;
   const [loading, setLoading] = useState(false);
-  const [fees, setFees] = useState<Record<string, any>>();
-  const [tip, setTip] = useState<number>(2.0);
+  const [feeData, setFeeData] = useState<Record<string, any>>();
+  const [tip, setTip] = useState<string>('2');
+  const [walletBalance, setWalletBalance] = useState<number>(0);
+  const [lowBalance, setLowBalance] = useState<number>(0);
   const [selectedFee, setSelectedFee] = useState<string>('medium');
+  const [loadWallet, setLoadWallet] = useState(false);
+
   const getInscriptionFee = () => {
     setLoading(true);
+
     makeApiRequest(
       `${APP_URL.assets.get_inscription_fee}`,
       'post',
@@ -61,10 +68,13 @@ export const GetFee = (props: GetFeeProps) => {
       },
       {
         onFinish: (d) => {
-          setFees(d);
+          console.log('FEEES', d);
+          setFeeData(d);
           setLoading(false);
+          if (visibility) setTimeout(() => getInscriptionFee(), 20000);
         },
         onError: (e) => {
+          if (visibility) setTimeout(() => getInscriptionFee(), 10000);
           setLoading(false);
         },
       }
@@ -79,19 +89,16 @@ export const GetFee = (props: GetFeeProps) => {
         contractAddress,
         tokenId,
         chainId,
-        fee: fees?.fees[selectedFee],
-        tip: Number(form.getFieldValue('tip') ?? 0),
+        fee: feeData?.fees[selectedFee],
+        tip: Number(cleanInput(tip ?? 0)),
         stage: 'commit',
       },
       {
         onFinish: async (d) => {
           try {
-            const seed = await unlockOrdinalWallet({
-              walletAddress: String(account),
-              user: String(user?._id),
-            });
-            console.log('DATATA', d.data);
-            const signed = signRawTransaction(d.data.transaction, String(seed));
+            const seed = await unlockOrdinalWallet(String(account));
+            console.log('SEEDDDD', seed);
+            const signed = signRawTransaction(d.data.transaction, seed);
             console.log('dddd', signed);
             inscribe(d.data.id, signed);
             // sign the error
@@ -127,6 +134,47 @@ export const GetFee = (props: GetFeeProps) => {
       }
     );
   };
+
+  // const onFormValueChange = ((changes, formValues)=> {
+  //   if(changes.tip) {
+  //     setTip(changes.tip);
+  //   }
+  // })
+
+  useEffect(() => {
+    if (feeData?.unspent) {
+      let balance = 0;
+      feeData.unspent.forEach((d: any) => {
+        if (d.amount * 100000000 > 10000) balance += d.amount;
+      });
+      console.log('fEEDAATA', feeData);
+      setWalletBalance(balance);
+    } // else setWalletBalance(0);
+  }, [feeData?.unspent]);
+
+  useEffect(() => {
+    form.setFieldsValue({ tip: cleanInput(tip) });
+    if (!feeData || !selectedFee) return;
+    let tip_sat = 0;
+    let tipUSD = Number(cleanInput(tip ?? 0));
+    if (tipUSD > 0) {
+      tip_sat = (tipUSD / feeData.btcPrice.usd) * 100000000;
+    }
+    setLowBalance(
+      Math.max(
+        feeData.fees?.[selectedFee].network_sat +
+          tip_sat +
+          feeData.fees?.[selectedFee].platform_sat -
+          walletBalance * 100000000,
+        0
+      )
+    );
+    // if((feeData.fees?.[selectedFee].network_sat + tip_sat + feeData.fees?.[selectedFee].platform_sat)>(walletBalance*100000000)) {
+    //   setLowBalance(true);
+    // } else {
+    //   setLowBalance(0)
+    // }
+  }, [walletBalance, selectedFee, tip]);
 
   const feeDescriptions = {
     slow: 'Hours to Days',
@@ -215,11 +263,11 @@ export const GetFee = (props: GetFeeProps) => {
                       <Typography.Title level={3}>
                         $
                         {(
-                          Number(fees?.fees?.[speed]?.network_usd) +
-                          fees?.fees?.[speed]?.platform_usd
+                          Number(feeData?.fees?.[speed]?.network_usd) +
+                          feeData?.fees?.[speed]?.platform_usd
                         ).toFixed(2)}
                       </Typography.Title>
-                      {/* <Typography.Text><span  style={{fontSize: 10}}>Surcharge: ${fees?.fees?.[speed]?.platform_usd.toFixed(2)}</span></Typography.Text>  */}
+                      {/* <Typography.Text><span  style={{fontSize: 10}}>Surcharge: ${feeData?.fees?.[speed]?.platform_usd.toFixed(2)}</span></Typography.Text>  */}
                       <Typography.Text>
                         <span style={{ fontSize: 10 }}>
                           Service fee included
@@ -238,14 +286,54 @@ export const GetFee = (props: GetFeeProps) => {
                   <Space>
                     <Form.Item
                       name="tip"
-                      initialValue={2}
+                      initialValue={tip}
                       label={'Tip Satoshi Studio ($)'}
                     >
-                      <Input type="number" />
+                      <Input onChange={(v) => setTip(v.target.value)} />
                     </Form.Item>
                   </Space>
                 </Col>
               </Row>
+              {lowBalance > 0 && (
+                <Row>
+                  <Col span={24} style={{ textAlign: 'center' }}>
+                    <Typography.Text style={{ color: 'red' }}>
+                      Low wallet btc balance!{' '}
+                      <b>{(lowBalance / 100000000 + 0.00000001).toFixed(8)}</b>{' '}
+                      more BTC required{' '}
+                    </Typography.Text>
+                  </Col>
+                </Row>
+              )}
+              {loadWallet && (
+                <motion.div
+                  initial={{ scale: 0.08 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0.8 }}
+                >
+                  <Row>
+                    <Col
+                      span={24}
+                      style={{ textAlign: 'center', marginBottom: 10 }}
+                    >
+                      {user?.btcAccounts?.[0]?.address}
+                    </Col>
+                    <Col span={24} style={{ textAlign: 'center' }}>
+                      {' '}
+                      <QRCode
+                        size={256}
+                        value={`bitcoin:${
+                          user?.btcAccounts?.[0]?.address
+                        }?amount=${(
+                          lowBalance / 100000000 +
+                          0.00000001
+                        ).toFixed(8)}`}
+                        viewBox={`0 0 256 256`}
+                      />
+                    </Col>
+                  </Row>
+                </motion.div>
+              )}
             </>
           )}
           {/* <FeeForm
@@ -275,15 +363,29 @@ export const GetFee = (props: GetFeeProps) => {
 
   const footer = (
     <Space className={'w-100 meta-flex-j-f-e'} align={'center'}>
-      <Button
-        shape={'round'}
-        type={'primary'}
-        disabled={loading}
-        loading={loading}
-        onClick={form.submit}
-      >
-        Inscribe
-      </Button>
+      <Space size={10}>
+        <Typography.Text>
+          Balance: <b>{walletBalance} BTC</b>
+        </Typography.Text>
+        <Button
+          shape={'round'}
+          type={'primary'}
+          disabled={loading || !lowBalance}
+          loading={loading}
+          onClick={() => setLoadWallet(!loadWallet)}
+        >
+          Load Wallet
+        </Button>
+        <Button
+          shape={'round'}
+          type={'primary'}
+          disabled={loading || lowBalance}
+          loading={loading}
+          onClick={form.submit}
+        >
+          Inscribe
+        </Button>
+      </Space>
     </Space>
   );
   return (
