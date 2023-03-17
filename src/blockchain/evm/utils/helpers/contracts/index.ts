@@ -5,7 +5,9 @@ import {
   BookABI,
   BookCreatorABI,
   DataABI,
+  ERC1155,
   ERC20ABI,
+  ERC721,
   PageABI,
   RegistryABI,
   TraderABI,
@@ -22,6 +24,8 @@ export class ContractUtils {
     Trader: TraderABI,
     Registry: RegistryABI,
     Data: DataABI,
+    ERC721: ERC721,
+    ERC1155: ERC1155,
   };
 
   static ABIsByAddress: Record<string, any[]> = {

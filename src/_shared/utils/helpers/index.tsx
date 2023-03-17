@@ -392,3 +392,10 @@ export function getAuthMessage(info: {
 
   Nonce: ${info.nonce ?? Date.now()}`;
 }
+
+export function parseUrl(url: string) {
+  if (String(url).startsWith('ipfs')) {
+    return url.replace('ipfs://', 'https://ipfs.io/ipfs/');
+  }
+  return url;
+}

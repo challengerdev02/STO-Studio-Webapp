@@ -72,13 +72,11 @@ function MyApp({ Component, pageProps }: MyAppProps) {
   return (
     <>
       <Head>
-        <title>MetaComic - comics for creators, readers and collectors</title>
+        <title>Satoshi Studio - nft on bitcoin</title>
 
         <meta
           name="description"
-          content={
-            'MetaComic is a platform that helps comic art creators monetize their work by connecting them with readers, fans and collectors'
-          }
+          content={'Satoshi Studio is an nft marketplace for bitcoin ordinals'}
         />
       </Head>
 

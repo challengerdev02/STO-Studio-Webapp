@@ -6,3 +6,5 @@ export * from './erc-20-abi';
 export * from './busd';
 export * from './registry-abi';
 export * from './data-abi';
+export * from './erc1155';
+export * from './erc721';

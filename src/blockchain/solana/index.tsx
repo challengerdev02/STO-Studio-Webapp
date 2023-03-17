@@ -1,10 +1,11 @@
 import { useWallet, WalletContextState } from '@solana/wallet-adapter-react';
-import { Storage } from '@/shared/utils';
+import { getAuthMessage, Storage } from '@/shared/utils';
 import {
   WEB3_CACHED_PROVIDER_KEY,
   WEB3_SIGNATURE_STORAGE_KEY,
   WEB3_SIGNATURE_STORAGE_SET_KEY,
   THEME_STORAGE_KEY,
+  SOLANA_CHAIN_ID,
 } from '@/shared/constants';
 import {
   BaseProviderActions,
@@ -44,7 +45,7 @@ export function useSolanaWallet(
         isConnected: false,
         solana: {
           providerName,
-          chainId: 1399811149,
+          chainId: SOLANA_CHAIN_ID,
         },
         env: 'solana',
       },
@@ -80,18 +81,15 @@ export function useSolanaWallet(
       const encoder = new TextEncoder();
       const messageObject = {
         address: wallet.publicKey?.toBase58(),
-        chainId: 1399811149,
+        chainId: SOLANA_CHAIN_ID,
         timestamp: Date.now(),
       };
 
-      const message = `Welcome to SatoshiStudio! Click to sign in and \naccept the SatoshiStudio Terms of Service: \n${
-        process.env.NEXT_PUBLIC_TERMS_OF_SERVICE ??
-        'https://satoshistudio.tawk.help/article/terms-of-service'
-      }\n This request will not trigger a blockchain transaction \nor cost any gas fees.\n\nYour authentication status will reset after 24 hours.\n\nChain ID: ${
-        messageObject.chainId
-      }\n\nAddress: ${messageObject.address}\n\nNonce: ${
-        messageObject.timestamp
-      }`;
+      const message = getAuthMessage({
+        walletAddress: String(messageObject.address),
+        environment: 'solana',
+        nonce: messageObject.timestamp,
+      });
 
       const data = encoder.encode(message);
       const signature: any = await wallet.signMessage?.(data);

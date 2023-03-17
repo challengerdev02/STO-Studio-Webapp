@@ -8,6 +8,7 @@ import { SUPPORTED_NETWORKS } from 'src/blockchain/evm/utils';
 import Text from 'antd/lib/typography/Text';
 import { StyledMeta } from '../index.styled';
 import { truncate } from 'lodash';
+import { SOLANA_CHAIN_ID } from '@/shared/constants';
 
 interface ImportViewProps {
   signedAddress?: string;
@@ -20,7 +21,7 @@ interface ImportViewProps {
     tokenId: number;
     verified?: boolean;
   }[];
-  chainId: number;
+  chainId: number | string;
   // selectedChainId: number;
 }
 export const ImportView = (props: ImportViewProps) => {
@@ -67,6 +68,17 @@ export const ImportView = (props: ImportViewProps) => {
                             {SUPPORTED_NETWORKS[137].icon}
                           </div>{' '}
                           <Text>Polygon</Text>
+                        </Space>
+                      ),
+                    },
+                    {
+                      value: SOLANA_CHAIN_ID,
+                      label: (
+                        <Space>
+                          <div style={{ height: 28 }}>
+                            {SUPPORTED_NETWORKS[SOLANA_CHAIN_ID].icon}
+                          </div>{' '}
+                          <Text>Solana</Text>
                         </Space>
                       ),
                     },

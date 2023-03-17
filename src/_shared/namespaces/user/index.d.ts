@@ -12,7 +12,7 @@ namespace UserNamespace {
       email?: string;
       verified: boolean;
     };
-    btcAccounts?: string[];
+    btcAccounts?: { address: string; tr: string }[];
     accountVerified?: boolean;
     isCreator?: boolean;
     publicId?: string;

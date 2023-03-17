@@ -1,5 +1,6 @@
 import { Chains } from '../index';
 import { CryptoIcons } from '../icons';
+import { SOLANA_CHAIN_ID } from '@/shared/constants';
 
 export interface BiddingTokensInterface {
   address: string;
@@ -116,6 +117,18 @@ export const SUPPORTED_NETWORKS: any = {
       decimals: 18,
       symbol: 'BNB',
       name: 'Testnet-BSC',
+    },
+    ...Chains[97],
+  },
+  [SOLANA_CHAIN_ID]: {
+    usdToken: SUPPORTED_USD_TOKENS[SOLANA_CHAIN_ID],
+    rpcURL: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
+    explorerURL: 'https://testnet.bscscan.com',
+    icon: CryptoIcons['solana'],
+    nativeCurrency: {
+      decimals: 18,
+      symbol: 'SOL',
+      name: 'Solana',
     },
     ...Chains[97],
   },

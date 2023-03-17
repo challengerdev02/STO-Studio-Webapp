@@ -11,7 +11,7 @@ import { UserNamespace } from '@/shared/namespaces/user';
 import Web3 from 'web3';
 import { add } from 'date-fns';
 import { notification } from 'antd';
-import { debugLog } from '@/shared/utils';
+import { debugLog, parseUrl } from '@/shared/utils';
 import { nanoid } from 'nanoid';
 import { GetFee } from '@/components/account/fee';
 import { APP_URL, STATE_KEYS } from '@/shared/constants';
@@ -98,7 +98,7 @@ export const TokenAssetContainer = () => {
   } = useContract({
     address: tokenHash as string,
     options: { uiKey: contractUIKey },
-    abiName: 'Book',
+    abiName: 'ERC721',
   });
   const { call: dataContractCall, contract: dataContract } = useContract({
     address: process.env.NEXT_PUBLIC_DATA_CONTRACT_ADDRESS,
@@ -192,12 +192,17 @@ export const TokenAssetContainer = () => {
 
     const onTokenURIFinish = (url: any) => {
       //prettier-ignore
-      getExternalResource(url, { uiKey: getTokenMetadataUIKey, headers: new Headers() });
+      console.log('URRRRRRL', url)
+
+      getExternalResource(parseUrl(url), {
+        uiKey: getTokenMetadataUIKey,
+        headers: new Headers(),
+      });
     };
 
     // Get URI
     bookContractCall(
-      'uri',
+      'tokenURI',
       {
         onFinish: onTokenURIFinish,
         uiKey: getTokenMetadataUIKey,
@@ -366,8 +371,8 @@ export const TokenAssetContainer = () => {
     onGetAssets();
     if (tokenHash && isConnected) {
       onGetTokenIDMetadata();
-      onGetTokenActivity();
-      onGetPriceHistory();
+      // onGetTokenActivity();
+      // onGetPriceHistory();
     }
     setIsOwner(
       walletAddress?.toLowerCase() == String(ownerAddress).toLowerCase()
@@ -407,9 +412,10 @@ export const TokenAssetContainer = () => {
       get(resource, [TokenAssetContainerKey, 'name'], null) ??
       get(resource, [TokenAssetContainerKey, 'title'], ''),
     infoLink: get(resource, [TokenAssetContainerKey, 'infoLink'], ''),
-    coverImage:
-      get(resource, [TokenAssetContainerKey, 'page.0'], '') ??
-      get(resource, [TokenAssetContainerKey, 'image'], ''),
+    coverImage: parseUrl(
+      get(resource, [TokenAssetContainerKey, 'page.0'], undefined) ??
+        get(resource, [TokenAssetContainerKey, 'image'], '')
+    ),
     thumbnail: get(resource, [TokenAssetContainerKey, 'thumbnail'], null),
     genres: get(resource, [TokenAssetContainerKey, 'genres'], []),
     ageRating: get(resource, [TokenAssetContainerKey, 'contentRating'], []),
@@ -420,10 +426,11 @@ export const TokenAssetContainer = () => {
     attributes: map(
       get(resource, [TokenAssetContainerKey, 'attributes'], []),
       (attribute: any) => {
-        const title = Object.keys(attribute)[0];
+        // const title = Object.keys(attribute)[0];
         return {
-          title,
-          value: attribute[title],
+          title: attribute.name ?? attribute.trait_type,
+          value: attribute.value,
+          data_type: attribute.display_type ?? attribute.data_type,
         };
       }
     ),

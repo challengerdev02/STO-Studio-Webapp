@@ -21,7 +21,6 @@ import { SolanaWalletState, useSolanaWallet } from '../solana';
 import { WalletContextState as SUIWalletContextState } from '@suiet/wallet-kit';
 import { getBtcSeedSignature } from '../evm/utils';
 import { sha256 } from '@/shared/utils';
-import { useWallet } from '@solana/wallet-adapter-react';
 
 export interface BaseProviderState {
   isConnected?: boolean;
@@ -87,10 +86,8 @@ export interface BaseProviderContextValues
   sign: (...args: any[]) => Promise<void>;
   disconnect: () => Promise<void>;
   getBalance: () => Promise<string>;
-  unlockOrdinalWallet: (
-    userInf: { walletAddress: string; user: string },
-    ...args: any[]
-  ) => Promise<any>;
+  signMessage: (_: Uint8Array | string) => Promise<any>;
+  unlockOrdinalWallet: (walletAddress: string, ...args: any[]) => Promise<any>;
 }
 
 export const BaseWeb3Context: Context<BaseProviderContextValues> =
@@ -99,7 +96,8 @@ export const BaseWeb3Context: Context<BaseProviderContextValues> =
     sign: async () => {},
     disconnect: async () => {},
     getBalance: async () => '0',
-    unlockOrdinalWallet: async () => null,
+    signMessage: async (_: Uint8Array | string) => null,
+    unlockOrdinalWallet: async () => Buffer.from(''),
     ...defaultState,
   });
 
@@ -122,7 +120,6 @@ export const BaseProvider = (props: BaseProviderProps) => {
     dispatch,
     reduxDispatcher
   );
-  const { publicKey } = useWallet();
 
   const connect = async (...args: any[]) => {
     switch (args[0]) {
@@ -201,37 +198,19 @@ export const BaseProvider = (props: BaseProviderProps) => {
     }
   };
 
-  const unlockOrdinalWallet = async (
-    info: { walletAddress: string; userId: string },
-    ..._: any[]
-  ) => {
-    console.log(state.env, 'env');
+  const unlockOrdinalWallet = async (walletAddress: string, ..._: any[]) => {
+    let signature;
+    const message = getBtcSeedSignature({
+      walletAddress: String(walletAddress),
+      environment: state.env,
+    });
+    console.log('XXXX', message);
     switch (state.env) {
-      case 'solana':
-        const msg = getBtcSeedSignature({
-          walletAddress: String(publicKey?.toBase58()),
-          user: info.userId,
-          environment: state.env,
-        });
-        const signed = await solanaProvider.signWallet(msg);
-        console.log(signed);
-        return signed;
       default:
-        const message = getBtcSeedSignature({
-          walletAddress: info.walletAddress,
-          user: info.userId,
-          environment: state.env,
-        });
-        return signMessage(message)
-          .then((signature) => {
-            console.log(Buffer.from(sha256(signature), 'hex'), 'signature');
-            return Buffer.from(sha256(signature), 'hex');
-          })
-          .catch((e) => {
-            console.error(e);
-            throw e;
-          });
+        signature = await signMessage(message);
     }
+    console.log(Buffer.from(sha256(signature), 'hex'), 'signature');
+    return Buffer.from(sha256(signature), 'hex');
   };
 
   const getBalance = async (): Promise<string> => {
