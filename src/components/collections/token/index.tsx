@@ -83,7 +83,6 @@ export const TokenAsset = (props: TokenAssetProps) => {
   const user = enumerateUser(assetUser);
   const creator = enumerateUser(creatorUser);
   const assetImage = parseUrl(asset.thumbnail ?? asset.coverImage);
-
   return (
     <>
       <OutterContainer>
