@@ -75,9 +75,11 @@ export const ImportView = (props: ImportViewProps) => {
                       value: SOLANA_CHAIN_ID,
                       label: (
                         <Space>
-                          <div style={{ height: 28 }}>
-                            {SUPPORTED_NETWORKS[SOLANA_CHAIN_ID].icon}
-                          </div>{' '}
+                          <img
+                            src={SUPPORTED_NETWORKS[SOLANA_CHAIN_ID].icon}
+                            width={24}
+                            height={24}
+                          />{' '}
                           <Text>Solana</Text>
                         </Space>
                       ),
@@ -109,7 +111,9 @@ export const ImportView = (props: ImportViewProps) => {
                         <Space
                           onClick={() =>
                             router.push(
-                              `/collection/${signedAddress}/${nft.address}/${nft.tokenId}`
+                              chainId == 1399811149
+                                ? `/collection/${signedAddress}/${nft.address}/${nft.tokenId}/solana`
+                                : `/collection/${signedAddress}/${nft.address}/${nft.tokenId}`
                             )
                           }
                           key={'importButton'}
@@ -142,7 +146,9 @@ export const ImportView = (props: ImportViewProps) => {
                           }}
                           onClick={() =>
                             router.push(
-                              `/collection/${signedAddress}/${nft.address}/${nft.tokenId}`
+                              chainId == 1399811149
+                                ? `/collection/${signedAddress}/${nft.address}/${nft.tokenId}/solana`
+                                : `/collection/${signedAddress}/${nft.address}/${nft.tokenId}`
                             )
                           }
                           src={nft.image}

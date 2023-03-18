@@ -27,6 +27,7 @@ export const AssetViewCoverImage = (props: AssetViewCoverImageProps) => {
     ? get(SUPPORTED_NETWORKS, Number(props.blockchain)) ??
       SUPPORTED_NETWORKS[97]
     : null;
+  console.log(props, 'props');
 
   // alert(props.thumbnail);
   return (
@@ -57,7 +58,13 @@ export const AssetViewCoverImage = (props: AssetViewCoverImageProps) => {
         className="image-wrapper-header meta-flex w-100 meta-align-center "
         style={{ paddingLeft: 10, paddingRight: 10, minHeight: 40 }}
       >
-        {props.blockchain ? chain!['icon'] : null}
+        {props.blockchain ? (
+          props.blockchain == '1399811149' ? (
+            <img src={chain!['icon']} height={24} width={24} />
+          ) : (
+            chain!['icon']
+          )
+        ) : null}
 
         {!props.hideLikes && (
           <Space size={1}>

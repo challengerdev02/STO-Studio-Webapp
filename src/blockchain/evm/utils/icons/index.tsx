@@ -35,6 +35,8 @@ export const CryptoIcons: any = {
       </g>
     </svg>
   ),
+  solana:
+    'https://cdn.iconscout.com/icon/premium/png-512-thumb/solana-sol-7152167-5795323.png',
   matic: (
     <svg
       height={24}
