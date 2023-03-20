@@ -388,8 +388,7 @@ export const ProfileScreen = (props: ProfileScreenProps) => {
                         }}
                       >
                         {`Referral Link: https://meta...?u=${truncateEthAddress(
-                          $record?.walletAddress,
-                          'short'
+                          $record?.walletAddress
                         )}`}
                         <img src={'/assets/link.svg'} />
                       </WalletAddressButton>
