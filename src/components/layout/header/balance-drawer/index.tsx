@@ -1,6 +1,8 @@
 import {
   Avatar,
   Button,
+  Col,
+  Row,
   Card,
   DrawerProps,
   Select,
@@ -24,6 +26,7 @@ import { useEffect, useState } from 'react';
 import { get, omit, toUpper } from 'lodash';
 import { APP_TOKENS, toEther } from '../../../../blockchain/evm/utils';
 import { ActionOption } from '../../../../redux/types';
+import QRCode from 'react-qr-code';
 
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;
@@ -64,10 +67,12 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   const [currentToken, setCurrentToken] = useState<string>(
     process.env.NEXT_PUBLIC_HCOMI_TOKEN_SYMBOL as string
   );
+  const [isDeposit, setIsDeposit] = useState(false);
 
   const addFund = () => {
     if (currentToken == 'hCOMI') return;
     onAddFundVisibilityChange(true);
+    setIsDeposit(true);
   };
 
   const links = [
@@ -269,13 +274,36 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
         <Button
           type={'primary'}
           block
-          disabled={true}
           shape={'round'}
-          onClick={() => addFund(true)}
+          onClick={() => addFund()}
           style={{ marginBottom: 10 }}
         >
           ADD {currentToken}
         </Button>
+
+        {isDeposit && (
+          <motion.div
+            initial={{ scale: 0.08 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.8 }}
+            style={{ marginBottom: 10 }}
+          >
+            <Row>
+              <Col span={24} style={{ textAlign: 'center', marginBottom: 10 }}>
+                {user?.btcAccounts?.[0]?.address}
+              </Col>
+              <Col span={24} style={{ textAlign: 'center' }}>
+                {' '}
+                <QRCode
+                  value={`bitcoin:${user?.btcAccounts?.[0]?.address}?amount=${(
+                    100000000 / 100000000 +
+                    0.00000001
+                  ).toFixed(8)}`}
+                />
+              </Col>
+            </Row>
+          </motion.div>
+        )}
 
         <Button
           disabled={true}
