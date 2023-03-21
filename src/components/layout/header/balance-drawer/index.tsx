@@ -274,7 +274,18 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
           onClick={() => addFund(true)}
           style={{ marginBottom: 10 }}
         >
-          Add {currentToken} (Coming Soon)
+          ADD {currentToken}
+        </Button>
+
+        <Button
+          disabled={true}
+          type={'primary'}
+          block
+          shape={'round'}
+          onClick={() => onAddFundVisibilityChange(true)}
+          style={{ marginBottom: 10 }}
+        >
+          WITHDRAW {currentToken}
         </Button>
 
         <Button
@@ -284,7 +295,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
           shape={'round'}
           onClick={() => onAddFundVisibilityChange(true)}
         >
-          Withdraw {currentToken} (Coming Soon)
+          SEND ORDINALS
         </Button>
       </StyledCard>
       <br />
