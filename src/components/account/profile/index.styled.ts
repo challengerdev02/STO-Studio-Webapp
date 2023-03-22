@@ -37,6 +37,14 @@ export const CoverPhoto = styled.img`
   max-height: 100%;
 `;
 
+export const AltCoverPhoto = styled.div`
+  width: 100%;
+  height: 276px;
+  background: rgba(4, 4, 21, 1);
+  position: absolute;
+  z-index: 1;
+`;
+
 export const CoverPhotoActionsWrapper = styled.div`
   display: flex;
   column-gap: 15px;

@@ -61,6 +61,51 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const BannerWrapper = styled.div`
+  width: 100%;
+  zindex: 1;
+  height: 250px !important;
+  position: sticky;
+
+  .banner-image {
+    transition: 2s;
+    opacity: 0.8;
+    width: 100% !important;
+    objectfit: 'contain';
+  }
+
+  @media (max-width: 400px) {
+    display: none;
+    height: 120px !important;
+    .banner-image {
+      height: 100px !important;
+    }
+  }
+`;
+
+export const SeriesViewWrapper = styled.div`
+  padding: 40px 40px 128px 40px;
+  background: var(--card-homepage-color);
+  border-radius: 16px;
+  margin: 0 50px;
+  margin-top: -30px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  @media (max-width: 400px) {
+    padding: 20px 10px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 400px) and (max-width: 1024px) {
+    padding: 20px;
+    margin-top: 40px;
+  }
+`;
+
 export const Title = styled.div`
   font-size: 16px;
   font-weight: 500;

@@ -15,7 +15,13 @@ import { useContext, useEffect, useState } from 'react';
 import { useApiRequest } from 'src/hooks/useApiRequest';
 import { APP_URL } from '@/shared/constants';
 import { BaseWeb3Context } from 'src/blockchain/base';
-import { signRawTransaction } from 'src/blockchain/bitcoin';
+import {
+  getChangeAddresses,
+  getOrdinalAddress,
+  getOrdinalAddresses,
+  getReceivingAddresses,
+  signRawTransaction,
+} from 'src/blockchain/bitcoin';
 import { StyledModal } from '@/components/layout/header/fullscreen-menu/index.styled';
 import { UserNamespace } from '@/shared/namespaces/user';
 import { cleanInput } from '@/shared/utils';
@@ -54,6 +60,7 @@ export const GetFee = (props: GetFeeProps) => {
   const [lowBalance, setLowBalance] = useState<number>(0);
   const [selectedFee, setSelectedFee] = useState<string>('medium');
   const [loadWallet, setLoadWallet] = useState(false);
+  let timeout: any = null;
 
   const getInscriptionFee = () => {
     setLoading(true);
@@ -68,20 +75,38 @@ export const GetFee = (props: GetFeeProps) => {
       },
       {
         onFinish: (d) => {
-          console.log('FEEES', d);
+          // console.log('FEEES', d);
           setFeeData(d);
           setLoading(false);
-          if (visibility) setTimeout(() => getInscriptionFee(), 20000);
+          // if(timeout) {
+          //   clearTimeout(timeout);
+          // }
+          if (visibility) {
+            //   timeout = setTimeout(() => {
+            //     console.log('making api request....');
+            //   getInscriptionFee();
+            // }, 20000);
+          } else {
+            if (timeout) clearTimeout(timeout);
+          }
         },
         onError: (e) => {
-          if (visibility) setTimeout(() => getInscriptionFee(), 10000);
+          // if(timeout) {
+          //   clearTimeout(timeout);
+          //   timeout = null;
+          // }
+          // if (visibility && e) timeout = setTimeout(() => getInscriptionFee(), 10000);
           setLoading(false);
         },
       }
     );
   };
-  const getCommitTx = () => {
+  const getCommitTx = async () => {
     setLoading(true);
+    const seed = await unlockOrdinalWallet(String(account));
+    const changeAddresses = await getChangeAddresses(seed);
+    const ordinalAddress = await getOrdinalAddress(seed);
+    console.log('DESTINATION', ordinalAddress);
     makeApiRequest(
       `${APP_URL.assets.get_commit_tx}`,
       'post',
@@ -92,15 +117,15 @@ export const GetFee = (props: GetFeeProps) => {
         fee: feeData?.fees[selectedFee],
         tip: Number(cleanInput(tip ?? 0)),
         stage: 'commit',
+        changeAddresses,
+        destination: ordinalAddress,
       },
       {
         onFinish: async (d) => {
           try {
-            const seed = await unlockOrdinalWallet(String(account));
-            console.log('SEEDDDD', seed);
             const signed = signRawTransaction(d.data.transaction, seed);
             console.log('dddd', signed);
-            inscribe(d.data.id, signed);
+            inscribe(d.data.id, signed, ordinalAddress);
             // sign the error
           } catch (e) {
             console.log('ERRRORR', e);
@@ -114,7 +139,11 @@ export const GetFee = (props: GetFeeProps) => {
     );
   };
 
-  const inscribe = (id: string, signedCommitTransactionHex: string) => {
+  const inscribe = (
+    id: string,
+    signedCommitTransactionHex: string,
+    destination?: string
+  ) => {
     setLoading(true);
     makeApiRequest(
       `${APP_URL.assets.inscribe}`,
@@ -122,6 +151,7 @@ export const GetFee = (props: GetFeeProps) => {
       {
         id,
         signedCommitTransactionHex,
+        destination,
       },
       {
         onFinish: async (d) => {
@@ -183,7 +213,10 @@ export const GetFee = (props: GetFeeProps) => {
     custom: 'Based on amount',
   };
   useEffect(() => {
-    if (visibility) getInscriptionFee();
+    if (!visibility && timeout) clearInterval(timeout);
+    if (visibility) {
+      getInscriptionFee();
+    }
   }, [visibility]);
 
   const [form] = Form.useForm();
@@ -305,7 +338,18 @@ export const GetFee = (props: GetFeeProps) => {
                   </Col>
                 </Row>
               )}
-              {loadWallet && (
+              {lowBalance > 0 && !loadWallet && (
+                <Button
+                  shape={'round'}
+                  type={'primary'}
+                  disabled={loading || !lowBalance}
+                  loading={loading}
+                  onClick={() => setLoadWallet(!loadWallet)}
+                >
+                  Load Wallet
+                </Button>
+              )}
+              {loadWallet && lowBalance > 0 && (
                 <motion.div
                   initial={{ scale: 0.08 }}
                   animate={{ scale: 1 }}
@@ -362,12 +406,12 @@ export const GetFee = (props: GetFeeProps) => {
   );
 
   const footer = (
-    <Space className={'w-100 meta-flex-j-f-e'} align={'center'}>
+    <Space className={'w-100 meta-flex-s-b'} align={'center'}>
       <Space size={10}>
         <Typography.Text>
-          Balance: <b>{walletBalance} BTC</b>
+          Wallet Balance: <b>{walletBalance} BTC</b>
         </Typography.Text>
-        <Button
+        {/* {lowBalance > 0 && <Button
           shape={'round'}
           type={'primary'}
           disabled={loading || !lowBalance}
@@ -375,17 +419,17 @@ export const GetFee = (props: GetFeeProps) => {
           onClick={() => setLoadWallet(!loadWallet)}
         >
           Load Wallet
-        </Button>
-        <Button
-          shape={'round'}
-          type={'primary'}
-          disabled={loading || lowBalance}
-          loading={loading}
-          onClick={form.submit}
-        >
-          Inscribe
-        </Button>
+        </Button>} */}
       </Space>
+      <Button
+        shape={'round'}
+        type={'primary'}
+        disabled={loading || lowBalance > 0}
+        loading={loading}
+        onClick={form.submit}
+      >
+        Inscribe
+      </Button>
     </Space>
   );
   return (

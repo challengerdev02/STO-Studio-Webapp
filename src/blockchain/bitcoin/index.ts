@@ -1,6 +1,7 @@
 import { generateMnemonic, mnemonicToSeedSync } from 'bip39';
 import bip86 from '../bip86';
-import * as ecc from 'tiny-secp256k1';
+// import * as ecc from 'tiny-secp256k1';
+
 import ecurve from 'ecurve';
 import schnorr from 'bip-schnorr';
 import { bech32, bech32m } from 'bech32';
@@ -15,6 +16,7 @@ import {
   createDecipheriv,
 } from 'crypto';
 import { BTC_WALLET_KEY } from '@/shared/constants';
+import { ecc } from '@/shared/utils/secp';
 const secp256k1 = ecurve.getCurveByName('secp256k1');
 const bip32 = BIP32Factory(ecc);
 bitcoin.initEccLib(ecc);
@@ -60,7 +62,7 @@ export const createWallet = function (seed?: Buffer): any {
     seed,
     // address: payments.p2pkh({ pubkey: keyPair.publicKey }).address,
     // address: account0.getAddressFromPrivateKey(0, true),
-    tapRootAddress: account0.getAddressFromPrivateKey(0, true),
+    tapRootAddress: account0.getAddressFromPrivateKey(0, false),
     fingerprint,
     descriptor: `[${fingerprint}/86'/0'/0']${account0.getAccountPublicKeyFromPrivKey()}`,
   };
@@ -103,52 +105,126 @@ export const loadWallet = (account: string, passphrase: string) => {
   return decryptWallet(data as { encrypted: string; iv: string }, passphrase);
 };
 
+export const getChangeAddresses = (seed: Buffer): [string, string] => {
+  const node = bip32.fromSeed(seed, bitcoin.networks.bitcoin);
+  const result: string[] = [];
+  for (let i = 0; i < 2; i++) {
+    const path = `m/86'/0'/0'/1/${i}`;
+    const child = node.derivePath(path);
+    const childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
+    const p2pktr = payments.p2tr({
+      internalPubkey: childNodeXOnlyPubkey,
+      network: bitcoin.networks.bitcoin,
+    });
+    result.push(String(p2pktr?.address));
+  }
+  return [result[0], result[1]];
+};
+
+export const getReceivingAddresses = (seed: Buffer): [string, string] => {
+  // receiving address 0 will always remain the funds address
+  const node = bip32.fromSeed(seed, bitcoin.networks.bitcoin);
+  const result: string[] = [];
+  for (let i = 0; i < 2; i++) {
+    const path = `m/86'/0'/0'/0/${i}`;
+    const child = node.derivePath(path);
+    const childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
+    const p2pktr = payments.p2tr({
+      internalPubkey: childNodeXOnlyPubkey,
+      network: bitcoin.networks.bitcoin,
+    });
+    result.push(String(p2pktr?.address));
+  }
+  return [result[0], result[1]];
+};
+
+export const getOrdinalAddress = (seed: Buffer): string => {
+  // receiving address 1 will always remain the ordinal address
+  const node = bip32.fromSeed(seed, bitcoin.networks.bitcoin);
+  const path = `m/86'/0'/0'/0/1`;
+  const child = node.derivePath(path);
+  const childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
+  const p2pktr = payments.p2tr({
+    internalPubkey: childNodeXOnlyPubkey,
+    network: bitcoin.networks.bitcoin,
+  });
+
+  return String(p2pktr?.address);
+};
+
 export const signRawTransaction = (transaction: any, seed: Buffer) => {
   const node = bip32.fromSeed(seed, bitcoin.networks.bitcoin);
   const psbt = new bitcoin.Psbt();
   psbt.setVersion(2);
   psbt.setLocktime(0);
-  const masterFingerprint = node.fingerprint;
-  const path = "m/86'/0'/0'/0/85";
-  const child = node.derivePath(path);
 
-  const childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
+  // const masterFingerprint = node.fingerprint;
 
-  console.log('EXTENDED', childNodeXOnlyPubkey);
-  const tweakedChildNode = child.tweak(
-    bitcoin.crypto.taggedHash('TapTweak', childNodeXOnlyPubkey)
-  );
-  const p2pktr = payments.p2tr({
-    internalPubkey: childNodeXOnlyPubkey,
-    network: bitcoin.networks.bitcoin,
-  });
-  console.log('P2TR_ADDRESS', p2pktr.address);
-  const pubkey = child.publicKey;
-  const updateData = {
-    bip32Derivation: [
-      {
-        masterFingerprint,
-        path,
-        pubkey,
-      },
-    ],
-  };
-  const { output } = bitcoin.payments.p2tr({
-    pubkey: childNodeXOnlyPubkey,
-    network: bitcoin.networks.bitcoin,
-  });
-  const unspent: any = bitcoin.Transaction.fromHex(
-    transaction.input[0].nonWitnessUtxo
-  );
-  console.log('SCRIPPPT', unspent.outs[1].value, unspent.outs[1].script);
+  // const p2pktr1 = payments.p2tr({
+  //   //hash: unspent.getHash(),
+  //   internalPubkey: unspent.outs[1].script,
+  //   network: bitcoin.networks.bitcoin,
+  // });
+  const inputIndex = 0;
+  const tweakedChildNodes = [];
   for (let input of transaction.input) {
+    let path, child: any, childNodeXOnlyPubkey, p2pktr, tweakedChildNode;
+    let receivingAddressFound = false;
+    const unspent: any = bitcoin.Transaction.fromHex(input.nonWitnessUtxo);
+    // if(unspentOutputAddress) {
+    // search the receiving addreesses
+    for (let i = 0; i < 100; i++) {
+      path = `m/86'/0'/0'/0/${i}`;
+      child = node.derivePath(path);
+      childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
+      p2pktr = payments.p2tr({
+        internalPubkey: childNodeXOnlyPubkey,
+        network: bitcoin.networks.bitcoin,
+      });
+      if (
+        p2pktr?.output!.toString('hex') ==
+        unspent.outs[input.index].script.toString('hex')
+      ) {
+        receivingAddressFound = true;
+        console.log('Found Receiving address at index', i);
+        break;
+      }
+    }
+    if (!receivingAddressFound) {
+      // search the change addreesses
+      for (let i = 0; i < 500; i++) {
+        path = `m/86'/0'/0'/1/${i}`;
+        child = node.derivePath(path);
+        childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
+        p2pktr = payments.p2tr({
+          internalPubkey: childNodeXOnlyPubkey,
+          network: bitcoin.networks.bitcoin,
+        });
+        if (
+          p2pktr?.output!.toString('hex') ==
+          unspent.outs[input.index].script.toString('hex')
+        ) {
+          receivingAddressFound = true;
+          console.log('Found Receiving address at index', i);
+          break;
+        }
+      }
+      if (!receivingAddressFound) {
+        throw 'Unable to find unspent output address for input ' + inputIndex;
+      }
+    }
+
+    tweakedChildNode = child.tweak(
+      bitcoin.crypto.taggedHash('TapTweak', childNodeXOnlyPubkey)
+    );
+    tweakedChildNodes.push(tweakedChildNode);
+
     const utxo = {
-      //...input,
       index: input.index,
       hash: Buffer.from(input.hash, 'hex').reverse(),
       witnessUtxo: {
-        script: p2pktr.output!, //unspent.outs[input.index].script,
-        value: 446193 ?? Number(unspent.outs[input.index].value),
+        script: p2pktr?.output!, //unspent.outs[input.index].script,
+        value: Number(unspent.outs[input.index].value),
       },
       tapInternalKey: childNodeXOnlyPubkey,
     };
@@ -162,8 +238,9 @@ export const signRawTransaction = (transaction: any, seed: Buffer) => {
     });
     outtotal += Number(output.value);
   }
-  // console.log('beforeSigned', psbt.extractTransaction(true).ins[0].hash.toString('hex'))
-  psbt.signTaprootInput(0, tweakedChildNode);
+  for (const tweakedChildNode of tweakedChildNodes) {
+    psbt.signTaprootInput(0, tweakedChildNode);
+  }
   psbt.finalizeAllInputs();
   // signed transaction hex
   const signed = psbt.extractTransaction(true);

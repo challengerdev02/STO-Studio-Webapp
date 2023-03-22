@@ -6,7 +6,7 @@ module.exports = withImages({
       test: /\*.stories.tsx/,
       loader: 'ignore-loader',
     });
-    config.experiments = { asyncWebAssembly: true };
+    //config.experiments = { asyncWebAssembly: true };
     return config;
   },
   typescript: {

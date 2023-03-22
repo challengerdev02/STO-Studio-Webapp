@@ -13,6 +13,7 @@ import {
   resolveToWalletAddress,
   getParsedNftAccountsByOwner,
 } from '@nfteyez/sol-rayz';
+import { parseIpfsUrl } from '@/shared/utils';
 
 export const ImportContainer = () => {
   const router = useRouter();
@@ -97,13 +98,10 @@ export const ImportContainer = () => {
         collections
           .filter((c) => !_.isEmpty(c.metadata))
           .map((c) => {
-            const metadata = JSON.parse(c.metadata);
-            if (String(metadata.image).startsWith('ipfs')) {
-              metadata.image = metadata.image.replace(
-                'ipfs://',
-                'https://ipfs.io/ipfs/'
-              );
-            }
+            const metadata: any = c.metadata;
+
+            metadata.image = parseIpfsUrl(metadata.image);
+
             return {
               address: c.token_address,
               title: c.name,
@@ -133,7 +131,7 @@ export const ImportContainer = () => {
     for (const item of nftArray) {
       try {
         const r = await fetch(item.data.uri).then((resp) => resp.json());
-        console.log(r, 'rrrrr');
+        console.log('rrrrr', r);
         if (r) {
           let nftItem = {
             address: item.mint,

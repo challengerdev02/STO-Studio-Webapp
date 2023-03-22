@@ -11,7 +11,7 @@ import { UserNamespace } from '@/shared/namespaces/user';
 import Web3 from 'web3';
 import { add } from 'date-fns';
 import { notification } from 'antd';
-import { debugLog, parseUrl } from '@/shared/utils';
+import { debugLog, parseIpfsUrl } from '@/shared/utils';
 import { nanoid } from 'nanoid';
 import { GetFee } from '@/components/account/fee';
 import { STATE_KEYS } from '@/shared/constants';
@@ -188,7 +188,7 @@ export const TokenAssetContainer = () => {
       //prettier-ignore
       console.log('URRRRRRL', url)
 
-      getExternalResource(parseUrl(url), {
+      getExternalResource(parseIpfsUrl(url), {
         uiKey: getTokenMetadataUIKey,
         headers: new Headers(),
       });
