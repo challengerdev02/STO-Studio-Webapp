@@ -183,8 +183,13 @@ export const tagRender = (props: any) => {
 
 export const isISBN = (value: string) => ISBN.verify(value);
 
+export enum ImageType {
+  BannerImage = 'bannerImage',
+  CoverImage = 'coverImage',
+}
+
 export const normalizeFileUpload = (e: any) => {
-  // //console.log('Upload event:', e);
+  console.log('Upload event:', e);
   if (Array.isArray(e)) {
     return e;
   }
@@ -393,7 +398,7 @@ export function getAuthMessage(info: {
   Nonce: ${info.nonce ?? Date.now()}`;
 }
 
-export function parseUrl(url: string) {
+export function parseIpfsUrl(url: string) {
   if (String(url).startsWith('ipfs')) {
     return url.replace('ipfs://', 'https://ipfs.io/ipfs/');
   }

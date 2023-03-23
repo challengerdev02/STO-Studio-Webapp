@@ -1,11 +1,30 @@
 import {
   MainWrapper,
   Wrapper,
+  SeriesViewWrapper,
+  BannerWrapper,
 } from '@/components/book/create-book/index.styled';
 import Text from 'antd/lib/typography/Text';
 import React, { useState } from 'react';
-import { Button, Empty, Image, List, Space, Tooltip, Typography } from 'antd';
-import { UserName } from '@/components/account/profile/index.styled';
+import {
+  Button,
+  Card,
+  Col,
+  Empty,
+  Image,
+  List,
+  Pagination,
+  Row,
+  Space,
+  Tooltip,
+  Typography,
+} from 'antd';
+import {
+  CoverPhoto,
+  CoverPhotoWrapper,
+  AltCoverPhoto,
+  UserName,
+} from '@/components/account/profile/index.styled';
 import { truncateEthAddress } from '@/shared/utils';
 import {
   CalendarFilled,
@@ -18,12 +37,18 @@ import { ShareProfile } from '@/components/account/profile/share-profile';
 import format from 'date-fns/format';
 import { SeriesNamespace } from '@/shared/namespaces/series';
 import { clamp, get, toLower } from 'lodash';
-import { BookFlippingPreview, MainLoader } from '@/components';
+import {
+  BookFlippingPreview,
+  ImagePlaceholder,
+  MainLoader,
+} from '@/components';
 import { isMobile, isTablet } from 'react-device-detect';
 import Link from 'next/link';
 import { BookNamespace } from '@/shared/namespaces/book';
 import { UserNamespace } from '@/shared/namespaces/user';
 import { enumerateUser } from '@/components/sale/view/columns';
+import NextImage from 'next/image';
+import Meta from 'antd/lib/card/Meta';
 
 interface ViewSeriesProps {
   loading: boolean;
@@ -84,6 +109,225 @@ export const ViewSeries = (props: ViewSeriesProps) => {
       {text}
     </Space>
   );
+  const [isListView, setIsListView] = useState<boolean>(true);
+
+  const toggleView = () => {
+    setIsListView(!isListView);
+  };
+
+  const ListView = () => (
+    <List
+      className={'episode'}
+      itemLayout="vertical"
+      size="large"
+      // header={<Typography.Title level={4}>Episodes</Typography.Title>}
+      pagination={{
+        onChange: (page: any) => {
+          getNextPage(page);
+        },
+        total: episodeData?.meta?.total ?? 0,
+        current: episodeData?.meta?.currentPage ?? 0,
+        pageSize: episodeData?.meta?.perPage ?? 0,
+        size: 'small',
+        simple: true,
+      }}
+      dataSource={episodeData?.episodes ?? []}
+      locale={{
+        emptyText: (
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            description={'No episode published'}
+          />
+        ),
+      }}
+      renderItem={(item, index) => (
+        <List.Item
+          style={{
+            backgroundColor:
+              selectedEpisodeIndex == index ? '#151515' : undefined,
+          }}
+          key={item.assetAddress}
+          actions={[
+            item.asset.issueNumber ? (
+              <IconText
+                icon={NumberOutlined}
+                text={new Intl.NumberFormat('en-US', {
+                  notation: 'compact',
+                  compactDisplay: 'short',
+                }).format(item.asset.issueNumber)}
+                key="list-vertical-message"
+              />
+            ) : null,
+            <IconText
+              icon={CalendarFilled}
+              text={format(
+                new Date(item.createdAt ?? Date.now()),
+                'MMM dd, yyyy'
+              )}
+              key="list-vertical-star-o"
+            />,
+            <IconText
+              icon={HeartOutlined}
+              text={new Intl.NumberFormat('en-US', {
+                notation: 'compact',
+                compactDisplay: 'short',
+              }).format(item.asset.likes)}
+              key="list-vertical-like-o"
+            />,
+            // <IconText
+            //   icon={EyeFilled}
+            //   text={new Intl.NumberFormat('en-US', {
+            //     notation: 'compact',
+            //     compactDisplay: 'short',
+            //   }).format(Math.floor(Math.random() * 3e4))}
+            //   key="list-vertical-message"
+            // />,
+
+            <Button
+              key="list-vertical-read-o"
+              icon={<EyeFilled />}
+              onClick={() => {
+                setSelectedAsset(item.asset);
+                onPreviewBook(true);
+                setSelectedEpisodeIndex(index);
+              }}
+              size={'small'}
+              // type={'text'}
+              shape={'round'}
+            >
+              View NFT
+            </Button>,
+          ]}
+          extra={
+            <Link href={`/assets/${item.asset?._id}`}>
+              <a>
+                <img
+                  style={{ border: '1px solid #2c2c2c' }}
+                  width={150}
+                  alt="logo"
+                  className={'book-cover-image'}
+                  src={item.asset?.thumbnail ?? item.asset?.coverImage}
+                />
+              </a>
+            </Link>
+          }
+        >
+          <List.Item.Meta
+            title={
+              <Link href={`/assets/${item.asset._id}`}>
+                <a>
+                  <span style={{ fontWeight: 'bolder' }}>
+                    {item.asset.title}
+                  </span>
+                </a>
+              </Link>
+            }
+          />
+          <span style={{ color: 'white' }}> {item.asset.description}</span>
+        </List.Item>
+      )}
+    />
+  );
+
+  const GridView = () => {
+    return (
+      <div className="grid-view">
+        <Row gutter={[16, 16]}>
+          {episodeData?.episodes?.map((item, index) => (
+            <Col key={item.assetAddress} xs={24} sm={12} md={8} lg={6}>
+              <Card
+                className={selectedEpisodeIndex === index ? 'selected' : ''}
+                hoverable
+                cover={
+                  <Link href={`/assets/${item.asset?._id}`}>
+                    <a>
+                      <img
+                        alt="cover"
+                        src={item.asset?.thumbnail ?? item.asset?.coverImage}
+                        style={{
+                          width: '100%',
+                          maxHeight: '200px',
+                          objectFit: 'cover',
+                        }}
+                      />
+                    </a>
+                  </Link>
+                }
+              >
+                <Meta
+                  title={
+                    <Link href={`/assets/${item.asset._id}`}>
+                      <a>
+                        <span
+                          style={{ fontWeight: 'bolder', color: '#ffffff' }}
+                        >
+                          {item.asset.title}
+                        </span>
+                      </a>
+                    </Link>
+                  }
+                  description={
+                    <span style={{ color: '#ffffff' }}>
+                      {item.asset.description}
+                    </span>
+                  }
+                />
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    margin: '1rem 0',
+                  }}
+                >
+                  <IconText
+                    icon={CalendarFilled}
+                    text={format(
+                      new Date(item.createdAt ?? Date.now()),
+                      'MMM dd, yyyy'
+                    )}
+                    key="list-vertical-star-o"
+                  />
+                  <IconText
+                    icon={HeartOutlined}
+                    text={new Intl.NumberFormat('en-US', {
+                      notation: 'compact',
+                      compactDisplay: 'short',
+                    }).format(item.asset.likes)}
+                    key="list-vertical-like-o"
+                  />
+                </div>
+                <Button
+                  key="list-vertical-read-o"
+                  icon={<EyeFilled />}
+                  onClick={() => {
+                    setSelectedAsset(item.asset);
+                    onPreviewBook(true);
+                    setSelectedEpisodeIndex(index);
+                  }}
+                  size={'small'}
+                  // type={'text'}
+                  shape={'round'}
+                >
+                  View NFT
+                </Button>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+        <Pagination
+          onChange={(page: any) => {
+            getNextPage(page);
+          }}
+          total={episodeData?.meta?.total ?? 0}
+          current={episodeData?.meta?.currentPage ?? 0}
+          pageSize={episodeData?.meta?.perPage ?? 0}
+          size="small"
+          simple
+          style={{ marginTop: '16px' }}
+        />
+      </div>
+    );
+  };
 
   return (
     <>
@@ -101,7 +345,17 @@ export const ViewSeries = (props: ViewSeriesProps) => {
           </Wrapper>
         )}
         {!loading && (
-          <Wrapper>
+          <BannerWrapper>
+            <NextImage
+              src={seriesDetails?.banner}
+              className="banner-image"
+              layout="fill"
+              alt="banner image"
+            />
+          </BannerWrapper>
+        )}
+        {!loading && (
+          <SeriesViewWrapper style={{ zIndex: 10, position: 'relative' }}>
             <Space
               direction={'vertical'}
               size={50}
@@ -302,129 +556,33 @@ export const ViewSeries = (props: ViewSeriesProps) => {
                   </Space>
                 </Space>
               </Space>
-              <List
-                className={'episode'}
-                itemLayout="vertical"
-                size="large"
-                // header={<Typography.Title level={4}>Episodes</Typography.Title>}
-                pagination={{
-                  onChange: (page: any) => {
-                    getNextPage(page);
-                  },
-                  total: episodeData?.meta?.total ?? 0,
-                  current: episodeData?.meta?.currentPage ?? 0,
-                  pageSize: episodeData?.meta?.perPage ?? 0,
-                  size: 'small',
-                  simple: true,
-                }}
-                dataSource={episodeData?.episodes ?? []}
-                locale={{
-                  emptyText: (
-                    <Empty
-                      image={Empty.PRESENTED_IMAGE_SIMPLE}
-                      description={'No episode published'}
-                    />
-                  ),
-                }}
-                renderItem={(item, index) => (
-                  <List.Item
-                    style={{
-                      backgroundColor:
-                        selectedEpisodeIndex == index ? '#151515' : undefined,
-                    }}
-                    key={item.assetAddress}
-                    actions={[
-                      item.asset.issueNumber ? (
-                        <IconText
-                          icon={NumberOutlined}
-                          text={new Intl.NumberFormat('en-US', {
-                            notation: 'compact',
-                            compactDisplay: 'short',
-                          }).format(item.asset.issueNumber)}
-                          key="list-vertical-message"
-                        />
-                      ) : null,
-                      <IconText
-                        icon={CalendarFilled}
-                        text={format(
-                          new Date(item.createdAt ?? Date.now()),
-                          'MMM dd, yyyy'
-                        )}
-                        key="list-vertical-star-o"
-                      />,
-                      <IconText
-                        icon={HeartOutlined}
-                        text={new Intl.NumberFormat('en-US', {
-                          notation: 'compact',
-                          compactDisplay: 'short',
-                        }).format(item.asset.likes)}
-                        key="list-vertical-like-o"
-                      />,
-                      // <IconText
-                      //   icon={EyeFilled}
-                      //   text={new Intl.NumberFormat('en-US', {
-                      //     notation: 'compact',
-                      //     compactDisplay: 'short',
-                      //   }).format(Math.floor(Math.random() * 3e4))}
-                      //   key="list-vertical-message"
-                      // />,
-
-                      <Button
-                        key="list-vertical-read-o"
-                        icon={<EyeFilled />}
-                        onClick={() => {
-                          setSelectedAsset(item.asset);
-                          onPreviewBook(true);
-                          setSelectedEpisodeIndex(index);
-                        }}
-                        size={'small'}
-                        // type={'text'}
-                        shape={'round'}
-                      >
-                        {get(item, 'type') == 'video'
-                          ? 'Watch Episode'
-                          : 'Read Episode'}
-                      </Button>,
-                    ]}
-                    extra={
-                      <Link href={`/assets/${item.asset?._id}`}>
-                        <a>
-                          <img
-                            style={{ border: '1px solid #2c2c2c' }}
-                            width={150}
-                            alt="logo"
-                            className={'book-cover-image'}
-                            src={
-                              item.asset?.thumbnail ?? item.asset?.coverImage
-                            }
-                          />
-                        </a>
-                      </Link>
-                    }
+              <div>
+                <Space
+                  style={{
+                    marginBottom: '16px',
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                  }}
+                >
+                  <Button
+                    type={isListView ? 'primary' : 'default'}
+                    onClick={toggleView}
                   >
-                    <List.Item.Meta
-                      title={
-                        <Link href={`/assets/${item.asset._id}`}>
-                          <a>
-                            <span style={{ fontWeight: 'bolder' }}>
-                              {item.asset.title}
-                            </span>
-                          </a>
-                        </Link>
-                      }
-                    />
-                    <span style={{ color: 'white' }}>
-                      {' '}
-                      {item.asset.description}
-                    </span>
-                  </List.Item>
-                )}
-              />
+                    List View
+                  </Button>
+                  <Button
+                    type={!isListView ? 'primary' : 'default'}
+                    onClick={toggleView}
+                  >
+                    Grid View
+                  </Button>
+                </Space>
+                {isListView ? <ListView /> : <GridView />}
+              </div>
             </Space>
-          </Wrapper>
+          </SeriesViewWrapper>
         )}
       </MainWrapper>
-
       {selectedAsset && (
         <BookFlippingPreview
           visibility={previewVisibility}

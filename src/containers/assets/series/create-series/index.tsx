@@ -9,6 +9,8 @@ import { CATEGORIES_OPTIONS } from '@/shared/constants';
 import { DraggerProps } from 'antd/es/upload';
 import { BaseWeb3Context } from '../../../../blockchain/base';
 import { SeriesNamespace } from '@/shared/namespaces/series';
+import { ImageType } from '@/shared/utils';
+import { UploadChangeParam } from 'antd/lib/upload/interface';
 
 interface CreateSeriesContainerProps {
   domain?: 'revise' | 'create';
@@ -33,7 +35,10 @@ export const CreateSeriesContainer = (props: CreateSeriesContainerProps) => {
   const { accounts } = useContext(BaseWeb3Context);
   const walletAddress = accounts?.[0];
   const [form] = Form.useForm();
-  const [uploadResponse, setUploadResponse] = useState<Record<string, any>>();
+  const [bannerUploadResponse, setBannerUploadResponse] = useState<
+    string | null
+  >(null);
+  const [uploadResponse, setUploadResponse] = useState<string | null>(null);
   // const referrer = get(router, 'query.referrer');
 
   const actionOptions = {
@@ -61,26 +66,30 @@ export const CreateSeriesContainer = (props: CreateSeriesContainerProps) => {
   const { uiLoaders } = useUIState();
   const loading = uiLoaders[UI_KEY];
 
-  const onUploadChange = (info: any) => {
-    if (info.file.status !== 'uploading') {
-      // notification.info({
-      //   message: 'Upload in-progress',
-      //   description: info.file.name,
-      //   placement: 'bottomLeft',
-      //   key: 'upload',
-      // });
-      if (info.file.response && info.file.response.data) {
-        setUploadResponse(info.file);
-      }
-    }
-    if (info.file.status === 'done') {
+  //   upload related functions
+  const onUploadChange = (
+    info: UploadChangeParam<UploadFile<any>>,
+    imageType: ImageType
+  ) => {
+    const { status, response } = info.file;
+
+    if (status === 'done') {
       notification.success({
         message: 'Upload success',
         description: info.file.name,
         placement: 'bottomLeft',
         key: 'upload',
       });
-    } else if (info.file.status === 'error') {
+      if (response && response.data && response.data.file) {
+        if (imageType === ImageType.BannerImage) {
+          setBannerUploadResponse(response.data.file.url);
+          console.log('Banner Image uploaded');
+        } else if (imageType === ImageType.CoverImage) {
+          setUploadResponse(response.data.file.url);
+          console.log('Cover Image uploaded');
+        }
+      }
+    } else if (status === 'error') {
       notification.error({
         message: `${info.file.name} file upload failed.`,
         description: info.file.response?.message,
@@ -91,7 +100,7 @@ export const CreateSeriesContainer = (props: CreateSeriesContainerProps) => {
   };
 
   const onGENRE_OPTIONSChange = (options: string[]) => {
-    form.setFieldsValue({ genres: options.splice(0, 2) });
+    form.setFieldsValue({ categories: options.splice(0, 2) });
   };
 
   const onGetSeries = () => {
@@ -113,7 +122,7 @@ export const CreateSeriesContainer = (props: CreateSeriesContainerProps) => {
         { name: 'image', value: get(series, 'image') },
         { name: 'description', value: get(series, 'description') },
         { name: 'title', value: get(series, 'title') },
-        { name: 'genres', value: get(series, 'genres') },
+        { name: 'categories', value: get(series, 'categories') },
       ];
       form.setFields(values);
 
@@ -126,16 +135,16 @@ export const CreateSeriesContainer = (props: CreateSeriesContainerProps) => {
           meta: {},
         },
       };
-      setUploadResponse(upload);
     }
   };
 
   const onSubmit = (values: Record<string, any>) => {
-    const coverImage = get(uploadResponse, 'response.data.file.url');
+    const coverImage = uploadResponse;
+    const bannerImage = bannerUploadResponse;
     const payload = {
       ...values,
       image: coverImage,
-      walletAddress: walletAddress,
+      banner: bannerImage,
     };
     if (!coverImage) {
       notification.error({
@@ -148,9 +157,9 @@ export const CreateSeriesContainer = (props: CreateSeriesContainerProps) => {
     if (domain === 'revise' && seriesID) {
       handleUpdate(payload, seriesID, {
         onFinish: () => {
-          // form.resetFields();
+          form.resetFields();
           onCreateComplete();
-          // setUploadResponse({});
+          setUploadResponse(null);
           // if (referrer) {
           //   router.push(`${referrer}?REFERRED_TYPE=1&DATA_ID${data['_id']}`);
           //   return;
@@ -164,7 +173,7 @@ export const CreateSeriesContainer = (props: CreateSeriesContainerProps) => {
       onFinish: () => {
         form.resetFields();
         onCreateComplete();
-        setUploadResponse({});
+        setUploadResponse(null);
         // if (referrer) {
         //   router.push(`${referrer}?REFERRED_TYPE=1`);
         //   return;
@@ -174,22 +183,11 @@ export const CreateSeriesContainer = (props: CreateSeriesContainerProps) => {
     });
   };
 
-  const draggerProps: DraggerProps = {
+  const baseDraggerProps: DraggerProps = {
     name: 'file',
     listType: 'picture' as any,
     multiple: false,
     action: `${process.env.NEXT_PUBLIC_API_URL}/media`,
-    onChange: onUploadChange,
-    beforeUpload: async (file: any) => {
-      const isInDimensions = await onCheckImageDimension(
-        file,
-        [2500, 2500],
-        [500, 500]
-      );
-      // const isInDimensions = true;
-      const isImageAndMatchSize = onBeforeImageUpload(file, 50000000);
-      return isImageAndMatchSize && isInDimensions;
-    },
     maxCount: 1,
     accept: [
       'image/gif',
@@ -225,6 +223,30 @@ export const CreateSeriesContainer = (props: CreateSeriesContainerProps) => {
       );
     },
   };
+  const beforeUploadByImageType =
+    (imageType: ImageType) => async (file: any) => {
+      const dimensions: [number, number] =
+        imageType === ImageType.BannerImage ? [1800, 300] : [500, 500];
+      const isInDimensions = await onCheckImageDimension(file, dimensions);
+      const isImageAndMatchSize = onBeforeImageUpload(file, 50000000);
+      return isImageAndMatchSize && isInDimensions;
+    };
+
+  const bannerDraggerProps: DraggerProps = {
+    ...baseDraggerProps,
+    beforeUpload: beforeUploadByImageType(ImageType.BannerImage),
+    onChange: (info: UploadChangeParam<UploadFile<any>>) => {
+      onUploadChange(info, ImageType.BannerImage);
+    },
+  };
+
+  const coverDraggerProps: DraggerProps = {
+    ...baseDraggerProps,
+    beforeUpload: beforeUploadByImageType(ImageType.CoverImage),
+    onChange: (info: UploadChangeParam<UploadFile<any>>) => {
+      onUploadChange(info, ImageType.CoverImage);
+    },
+  };
 
   useEffect(() => {
     onGetSeries();
@@ -245,8 +267,10 @@ export const CreateSeriesContainer = (props: CreateSeriesContainerProps) => {
       title={pageTitle}
       form={form}
       onSubmit={onSubmit}
-      draggerProps={draggerProps}
+      bannerDraggerProps={bannerDraggerProps}
+      coverDraggerProps={coverDraggerProps}
       uploadedFile={uploadResponse}
+      uploadedBannerFile={bannerUploadResponse}
       onGENRE_OPTIONSChange={onGENRE_OPTIONSChange}
       categories={CATEGORIES_OPTIONS}
       visibility={visibility}

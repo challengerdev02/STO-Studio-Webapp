@@ -35,6 +35,7 @@ namespace SeriesNamespace {
   }
 
   export interface SeriesData extends Series {
+    banner: string | undefined;
     episodeData: EpisodeData;
   }
 }

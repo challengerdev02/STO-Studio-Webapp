@@ -11,7 +11,7 @@ import { UserNamespace } from '@/shared/namespaces/user';
 import Web3 from 'web3';
 import { add } from 'date-fns';
 import { notification } from 'antd';
-import { debugLog, parseUrl } from '@/shared/utils';
+import { debugLog, parseIpfsUrl } from '@/shared/utils';
 import { nanoid } from 'nanoid';
 import { GetFee } from '@/components/account/fee';
 import { APP_URL, STATE_KEYS } from '@/shared/constants';
@@ -194,7 +194,7 @@ export const TokenAssetContainer = () => {
       //prettier-ignore
       console.log('URRRRRRL', url)
 
-      getExternalResource(parseUrl(url), {
+      getExternalResource(parseIpfsUrl(url), {
         uiKey: getTokenMetadataUIKey,
         headers: new Headers(),
       });
@@ -412,7 +412,7 @@ export const TokenAssetContainer = () => {
       get(resource, [TokenAssetContainerKey, 'name'], null) ??
       get(resource, [TokenAssetContainerKey, 'title'], ''),
     infoLink: get(resource, [TokenAssetContainerKey, 'infoLink'], ''),
-    coverImage: parseUrl(
+    coverImage: parseIpfsUrl(
       get(resource, [TokenAssetContainerKey, 'page.0'], undefined) ??
         get(resource, [TokenAssetContainerKey, 'image'], '')
     ),
