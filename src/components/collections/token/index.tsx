@@ -26,7 +26,7 @@ import {
 import { TokenSaleCard } from '@/components/collections/token/token-card';
 import { SaleNamespace } from '@/shared/namespaces/sale';
 import { isMobile } from 'react-device-detect';
-import { parseUrl } from '@/shared/utils';
+import { parseIpfsUrl } from '@/shared/utils';
 
 const { Panel } = Collapse;
 const { Title } = Typography;
@@ -82,7 +82,7 @@ export const TokenAsset = (props: TokenAssetProps) => {
 
   const user = enumerateUser(assetUser);
   const creator = enumerateUser(creatorUser);
-  const assetImage = parseUrl(asset.thumbnail ?? asset.coverImage);
+  const assetImage = parseIpfsUrl(asset.thumbnail ?? asset.coverImage);
   return (
     <>
       <OutterContainer>

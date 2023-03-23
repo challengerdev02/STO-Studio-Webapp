@@ -10,7 +10,9 @@ const secp256k1 = ecurve.getCurveByName('secp256k1');
 import schnorr from 'bip-schnorr';
 import { bech32 } from 'bech32';
 import { bech32m } from 'bech32';
-import * as ecc from 'tiny-secp256k1';
+import { ecc } from '@/shared/utils/secp';
+//import * as ecc from 'tiny-secp256k1';
+// const ecc: any = {isPoint: ()=>false};
 const bip32 = BIP32Factory(ecc);
 
 export default class Bip86 {
