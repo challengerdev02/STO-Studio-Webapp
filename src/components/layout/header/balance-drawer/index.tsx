@@ -7,8 +7,11 @@ import {
   DrawerProps,
   Select,
   Skeleton,
+  Input,
   Space,
   Typography,
+  Form,
+  Modal,
 } from 'antd';
 import { StyledCard, StyledDrawer } from './index.styled';
 import { truncateEthAddress } from '@/shared/utils';
@@ -19,15 +22,19 @@ import {
   SettingFilled,
 } from '@ant-design/icons';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { isDesktop } from 'react-device-detect';
+import { motion, AnimatePresence } from 'framer-motion';
+import { isDesktop, isMobile } from 'react-device-detect';
 import { GradientAvatar } from '@/shared/gradient-avatar';
 import { useEffect, useState } from 'react';
 import { get, omit, toUpper } from 'lodash';
 import { APP_TOKENS, toEther } from '../../../../blockchain/evm/utils';
 import { ActionOption } from '../../../../redux/types';
 import QRCode from 'react-qr-code';
+import { createApiRequest } from '@/shared/utils/api';
+import * as bitcoin from 'bitcoinjs-lib';
+import { bip32, ECPair } from '@/shared/utils/secp';
 
+const { Psbt } = bitcoin;
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;
 interface BalanceDrawerProps extends DrawerProps {
@@ -67,12 +74,16 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   const [currentToken, setCurrentToken] = useState<string>(
     process.env.NEXT_PUBLIC_HCOMI_TOKEN_SYMBOL as string
   );
-  const [isDeposit, setIsDeposit] = useState(false);
-
-  const addFund = () => {
-    if (currentToken == 'hCOMI') return;
-    onAddFundVisibilityChange(true);
-    setIsDeposit(true);
+  const [isHandle, setIsHandle] = useState('none');
+  const [selectedFee, setSelectedFee] = useState<string>('medium');
+  // const [feeData, setFeeData] = useState<Record<string, any>>();
+  const [amount, setAmount] = useState<string>();
+  const [address, setAddress] = useState<string>();
+  const [form] = Form.useForm();
+  const handle = (val: string) => {
+    setIsHandle(val);
+    if (currentToken == 'BTC') return;
+    // onAddFundVisibilityChange(true);
   };
 
   const links = [
@@ -102,6 +113,13 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     },
   ];
 
+  const feeDescriptions = [
+    'Hours to Days',
+    'An hour or more',
+    'Less than an hour',
+    'Based on amount',
+  ];
+
   const getFundMetadata = (currentToken: string) => {
     if (currentToken === process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL) {
       getBalance();
@@ -117,11 +135,11 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     });
   };
 
-  const defaultToken = {
-    key: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
-    label: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
-    value: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
-  };
+  // const defaultToken = {
+  //   key: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
+  //   label: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
+  //   value: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
+  // };
 
   const tokenList = [
     ...Object.keys(APP_TOKENS).map((token) => ({
@@ -158,6 +176,161 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
       balanceObject[get(APP_TOKENS, [currentToken, 'address'])] ?? '0'
     );
   };
+
+  const sendProcess = () => {
+    if (isHandle === 'none') {
+      return;
+    }
+    if (isHandle === 'withdraw') {
+      createApiRequest({
+        method: 'post',
+        url: `/assets/send-btc`,
+        data: {
+          address: user?.btcAccounts?.[0]?.address,
+          amount,
+          feeRate: '15',
+        },
+      }).then((response) => {
+        console.log(response, 'response');
+        constructPsbt(response.data);
+      });
+    } else if (isHandle === 'ordinal') {
+      createApiRequest({
+        method: 'post',
+        url: `/assets/send-btc`,
+        data: {
+          address: user?.btcAccounts?.[0]?.address,
+          ordinalId: amount,
+          feeRate: '15',
+        },
+      }).then((response) => {
+        console.log(response, 'response');
+        constructPsbt(response.data);
+      });
+    }
+  };
+
+  const constructPsbt = async (unspent: any) => {
+    const psbt = new Psbt();
+    psbt.setVersion(1);
+    psbt.setLocktime(0);
+    const tweakedChildNodes = [];
+    var childNode;
+    const keyPair = ECPair.fromWIF('private_key...');
+    if (keyPair.privateKey) {
+      const chainCode = bip32.fromSeed(keyPair.privateKey).chainCode;
+      const node = bip32.fromPrivateKey(keyPair.privateKey, chainCode);
+      console.log('BIP32 extended private key:', node.toBase58());
+
+      for (var i = 0; i < unspent.length; i++) {
+        if (user?.btcAccounts?.[0]?.address === unspent[i].address) {
+          const path = `m${unspent[i].desc.slice(
+            12,
+            unspent[i].desc.search(']')
+          )}`;
+          childNode = node.derivePath(path);
+          if (childNode.privateKey) {
+            tweakedChildNodes.push(unspent[i].vout);
+
+            if (isHandle === 'withdraw') {
+              psbt.addInput({
+                index: unspent[i].vout,
+                hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
+                witnessUtxo: {
+                  script: Buffer.from(unspent[i].scriptPubKey, 'hex'),
+                  value: Number((unspent[i].amount * 100000000).toFixed(0)),
+                },
+              });
+            } else if (isHandle === 'ordinal') {
+              const sequenceBuffer = Buffer.alloc(4 * 2);
+              sequenceBuffer.writeUInt32LE(Number(amount) & 0xffffffff, 0);
+              sequenceBuffer.writeUInt32LE(Number(amount) >>> 32, 4);
+              const sequence = sequenceBuffer.readUInt32LE(0);
+
+              psbt.addInput({
+                index: unspent[i].vout,
+                hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
+                witnessUtxo: {
+                  script: Buffer.from(unspent[i].scriptPubKey, 'hex'),
+                  value: Number((unspent[i].amount * 100000000).toFixed(0)),
+                },
+                sequence: sequence,
+              });
+            }
+          }
+        }
+      }
+
+      if (isHandle === 'withdraw') {
+        psbt.addOutput({
+          address: String(address),
+          value: Number((Number(amount) * 100000000).toFixed(0)),
+        });
+      } else if (isHandle === 'ordinal') {
+        psbt.addOutput({
+          address: String(address),
+          value: 0,
+        });
+      }
+
+      for (const tweakedChildNode of tweakedChildNodes) {
+        psbt.signInput(tweakedChildNode, keyPair);
+      }
+
+      psbt.finalizeAllInputs();
+
+      const signed = psbt.extractTransaction(true);
+      createApiRequest({
+        method: 'post',
+        url: `/assets/broadcast-raw`,
+        data: {
+          rawTx: signed.toHex(),
+        },
+      }).then((response) => {
+        console.log(response, 'response');
+      });
+    }
+  };
+
+  const header = (
+    <div className="w-100 meta-flex meta-flex-center meta-flex-s-b">
+      <Space size={10} align={'center'}>
+        <Typography.Title level={3} style={{ margin: 0 }}>
+          {isHandle === 'withdraw' && 'Withdraw BTC'}
+          {isHandle === 'ordinal' && 'Send Ordinals'}
+        </Typography.Title>
+      </Space>
+      {isMobile && (
+        <Space
+          align={'center'}
+          size={15}
+          className="button-list-mobile mobile-list-desktop"
+        >
+          <motion.div whileTap={{ scale: 0.95 }}>
+            <Button
+              className="toggle-menu"
+              type="default"
+              shape={'circle'}
+              size={'small'}
+              onClick={() => onVisibilityChange(false)}
+              icon={<i className="mc-close-line" />}
+            />
+          </motion.div>
+        </Space>
+      )}
+    </div>
+  );
+
+  const footer = (
+    <Space className={'w-100 meta-flex-s-b'} align={'center'}>
+      <Space size={10}>
+        <Typography.Text></Typography.Text>
+      </Space>
+      <Button shape={'round'} type={'primary'} onClick={() => sendProcess()}>
+        SEND
+      </Button>
+    </Space>
+  );
 
   return (
     <StyledDrawer
@@ -275,13 +448,13 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
           type={'primary'}
           block
           shape={'round'}
-          onClick={() => addFund()}
+          onClick={() => handle('deposit')}
           style={{ marginBottom: 10 }}
         >
           ADD {currentToken}
         </Button>
 
-        {isDeposit && (
+        {isHandle === 'deposit' && (
           <motion.div
             initial={{ scale: 0.08 }}
             animate={{ scale: 1 }}
@@ -306,22 +479,138 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
         )}
 
         <Button
-          disabled={true}
           type={'primary'}
           block
           shape={'round'}
-          onClick={() => onAddFundVisibilityChange(true)}
+          onClick={() => handle('withdraw')}
           style={{ marginBottom: 10 }}
         >
           WITHDRAW {currentToken}
         </Button>
 
+        {(isHandle === 'withdraw' || isHandle === 'ordinal') && (
+          <Modal
+            title={header}
+            visible={visibility}
+            onCancel={() => handle('none')}
+            destroyOnClose
+            centered={isMobile}
+            width={'50vw'}
+            footer={footer}
+          >
+            <AnimatePresence>
+              <motion.div
+                initial={{ scale: 0.08 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.8 }}
+              >
+                <Form
+                  form={form}
+                  // onFinish={() => getCommitTx()}
+                  layout={'horizontal'}
+                  scrollToFirstError
+                  initialValues={{ amount: undefined }}
+                  requiredMark={false}
+                >
+                  <Row style={{ marginTop: 10 }} justify="space-between">
+                    <Col span={6}>
+                      <Row justify="end" align="middle">
+                        <Typography.Text
+                          style={{ fontSize: 16, textAlign: 'right' }}
+                        >
+                          {isHandle === 'withdraw' && 'Amount'}
+                          {isHandle === 'ordinal' && 'Ordinal Id'}:
+                        </Typography.Text>
+                      </Row>
+                    </Col>
+                    <Col span={17}>
+                      <Form.Item name="amount" initialValue={amount}>
+                        <Input onChange={(e) => setAmount(e.target.value)} />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row justify="space-between">
+                    <Col span={6}>
+                      <Row justify="end">
+                        <Typography.Text style={{ fontSize: 16 }}>
+                          Receiving Address:
+                        </Typography.Text>
+                      </Row>
+                    </Col>
+                    <Col span={17}>
+                      <Form.Item name="address" initialValue={address}>
+                        <Input onChange={(v) => setAddress(v.target.value)} />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row justify="space-between" align="middle">
+                    <Col span={6}>
+                      <Row justify="end">
+                        <Typography.Text style={{ fontSize: 16 }}>
+                          Fee Rates:
+                        </Typography.Text>
+                      </Row>
+                    </Col>
+                    <Col span={17}>
+                      <Row
+                        style={{ textAlign: 'center' }}
+                        justify="space-between"
+                      >
+                        {['slow', 'medium', 'fast'].map(
+                          (speed: string, index) => (
+                            <Col lg={{ span: 7.5 }} key={`speed${speed}`}>
+                              <Space
+                                onClick={() => setSelectedFee(speed)}
+                                size={1}
+                                style={{
+                                  border: '2px solid',
+                                  borderColor:
+                                    selectedFee == speed
+                                      ? 'rgba(55, 73, 233, 1)'
+                                      : '#eeeeeedf',
+                                  width: '100%',
+                                  cursor: 'pointer',
+                                  padding: 8,
+                                  borderRadius: '15%',
+                                }}
+                                direction="vertical"
+                              >
+                                <Typography.Title
+                                  style={{ color: 'grey' }}
+                                  level={5}
+                                >
+                                  <strong>{speed}</strong>
+                                </Typography.Title>
+                                <Typography.Title level={3}>
+                                  $2.46
+                                </Typography.Title>
+                                <Typography.Text>
+                                  <span style={{ fontSize: 10 }}>
+                                    Service fee included
+                                  </span>
+                                </Typography.Text>
+
+                                <Typography.Text>
+                                  {feeDescriptions[index]}
+                                </Typography.Text>
+                              </Space>
+                            </Col>
+                          )
+                        )}
+                      </Row>
+                    </Col>
+                  </Row>
+                </Form>
+              </motion.div>
+            </AnimatePresence>
+          </Modal>
+        )}
+
         <Button
-          disabled={true}
           type={'primary'}
           block
           shape={'round'}
-          onClick={() => onAddFundVisibilityChange(true)}
+          onClick={() => handle('ordinal')}
         >
           SEND ORDINALS
         </Button>
