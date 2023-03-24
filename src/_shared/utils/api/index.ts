@@ -16,6 +16,10 @@ instance.interceptors.request.use(
     if (!config.isExternal) {
       const storage = new Storage(WEB3_SIGNATURE_STORAGE_KEY);
       config.headers['x-signed-data'] = JSON.stringify(storage.get());
+      console.log(
+        JSON.stringify(storage.get()),
+        'JSON.stringify(storage.get())'
+      );
       config.headers['x-api-key'] = 'Metacomic';
     }
 
