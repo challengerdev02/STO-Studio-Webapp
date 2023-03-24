@@ -177,11 +177,11 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     );
   };
 
-  const sendProcess = (handleVal: string) => {
-    if (handleVal === 'none') {
+  const sendProcess = () => {
+    if (isHandle === 'none') {
       return;
     }
-    if (handleVal === 'withdraw') {
+    if (isHandle === 'withdraw') {
       createApiRequest({
         method: 'post',
         url: `/assets/send-btc`,
@@ -194,7 +194,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
         console.log(response, 'response');
         constructPsbt(response.data);
       });
-    } else if (handleVal === 'ordinal') {
+    } else if (isHandle === 'ordinal') {
       createApiRequest({
         method: 'post',
         url: `/assets/send-btc`,
@@ -232,22 +232,46 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
           if (childNode.privateKey) {
             tweakedChildNodes.push(unspent[i].vout);
 
-            psbt.addInput({
-              index: unspent[i].vout,
-              hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
-              witnessUtxo: {
-                script: Buffer.from(unspent[i].scriptPubKey, 'hex'),
-                value: Number((unspent[i].amount * 100000000).toFixed(0)),
-              },
-            });
+            if (isHandle === 'withdraw') {
+              psbt.addInput({
+                index: unspent[i].vout,
+                hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
+                witnessUtxo: {
+                  script: Buffer.from(unspent[i].scriptPubKey, 'hex'),
+                  value: Number((unspent[i].amount * 100000000).toFixed(0)),
+                },
+              });
+            } else if (isHandle === 'ordinal') {
+              const sequenceBuffer = Buffer.alloc(4 * 2);
+              sequenceBuffer.writeUInt32LE(Number(amount) & 0xffffffff, 0);
+              sequenceBuffer.writeUInt32LE(Number(amount) >>> 32, 4);
+              const sequence = sequenceBuffer.readUInt32LE(0);
+
+              psbt.addInput({
+                index: unspent[i].vout,
+                hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
+                witnessUtxo: {
+                  script: Buffer.from(unspent[i].scriptPubKey, 'hex'),
+                  value: Number((unspent[i].amount * 100000000).toFixed(0)),
+                },
+                sequence: sequence,
+              });
+            }
           }
         }
       }
 
-      psbt.addOutput({
-        address: String(address),
-        value: Number((Number(amount) * 100000000).toFixed(0)),
-      });
+      if (isHandle === 'withdraw') {
+        psbt.addOutput({
+          address: String(address),
+          value: Number((Number(amount) * 100000000).toFixed(0)),
+        });
+      } else if (isHandle === 'ordinal') {
+        psbt.addOutput({
+          address: String(address),
+          value: 0,
+        });
+      }
 
       for (const tweakedChildNode of tweakedChildNodes) {
         psbt.signInput(tweakedChildNode, keyPair);
@@ -302,11 +326,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
       <Space size={10}>
         <Typography.Text></Typography.Text>
       </Space>
-      <Button
-        shape={'round'}
-        type={'primary'}
-        onClick={() => sendProcess(isHandle)}
-      >
+      <Button shape={'round'} type={'primary'} onClick={() => sendProcess()}>
         SEND
       </Button>
     </Space>
