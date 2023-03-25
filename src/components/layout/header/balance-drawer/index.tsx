@@ -25,16 +25,17 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { isDesktop, isMobile } from 'react-device-detect';
 import { GradientAvatar } from '@/shared/gradient-avatar';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { get, omit, toUpper } from 'lodash';
 import { APP_TOKENS, toEther } from '../../../../blockchain/evm/utils';
 import { ActionOption } from '../../../../redux/types';
 import QRCode from 'react-qr-code';
 import { createApiRequest } from '@/shared/utils/api';
 import * as bitcoin from 'bitcoinjs-lib';
-import { bip32, ECPair } from '@/shared/utils/secp';
+import { bip32 } from '@/shared/utils/secp';
+import { BaseWeb3Context } from 'src/blockchain/base';
 
-const { Psbt } = bitcoin;
+const { Psbt, payments } = bitcoin;
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;
 interface BalanceDrawerProps extends DrawerProps {
@@ -80,6 +81,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   const [amount, setAmount] = useState<string>();
   const [address, setAddress] = useState<string>();
   const [form] = Form.useForm();
+  const { unlockOrdinalWallet } = useContext(BaseWeb3Context);
   const handle = (val: string) => {
     setIsHandle(val);
     if (currentToken == 'BTC') return;
@@ -178,6 +180,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   };
 
   const sendProcess = () => {
+    console.log(user);
     if (isHandle === 'none') {
       return;
     }
@@ -211,85 +214,129 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   };
 
   const constructPsbt = async (unspent: any) => {
+    const seed = await unlockOrdinalWallet(String(walletAddress));
+    const node = bip32.fromSeed(seed, bitcoin.networks.bitcoin);
     const psbt = new Psbt();
-    psbt.setVersion(1);
+    psbt.setVersion(2);
     psbt.setLocktime(0);
     const tweakedChildNodes = [];
-    var childNode;
-    const keyPair = ECPair.fromWIF('private_key...');
-    if (keyPair.privateKey) {
-      const chainCode = bip32.fromSeed(keyPair.privateKey).chainCode;
-      const node = bip32.fromPrivateKey(keyPair.privateKey, chainCode);
-      console.log('BIP32 extended private key:', node.toBase58());
+    const inputIndex = 0;
 
-      for (var i = 0; i < unspent.length; i++) {
-        if (user?.btcAccounts?.[0]?.address === unspent[i].address) {
-          const path = `m${unspent[i].desc.slice(
-            12,
-            unspent[i].desc.search(']')
-          )}`;
-          childNode = node.derivePath(path);
-          if (childNode.privateKey) {
-            tweakedChildNodes.push(unspent[i].vout);
+    for (var i = 0; i < unspent.length; i++) {
+      var child: any, childNodeXOnlyPubkey, tweakedChildNode, p2pktr, path;
+      let receivingAddressFound = false;
 
-            if (isHandle === 'withdraw') {
-              psbt.addInput({
-                index: unspent[i].vout,
-                hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
-                witnessUtxo: {
-                  script: Buffer.from(unspent[i].scriptPubKey, 'hex'),
-                  value: Number((unspent[i].amount * 100000000).toFixed(0)),
-                },
-              });
-            } else if (isHandle === 'ordinal') {
-              const sequenceBuffer = Buffer.alloc(4 * 2);
-              sequenceBuffer.writeUInt32LE(Number(amount) & 0xffffffff, 0);
-              sequenceBuffer.writeUInt32LE(Number(amount) >>> 32, 4);
-              const sequence = sequenceBuffer.readUInt32LE(0);
-
-              psbt.addInput({
-                index: unspent[i].vout,
-                hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
-                witnessUtxo: {
-                  script: Buffer.from(unspent[i].scriptPubKey, 'hex'),
-                  value: Number((unspent[i].amount * 100000000).toFixed(0)),
-                },
-                sequence: sequence,
-              });
-            }
-          }
+      for (let j = 0; j < 800; j++) {
+        path = `m/86'/0'/0'/0/${j}`;
+        child = node.derivePath(path);
+        childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
+        p2pktr = payments.p2tr({
+          internalPubkey: childNodeXOnlyPubkey,
+          network: bitcoin.networks.bitcoin,
+        });
+        if (
+          p2pktr?.output!.toString('hex') ==
+          unspent[i].scriptPubKey.toString('hex')
+        ) {
+          receivingAddressFound = true;
+          console.log('Found Receiving address at index', j);
+          break;
         }
       }
 
+      if (!receivingAddressFound) {
+        // search the change addreesses
+        for (let j = 0; j < 800; j++) {
+          path = `m/86'/0'/0'/1/${j}`;
+          child = node.derivePath(path);
+          childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
+          p2pktr = payments.p2tr({
+            internalPubkey: childNodeXOnlyPubkey,
+            network: bitcoin.networks.bitcoin,
+          });
+          if (
+            p2pktr?.output!.toString('hex') ==
+            unspent[i].scriptPubKey.toString('hex')
+          ) {
+            receivingAddressFound = true;
+            console.log('Found Receiving address at index', j);
+            break;
+          }
+        }
+        if (!receivingAddressFound) {
+          throw 'Unable to find unspent output address for input ' + inputIndex;
+        }
+      }
+
+      // const path = `m${unspent[i].desc.slice(
+      //   12,
+      //   unspent[i].desc.search(']')
+      // )}`;
+      tweakedChildNode = child.tweak(
+        bitcoin.crypto.taggedHash('TapTweak', childNodeXOnlyPubkey)
+      );
+      tweakedChildNodes.push(tweakedChildNode);
+
+      console.log(p2pktr?.output!);
+
       if (isHandle === 'withdraw') {
-        psbt.addOutput({
-          address: String(address),
-          value: Number((Number(amount) * 100000000).toFixed(0)),
+        psbt.addInput({
+          index: unspent[i].vout,
+          hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
+          witnessUtxo: {
+            script: p2pktr?.output!,
+            value: Number((unspent[i].amount * 100000000).toFixed(0)),
+          },
+          tapInternalKey: childNodeXOnlyPubkey,
         });
       } else if (isHandle === 'ordinal') {
-        psbt.addOutput({
-          address: String(address),
-          value: 0,
+        const sequenceBuffer = Buffer.alloc(4 * 2);
+        sequenceBuffer.writeUInt32LE(Number(amount) & 0xffffffff, 0);
+        sequenceBuffer.writeUInt32LE(Number(amount) >>> 32, 4);
+        const sequence = sequenceBuffer.readUInt32LE(0);
+
+        psbt.addInput({
+          index: unspent[i].vout,
+          hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
+          witnessUtxo: {
+            script: p2pktr?.output!,
+            value: Number((unspent[i].amount * 100000000).toFixed(0)),
+          },
+          sequence: sequence,
+          tapInternalKey: childNodeXOnlyPubkey,
         });
       }
+    }
 
-      for (const tweakedChildNode of tweakedChildNodes) {
-        psbt.signInput(tweakedChildNode, keyPair);
-      }
-
-      psbt.finalizeAllInputs();
-
-      const signed = psbt.extractTransaction(true);
-      createApiRequest({
-        method: 'post',
-        url: `/assets/broadcast-raw`,
-        data: {
-          rawTx: signed.toHex(),
-        },
-      }).then((response) => {
-        console.log(response, 'response');
+    if (isHandle === 'withdraw') {
+      psbt.addOutput({
+        address: String(address),
+        value: Number((Number(amount) * 100000000).toFixed(0)),
+      });
+    } else if (isHandle === 'ordinal') {
+      psbt.addOutput({
+        address: String(address),
+        value: 0,
       });
     }
+
+    for (const tweakedChildNode of tweakedChildNodes) {
+      psbt.signTaprootInput(0, tweakedChildNode);
+    }
+
+    psbt.finalizeAllInputs();
+
+    const signed = psbt.extractTransaction(true).toHex();
+    console.log(signed);
+    createApiRequest({
+      method: 'post',
+      url: `/assets/broadcast-raw`,
+      data: {
+        rawTx: signed,
+      },
+    }).then((response) => {
+      console.log(response, 'response');
+    });
   };
 
   const header = (
