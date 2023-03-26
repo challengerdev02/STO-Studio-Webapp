@@ -34,6 +34,7 @@ import { createApiRequest } from '@/shared/utils/api';
 import * as bitcoin from 'bitcoinjs-lib';
 import { bip32 } from '@/shared/utils/secp';
 import { BaseWeb3Context } from 'src/blockchain/base';
+import axios from 'axios';
 
 const { Psbt, payments } = bitcoin;
 const { Title, Paragraph } = Typography;
@@ -73,13 +74,14 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   } = props;
 
   const [currentToken, setCurrentToken] = useState<string>(
-    process.env.NEXT_PUBLIC_HCOMI_TOKEN_SYMBOL as string
+    process.env.NEXT_PUBLIC_BTC_TOKEN_SYMBOL as string
   );
   const [isHandle, setIsHandle] = useState('none');
   const [selectedFee, setSelectedFee] = useState<string>('medium');
   // const [feeData, setFeeData] = useState<Record<string, any>>();
   const [amount, setAmount] = useState<string>();
   const [address, setAddress] = useState<string>();
+  const [balance, setBalance] = useState<number>(0);
   const [form] = Form.useForm();
   const { unlockOrdinalWallet } = useContext(BaseWeb3Context);
   const handle = (val: string) => {
@@ -155,6 +157,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   useEffect(() => {
     console.log('USERRRR', user);
     if (user) onGetFundMeta();
+    tokenBalance();
   }, [visibility, currentToken]);
 
   const onGetFundMeta = () => {
@@ -163,20 +166,32 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
         onGetHCOMIBalance();
         return;
       }
+      console.log(currentToken);
       getFundMetadata(currentToken);
     }
   };
 
-  const tokenBalance = () => {
+  const tokenBalance = async () => {
+    var balanceData = '0';
     if (currentToken === process.env.NEXT_PUBLIC_HCOMI_TOKEN_SYMBOL) {
-      return toEther(hComiBalance['balance'] ?? '0');
+      balanceData = toEther(hComiBalance['balance'] ?? '0');
+    } else if (currentToken === process.env.NEXT_PUBLIC_BTC_TOKEN_SYMBOL) {
+      const dt = await axios.get(
+        `https://blockstream.info/api/address/${user?.btcAccounts?.[0]?.address}`
+      );
+      const chainStats = dt.data.chain_stats;
+      balanceData = String(
+        (chainStats.funded_txo_sum - chainStats.spent_txo_sum) / 100000000
+      );
+      console.log(dt, 'balance');
+    } else if (currentToken === process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL) {
+      balanceData = toEther(balanceObject['default'] ?? '0');
+    } else {
+      balanceData = toEther(
+        balanceObject[get(APP_TOKENS, [currentToken, 'address'])] ?? '0'
+      );
     }
-    if (currentToken === process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL) {
-      return toEther(balanceObject['default'] ?? '0');
-    }
-    return toEther(
-      balanceObject[get(APP_TOKENS, [currentToken, 'address'])] ?? '0'
-    );
+    setBalance(parseFloat(balanceData));
   };
 
   const sendProcess = () => {
@@ -471,7 +486,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
                       animate={{ opacity: 1 }}
                       layout
                     >
-                      {tokenBalance()}
+                      {balance}
                     </motion.span>
                     <Select
                       value={toUpper(currentToken)}
