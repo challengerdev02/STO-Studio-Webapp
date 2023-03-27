@@ -10,13 +10,13 @@ interface UseApiRequest {
   makeApiRequestAsync: (
     url: String,
     method: ApiMethod,
-    payload: Record<string, any>,
+    payload?: Record<string, any>,
     options?: ActionOption
   ) => void;
   makeApiRequest: (
     url: String,
     method: ApiMethod,
-    payload: Record<string, any>,
+    payload?: Record<string, any>,
     options?: ActionOption
   ) => void;
 }
@@ -41,7 +41,7 @@ export const useApiRequest = (parameter: UseApiRequestProps): UseApiRequest => {
   const makeApiRequest = (
     url: String,
     method: ApiMethod = 'get',
-    payload?: Record<string, any>,
+    payload?: Record<string, any> | undefined,
     options?: ActionOption
   ) => {
     dispatch(

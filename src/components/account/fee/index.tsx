@@ -18,14 +18,14 @@ import { BaseWeb3Context } from 'src/blockchain/base';
 import {
   getChangeAddresses,
   getOrdinalAddress,
-  getOrdinalAddresses,
-  getReceivingAddresses,
   signRawTransaction,
 } from 'src/blockchain/bitcoin';
 import { StyledModal } from '@/components/layout/header/fullscreen-menu/index.styled';
 import { UserNamespace } from '@/shared/namespaces/user';
 import { cleanInput } from '@/shared/utils';
 import QRCode from 'react-qr-code';
+import { CheckCircleFilled, CheckCircleTwoTone } from '@ant-design/icons';
+import Title from 'antd/lib/typography/Title';
 
 interface GetFeeProps {
   contractAddress?: string;
@@ -60,6 +60,7 @@ export const GetFee = (props: GetFeeProps) => {
   const [lowBalance, setLowBalance] = useState<number>(0);
   const [selectedFee, setSelectedFee] = useState<string>('medium');
   const [loadWallet, setLoadWallet] = useState(false);
+  const [ordinalData, setOrdinalData] = useState<any>();
   let timeout: any = null;
 
   const getInscriptionFee = () => {
@@ -103,40 +104,47 @@ export const GetFee = (props: GetFeeProps) => {
   };
   const getCommitTx = async () => {
     setLoading(true);
-    const seed = await unlockOrdinalWallet(String(account));
-    const changeAddresses = await getChangeAddresses(seed);
-    const ordinalAddress = await getOrdinalAddress(seed);
-    console.log('DESTINATION', ordinalAddress);
-    makeApiRequest(
-      `${APP_URL.assets.get_commit_tx}`,
-      'post',
-      {
-        contractAddress,
-        tokenId,
-        chainId,
-        fee: feeData?.fees[selectedFee],
-        tip: Number(cleanInput(tip ?? 0)),
-        stage: 'commit',
-        changeAddresses,
-        destination: ordinalAddress,
-      },
-      {
-        onFinish: async (d) => {
-          try {
-            const signed = signRawTransaction(d.data.transaction, seed);
-            console.log('dddd', signed);
-            inscribe(d.data.id, signed, ordinalAddress);
-            // sign the error
-          } catch (e) {
-            console.log('ERRRORR', e);
-          }
-          setLoading(false);
+    let seed: Buffer;
+    try {
+      seed = await unlockOrdinalWallet(String(account));
+
+      const changeAddresses = await getChangeAddresses(seed);
+      const ordinalAddress = await getOrdinalAddress(seed);
+      console.log('DESTINATION', ordinalAddress);
+
+      makeApiRequest(
+        `${APP_URL.assets.get_commit_tx}`,
+        'post',
+        {
+          contractAddress,
+          tokenId,
+          chainId,
+          fee: feeData?.fees[selectedFee],
+          tip: Number(cleanInput(tip ?? 0)),
+          stage: 'commit',
+          changeAddresses,
+          destination: ordinalAddress,
         },
-        onError: (e) => {
-          setLoading(false);
-        },
-      }
-    );
+        {
+          onFinish: async (d) => {
+            try {
+              const signed = signRawTransaction(d.commitRaw, seed, d.unspent);
+
+              inscribe(d.id, signed, ordinalAddress);
+              // sign the error
+            } catch (e) {
+              console.log('ERRRORR', e);
+            }
+            setLoading(false);
+          },
+          onError: (e) => {
+            setLoading(false);
+          },
+        }
+      );
+    } catch (e) {
+      setLoading(false);
+    }
   };
 
   const inscribe = (
@@ -156,7 +164,8 @@ export const GetFee = (props: GetFeeProps) => {
       {
         onFinish: async (d) => {
           console.log('post raw', d);
-          setLoading(false);
+          setOrdinalData(d.ordinalData);
+          setTimeout(() => setLoading(false), 1000);
         },
         onError: (e) => {
           setLoading(false);
@@ -170,20 +179,7 @@ export const GetFee = (props: GetFeeProps) => {
   //     setTip(changes.tip);
   //   }
   // })
-
-  useEffect(() => {
-    if (feeData?.unspent) {
-      let balance = 0;
-      feeData.unspent.forEach((d: any) => {
-        if (d.amount * 100000000 > 10000) balance += d.amount;
-      });
-      console.log('fEEDAATA', feeData);
-      setWalletBalance(balance);
-    } // else setWalletBalance(0);
-  }, [feeData?.unspent]);
-
-  useEffect(() => {
-    form.setFieldsValue({ tip: cleanInput(tip) });
+  const checkBalance = () => {
     if (!feeData || !selectedFee) return;
     let tip_sat = 0;
     let tipUSD = Number(cleanInput(tip ?? 0));
@@ -199,6 +195,27 @@ export const GetFee = (props: GetFeeProps) => {
         0
       )
     );
+  };
+  useEffect(() => {
+    checkBalance();
+  }, [walletBalance]);
+
+  useEffect(() => {
+    if (feeData?.unspent) {
+      let balance = 0;
+      feeData.unspent.forEach((d: any) => {
+        if (d.amount * 100000000 > 10000) balance += d.amount;
+      });
+      console.log('fEEDAATA', feeData);
+      setWalletBalance(balance);
+      checkBalance();
+    } // else setWalletBalance(0);
+  }, [feeData?.unspent]);
+
+  useEffect(() => {
+    form.setFieldsValue({ tip: cleanInput(tip) });
+    checkBalance();
+
     // if((feeData.fees?.[selectedFee].network_sat + tip_sat + feeData.fees?.[selectedFee].platform_sat)>(walletBalance*100000000)) {
     //   setLowBalance(true);
     // } else {
@@ -251,186 +268,201 @@ export const GetFee = (props: GetFeeProps) => {
 
   const componentBody = (
     <AnimatePresence>
-      <motion.div
-        initial={{ scale: 0.08 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0.8 }}
-      >
-        <Form
-          form={form}
-          onFinish={() => getCommitTx()}
-          layout={'horizontal'}
-          scrollToFirstError
-          initialValues={{ tip: 2 }}
-          requiredMark={false}
+      {!ordinalData && (
+        <motion.div
+          initial={{ scale: 0.08 }}
+          animate={{ scale: 1 }}
+          exit={{ scale: 0.8 }}
         >
-          {loading && (
-            <div style={{ textAlign: 'center' }}>
-              <Spin />
-            </div>
-          )}
-          {!loading && (
-            <>
-              <Row style={{ textAlign: 'center' }}>
-                {['slow', 'medium', 'fast'].map((speed: string) => (
-                  <Col lg={{ span: 7, offset: 1 }} key={`speed${speed}`}>
-                    <Space
-                      onClick={() => setSelectedFee(speed)}
-                      size={1}
-                      style={{
-                        border: '2px solid',
-                        borderColor:
-                          selectedFee == speed
-                            ? 'rgba(55, 73, 233, 1)'
-                            : '#eeeeeedf',
-                        width: '100%',
-                        cursor: 'pointer',
-                        padding: 14,
-                        borderRadius: '15%',
-                      }}
-                      direction="vertical"
-                    >
-                      <Typography.Title style={{ color: 'grey' }} level={5}>
-                        <strong>{speed}</strong>
-                      </Typography.Title>
-                      <Typography.Title level={3}>
-                        $
-                        {(
-                          Number(feeData?.fees?.[speed]?.network_usd) +
-                          feeData?.fees?.[speed]?.platform_usd
-                        ).toFixed(2)}
-                      </Typography.Title>
-                      {/* <Typography.Text><span  style={{fontSize: 10}}>Surcharge: ${feeData?.fees?.[speed]?.platform_usd.toFixed(2)}</span></Typography.Text>  */}
-                      <Typography.Text>
-                        <span style={{ fontSize: 10 }}>
-                          Service fee included
-                        </span>
-                      </Typography.Text>
+          <Form
+            form={form}
+            onFinish={() => getCommitTx()}
+            layout={'horizontal'}
+            scrollToFirstError
+            initialValues={{ tip: 2 }}
+            requiredMark={false}
+          >
+            {loading && (
+              <div style={{ textAlign: 'center' }}>
+                <Spin />
+              </div>
+            )}
+            {!loading && (
+              <>
+                <Row style={{ textAlign: 'center' }}>
+                  {['slow', 'medium', 'fast'].map((speed: string) => (
+                    <Col lg={{ span: 7, offset: 1 }} key={`speed${speed}`}>
+                      <Space
+                        onClick={() => setSelectedFee(speed)}
+                        size={1}
+                        style={{
+                          border: '2px solid',
+                          borderColor:
+                            selectedFee == speed
+                              ? 'rgba(55, 73, 233, 1)'
+                              : '#eeeeeedf',
+                          width: '100%',
+                          cursor: 'pointer',
+                          padding: 14,
+                          borderRadius: '15%',
+                        }}
+                        direction="vertical"
+                      >
+                        <Typography.Title style={{ color: 'grey' }} level={5}>
+                          <strong>{speed}</strong>
+                        </Typography.Title>
+                        <Typography.Title level={3}>
+                          $
+                          {(
+                            Number(feeData?.fees?.[speed]?.network_usd) +
+                            feeData?.fees?.[speed]?.platform_usd
+                          ).toFixed(2)}
+                        </Typography.Title>
+                        {/* <Typography.Text><span  style={{fontSize: 10}}>Surcharge: ${feeData?.fees?.[speed]?.platform_usd.toFixed(2)}</span></Typography.Text>  */}
+                        <Typography.Text>
+                          <span style={{ fontSize: 10 }}>
+                            Service fee included
+                          </span>
+                        </Typography.Text>
 
-                      <Typography.Text>
-                        {feeDescriptions[speed]}
-                      </Typography.Text>
+                        <Typography.Text>
+                          {feeDescriptions[speed]}
+                        </Typography.Text>
+                      </Space>
+                    </Col>
+                  ))}
+                </Row>
+                <Row style={{ marginTop: 30 }}>
+                  <Col span={24} style={{ textAlign: 'center', padding: 30 }}>
+                    <Space>
+                      <Form.Item
+                        name="tip"
+                        initialValue={tip}
+                        label={'Tip Satoshi Studio ($)'}
+                      >
+                        <Input onChange={(v) => setTip(v.target.value)} />
+                      </Form.Item>
                     </Space>
                   </Col>
-                ))}
-              </Row>
-              <Row style={{ marginTop: 30 }}>
-                <Col span={24} style={{ textAlign: 'center', padding: 30 }}>
-                  <Space>
-                    <Form.Item
-                      name="tip"
-                      initialValue={tip}
-                      label={'Tip Satoshi Studio ($)'}
-                    >
-                      <Input onChange={(v) => setTip(v.target.value)} />
-                    </Form.Item>
-                  </Space>
-                </Col>
-              </Row>
-              {lowBalance > 0 && (
-                <Row>
-                  <Col span={24} style={{ textAlign: 'center' }}>
-                    <Typography.Text style={{ color: 'red' }}>
-                      Low wallet btc balance!{' '}
-                      <b>{(lowBalance / 100000000 + 0.00000001).toFixed(8)}</b>{' '}
-                      more BTC required{' '}
-                    </Typography.Text>
-                  </Col>
                 </Row>
-              )}
-              {lowBalance > 0 && !loadWallet && (
-                <Button
-                  shape={'round'}
-                  type={'primary'}
-                  disabled={loading || !lowBalance}
-                  loading={loading}
-                  onClick={() => setLoadWallet(!loadWallet)}
-                >
-                  Load Wallet
-                </Button>
-              )}
-              {loadWallet && lowBalance > 0 && (
-                <motion.div
-                  initial={{ scale: 0.08 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0.8 }}
-                >
+                {lowBalance > 0 && (
                   <Row>
-                    <Col
-                      span={24}
-                      style={{ textAlign: 'center', marginBottom: 10 }}
-                    >
-                      {user?.btcAccounts?.[0]?.address}
-                    </Col>
                     <Col span={24} style={{ textAlign: 'center' }}>
-                      {' '}
-                      <QRCode
-                        size={256}
-                        value={`bitcoin:${
-                          user?.btcAccounts?.[0]?.address
-                        }?amount=${(
-                          lowBalance / 100000000 +
-                          0.00000001
-                        ).toFixed(8)}`}
-                        viewBox={`0 0 256 256`}
-                      />
+                      <Space direction="vertical">
+                        <Typography.Text style={{ color: 'red' }}>
+                          Low wallet btc balance!{' '}
+                          <b>
+                            {(lowBalance / 100000000 + 0.00000001).toFixed(8)}
+                          </b>{' '}
+                          more BTC required{' '}
+                        </Typography.Text>
+                        {!loadWallet && (
+                          <Button
+                            shape={'round'}
+                            type={'primary'}
+                            disabled={loading || !lowBalance}
+                            loading={loading}
+                            onClick={() => setLoadWallet(!loadWallet)}
+                          >
+                            Load Wallet
+                          </Button>
+                        )}
+                      </Space>
                     </Col>
                   </Row>
-                </motion.div>
-              )}
-            </>
-          )}
-          {/* <FeeForm
-          form={form}
-          offerToken={tipToken.symbol}
-          offerTokenBalance={tipToken.balance as string}
-          onFinish={onPay}
-          onValuesChange={(changedValues) => {
-            // //console.log(changedValues, value);
-            if (
-              changedValues['amount'] &&
-              !(
-                parseFloat(changedValues['amount']) >
-                parseFloat(toEther(tipToken.balance))
-              )
-            ) {
-              setTipAmountTyped(true);
-            } else {
-              setTipAmountTyped(false);
-            }
-          }}
-        /> */}
-        </Form>
-      </motion.div>
+                )}
+
+                {loadWallet && lowBalance > 0 && (
+                  <motion.div
+                    initial={{ scale: 0.08 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0.8 }}
+                  >
+                    <Row>
+                      <Col
+                        span={24}
+                        style={{ textAlign: 'center', marginBottom: 10 }}
+                      >
+                        {user?.btcAccounts?.[0]?.address}
+                      </Col>
+                      <Col span={24} style={{ textAlign: 'center' }}>
+                        {' '}
+                        <QRCode
+                          size={256}
+                          value={`bitcoin:${
+                            user?.btcAccounts?.[0]?.address
+                          }?amount=${(
+                            lowBalance / 100000000 +
+                            0.00000001
+                          ).toFixed(8)}`}
+                          viewBox={`0 0 256 256`}
+                        />
+                      </Col>
+                    </Row>
+                  </motion.div>
+                )}
+              </>
+            )}
+          </Form>
+        </motion.div>
+      )}
+      {ordinalData && (
+        <motion.div
+          initial={{ scale: 0.08 }}
+          animate={{ scale: 1 }}
+          exit={{ scale: 0.8 }}
+        >
+          <Row style={{ textAlign: 'center' }}>
+            <Col span={24} style={{ textAlign: 'center', padding: 30 }}>
+              <Space direction="vertical" size={20}>
+                <CheckCircleFilled style={{ fontSize: '2.5em' }} />
+                <Typography.Text>Commit Transaction</Typography.Text>
+                <Typography.Text style={{ color: '#fff' }}>
+                  <b>{ordinalData?.commitTx}</b>
+                </Typography.Text>
+                <Space>--------</Space>
+                <Typography.Text>Reveal Transaction</Typography.Text>
+                <Typography.Text style={{ color: '#fff' }}>
+                  <b>{ordinalData?.revealTx}</b>
+                </Typography.Text>
+              </Space>
+            </Col>
+          </Row>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 
   const footer = (
-    <Space className={'w-100 meta-flex-s-b'} align={'center'}>
-      <Space size={10}>
-        <Typography.Text>
-          Wallet Balance: <b>{walletBalance} BTC</b>
-        </Typography.Text>
-        {/* {lowBalance > 0 && <Button
+    <>
+      {!ordinalData && (
+        <Space className={'w-100 meta-flex-s-b'} align={'center'}>
+          <Space size={10}>
+            <Typography.Text>
+              Wallet Balance: <b>{walletBalance} BTC</b>
+            </Typography.Text>
+          </Space>
+          <Button
+            shape={'round'}
+            type={'primary'}
+            disabled={loading || lowBalance > 0}
+            loading={loading}
+            onClick={form.submit}
+          >
+            Inscribe
+          </Button>
+        </Space>
+      )}
+      {ordinalData && (
+        <Button
           shape={'round'}
           type={'primary'}
-          disabled={loading || !lowBalance}
-          loading={loading}
-          onClick={() => setLoadWallet(!loadWallet)}
+          onClick={() => onVisibilityChange(false)}
         >
-          Load Wallet
-        </Button>} */}
-      </Space>
-      <Button
-        shape={'round'}
-        type={'primary'}
-        disabled={loading || lowBalance > 0}
-        loading={loading}
-        onClick={form.submit}
-      >
-        Inscribe
-      </Button>
-    </Space>
+          Done
+        </Button>
+      )}
+    </>
   );
   return (
     <>

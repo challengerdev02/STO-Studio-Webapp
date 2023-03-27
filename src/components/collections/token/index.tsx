@@ -1,4 +1,4 @@
-import { Button, Collapse, Empty, Space, Table, Typography } from 'antd';
+import { Button, Collapse, Empty, Space, Spin, Table, Typography } from 'antd';
 import { get, isEmpty, truncate } from 'lodash';
 // import {
 //   MoreOutlined,
@@ -51,6 +51,9 @@ export interface TokenAssetProps {
   onAcceptOffer: (values: Record<string, any>) => void;
   uiLoaders: Record<string, any>;
   onFeeVisibilityChange: (v: boolean) => void;
+  loadOrdinalData: () => void;
+  loadingOrdinalData: boolean;
+  ordinalData: any;
 }
 
 export const TokenAsset = (props: TokenAssetProps) => {
@@ -74,6 +77,9 @@ export const TokenAsset = (props: TokenAssetProps) => {
     onAcceptOffer,
     uiLoaders,
     onFeeVisibilityChange,
+    ordinalData,
+    loadingOrdinalData,
+    loadOrdinalData,
   } = props;
 
   const assetUser = get(asset, 'user', {}) as UserNamespace.User;
@@ -83,6 +89,7 @@ export const TokenAsset = (props: TokenAssetProps) => {
   const user = enumerateUser(assetUser);
   const creator = enumerateUser(creatorUser);
   const assetImage = parseIpfsUrl(asset.thumbnail ?? asset.coverImage);
+
   return (
     <>
       <OutterContainer>
@@ -174,20 +181,64 @@ export const TokenAsset = (props: TokenAssetProps) => {
               </div>
 
               <Fragment>
-                {asset?.isOwner && (
-                  <>
-                    <Button
-                      onClick={() => onFeeVisibilityChange(true)}
-                      style={{ width: 200 }}
-                      type={'primary'}
-                      shape={'round'}
-                      block={isMobile}
-                      loading={queryingContract}
-                    >
-                      Import to Ordinals
-                    </Button>
-                  </>
-                )}
+                {loadingOrdinalData && <Spin />}
+                {!loadingOrdinalData &&
+                  asset?.isOwner &&
+                  (!ordinalData || (ordinalData && !ordinalData?.revealTx)) && (
+                    <>
+                      <Button
+                        onClick={() => onFeeVisibilityChange(true)}
+                        style={{ width: 200 }}
+                        type={'primary'}
+                        shape={'round'}
+                        block={isMobile}
+                        loading={queryingContract}
+                      >
+                        Inscribe On Bitcoin
+                      </Button>
+                    </>
+                  )}
+                {!loadingOrdinalData &&
+                  ordinalData &&
+                  !ordinalData?.ordinalId && (
+                    <>
+                      {!ordinalData.inscription_id && (
+                        <Space direction="vertical">
+                          <Title level={4}>
+                            Inscribing! Please check back later...
+                          </Title>
+                          Commit Tx: <b>{ordinalData.commitTx}</b>
+                          Reveal Tx: <b>{ordinalData.revealTx}</b>
+                        </Space>
+                      )}
+                      {!!ordinalData.inscription_id && (
+                        <Space direction="vertical">
+                          <Title level={4}>
+                            Inscription {ordinalData.number}
+                          </Title>
+                          Inscription Id:{' '}
+                          <a
+                            target={'_blank'}
+                            href={`${process.env.NEXT_PUBLIC_ORDINAL_EXPLORER}/inscription/${ordinalData.inscription_id}`}
+                            rel="noreferrer"
+                          >
+                            <b>{ordinalData.inscription_id}</b>
+                          </a>
+                          Reveal Tx:{' '}
+                          <a
+                            target={'_blank'}
+                            href={`${process.env.NEXT_PUBLIC_ORDINAL_EXPLORER}/tx/${ordinalData.revealTx}`}
+                            rel="noreferrer"
+                          >
+                            <b>{ordinalData.revealTx}</b>
+                          </a>
+                          Block height: <b>{ordinalData.block}</b>
+                          Timestamp: <b>{ordinalData.timestamp}</b>
+                        </Space>
+                      )}
+                    </>
+                  )}
+
                 {!asset?.isOwner && (
                   <Button
                     block={isMobile}

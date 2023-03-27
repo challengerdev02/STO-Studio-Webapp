@@ -71,7 +71,7 @@ export const ImportContainer = () => {
 
   useEffect(() => {
     if (
-      chainId == process.env.SOLANA_CHAIN_ID &&
+      chainId == '1399811149' &&
       walletAddress?.slice(0, 2) !== '0x' &&
       walletAddress
     ) {
@@ -91,7 +91,7 @@ export const ImportContainer = () => {
     console.log(chainId, 'chainId');
     if (
       chainId &&
-      chainId != process.env.SOLANA_CHAIN_ID &&
+      chainId != '1399811149' &&
       String(accounts?.[0]).slice(0, 2) === '0x'
     ) {
       setNfts(

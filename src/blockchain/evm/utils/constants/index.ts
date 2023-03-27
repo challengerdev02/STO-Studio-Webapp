@@ -17,10 +17,6 @@ export const BIDDING_TOKENS: Record<
     symbol: process.env.NEXT_PUBLIC_HCOMI_TOKEN_SYMBOL as string,
     name: process.env.NEXT_PUBLIC_HCOMI_TOKEN_SYMBOL as string,
   },
-  BTC: {
-    symbol: process.env.NEXT_PUBLIC_BTC_TOKEN_SYMBOL as string,
-    name: process.env.NEXT_PUBLIC_BTC_TOKEN_SYMBOL as string,
-  },
 });
 
 export const APP_TOKENS = {
