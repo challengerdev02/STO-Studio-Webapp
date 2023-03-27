@@ -59,7 +59,7 @@ export const TokenAssetContainer = () => {
     }
   );
 
-  const [loadingOrdinalData, setLoadingOrdinalData] = useState(true);
+  const [loadingOrdinalData, setLoadingOrdinalData] = useState(false);
   const [ordinalData, setOrdinalData] = useState<any>();
 
   const loadOrdinalData = () => {
