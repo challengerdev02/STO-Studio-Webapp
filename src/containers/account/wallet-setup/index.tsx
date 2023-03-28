@@ -174,7 +174,7 @@ export const WalletSetupContainer = () => {
     if (wallet?.tapRootAddress) {
       setSavingWallet('started');
       console.log('started');
-      // if (chainId !== process.env.SOLANA_CHAIN_ID && chainId) {
+      // if (chainId !== SOLANA_CHAIN_ID && chainId) {
       makeApiRequest(
         `${APP_URL.bitcoin.addWallet}`,
         PUT,

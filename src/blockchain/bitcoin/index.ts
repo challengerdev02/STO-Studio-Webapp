@@ -152,11 +152,16 @@ export const getOrdinalAddress = (seed: Buffer): string => {
   return String(p2pktr?.address);
 };
 
-export const signRawTransaction = (transaction: any, seed: Buffer) => {
+export const signRawTransaction = (
+  rawTx: any,
+  seed: Buffer,
+  unspentInputs: any[]
+) => {
   const node = bip32.fromSeed(seed, bitcoin.networks.bitcoin);
   const psbt = new bitcoin.Psbt();
-  psbt.setVersion(2);
-  psbt.setLocktime(0);
+  const transaction: any = bitcoin.Transaction.fromHex(rawTx);
+  psbt.setVersion(transaction.version);
+  psbt.setLocktime(transaction.locktime);
 
   // const masterFingerprint = node.fingerprint;
 
@@ -165,54 +170,24 @@ export const signRawTransaction = (transaction: any, seed: Buffer) => {
   //   internalPubkey: unspent.outs[1].script,
   //   network: bitcoin.networks.bitcoin,
   // });
-  const inputIndex = 0;
+
   const tweakedChildNodes = [];
-  for (let input of transaction.input) {
+  for (let input of transaction.ins) {
     let path, child: any, childNodeXOnlyPubkey, p2pktr, tweakedChildNode;
-    let receivingAddressFound = false;
-    const unspent: any = bitcoin.Transaction.fromHex(input.nonWitnessUtxo);
+
+    const hash = input.hash.reverse().toString('hex');
+    const unspent: any = unspentInputs.find((d: any) => String(d.txid) == hash);
+    console.log('UNSPENT', unspent, hash, unspentInputs);
     // if(unspentOutputAddress) {
     // search the receiving addreesses
-    for (let i = 0; i < 100; i++) {
-      path = `m/86'/0'/0'/0/${i}`;
-      child = node.derivePath(path);
-      childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
-      p2pktr = payments.p2tr({
-        internalPubkey: childNodeXOnlyPubkey,
-        network: bitcoin.networks.bitcoin,
-      });
-      if (
-        p2pktr?.output!.toString('hex') ==
-        unspent.outs[input.index].script.toString('hex')
-      ) {
-        receivingAddressFound = true;
-        console.log('Found Receiving address at index', i);
-        break;
-      }
-    }
-    if (!receivingAddressFound) {
-      // search the change addreesses
-      for (let i = 0; i < 500; i++) {
-        path = `m/86'/0'/0'/1/${i}`;
-        child = node.derivePath(path);
-        childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
-        p2pktr = payments.p2tr({
-          internalPubkey: childNodeXOnlyPubkey,
-          network: bitcoin.networks.bitcoin,
-        });
-        if (
-          p2pktr?.output!.toString('hex') ==
-          unspent.outs[input.index].script.toString('hex')
-        ) {
-          receivingAddressFound = true;
-          console.log('Found Receiving address at index', i);
-          break;
-        }
-      }
-      if (!receivingAddressFound) {
-        throw 'Unable to find unspent output address for input ' + inputIndex;
-      }
-    }
+    path = `m${unspent.desc.slice(12, unspent.desc.search(']'))}`;
+    console.log('PATTTH', path);
+    child = node.derivePath(path);
+    childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
+    p2pktr = payments.p2tr({
+      internalPubkey: childNodeXOnlyPubkey,
+      network: bitcoin.networks.bitcoin,
+    });
 
     tweakedChildNode = child.tweak(
       bitcoin.crypto.taggedHash('TapTweak', childNodeXOnlyPubkey)
@@ -222,29 +197,37 @@ export const signRawTransaction = (transaction: any, seed: Buffer) => {
     const utxo = {
       index: input.index,
       hash: Buffer.from(input.hash, 'hex').reverse(),
+      sequence: input.sequence,
       witnessUtxo: {
         script: p2pktr?.output!, //unspent.outs[input.index].script,
-        value: Number(unspent.outs[input.index].value),
+        value: Number(unspent.amount) * 100000000,
       },
       tapInternalKey: childNodeXOnlyPubkey,
     };
     psbt.addInput(utxo);
   }
   let outtotal = 0;
-  for (let output of transaction.output) {
+  for (let output of transaction.outs) {
     psbt.addOutput({
-      script: Buffer.from(output.script, 'hex'),
+      script: output.script,
       value: Number(output.value),
     });
     outtotal += Number(output.value);
   }
+  console.log('HEX', psbt.toHex());
   for (const tweakedChildNode of tweakedChildNodes) {
     psbt.signTaprootInput(0, tweakedChildNode);
   }
   psbt.finalizeAllInputs();
+
   // signed transaction hex
   const signed = psbt.extractTransaction(true);
-  console.log('afterSigned', outtotal, signed.getHash().toString('hex'));
+  console.log(
+    'afterSigned',
+    outtotal,
+    signed.getHash().toString('hex'),
+    psbt.extractTransaction()
+  );
   console.log('afterSigned', signed.toHex());
   return signed.toHex();
 };

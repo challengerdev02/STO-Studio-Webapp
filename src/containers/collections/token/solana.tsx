@@ -411,7 +411,6 @@ export const TokenAssetContainer = () => {
         for (const item of nftArray) {
           if (item.mint === String(tokenHash)) {
             const r = await fetch(item.data.uri).then((resp) => resp.json());
-            console.log(r, item, 'adafadf');
             var attributes = [];
             for (const r_item of r.attributes) {
               attributes.push({

@@ -235,91 +235,55 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     psbt.setVersion(2);
     psbt.setLocktime(0);
     const tweakedChildNodes = [];
-    const inputIndex = 0;
 
     for (var i = 0; i < unspent.length; i++) {
-      var child: any, childNodeXOnlyPubkey, tweakedChildNode, p2pktr, path;
-      let receivingAddressFound = false;
+      if (unspent[i].address == walletAddress) {
+        var child: any, childNodeXOnlyPubkey, tweakedChildNode, p2pktr;
+        
+        const path = `m${unspent[i].desc.slice(
+          12,
+          unspent[i].desc.search(']')
+        )}`;
 
-      for (let j = 0; j < 800; j++) {
-        path = `m/86'/0'/0'/0/${j}`;
         child = node.derivePath(path);
         childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
         p2pktr = payments.p2tr({
           internalPubkey: childNodeXOnlyPubkey,
           network: bitcoin.networks.bitcoin,
         });
-        if (
-          p2pktr?.output!.toString('hex') ==
-          unspent[i].scriptPubKey.toString('hex')
-        ) {
-          receivingAddressFound = true;
-          console.log('Found Receiving address at index', j);
-          break;
-        }
-      }
 
-      if (!receivingAddressFound) {
-        // search the change addreesses
-        for (let j = 0; j < 800; j++) {
-          path = `m/86'/0'/0'/1/${j}`;
-          child = node.derivePath(path);
-          childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
-          p2pktr = payments.p2tr({
-            internalPubkey: childNodeXOnlyPubkey,
-            network: bitcoin.networks.bitcoin,
+        tweakedChildNode = child.tweak(
+          bitcoin.crypto.taggedHash('TapTweak', childNodeXOnlyPubkey)
+        );
+        tweakedChildNodes.push(tweakedChildNode);
+
+        if (isHandle === 'withdraw') {
+          psbt.addInput({
+            index: unspent[i].vout,
+            hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
+            witnessUtxo: {
+              script: p2pktr?.output!,
+              value: Number((unspent[i].amount * 100000000).toFixed(0)),
+            },
+            tapInternalKey: childNodeXOnlyPubkey,
           });
-          if (
-            p2pktr?.output!.toString('hex') ==
-            unspent[i].scriptPubKey.toString('hex')
-          ) {
-            receivingAddressFound = true;
-            console.log('Found Receiving address at index', j);
-            break;
-          }
+        } else if (isHandle === 'ordinal') {
+          const sequenceBuffer = Buffer.alloc(4 * 2);
+          sequenceBuffer.writeUInt32LE(Number(amount) & 0xffffffff, 0);
+          sequenceBuffer.writeUInt32LE(Number(amount) >>> 32, 4);
+          const sequence = sequenceBuffer.readUInt32LE(0);
+  
+          psbt.addInput({
+            index: unspent[i].vout,
+            hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
+            witnessUtxo: {
+              script: p2pktr?.output!,
+              value: Number((unspent[i].amount * 100000000).toFixed(0)),
+            },
+            sequence: sequence,
+            tapInternalKey: childNodeXOnlyPubkey,
+          });
         }
-        if (!receivingAddressFound) {
-          throw 'Unable to find unspent output address for input ' + inputIndex;
-        }
-      }
-
-      // const path = `m${unspent[i].desc.slice(
-      //   12,
-      //   unspent[i].desc.search(']')
-      // )}`;
-      tweakedChildNode = child.tweak(
-        bitcoin.crypto.taggedHash('TapTweak', childNodeXOnlyPubkey)
-      );
-      tweakedChildNodes.push(tweakedChildNode);
-
-      console.log(p2pktr?.output!);
-
-      if (isHandle === 'withdraw') {
-        psbt.addInput({
-          index: unspent[i].vout,
-          hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
-          witnessUtxo: {
-            script: p2pktr?.output!,
-            value: Number((unspent[i].amount * 100000000).toFixed(0)),
-          },
-          tapInternalKey: childNodeXOnlyPubkey,
-        });
-      } else if (isHandle === 'ordinal') {
-        const sequenceBuffer = Buffer.alloc(4 * 2);
-        sequenceBuffer.writeUInt32LE(Number(amount) & 0xffffffff, 0);
-        sequenceBuffer.writeUInt32LE(Number(amount) >>> 32, 4);
-        const sequence = sequenceBuffer.readUInt32LE(0);
-
-        psbt.addInput({
-          index: unspent[i].vout,
-          hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
-          witnessUtxo: {
-            script: p2pktr?.output!,
-            value: Number((unspent[i].amount * 100000000).toFixed(0)),
-          },
-          sequence: sequence,
-          tapInternalKey: childNodeXOnlyPubkey,
-        });
       }
     }
 

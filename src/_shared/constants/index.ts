@@ -103,6 +103,7 @@ export const APP_URL = {
     get_inscription_fee: '/assets/get-ordinal-mint-fee',
     get_commit_tx: '/assets/get-commit-tx',
     inscribe: '/assets/inscribe',
+    get_ordinal_data: '/assets/ordinal-data',
   },
   competition: '/competitions',
 };

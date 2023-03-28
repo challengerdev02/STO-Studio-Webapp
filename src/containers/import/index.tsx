@@ -13,6 +13,7 @@ import {
   resolveToWalletAddress,
   getParsedNftAccountsByOwner,
 } from '@nfteyez/sol-rayz';
+import { SOLANA_CHAIN_ID } from '@/shared/constants';
 import { parseIpfsUrl } from '@/shared/utils';
 
 export const ImportContainer = () => {
@@ -71,7 +72,7 @@ export const ImportContainer = () => {
 
   useEffect(() => {
     if (
-      chainId == process.env.SOLANA_CHAIN_ID &&
+      chainId == SOLANA_CHAIN_ID &&
       walletAddress?.slice(0, 2) !== '0x' &&
       walletAddress
     ) {
@@ -91,7 +92,7 @@ export const ImportContainer = () => {
     console.log(chainId, 'chainId');
     if (
       chainId &&
-      chainId != process.env.SOLANA_CHAIN_ID &&
+      chainId != SOLANA_CHAIN_ID &&
       String(accounts?.[0]).slice(0, 2) === '0x'
     ) {
       setNfts(

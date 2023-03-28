@@ -15,6 +15,7 @@ import { debugLog, parseIpfsUrl } from '@/shared/utils';
 import { nanoid } from 'nanoid';
 import { GetFee } from '@/components/account/fee';
 import { APP_URL, STATE_KEYS } from '@/shared/constants';
+import { useApiRequest } from 'src/hooks/useApiRequest';
 
 export const TokenAssetContainerKey = '@@token-asset-container';
 export const TokenAssetContainer = () => {
@@ -33,6 +34,8 @@ export const TokenAssetContainer = () => {
     query: { saleID, tokenHash, tokenID, chooseFee, owner: ownerAddress },
     ...router
   } = useRouter();
+
+  const { makeApiRequest } = useApiRequest({ key: '@@fee-request' });
 
   const { accounts, isConnected, provider, chainId } =
     useContext(BaseWeb3Context);
@@ -55,6 +58,23 @@ export const TokenAssetContainer = () => {
       blockchain: chainId,
     }
   );
+
+  const [loadingOrdinalData, setLoadingOrdinalData] = useState(false);
+  const [ordinalData, setOrdinalData] = useState<any>();
+
+  const loadOrdinalData = () => {
+    setLoadingOrdinalData(true);
+    makeApiRequest(`${APP_URL.assets.get_ordinal_data}`, 'get', undefined, {
+      params: { contractAddress: tokenHash, tokenId: tokenID, chainId },
+      onFinish: (d) => {
+        setOrdinalData(d.ordinalData);
+        setTimeout(() => setLoadingOrdinalData(false), 1000);
+      },
+      onError: (e) => {
+        setLoadingOrdinalData(false);
+      },
+    });
+  };
 
   const [feeModalVisibility, setFeeModalVisibility] = useState(!!chooseFee);
   const { handleFindOneAccount: findOneAccount, search: searchAccounts } =
@@ -85,6 +105,14 @@ export const TokenAssetContainer = () => {
       key: erc20TokenKey,
     },
   });
+
+  useEffect(() => {
+    loadOrdinalData();
+  }, []);
+
+  useEffect(() => {
+    if (!feeModalVisibility) loadOrdinalData();
+  }, [feeModalVisibility]);
 
   const { user } = useAccount({
     key: STATE_KEYS.currentUser,
@@ -499,6 +527,9 @@ export const TokenAssetContainer = () => {
         onFeeVisibilityChange={(visible: boolean) =>
           setFeeModalVisibility(visible)
         }
+        loadOrdinalData={loadOrdinalData}
+        loadingOrdinalData={loadingOrdinalData}
+        ordinalData={ordinalData}
         uiLoaders={uiLoaders}
       />
     </Fragment>

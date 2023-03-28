@@ -5,20 +5,20 @@ import {
   Input,
   InputNumber,
   Row,
-  Select,
-  Space,
+  // Select,
+  // Space,
 } from 'antd';
 import { HorizontalContainer } from '../index.styled';
 import { SaleScheduleType } from '../../../../containers/assets/sale-schedule';
-import { SelectField } from '@/components/book/create-book/index.styled';
+// import { SelectField } from '@/components/book/create-book/index.styled';
 import {
-  SUPPORTED_NETWORKS,
-  SUPPORTED_NETWORKS_TO_LABELS,
+  // SUPPORTED_NETWORKS,
+  // SUPPORTED_NETWORKS_TO_LABELS,
 } from '../../../../blockchain/evm/utils';
-import { CryptoIcons } from '../../../../blockchain/evm/utils/icons';
+// import { CryptoIcons } from '../../../../blockchain/evm/utils/icons';
 import React, { useEffect, useState } from 'react';
 import { cleanInput } from '@/shared/utils';
-import { get } from 'lodash';
+// import { get } from 'lodash';
 
 interface BuyNowProps {
   isAuction: boolean;
@@ -30,7 +30,7 @@ export const BuyNow = (props: BuyNowProps) => {
   const { isAuction, disabled, scheduleType, currentChainId } = props;
   const [chain, setChain] = useState<number | undefined>();
 
-  const onSetChain = (value: number) => setChain(value);
+  // const onSetChain = (value: number) => setChain(value);
 
   useEffect(() => {
     //console.log('CURRENTCHAIN', currentChainId);
@@ -40,7 +40,7 @@ export const BuyNow = (props: BuyNowProps) => {
   return (
     <>
       <Row gutter={15}>
-        <Col
+        {/* <Col
           style={{
             display: scheduleType == SaleScheduleType.Resale ? 'none' : '',
           }}
@@ -89,7 +89,7 @@ export const BuyNow = (props: BuyNowProps) => {
               })}
             </SelectField>
           </Form.Item>
-        </Col>
+        </Col> */}
 
         <Col
           xs={24}
@@ -99,30 +99,25 @@ export const BuyNow = (props: BuyNowProps) => {
           xl={scheduleType != SaleScheduleType.Resale ? 16 : 24}
         >
           <Form.Item
-            label={`Price (${
-              (
-                SUPPORTED_NETWORKS_TO_LABELS.find(
-                  (c) => c.value == chain
-                ) as any
-              )?.usdToken.symbol || 'USD'
-            })`}
+            label="price"
             name="price"
             normalize={(value) => cleanInput(value)}
             rules={[{ required: true, message: 'Please enter the price!' }]}
           >
-            <Input
-              prefix={
-                chain ? (
-                  <div style={{ width: 34, height: 24, paddingRight: 10 }}>
-                    {get(SUPPORTED_NETWORKS, [chain, 'usdToken', 'icon'])}
-                  </div>
-                ) : (
-                  chain
-                )
-              }
+            <InputNumber
+              // prefix={
+              //   chain ? (
+              //     <div style={{ width: 34, height: 24, paddingRight: 10 }}>
+              //       {get(SUPPORTED_NETWORKS, [chain, 'usdToken', 'icon'])}
+              //     </div>
+              //   ) : (
+              //     chain
+              //   )
+              // }
               data-testid={'input-N'}
-              placeholder="Price"
+              placeholder="Sell Price"
               disabled={disabled}
+              min={0}
             />
           </Form.Item>
         </Col>
@@ -134,9 +129,8 @@ export const BuyNow = (props: BuyNowProps) => {
         }}
       >
         <Form.Item
-          label={<span className="label-text">Royalty on sale (%)</span>}
-          name="royalty"
-          extra="This is the amount you get whenever a book is sold"
+          label={<span className="label-text">Receiving Address</span>}
+          name="recipient"
           // normalize={(value) => cleanInput(value)}
           // normalize={(value) =>
           //   isEmpty(value) ? '' : clamp(parseFloat(cleanInput(value)), 0, 10)
@@ -144,20 +138,18 @@ export const BuyNow = (props: BuyNowProps) => {
           rules={[
             {
               required: false,
-              message: 'Please enter a royalty percentage!',
+              message: 'Please enter a Receiving Address!',
             },
             // { max: 10 },
           ]}
         >
-          <InputNumber
+          <Input
             data-testid={'royalty-on-sale'}
             placeholder="Royalty percentage"
-            max={10}
-            min={0}
             disabled={disabled || scheduleType === SaleScheduleType.Resale}
           />
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           label="copies available"
           name="maxSupply"
           normalize={(value) => cleanInput(value)}
@@ -172,7 +164,7 @@ export const BuyNow = (props: BuyNowProps) => {
               disabled || isAuction || scheduleType === SaleScheduleType.Resale
             }
           />
-        </Form.Item>
+        </Form.Item> */}
       </HorizontalContainer>
 
       <HorizontalContainer>
