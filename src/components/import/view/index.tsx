@@ -22,11 +22,59 @@ interface ImportViewProps {
     verified?: boolean;
   }[];
   chainId: number | string;
-  // selectedChainId: number;
+  currentNetwork?: number;
 }
 export const ImportView = (props: ImportViewProps) => {
   const router = useRouter();
-  const { loadingNFts, chainId, nfts, signedAddress } = props;
+  const { loadingNFts, chainId, nfts, currentNetwork, signedAddress } = props;
+
+  const chainOptions = (currentChain: any) => {
+    console.log('CURRENTCHAN', currentChain);
+    if (!currentChain) return [];
+    return [
+      {
+        value: 1,
+        label: (
+          <Space>
+            <div style={{ height: 28 }}>{SUPPORTED_NETWORKS[1].icon}</div>{' '}
+            <Text>Ethereum</Text>
+          </Space>
+        ),
+      },
+      {
+        value: 137,
+        label: (
+          <Space>
+            <div style={{ height: 28 }}>{SUPPORTED_NETWORKS[137].icon}</div>{' '}
+            <Text>Polygon</Text>
+          </Space>
+        ),
+      },
+      {
+        value: SOLANA_CHAIN_ID,
+        label: (
+          <Space>
+            <Image
+              alt="Solana"
+              src={SUPPORTED_NETWORKS[SOLANA_CHAIN_ID].icon}
+              width={24}
+              height={24}
+            />{' '}
+            <Text>Solana</Text>
+          </Space>
+        ),
+      },
+    ].filter((d) => {
+      switch (currentChain) {
+        case SOLANA_CHAIN_ID:
+          return d.value == SOLANA_CHAIN_ID;
+          break;
+        default:
+          return d.value != SOLANA_CHAIN_ID;
+          break;
+      }
+    });
+  };
 
   return (
     <Container style={{ width: '80%', textAlign: 'left' }}>
@@ -42,52 +90,16 @@ export const ImportView = (props: ImportViewProps) => {
         )}
         {!loadingNFts && (
           <>
-            <Row>
+            {/* <Row>
               <Col>
                 <Select
                   style={{ width: 200 }}
-                  value={chainId}
+                  value={currentNetwork}
                   onChange={(v) => router.push(`/import?chainId=${v}`)}
-                  options={[
-                    {
-                      value: 1,
-                      label: (
-                        <Space>
-                          <div style={{ height: 28 }}>
-                            {SUPPORTED_NETWORKS[1].icon}
-                          </div>{' '}
-                          <Text>Ethereum</Text>
-                        </Space>
-                      ),
-                    },
-                    {
-                      value: 137,
-                      label: (
-                        <Space>
-                          <div style={{ height: 28 }}>
-                            {SUPPORTED_NETWORKS[137].icon}
-                          </div>{' '}
-                          <Text>Polygon</Text>
-                        </Space>
-                      ),
-                    },
-                    {
-                      value: SOLANA_CHAIN_ID,
-                      label: (
-                        <Space>
-                          <img
-                            src={SUPPORTED_NETWORKS[SOLANA_CHAIN_ID].icon}
-                            width={24}
-                            height={24}
-                          />{' '}
-                          <Text>Solana</Text>
-                        </Space>
-                      ),
-                    },
-                  ]}
+                  options={chainOptions(currentNetwork ?? 1)}
                 />
               </Col>
-            </Row>
+            </Row> */}
             <Row gutter={16}>
               {nfts.map((nft, index) => {
                 return (
@@ -111,7 +123,7 @@ export const ImportView = (props: ImportViewProps) => {
                         <Space
                           onClick={() =>
                             router.push(
-                              chainId == SOLANA_CHAIN_ID
+                              chainId == 1399811149
                                 ? `/collection/${signedAddress}/${nft.address}/${nft.tokenId}/solana`
                                 : `/collection/${signedAddress}/${nft.address}/${nft.tokenId}`
                             )
@@ -146,7 +158,7 @@ export const ImportView = (props: ImportViewProps) => {
                           }}
                           onClick={() =>
                             router.push(
-                              chainId == SOLANA_CHAIN_ID
+                              chainId == 1399811149
                                 ? `/collection/${signedAddress}/${nft.address}/${nft.tokenId}/solana`
                                 : `/collection/${signedAddress}/${nft.address}/${nft.tokenId}`
                             )

@@ -13,15 +13,15 @@ import {
   resolveToWalletAddress,
   getParsedNftAccountsByOwner,
 } from '@nfteyez/sol-rayz';
-import { SOLANA_CHAIN_ID } from '@/shared/constants';
 import { parseIpfsUrl } from '@/shared/utils';
+import { SOLANA_CHAIN_ID } from '@/shared/constants';
 
 export const ImportContainer = () => {
   const router = useRouter();
   const { makeApiRequestAsync } = useApiRequest({
     key: '@@load-collection-uri',
   });
-  let { address, chainId = 1 } = router.query;
+  let { address } = router.query;
   const {
     accounts,
     isConnected,
@@ -72,7 +72,7 @@ export const ImportContainer = () => {
 
   useEffect(() => {
     if (
-      chainId == SOLANA_CHAIN_ID &&
+      selectedChainId == SOLANA_CHAIN_ID &&
       walletAddress?.slice(0, 2) !== '0x' &&
       walletAddress
     ) {
@@ -81,18 +81,18 @@ export const ImportContainer = () => {
       handleFetchCollections({
         params: {
           address: walletAddress,
-          chainId,
+          chainId: selectedChainId,
           perPage: 20,
         },
       });
     }
-  }, [chainId, walletAddress]);
+  }, [selectedChainId, walletAddress]);
 
   useEffect(() => {
-    console.log(chainId, 'chainId');
+    console.log(selectedChainId, 'selectedChainId');
     if (
-      chainId &&
-      chainId != SOLANA_CHAIN_ID &&
+      selectedChainId &&
+      selectedChainId != SOLANA_CHAIN_ID &&
       String(accounts?.[0]).slice(0, 2) === '0x'
     ) {
       setNfts(
@@ -155,9 +155,9 @@ export const ImportContainer = () => {
     <ImportView
       nfts={nfts}
       signedAddress={accounts?.[0]}
-      chainId={Number(chainId ?? selectedChainId)}
+      chainId={Number(selectedChainId)}
       loadingNFts={loadingForCollectedItems}
-
+      currentNetwork={selectedChainId}
       // selectedChainId={selectedChainId}
     />
   );

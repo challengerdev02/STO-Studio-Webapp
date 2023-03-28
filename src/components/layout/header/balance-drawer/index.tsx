@@ -1,17 +1,12 @@
 import {
   Avatar,
   Button,
-  Col,
-  Row,
   Card,
   DrawerProps,
   Select,
   Skeleton,
-  Input,
   Space,
   Typography,
-  Form,
-  Modal,
 } from 'antd';
 import { StyledCard, StyledDrawer } from './index.styled';
 import { truncateEthAddress } from '@/shared/utils';
@@ -22,21 +17,14 @@ import {
   SettingFilled,
 } from '@ant-design/icons';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { isDesktop, isMobile } from 'react-device-detect';
+import { motion } from 'framer-motion';
+import { isDesktop } from 'react-device-detect';
 import { GradientAvatar } from '@/shared/gradient-avatar';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { get, omit, toUpper } from 'lodash';
 import { APP_TOKENS, toEther } from '../../../../blockchain/evm/utils';
 import { ActionOption } from '../../../../redux/types';
-import QRCode from 'react-qr-code';
-import { createApiRequest } from '@/shared/utils/api';
-import * as bitcoin from 'bitcoinjs-lib';
-import { bip32 } from '@/shared/utils/secp';
-import { BaseWeb3Context } from 'src/blockchain/base';
-import axios from 'axios';
 
-const { Psbt, payments } = bitcoin;
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;
 interface BalanceDrawerProps extends DrawerProps {
@@ -74,20 +62,12 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   } = props;
 
   const [currentToken, setCurrentToken] = useState<string>(
-    process.env.NEXT_PUBLIC_BTC_TOKEN_SYMBOL as string
+    process.env.NEXT_PUBLIC_HCOMI_TOKEN_SYMBOL as string
   );
-  const [isHandle, setIsHandle] = useState('none');
-  const [selectedFee, setSelectedFee] = useState<string>('medium');
-  // const [feeData, setFeeData] = useState<Record<string, any>>();
-  const [amount, setAmount] = useState<string>();
-  const [address, setAddress] = useState<string>();
-  const [balance, setBalance] = useState<number>(0);
-  const [form] = Form.useForm();
-  const { unlockOrdinalWallet } = useContext(BaseWeb3Context);
-  const handle = (val: string) => {
-    setIsHandle(val);
-    if (currentToken == 'BTC') return;
-    // onAddFundVisibilityChange(true);
+
+  const addFund = () => {
+    if (currentToken == 'hCOMI') return;
+    onAddFundVisibilityChange(true);
   };
 
   const links = [
@@ -117,13 +97,6 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     },
   ];
 
-  const feeDescriptions = [
-    'Hours to Days',
-    'An hour or more',
-    'Less than an hour',
-    'Based on amount',
-  ];
-
   const getFundMetadata = (currentToken: string) => {
     if (currentToken === process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL) {
       getBalance();
@@ -139,11 +112,11 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     });
   };
 
-  // const defaultToken = {
-  //   key: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
-  //   label: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
-  //   value: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
-  // };
+  const defaultToken = {
+    key: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
+    label: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
+    value: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
+  };
 
   const tokenList = [
     ...Object.keys(APP_TOKENS).map((token) => ({
@@ -157,7 +130,6 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   useEffect(() => {
     console.log('USERRRR', user);
     if (user) onGetFundMeta();
-    tokenBalance();
   }, [visibility, currentToken]);
 
   const onGetFundMeta = () => {
@@ -166,66 +138,20 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
         onGetHCOMIBalance();
         return;
       }
-      console.log(currentToken);
       getFundMetadata(currentToken);
     }
   };
 
-  const tokenBalance = async () => {
-    var balanceData = '0';
+  const tokenBalance = () => {
     if (currentToken === process.env.NEXT_PUBLIC_HCOMI_TOKEN_SYMBOL) {
-      balanceData = toEther(hComiBalance['balance'] ?? '0');
-    } else if (currentToken === process.env.NEXT_PUBLIC_BTC_TOKEN_SYMBOL) {
-      const dt = await axios.get(
-        `https://blockstream.info/api/address/${user?.btcAccounts?.[0]?.address}`
-      );
-      const chainStats = dt.data.chain_stats;
-      balanceData = String(
-        (chainStats.funded_txo_sum - chainStats.spent_txo_sum) / 100000000
-      );
-      console.log(dt, 'balance');
-    } else if (currentToken === process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL) {
-      balanceData = toEther(balanceObject['default'] ?? '0');
-    } else {
-      balanceData = toEther(
-        balanceObject[get(APP_TOKENS, [currentToken, 'address'])] ?? '0'
-      );
+      return toEther(hComiBalance['balance'] ?? '0');
     }
-    setBalance(parseFloat(balanceData));
-  };
-
-  const sendProcess = () => {
-    console.log(user);
-    if (isHandle === 'none') {
-      return;
+    if (currentToken === process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL) {
+      return toEther(balanceObject['default'] ?? '0');
     }
-    if (isHandle === 'withdraw') {
-      createApiRequest({
-        method: 'post',
-        url: `/assets/send-btc`,
-        data: {
-          address: user?.btcAccounts?.[0]?.address,
-          amount,
-          feeRate: '15',
-        },
-      }).then((response) => {
-        console.log(response, 'response');
-        constructPsbt(response.data);
-      });
-    } else if (isHandle === 'ordinal') {
-      createApiRequest({
-        method: 'post',
-        url: `/assets/send-btc`,
-        data: {
-          address: user?.btcAccounts?.[0]?.address,
-          ordinalId: amount,
-          feeRate: '15',
-        },
-      }).then((response) => {
-        console.log(response, 'response');
-        constructPsbt(response.data);
-      });
-    }
+    return toEther(
+      balanceObject[get(APP_TOKENS, [currentToken, 'address'])] ?? '0'
+    );
   };
 
   const constructPsbt = async (unspent: any) => {
@@ -450,7 +376,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
                       animate={{ opacity: 1 }}
                       layout
                     >
-                      {balance}
+                      {tokenBalance()}
                     </motion.span>
                     <Select
                       value={toUpper(currentToken)}
@@ -473,172 +399,22 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
         <Button
           type={'primary'}
           block
+          disabled={true}
           shape={'round'}
-          onClick={() => handle('deposit')}
+          onClick={() => addFund(true)}
           style={{ marginBottom: 10 }}
         >
-          ADD {currentToken}
+          Add {currentToken} (Coming Soon)
         </Button>
 
-        {isHandle === 'deposit' && (
-          <motion.div
-            initial={{ scale: 0.08 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0.8 }}
-            style={{ marginBottom: 10 }}
-          >
-            <Row>
-              <Col span={24} style={{ textAlign: 'center', marginBottom: 10 }}>
-                {user?.btcAccounts?.[0]?.address}
-              </Col>
-              <Col span={24} style={{ textAlign: 'center' }}>
-                {' '}
-                <QRCode
-                  value={`bitcoin:${user?.btcAccounts?.[0]?.address}?amount=${(
-                    100000000 / 100000000 +
-                    0.00000001
-                  ).toFixed(8)}`}
-                />
-              </Col>
-            </Row>
-          </motion.div>
-        )}
-
         <Button
+          disabled={true}
           type={'primary'}
           block
           shape={'round'}
-          onClick={() => handle('withdraw')}
-          style={{ marginBottom: 10 }}
+          onClick={() => onAddFundVisibilityChange(true)}
         >
-          WITHDRAW {currentToken}
-        </Button>
-
-        {(isHandle === 'withdraw' || isHandle === 'ordinal') && (
-          <Modal
-            title={header}
-            visible={visibility}
-            onCancel={() => handle('none')}
-            destroyOnClose
-            centered={isMobile}
-            width={'50vw'}
-            footer={footer}
-          >
-            <AnimatePresence>
-              <motion.div
-                initial={{ scale: 0.08 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.8 }}
-              >
-                <Form
-                  form={form}
-                  // onFinish={() => getCommitTx()}
-                  layout={'horizontal'}
-                  scrollToFirstError
-                  initialValues={{ amount: undefined }}
-                  requiredMark={false}
-                >
-                  <Row style={{ marginTop: 10 }} justify="space-between">
-                    <Col span={6}>
-                      <Row justify="end" align="middle">
-                        <Typography.Text
-                          style={{ fontSize: 16, textAlign: 'right' }}
-                        >
-                          {isHandle === 'withdraw' && 'Amount'}
-                          {isHandle === 'ordinal' && 'Ordinal Id'}:
-                        </Typography.Text>
-                      </Row>
-                    </Col>
-                    <Col span={17}>
-                      <Form.Item name="amount" initialValue={amount}>
-                        <Input onChange={(e) => setAmount(e.target.value)} />
-                      </Form.Item>
-                    </Col>
-                  </Row>
-                  <Row justify="space-between">
-                    <Col span={6}>
-                      <Row justify="end">
-                        <Typography.Text style={{ fontSize: 16 }}>
-                          Receiving Address:
-                        </Typography.Text>
-                      </Row>
-                    </Col>
-                    <Col span={17}>
-                      <Form.Item name="address" initialValue={address}>
-                        <Input onChange={(v) => setAddress(v.target.value)} />
-                      </Form.Item>
-                    </Col>
-                  </Row>
-                  <Row justify="space-between" align="middle">
-                    <Col span={6}>
-                      <Row justify="end">
-                        <Typography.Text style={{ fontSize: 16 }}>
-                          Fee Rates:
-                        </Typography.Text>
-                      </Row>
-                    </Col>
-                    <Col span={17}>
-                      <Row
-                        style={{ textAlign: 'center' }}
-                        justify="space-between"
-                      >
-                        {['slow', 'medium', 'fast'].map(
-                          (speed: string, index) => (
-                            <Col lg={{ span: 7.5 }} key={`speed${speed}`}>
-                              <Space
-                                onClick={() => setSelectedFee(speed)}
-                                size={1}
-                                style={{
-                                  border: '2px solid',
-                                  borderColor:
-                                    selectedFee == speed
-                                      ? 'rgba(55, 73, 233, 1)'
-                                      : '#eeeeeedf',
-                                  width: '100%',
-                                  cursor: 'pointer',
-                                  padding: 8,
-                                  borderRadius: '15%',
-                                }}
-                                direction="vertical"
-                              >
-                                <Typography.Title
-                                  style={{ color: 'grey' }}
-                                  level={5}
-                                >
-                                  <strong>{speed}</strong>
-                                </Typography.Title>
-                                <Typography.Title level={3}>
-                                  $2.46
-                                </Typography.Title>
-                                <Typography.Text>
-                                  <span style={{ fontSize: 10 }}>
-                                    Service fee included
-                                  </span>
-                                </Typography.Text>
-
-                                <Typography.Text>
-                                  {feeDescriptions[index]}
-                                </Typography.Text>
-                              </Space>
-                            </Col>
-                          )
-                        )}
-                      </Row>
-                    </Col>
-                  </Row>
-                </Form>
-              </motion.div>
-            </AnimatePresence>
-          </Modal>
-        )}
-
-        <Button
-          type={'primary'}
-          block
-          shape={'round'}
-          onClick={() => handle('ordinal')}
-        >
-          SEND ORDINALS
+          Withdraw {currentToken} (Coming Soon)
         </Button>
       </StyledCard>
       <br />
