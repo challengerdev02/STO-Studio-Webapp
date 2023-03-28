@@ -41,6 +41,8 @@ export interface ViewAssetProps extends BookNamespace.Book {
   likingAsset?: boolean;
   publishingAsset?: boolean;
   currentAccount: string;
+  ordinalData: any;
+  setFeeModalVisibility: any;
 }
 
 export const Attr = (arr: BookNamespace.Attribute[]) => {
@@ -56,7 +58,7 @@ export const Attr = (arr: BookNamespace.Attribute[]) => {
     if (isISO8601(item.value)) {
       try {
         value = format(new Date(item.value), 'MMM, dd yyyy hh:mm:ss');
-      } catch (e) {}
+      } catch (e) { }
     }
     return (
       <Tag
@@ -97,6 +99,8 @@ export const ViewAsset = (props: ViewAssetProps) => {
     likingAsset,
     publishingAsset,
     currentAccount,
+    ordinalData,
+    setFeeModalVisibility
   } = props;
 
   const user = enumerateUser(props.user);
@@ -336,6 +340,15 @@ export const ViewAsset = (props: ViewAssetProps) => {
                           Sell As NFT Access
                         </Button>
                       </Tooltip>
+                      {!ordinalData && (
+                        <Button
+                          type="primary"
+                          shape={'round'}
+                          onClick={() => setFeeModalVisibility(true)}
+                        >
+                          Inscribe Ordinal
+                        </Button>
+                      )}
                     </Space>
                   </div>
                 </>
@@ -371,8 +384,8 @@ export const ViewAsset = (props: ViewAssetProps) => {
                     <VideoPlayer
                       src={props.coverImage ?? ''}
                       style={{ maxHeight: '500px' }}
-                      // poster={uploadedFile?.thumbUrl}
-                      // style={{ maxHeight: '500px' }}
+                    // poster={uploadedFile?.thumbUrl}
+                    // style={{ maxHeight: '500px' }}
                     />
                   )}
                   {coverImageFileType == 'image' && (
@@ -404,7 +417,6 @@ export const ViewAsset = (props: ViewAssetProps) => {
                         }
                       >
                         <Button
-                          m
                           type={'text'}
                           icon={
                             <i
