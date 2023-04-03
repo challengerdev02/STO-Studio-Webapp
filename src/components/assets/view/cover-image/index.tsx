@@ -27,6 +27,7 @@ export const AssetViewCoverImage = (props: AssetViewCoverImageProps) => {
     ? get(SUPPORTED_NETWORKS, Number(props.blockchain)) ??
       SUPPORTED_NETWORKS[97]
     : null;
+  console.log(props, 'props');
 
   // alert(props.thumbnail);
   return (
