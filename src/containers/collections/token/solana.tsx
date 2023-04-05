@@ -496,6 +496,7 @@ export const TokenAssetContainer = () => {
         onCreateSale={onCreateSale}
         queryingContract={queryingContract || mcTraderContractLoader}
         tokenId={tokenID as string}
+        contractAddress={String(tokenHash)}
         tokenActivity={tokenActivity}
         gettingTokenActivity={gettingTokenActivity}
         gettingTokenPriceHistory={gettingTokenPriceHistory}
