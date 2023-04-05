@@ -22,9 +22,13 @@ import {
 } from 'src/blockchain/bitcoin';
 import { StyledModal } from '@/components/layout/header/fullscreen-menu/index.styled';
 import { UserNamespace } from '@/shared/namespaces/user';
-import { cleanInput } from '@/shared/utils';
+import { cleanInput, copyToClipboard } from '@/shared/utils';
 import QRCode from 'react-qr-code';
-import { CheckCircleFilled, CheckCircleTwoTone } from '@ant-design/icons';
+import {
+  CheckCircleFilled,
+  CheckCircleTwoTone,
+  CopyFilled,
+} from '@ant-design/icons';
 import Title from 'antd/lib/typography/Title';
 
 interface GetFeeProps {
@@ -73,6 +77,7 @@ export const GetFee = (props: GetFeeProps) => {
         contractAddress,
         tokenId,
         chainId,
+        walletAddress: account,
       },
       {
         onFinish: (d) => {
@@ -124,6 +129,7 @@ export const GetFee = (props: GetFeeProps) => {
           stage: 'commit',
           changeAddresses,
           destination: ordinalAddress,
+          walletAddress: account,
         },
         {
           onFinish: async (d) => {
@@ -134,8 +140,8 @@ export const GetFee = (props: GetFeeProps) => {
               // sign the error
             } catch (e) {
               console.log('ERRRORR', e);
+              setLoading(false);
             }
-            setLoading(false);
           },
           onError: (e) => {
             setLoading(false);
@@ -383,7 +389,17 @@ export const GetFee = (props: GetFeeProps) => {
                         span={24}
                         style={{ textAlign: 'center', marginBottom: 10 }}
                       >
-                        {user?.btcAccounts?.[0]?.address}
+                        <Space>
+                          {user?.btcAccounts?.[0]?.address}
+                          <Button
+                            onClick={() =>
+                              copyToClipboard(ordinalData?.revealTx)
+                            }
+                            type="link"
+                          >
+                            <CopyFilled />
+                          </Button>
+                        </Space>
                       </Col>
                       <Col span={24} style={{ textAlign: 'center' }}>
                         {' '}
@@ -416,15 +432,27 @@ export const GetFee = (props: GetFeeProps) => {
             <Col span={24} style={{ textAlign: 'center', padding: 30 }}>
               <Space direction="vertical" size={20}>
                 <CheckCircleFilled style={{ fontSize: '2.5em' }} />
-                <Typography.Text>Commit Transaction</Typography.Text>
+                {/* <Typography.Text>Commit Transaction</Typography.Text>
                 <Typography.Text style={{ color: '#fff' }}>
                   <b>{ordinalData?.commitTx}</b>
+                </Typography.Text> */}
+                <Typography.Text>
+                  <b>Congratulations! Your ordinal is being inscribed.</b>
                 </Typography.Text>
-                <Space>--------</Space>
-                <Typography.Text>Reveal Transaction</Typography.Text>
-                <Typography.Text style={{ color: '#fff' }}>
-                  <b>{ordinalData?.revealTx}</b>
-                </Typography.Text>
+                <Space size={1} direction="vertical">
+                  <Typography.Text>Reveal Transaction Id</Typography.Text>
+                  <Space size={2}>
+                    <Typography.Text style={{ color: '#fff' }}>
+                      <b>{ordinalData?.revealTx}</b>
+                    </Typography.Text>
+                    <Button
+                      onClick={() => copyToClipboard(ordinalData?.revealTx)}
+                      type="link"
+                    >
+                      <CopyFilled />
+                    </Button>
+                  </Space>
+                </Space>
               </Space>
             </Col>
           </Row>

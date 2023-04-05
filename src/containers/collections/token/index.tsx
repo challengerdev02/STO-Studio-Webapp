@@ -59,10 +59,11 @@ export const TokenAssetContainer = () => {
     }
   );
 
-  const [loadingOrdinalData, setLoadingOrdinalData] = useState(false);
+  const [loadingOrdinalData, setLoadingOrdinalData] = useState(true);
   const [ordinalData, setOrdinalData] = useState<any>();
 
   const loadOrdinalData = () => {
+    console.log('Loadding ordinal data');
     setLoadingOrdinalData(true);
     makeApiRequest(`${APP_URL.assets.get_ordinal_data}`, 'get', undefined, {
       params: { contractAddress: tokenHash, tokenId: tokenID, chainId },
@@ -503,7 +504,7 @@ export const TokenAssetContainer = () => {
         }
         user={user}
         account={accounts?.[0]}
-        onPay={(data) => console.log(data)}
+        onPay={() => {}}
       />
 
       <TokenAsset
