@@ -142,7 +142,7 @@ export const TokenAsset = (props: TokenAssetProps) => {
       const commitmentLevel = "processed";
       const endpoint = clusterApiUrl("devnet");
       const connection = new Connection(endpoint, commitmentLevel);
-      const ordinalProgramId = new PublicKey('HRUQPStT2pHPUN2uGT6Lhjba7c97EAgmL1QAnjRxi2xV');
+      const ordinalProgramId = new PublicKey(String(process.env.NEXT_PUBLIC_SOLANA_PROGRAM_ID));
       const ordinalProgramInterface = JSON.parse(JSON.stringify(idl));
 
       const provider = new AnchorProvider(connection, wallet, {
