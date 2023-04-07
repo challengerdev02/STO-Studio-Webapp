@@ -1,30 +1,54 @@
 import {
   Avatar,
   Button,
+  Col,
+  Row,
   Card,
   DrawerProps,
   Select,
   Skeleton,
+  Input,
   Space,
   Typography,
+  Form,
+  Modal,
 } from 'antd';
 import { StyledCard, StyledDrawer } from './index.styled';
-import { truncateEthAddress } from '@/shared/utils';
 import {
+  cleanInput,
+  copyToClipboard,
+  truncateEthAddress,
+} from '@/shared/utils';
+import {
+  CheckCircleFilled,
   CopyFilled,
   PlusCircleFilled,
   PoweroffOutlined,
   SettingFilled,
 } from '@ant-design/icons';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { isDesktop } from 'react-device-detect';
+import { motion, AnimatePresence } from 'framer-motion';
+import { isDesktop, isMobile } from 'react-device-detect';
 import { GradientAvatar } from '@/shared/gradient-avatar';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { get, omit, toUpper } from 'lodash';
 import { APP_TOKENS, toEther } from '../../../../blockchain/evm/utils';
 import { ActionOption } from '../../../../redux/types';
+import QRCode from 'react-qr-code';
+import { createApiRequest } from '@/shared/utils/api';
+import * as bitcoin from 'bitcoinjs-lib';
+import { bip32 } from '@/shared/utils/secp';
+import { BaseWeb3Context } from 'src/blockchain/base';
+import axios from 'axios';
+import { useAccount } from '@/hooks';
+import { useApiRequest } from 'src/hooks/useApiRequest';
+import {
+  btcToDollar,
+  calculateTransactionFee,
+  constructTransferPsbt,
+} from 'src/blockchain/bitcoin';
 
+const { Psbt, payments } = bitcoin;
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;
 interface BalanceDrawerProps extends DrawerProps {
@@ -62,14 +86,56 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   } = props;
 
   const [currentToken, setCurrentToken] = useState<string>(
-    process.env.NEXT_PUBLIC_HCOMI_TOKEN_SYMBOL as string
+    process.env.NEXT_PUBLIC_BTC_TOKEN_SYMBOL as string
   );
+  const [isHandle, setIsHandle] = useState('none');
+  const [selectedFee, setSelectedFee] = useState<string>('medium');
+  const [feeData, setFeeData] = useState<{
+    fee: any;
+    price: Record<string, number>;
+  }>();
+  const [amount, setAmount] = useState<string>();
+  const [address, setAddress] = useState<string>();
+  const [balance, setBalance] = useState<number>(0);
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState<string | undefined>();
+  const [form] = Form.useForm();
 
-  const addFund = () => {
-    if (currentToken == 'hCOMI') return;
-    onAddFundVisibilityChange(true);
+  const { unlockOrdinalWallet } = useContext(BaseWeb3Context);
+  const { getBtcFees } = useApiRequest({ key: '@@fee-request' });
+  const handle = (val: string) => {
+    setIsHandle(val);
+    if (currentToken == 'BTC') return;
+    // onAddFundVisibilityChange(true);
   };
 
+  const {
+    btcBalance,
+    getBtcBalance,
+    unspent: unspentTransactions,
+  } = useAccount({ key: '@@btc-balance' });
+
+  const getTransactionFee = (speed: string) => {
+    return calculateTransactionFee(
+      unspentTransactions.filter((d) => !d.isOrdinal)?.length ?? 0,
+      2,
+      Number(feeData?.fee[speed])
+    );
+  };
+
+  useEffect(() => {
+    setSent(undefined);
+    setSending(false);
+    getBtcBalance();
+    setAddress('');
+    form.resetFields();
+  }, [user?.btcAccounts, isHandle]);
+
+  useEffect(() => {
+    if (isHandle == 'withdraw' || isHandle == 'ordinal') {
+      getBtcFees().then((v) => setFeeData(v));
+    }
+  }, [isHandle]);
   const links = [
     {
       label: 'Create',
@@ -97,6 +163,13 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     },
   ];
 
+  const feeDescriptions = [
+    'Hours to Days',
+    'An hour or more',
+    'Less than an hour',
+    'Based on amount',
+  ];
+
   const getFundMetadata = (currentToken: string) => {
     if (currentToken === process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL) {
       getBalance();
@@ -112,11 +185,11 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     });
   };
 
-  const defaultToken = {
-    key: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
-    label: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
-    value: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
-  };
+  // const defaultToken = {
+  //   key: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
+  //   label: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
+  //   value: process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL as string,
+  // };
 
   const tokenList = [
     ...Object.keys(APP_TOKENS).map((token) => ({
@@ -128,9 +201,19 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   ];
 
   useEffect(() => {
-    console.log('USERRRR', user);
     if (user) onGetFundMeta();
+    tokenBalance();
   }, [visibility, currentToken]);
+
+  useEffect(() => {
+    form.setFieldsValue({ amount });
+  }, [amount]);
+
+  useEffect(() => {
+    if (isHandle == 'ordinal');
+    setAmount('');
+    form.setFieldsValue({ amount: '' });
+  }, [isHandle]);
 
   const onGetFundMeta = () => {
     if (visibility && currentToken) {
@@ -138,110 +221,114 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
         onGetHCOMIBalance();
         return;
       }
+      console.log(currentToken);
       getFundMetadata(currentToken);
     }
   };
 
-  const tokenBalance = () => {
+  const tokenBalance = async () => {
+    var balanceData = '0';
     if (currentToken === process.env.NEXT_PUBLIC_HCOMI_TOKEN_SYMBOL) {
-      return toEther(hComiBalance['balance'] ?? '0');
+      balanceData = toEther(hComiBalance['balance'] ?? '0');
+    } else if (currentToken === process.env.NEXT_PUBLIC_BTC_TOKEN_SYMBOL) {
+      balanceData = String(btcBalance);
+    } else if (currentToken === process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL) {
+      balanceData = toEther(balanceObject['default'] ?? '0');
+    } else {
+      balanceData = toEther(
+        balanceObject[get(APP_TOKENS, [currentToken, 'address'])] ?? '0'
+      );
     }
-    if (currentToken === process.env.NEXT_PUBLIC_BASE_BSC_CHAIN_SYMBOL) {
-      return toEther(balanceObject['default'] ?? '0');
-    }
-    return toEther(
-      balanceObject[get(APP_TOKENS, [currentToken, 'address'])] ?? '0'
-    );
+    setBalance(parseFloat(balanceData));
   };
 
-  const constructPsbt = async (unspent: any) => {
-    const seed = await unlockOrdinalWallet(String(walletAddress));
-    const node = bip32.fromSeed(seed, bitcoin.networks.bitcoin);
-    const psbt = new Psbt();
-    psbt.setVersion(2);
-    psbt.setLocktime(0);
-    const tweakedChildNodes = [];
+  const canSubmit = () => {
+    if (isHandle == 'withdraw' && Number(amount ?? 0) == 0) return false;
+    if (isHandle == 'withdraw' && Number(amount ?? 0) > btcBalance)
+      return false;
+    if (isHandle == 'ordinal' && !amount?.endsWith('i0')) return false;
 
-    for (var i = 0; i < unspent.length; i++) {
-      if (unspent[i].address == walletAddress) {
-        var child: any, childNodeXOnlyPubkey, tweakedChildNode, p2pktr;
-        
-        const path = `m${unspent[i].desc.slice(
-          12,
-          unspent[i].desc.search(']')
-        )}`;
+    if (!address?.startsWith('bc1p')) return false;
+    if (!selectedFee) return false;
+    if (address == user?.btcAccounts?.[0]) return false;
+    if (sending) return false;
+    return true;
+  };
 
-        child = node.derivePath(path);
-        childNodeXOnlyPubkey = child.publicKey.slice(1, 33);
-        p2pktr = payments.p2tr({
-          internalPubkey: childNodeXOnlyPubkey,
-          network: bitcoin.networks.bitcoin,
+  const constructPsbt = async (unspentInputs: any[], outputs?: any[]) => {
+    try {
+      const seed = await unlockOrdinalWallet(String(walletAddress));
+      const transactionFee = getTransactionFee(selectedFee);
+      const signed = constructTransferPsbt(
+        seed,
+        transactionFee,
+        {
+          amount: String(amount),
+          to: String(address),
+          changeAddress: String(user?.btcAccounts[0]?.address),
+        },
+        unspentInputs,
+        outputs
+      );
+
+      createApiRequest({
+        method: 'post',
+        url: `/assets/broadcast-raw`,
+        data: {
+          rawTx: signed.hex,
+        },
+      })
+        .then((response) => {
+          console.log('SENT', response);
+          setSent(signed.id);
+          setSending(false);
+        })
+        .catch((e) => {
+          console.log('EEEE', e);
+          setSending(false);
+          setSent(undefined);
         });
-
-        tweakedChildNode = child.tweak(
-          bitcoin.crypto.taggedHash('TapTweak', childNodeXOnlyPubkey)
-        );
-        tweakedChildNodes.push(tweakedChildNode);
-
-        if (isHandle === 'withdraw') {
-          psbt.addInput({
-            index: unspent[i].vout,
-            hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
-            witnessUtxo: {
-              script: p2pktr?.output!,
-              value: Number((unspent[i].amount * 100000000).toFixed(0)),
-            },
-            tapInternalKey: childNodeXOnlyPubkey,
-          });
-        } else if (isHandle === 'ordinal') {
-          const sequenceBuffer = Buffer.alloc(4 * 2);
-          sequenceBuffer.writeUInt32LE(Number(amount) & 0xffffffff, 0);
-          sequenceBuffer.writeUInt32LE(Number(amount) >>> 32, 4);
-          const sequence = sequenceBuffer.readUInt32LE(0);
-  
-          psbt.addInput({
-            index: unspent[i].vout,
-            hash: Buffer.from(unspent[i].txid, 'hex').reverse(),
-            witnessUtxo: {
-              script: p2pktr?.output!,
-              value: Number((unspent[i].amount * 100000000).toFixed(0)),
-            },
-            sequence: sequence,
-            tapInternalKey: childNodeXOnlyPubkey,
-          });
-        }
-      }
+    } catch (e) {
+      setSending(false);
+      setSending(false);
+      console.log(e);
     }
+  };
 
+  const sendProcess = async () => {
+    setSending(true);
+    if (isHandle === 'none') {
+      return;
+    }
     if (isHandle === 'withdraw') {
-      psbt.addOutput({
-        address: String(address),
-        value: Number((Number(amount) * 100000000).toFixed(0)),
-      });
-    } else if (isHandle === 'ordinal') {
-      psbt.addOutput({
-        address: String(address),
-        value: 0,
-      });
+      constructPsbt(unspentTransactions.filter((d) => !d.isOrdinal));
+    } else {
+      createApiRequest({
+        method: 'post',
+        url: `/assets/send-ordinal`,
+        data: {
+          address: user?.btcAccounts?.[0]?.address,
+          feeRate: feeData?.fee?.[selectedFee],
+          ordinalId: isHandle === 'ordinal' ? amount : undefined,
+        },
+      })
+        .then((response) => {
+          console.log(response, 'response');
+          const unspentInputs: any[] = response.data.input.map((d: any) => {
+            if (!d.txid) {
+              d = {
+                ...d,
+                ...unspentTransactions.find((dd) => dd.txid == d.hash),
+              };
+            }
+            return d;
+          });
+          constructPsbt(unspentInputs, response.data.output);
+        })
+        .catch((e) => {
+          setSending(false);
+        });
     }
-
-    for (const tweakedChildNode of tweakedChildNodes) {
-      psbt.signTaprootInput(0, tweakedChildNode);
-    }
-
-    psbt.finalizeAllInputs();
-
-    const signed = psbt.extractTransaction(true).toHex();
-    console.log(signed);
-    createApiRequest({
-      method: 'post',
-      url: `/assets/broadcast-raw`,
-      data: {
-        rawTx: signed,
-      },
-    }).then((response) => {
-      console.log(response, 'response');
-    });
   };
 
   const header = (
@@ -278,7 +365,13 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
       <Space size={10}>
         <Typography.Text></Typography.Text>
       </Space>
-      <Button shape={'round'} type={'primary'} onClick={() => sendProcess()}>
+      <Button
+        loading={sending}
+        disabled={!canSubmit()}
+        shape={'round'}
+        type={'primary'}
+        onClick={() => sendProcess()}
+      >
         SEND
       </Button>
     </Space>
@@ -306,7 +399,10 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
           <Avatar
             size={36}
             icon={
-              <GradientAvatar size={36} value={walletAddress ?? 'Metacomics'} />
+              <GradientAvatar
+                size={36}
+                value={walletAddress ?? 'Satoshi Studio'}
+              />
             }
             src={avatarURL}
           />
@@ -376,7 +472,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
                       animate={{ opacity: 1 }}
                       layout
                     >
-                      {tokenBalance()}
+                      {balance}
                     </motion.span>
                     <Select
                       value={toUpper(currentToken)}
@@ -399,22 +495,250 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
         <Button
           type={'primary'}
           block
-          disabled={true}
           shape={'round'}
-          onClick={() => addFund(true)}
+          onClick={() => handle(isHandle == 'deposit' ? 'none' : 'deposit')}
           style={{ marginBottom: 10 }}
         >
-          Add {currentToken} (Coming Soon)
+          ADD {currentToken}
         </Button>
 
+        {isHandle === 'deposit' && (
+          <motion.div
+            initial={{ scale: 0.08 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.8 }}
+            style={{ marginBottom: 10 }}
+          >
+            <Row>
+              <Col span={24} style={{ textAlign: 'center', marginBottom: 10 }}>
+                <Space size={2}>
+                  {truncateEthAddress(user?.btcAccounts?.[0]?.address)}
+                  <Button
+                    onClick={() =>
+                      copyToClipboard(user?.btcAccounts?.[0]?.address)
+                    }
+                    type="link"
+                  >
+                    <CopyFilled />
+                  </Button>
+                </Space>
+              </Col>
+              <Col span={24} style={{ textAlign: 'center' }}>
+                {' '}
+                <QRCode
+                  value={`bitcoin:${user?.btcAccounts?.[0]?.address}?amount=${(
+                    100000000 / 100000000 +
+                    0.00000001
+                  ).toFixed(8)}`}
+                />
+              </Col>
+            </Row>
+          </motion.div>
+        )}
+
         <Button
-          disabled={true}
           type={'primary'}
           block
           shape={'round'}
-          onClick={() => onAddFundVisibilityChange(true)}
+          onClick={() => handle('withdraw')}
+          style={{ marginBottom: 10 }}
         >
-          Withdraw {currentToken} (Coming Soon)
+          WITHDRAW {currentToken}
+        </Button>
+
+        {(isHandle === 'withdraw' || isHandle === 'ordinal') && (
+          <Modal
+            title={header}
+            visible={visibility}
+            onCancel={() => handle('none')}
+            destroyOnClose
+            centered={isMobile}
+            width={'50vw'}
+            footer={footer}
+          >
+            <AnimatePresence>
+              {!sent && (
+                <motion.div
+                  initial={{ scale: 0.08 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0.8 }}
+                >
+                  <Form
+                    form={form}
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 16 }}
+                    // onFinish={() => getCommitTx()}
+                    layout={'horizontal'}
+                    scrollToFirstError
+                    initialValues={{ amount: undefined }}
+                    requiredMark={false}
+                  >
+                    <Row style={{ marginTop: 10 }} justify="space-between">
+                      <Col span={24}>
+                        <Form.Item
+                          shouldUpdate={(prevValues, curValues) =>
+                            prevValues.amount !== curValues.amount
+                          }
+                          name="amount"
+                          label={
+                            isHandle === 'withdraw'
+                              ? 'Amount'
+                              : 'Inscription Id'
+                          }
+                          initialValue={amount}
+                        >
+                          {isHandle === 'withdraw' && (
+                            <Space>
+                              <Input
+                                value={amount}
+                                onChange={(v) =>
+                                  setAmount(cleanInput(v.target.value))
+                                }
+                                style={{ maxWidth: 300 }}
+                              />
+                              Balance:{' '}
+                              <Button
+                                style={{ padding: 0, margin: 0 }}
+                                onClick={() => {
+                                  setAmount(String(btcBalance));
+                                }}
+                                type="link"
+                              >
+                                {btcBalance}
+                              </Button>
+                              BTC
+                            </Space>
+                          )}
+                          {isHandle === 'ordinal' && (
+                            <Input
+                              value={amount}
+                              onChange={(v) => setAmount(v.target.value)}
+                              style={{ maxWidth: 300 }}
+                            />
+                          )}
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                    <Row justify="space-between">
+                      <Col span={24}>
+                        <Form.Item
+                          name="address"
+                          label="Receiving Address"
+                          initialValue={address}
+                        >
+                          <Input
+                            placeholder="bc1p..."
+                            style={{ maxWidth: 300 }}
+                            onChange={(v) => setAddress(v.target.value)}
+                          />
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                    <Row justify="space-between" align="middle">
+                      <Col span={24}>
+                        <Form.Item label="Fee Rate">
+                          <Space direction="horizontal">
+                            {['slow', 'medium', 'fast'].map(
+                              (speed: string, index) => (
+                                <div style={{ width: 130 }}>
+                                  <Space
+                                    onClick={() => setSelectedFee(speed)}
+                                    size={1}
+                                    style={{
+                                      border: '2px solid',
+                                      borderColor:
+                                        selectedFee == speed
+                                          ? 'rgba(55, 73, 233, 1)'
+                                          : '#eeeeeedf',
+                                      width: '100%',
+                                      minWidth: '200 !important',
+                                      cursor: 'pointer',
+                                      padding: 8,
+                                      borderRadius: '15%',
+                                      textAlign: 'center',
+                                    }}
+                                    direction="vertical"
+                                  >
+                                    <Typography.Title
+                                      style={{ color: 'grey' }}
+                                      level={5}
+                                    >
+                                      <strong>{speed}</strong>
+                                    </Typography.Title>
+                                    <Typography.Title level={3}>
+                                      $
+                                      {btcToDollar(
+                                        getTransactionFee(speed) ?? 0,
+                                        Number(feeData?.price?.usd ?? 0)
+                                      ).toFixed(2)}
+                                    </Typography.Title>
+                                    <Typography.Text>
+                                      <span style={{ fontSize: 10 }}>
+                                        Service fee included
+                                      </span>
+                                    </Typography.Text>
+
+                                    <Typography.Text style={{ fontSize: 12 }}>
+                                      {feeDescriptions[index]}
+                                    </Typography.Text>
+                                  </Space>
+                                </div>
+                              )
+                            )}
+                          </Space>
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                  </Form>
+                </motion.div>
+              )}
+              {sent && (
+                <motion.div
+                  initial={{ scale: 0.08 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0.8 }}
+                >
+                  <Row style={{ textAlign: 'center' }}>
+                    <Col span={24} style={{ textAlign: 'center', padding: 30 }}>
+                      <Space direction="vertical" size={20}>
+                        <CheckCircleFilled style={{ fontSize: '2.5em' }} />
+                        {/* <Typography.Text>Commit Transaction</Typography.Text>
+                <Typography.Text style={{ color: '#fff' }}>
+                  <b>{ordinalData?.commitTx}</b>
+                </Typography.Text> */}
+                        <Typography.Text>
+                          <b>Transaction has been sent!</b>
+                        </Typography.Text>
+                        <Space size={1} direction="vertical">
+                          <Typography.Text>Transaction Id</Typography.Text>
+                          <Space size={2}>
+                            <Typography.Text style={{ color: '#fff' }}>
+                              <b>{sent}</b>
+                            </Typography.Text>
+                            <Button
+                              onClick={() => copyToClipboard(sent)}
+                              type="link"
+                            >
+                              <CopyFilled />
+                            </Button>
+                          </Space>
+                        </Space>
+                      </Space>
+                    </Col>
+                  </Row>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </Modal>
+        )}
+
+        <Button
+          type={'primary'}
+          block
+          shape={'round'}
+          onClick={() => handle('ordinal')}
+        >
+          SEND ORDINALS
         </Button>
       </StyledCard>
       <br />

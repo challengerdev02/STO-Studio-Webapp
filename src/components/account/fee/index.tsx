@@ -70,16 +70,16 @@ export const GetFee = (props: GetFeeProps) => {
   const getInscriptionFee = () => {
     setLoading(true);
 
-    makeApiRequest(
-      `${APP_URL.assets.get_inscription_fee}`,
-      'post',
-      {
+    makeApiRequest({
+      url: `${APP_URL.assets.get_inscription_fee}`,
+      method: 'post',
+      payload: {
         contractAddress,
         tokenId,
         chainId,
         walletAddress: account,
       },
-      {
+      options: {
         onFinish: (d) => {
           // console.log('FEEES', d);
           setFeeData(d);
@@ -104,8 +104,8 @@ export const GetFee = (props: GetFeeProps) => {
           // if (visibility && e) timeout = setTimeout(() => getInscriptionFee(), 10000);
           setLoading(false);
         },
-      }
-    );
+      },
+    });
   };
   const getCommitTx = async () => {
     setLoading(true);
@@ -117,10 +117,10 @@ export const GetFee = (props: GetFeeProps) => {
       const ordinalAddress = await getOrdinalAddress(seed);
       console.log('DESTINATION', ordinalAddress);
 
-      makeApiRequest(
-        `${APP_URL.assets.get_commit_tx}`,
-        'post',
-        {
+      makeApiRequest({
+        url: `${APP_URL.assets.get_commit_tx}`,
+        method: 'post',
+        payload: {
           contractAddress,
           tokenId,
           chainId,
@@ -131,7 +131,7 @@ export const GetFee = (props: GetFeeProps) => {
           destination: ordinalAddress,
           walletAddress: account,
         },
-        {
+        options: {
           onFinish: async (d) => {
             try {
               const signed = signRawTransaction(d.commitRaw, seed, d.unspent);
@@ -146,8 +146,8 @@ export const GetFee = (props: GetFeeProps) => {
           onError: (e) => {
             setLoading(false);
           },
-        }
-      );
+        },
+      });
     } catch (e) {
       setLoading(false);
     }
@@ -159,15 +159,15 @@ export const GetFee = (props: GetFeeProps) => {
     destination?: string
   ) => {
     setLoading(true);
-    makeApiRequest(
-      `${APP_URL.assets.inscribe}`,
-      'post',
-      {
+    makeApiRequest({
+      url: `${APP_URL.assets.inscribe}`,
+      method: 'post',
+      payload: {
         id,
         signedCommitTransactionHex,
         destination,
       },
-      {
+      options: {
         onFinish: async (d) => {
           console.log('post raw', d);
           setOrdinalData(d.ordinalData);
@@ -176,8 +176,8 @@ export const GetFee = (props: GetFeeProps) => {
         onError: (e) => {
           setLoading(false);
         },
-      }
-    );
+      },
+    });
   };
 
   // const onFormValueChange = ((changes, formValues)=> {

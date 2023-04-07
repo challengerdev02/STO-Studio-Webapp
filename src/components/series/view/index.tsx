@@ -331,7 +331,16 @@ export const ViewSeries = (props: ViewSeriesProps) => {
 
   return (
     <>
-      <MainWrapper data-testid="series-view-wrapper">
+      <MainWrapper
+        data-testid="series-view-wrapper"
+        style={{
+          width: '100%',
+          paddingTop: 0,
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         {loading && (
           <Wrapper>
             {' '}
@@ -346,16 +355,24 @@ export const ViewSeries = (props: ViewSeriesProps) => {
         )}
         {!loading && (
           <BannerWrapper>
-            <NextImage
+            <img
               src={seriesDetails?.banner}
               className="banner-image"
-              layout="fill"
+              // layout="fill"
+              // height={'100%'}
+              // width={'100%'}
+              height={600 / 2}
+              style={{ objectFit: 'cover' }}
+              // layout={'intrinsic'}
               alt="banner image"
             />
           </BannerWrapper>
         )}
+        {/*<div>*/}
         {!loading && (
-          <SeriesViewWrapper style={{ zIndex: 10, position: 'relative' }}>
+          <SeriesViewWrapper
+            style={{ zIndex: 10, position: 'relative', width: '80%' }}
+          >
             <Space
               direction={'vertical'}
               size={50}
@@ -567,12 +584,14 @@ export const ViewSeries = (props: ViewSeriesProps) => {
                   <Button
                     type={isListView ? 'primary' : 'default'}
                     onClick={toggleView}
+                    shape={'round'}
                   >
                     List View
                   </Button>
                   <Button
                     type={!isListView ? 'primary' : 'default'}
                     onClick={toggleView}
+                    shape={'round'}
                   >
                     Grid View
                   </Button>
@@ -582,6 +601,7 @@ export const ViewSeries = (props: ViewSeriesProps) => {
             </Space>
           </SeriesViewWrapper>
         )}
+        {/*</div>*/}
       </MainWrapper>
       {selectedAsset && (
         <BookFlippingPreview

@@ -76,187 +76,186 @@ export const CreateSeries = (props: CreateSeriesProps) => {
         form={form}
         initialValues={initialValues}
       >
-        <Row gutter={2}>
-          <Row>
-            <Col sm={24} md={24} lg={24} xl={24} xxl={24}>
-              <Form.Item noStyle>
-                <IsomorphicUpload
-                  allowCrop={true}
-                  cropperProps={{
-                    cropSize: {
-                      width: 1800,
-                      height: 300,
-                    },
-                  }}
-                  description={
-                    <Space direction={'vertical'} size={10}>
-                      <span>Drag file here or Click to upload</span>
-                      <span style={{ color: 'var(--text-secondary-color)' }}>
-                        Must be at least 1800x300 pixels
-                      </span>
-                    </Space>
-                  }
-                  label={
-                    <Space>
-                      <div>
-                        <Title>Banner Image</Title>
-                        <Text>Supported: JPG, PNG, GIF, SVG, GLB, GLTF.</Text>
-                      </div>
-                    </Space>
-                  }
-                  draggerProps={bannerDraggerProps}
-                  name={'bannerImage'}
-                  required
-                  hasFeedback
-                  getValueFromEvent={normalizeFileUpload}
-                  valuePropName="file"
-                  className={'banner-image-upload'}
-                >
-                  {bannerImage && (
-                    <div style={{ width: '100% !important' }}>
-                      <ImageOverlay
-                        width={'100%'}
-                        height={'100%'}
-                        style={{ borderRadius: 12 }}
-                      >
-                        <i
-                          className="mc-pencil-fill"
-                          style={{ fontSize: '1.5em' }}
-                        />
-                      </ImageOverlay>
-                      <Image
-                        // width={'100%'}
-                        //  className={'book-cover-image'}
-                        preview={false}
-                        src={bannerImage}
-                        placeholder={true}
-                        alt=""
-                      />
-                    </div>
-                  )}
-                </IsomorphicUpload>
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row>
-            <Col sm={24} md={24} lg={24} xl={10} xxl={10}>
-              <Form.Item noStyle>
-                <IsomorphicUpload
-                  allowCrop={true}
-                  cropperProps={{
-                    cropSize: {
-                      width: 500,
-                      height: 500,
-                    },
-                  }}
-                  description={
-                    <Space direction={'vertical'} size={10}>
-                      <span>Drag file here or Click to upload</span>
-                      <span style={{ color: 'var(--text-secondary-color)' }}>
-                        Must be at least 500x500 pixels
-                      </span>
-                    </Space>
-                  }
-                  label={
-                    <Space>
-                      <div>
-                        <Title>Cover Image</Title>
-                        <Text>Supported: JPG, PNG, GIF, SVG, GLB, GLTF.</Text>
-                      </div>
-                    </Space>
-                  }
-                  draggerProps={coverDraggerProps}
-                  name={'coverImage'}
-                  required
-                  hasFeedback
-                  getValueFromEvent={normalizeFileUpload}
-                  valuePropName="file"
-                >
-                  {coverImage && (
+        <Row gutter={[20, 20]}>
+          <Col sm={24} md={24} lg={24} xl={24} xxl={24}>
+            {/*<Form.Item noStyle className={'w-100'}>*/}
+            <IsomorphicUpload
+              allowCrop={true}
+              cropperProps={{
+                cropSize: {
+                  width: 1800,
+                  height: 600,
+                },
+              }}
+              takeFullWidth
+              aspectRatio={1800 / 600}
+              description={
+                <Space direction={'vertical'} size={10}>
+                  <span>Drag file here or Click to upload</span>
+                  <span style={{ color: 'var(--text-secondary-color)' }}>
+                    Must be at least 1800x600 pixels
+                  </span>
+                </Space>
+              }
+              label={
+                <Space>
+                  <div>
+                    <Title>Banner Image</Title>
+                    <Text>Supported: JPG, PNG, GIF, SVG, GLB, GLTF.</Text>
+                  </div>
+                </Space>
+              }
+              draggerProps={bannerDraggerProps}
+              name={'bannerImage'}
+              required
+              hasFeedback
+              getValueFromEvent={normalizeFileUpload}
+              valuePropName="file"
+              className={'banner-image-upload'}
+            >
+              {bannerImage && (
+                <div style={{ width: '100% !important' }}>
+                  <ImageOverlay
+                    width={'100%'}
+                    height={'100%'}
+                    style={{ borderRadius: 12 }}
+                  >
+                    <i
+                      className="mc-pencil-fill"
+                      style={{ fontSize: '1.5em' }}
+                    />
+                  </ImageOverlay>
+                  <Image
+                    // width={'100%'}
+                    //  className={'book-cover-image'}
+                    preview={false}
+                    src={bannerImage}
+                    placeholder={true}
+                    alt=""
+                  />
+                </div>
+              )}
+            </IsomorphicUpload>
+            {/*</Form.Item>*/}
+          </Col>
+          <Col sm={24} md={24} lg={24} xl={10} xxl={10}>
+            <Form.Item noStyle>
+              <IsomorphicUpload
+                allowCrop={true}
+                cropperProps={{
+                  cropSize: {
+                    width: 500,
+                    height: 500,
+                  },
+                }}
+                takeFullWidth
+                description={
+                  <Space direction={'vertical'} size={10}>
+                    <span>Drag file here or Click to upload</span>
+                    <span style={{ color: 'var(--text-secondary-color)' }}>
+                      Must be at least 500x500 pixels
+                    </span>
+                  </Space>
+                }
+                label={
+                  <Space>
                     <div>
-                      <ImageOverlay
-                        width={'100%'}
-                        height={'100%'}
-                        style={{ borderRadius: 12 }}
-                      >
-                        <i
-                          className="mc-pencil-fill"
-                          style={{ fontSize: '1.5em' }}
-                        />
-                      </ImageOverlay>
-                      <Image
-                        // width={'100%'}
-                        //  className={'book-cover-image'}
-                        preview={false}
-                        src={coverImage}
-                        placeholder={true}
-                        alt=""
-                      />
+                      <Title>Cover Image</Title>
+                      <Text>Supported: JPG, PNG, GIF, SVG, GLB, GLTF.</Text>
                     </div>
-                  )}
-                </IsomorphicUpload>
-              </Form.Item>
-            </Col>
-            <Col sm={24} md={24} lg={24} xl={14} xxl={14}>
-              <Row gutter={16}>
-                <Col span={24}>
-                  <Form.Item
-                    label={<BoldText>TITLE</BoldText>}
-                    rules={[{ required: true, message: 'Please input title' }]}
-                    hasFeedback
-                    name="title"
-                  >
-                    <InputField
-                      placeholder='e. g. "Redeemable One Comic”'
-                      data-testid="inputVal"
+                  </Space>
+                }
+                draggerProps={coverDraggerProps}
+                name={'coverImage'}
+                required
+                hasFeedback
+                getValueFromEvent={normalizeFileUpload}
+                valuePropName="file"
+              >
+                {coverImage && (
+                  <div>
+                    <ImageOverlay
+                      width={'100%'}
+                      height={'100%'}
+                      style={{ borderRadius: 12 }}
+                    >
+                      <i
+                        className="mc-pencil-fill"
+                        style={{ fontSize: '1.5em' }}
+                      />
+                    </ImageOverlay>
+                    <Image
+                      // width={'100%'}
+                      //  className={'book-cover-image'}
+                      preview={false}
+                      src={coverImage}
+                      placeholder={true}
+                      alt=""
                     />
-                  </Form.Item>
-                </Col>
-                <Col span={24}>
-                  <Form.Item
-                    label={<BoldText>Categories (Select only 2)</BoldText>}
-                    name="categories"
-                    rules={[
-                      {
-                        required: true,
-                        message: 'Please a select categories',
-                      },
-                    ]}
-                    hasFeedback
-                  >
-                    <Select
-                      tagRender={tagRender}
-                      options={categories}
-                      onChange={onGENRE_OPTIONSChange as never}
-                      mode="multiple"
-                      showArrow
-                      placeholder="Select max of 2 categories"
-                      style={{
-                        width: '100%',
-                        borderRadius: '12px',
-                        height: '48px',
-                      }}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col span={24}>
-                  <Form.Item
-                    label={<BoldText>DESCRIPTION</BoldText>}
-                    rules={[
-                      { required: true, message: 'Please input a description' },
-                    ]}
-                    name="description"
-                  >
-                    <TextAreaField
-                      rows={7}
-                      placeholder="Provide a detailed description of your item"
-                      data-testid="textArea"
-                    />
-                  </Form.Item>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
+                  </div>
+                )}
+              </IsomorphicUpload>
+            </Form.Item>
+          </Col>
+          <Col sm={24} md={24} lg={24} xl={14} xxl={14}>
+            <Row gutter={16}>
+              <Col span={24}>
+                <Form.Item
+                  label={<BoldText>TITLE</BoldText>}
+                  rules={[{ required: true, message: 'Please input title' }]}
+                  hasFeedback
+                  name="title"
+                >
+                  <InputField
+                    placeholder='e. g. "Redeemable One Comic”'
+                    data-testid="inputVal"
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <Form.Item
+                  label={<BoldText>Categories (Select only 2)</BoldText>}
+                  name="categories"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please a select categories',
+                    },
+                  ]}
+                  hasFeedback
+                >
+                  <Select
+                    tagRender={tagRender}
+                    options={categories}
+                    onChange={onGENRE_OPTIONSChange as never}
+                    mode="multiple"
+                    showArrow
+                    placeholder="Select max of 2 categories"
+                    style={{
+                      width: '100%',
+                      borderRadius: '12px',
+                      height: '48px',
+                    }}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <Form.Item
+                  label={<BoldText>DESCRIPTION</BoldText>}
+                  rules={[
+                    { required: true, message: 'Please input a description' },
+                  ]}
+                  name="description"
+                >
+                  <TextAreaField
+                    rows={7}
+                    placeholder="Provide a detailed description of your item"
+                    data-testid="textArea"
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+          </Col>
         </Row>
         {/*<Col span={24}>*/}
         {/*  <Form.Item>*/}

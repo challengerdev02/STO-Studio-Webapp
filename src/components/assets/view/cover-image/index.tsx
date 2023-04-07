@@ -4,6 +4,7 @@ import { ImageView } from '@/components/isomorphic/image-viewer[thumbnail]/main-
 import React from 'react';
 import { SUPPORTED_NETWORKS } from '../../../../blockchain/evm/utils';
 import { get } from 'lodash';
+import { SOLANA_CHAIN_ID } from '@/shared/constants';
 
 const { Text } = Typography;
 interface AssetViewCoverImageProps {
@@ -27,6 +28,7 @@ export const AssetViewCoverImage = (props: AssetViewCoverImageProps) => {
     ? get(SUPPORTED_NETWORKS, Number(props.blockchain)) ??
       SUPPORTED_NETWORKS[97]
     : null;
+  console.log(props, 'props');
 
   // alert(props.thumbnail);
   return (
@@ -58,7 +60,7 @@ export const AssetViewCoverImage = (props: AssetViewCoverImageProps) => {
         style={{ paddingLeft: 10, paddingRight: 10, minHeight: 40 }}
       >
         {props.blockchain ? (
-          props.blockchain == '1399811149' ? (
+          props.blockchain == String(SOLANA_CHAIN_ID) ? (
             <img src={chain!['icon']} height={24} width={24} />
           ) : (
             chain!['icon']

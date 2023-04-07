@@ -14,10 +14,7 @@ import { enumerateUser } from '@/components/sale/view/columns';
 import { UserNamespace } from '@/shared/namespaces/user';
 import { BecomeCreator } from '@/components/account/become-creator';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import { APP_URL } from '@/shared/constants';
-import { useApiRequest } from 'src/hooks/useApiRequest';
 import Head from 'next/head';
-import { GetFee } from '@/components/account/fee';
 
 export const ViewBookContainer = () => {
   const router = useRouter();
@@ -39,11 +36,8 @@ export const ViewBookContainer = () => {
   const publishingAsset = uiLoaders[publishAssetKey];
   const [previewVisibility, setPreviewVisibility] = useState<boolean>(false);
   const { user, handleGetAccount } = useAccount({ key, autoFetch: true });
-  const [loadingOrdinalData, setLoadingOrdinalData] = useState(false);
-  const { accounts, chainId } = useContext(BaseWeb3Context);
-  const { makeApiRequest } = useApiRequest({ key: '@@fee-request' });
-  const [ordinalData, setOrdinalData] = useState<any>();
-  const [feeModalVisibility, setFeeModalVisibility] = useState(false);
+
+  const { accounts } = useContext(BaseWeb3Context);
 
   const walletAddress = accounts?.length
     ? String(accounts && accounts[0]).toLowerCase()
@@ -90,7 +84,6 @@ export const ViewBookContainer = () => {
 
   useEffect(() => {
     onGetBook();
-    loadOrdinalData();
   }, [assetID]);
 
   // useEffect(() => {
@@ -258,21 +251,6 @@ export const ViewBookContainer = () => {
     dialogCharacterRef.current = Dialog.show({ content, actions });
   };
 
-  const loadOrdinalData = () => {
-    setLoadingOrdinalData(true);
-    makeApiRequest(`${APP_URL.assets.get_ordinal_data}`, 'get', undefined, {
-      params: { asset: asset?._id },
-      onFinish: (d) => {
-        console.log(d.ordinalData, "ordinalData")
-        setOrdinalData(d.ordinalData);
-        setTimeout(() => setLoadingOrdinalData(false), 1000);
-      },
-      onError: (e) => {
-        setLoadingOrdinalData(false);
-      },
-    });
-  };
-
   const onCreateCharacter = (event: any) => {
     router.push(`/assets/${asset?._id}/characters/create`);
     event.preventDefault();
@@ -307,8 +285,8 @@ export const ViewBookContainer = () => {
             viewBox="0 0 291.545 291.545"
             height={150}
             fill={'currentcolor'}
-          // style="enable-background:new 0 0 291.545 291.545;"
-          // xml:space="preserve"
+            // style="enable-background:new 0 0 291.545 291.545;"
+            // xml:space="preserve"
           >
             <g>
               <path d="M238.685,111.889c-30.756-0.311-55.777-25.587-55.777-56.345c0-19.675,0-33.383,0-52.99h-73.927   c-19.944,0-36.17,16.226-36.17,36.17v55.269c33.093,4.988,60.943,33.32,60.943,71.863c9.422,6.357,15.63,17.13,15.63,29.327v53.671   v30v0h105.99c19.944,0,36.171-16.225,36.171-36.17V112.426C274.035,112.248,256.34,112.069,238.685,111.889z" />
@@ -341,17 +319,6 @@ export const ViewBookContainer = () => {
         checkingInvitationCode={false}
         reloadUser={() => handleGetAccount({ key })}
       />
-      <GetFee
-        chainId={String(chainId)}
-        asset={asset._id}
-        visibility={feeModalVisibility}
-        onVisibilityChange={(visible: boolean) =>
-          setFeeModalVisibility(visible)
-        }
-        user={user}
-        account={accounts?.[0]}
-        onPay={() => {}}
-      />
       <ViewAsset
         {...(asset?.asset as any as BookNamespace.Book)}
         likes={asset.likes}
@@ -372,8 +339,6 @@ export const ViewBookContainer = () => {
         publishingAsset={publishingAsset}
         onLikeAsset={onLikeAsset}
         likingAsset={likingAsset || loadingCaptcha}
-        ordinalData={ordinalData}
-        setFeeModalVisibility={setFeeModalVisibility}
       />
     </>
   );

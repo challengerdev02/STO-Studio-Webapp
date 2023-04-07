@@ -174,7 +174,7 @@ export const WalletSetupContainer = () => {
     if (wallet?.tapRootAddress) {
       setSavingWallet('started');
       console.log('started');
-      // if (chainId !== 1399811149 && chainId) {
+      // if (chainId !== SOLANA_CHAIN_ID && chainId) {
       makeApiRequest(
         `${APP_URL.bitcoin.addWallet}`,
         PUT,
@@ -213,11 +213,11 @@ export const WalletSetupContainer = () => {
         }
         setEncryptingState('completed');
         setSavingWallet('started');
-        makeApiRequest(
-          `${APP_URL.bitcoin.addWallet}`,
-          PUT,
-          { tr: wallet.descriptor, address: wallet.tapRootAddress },
-          {
+        makeApiRequest({
+          url: `${APP_URL.bitcoin.addWallet}`,
+          method: PUT,
+          payload: { tr: wallet.descriptor, address: wallet.tapRootAddress },
+          options: {
             onFinish: async (_: any) => {
               setSavingWallet('completed');
               handleGetAccount({
@@ -232,8 +232,8 @@ export const WalletSetupContainer = () => {
               setSavingWallet('error');
               console.log('SavingWalletError', e);
             },
-          }
-        );
+          },
+        });
       });
     }
   };

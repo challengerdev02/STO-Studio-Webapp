@@ -59,20 +59,24 @@ export const TokenAssetContainer = () => {
     }
   );
 
-  const [loadingOrdinalData, setLoadingOrdinalData] = useState(true);
+  const [loadingOrdinalData, setLoadingOrdinalData] = useState(false);
   const [ordinalData, setOrdinalData] = useState<any>();
 
   const loadOrdinalData = () => {
     console.log('Loadding ordinal data');
     setLoadingOrdinalData(true);
-    makeApiRequest(`${APP_URL.assets.get_ordinal_data}`, 'get', undefined, {
-      params: { contractAddress: tokenHash, tokenId: tokenID, chainId },
-      onFinish: (d) => {
-        setOrdinalData(d.ordinalData);
-        setTimeout(() => setLoadingOrdinalData(false), 1000);
-      },
-      onError: (e) => {
-        setLoadingOrdinalData(false);
+    makeApiRequest({
+      url: `${APP_URL.assets.get_ordinal_data}`,
+      method: 'get',
+      options: {
+        params: { contractAddress: tokenHash, tokenId: tokenID, chainId },
+        onFinish: (d) => {
+          setOrdinalData(d.ordinalData);
+          setTimeout(() => setLoadingOrdinalData(false), 1000);
+        },
+        onError: (e) => {
+          setLoadingOrdinalData(false);
+        },
       },
     });
   };

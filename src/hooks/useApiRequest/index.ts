@@ -2,23 +2,25 @@ import { ActionOption } from '../../redux/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/state';
 import { makeServerRequest } from '@/actions';
+import { APP_URL } from '@/shared/constants';
 
 type ApiMethod = 'post' | 'get' | 'patch' | 'put' | 'delete';
 
 interface UseApiRequest {
   apiResponse?: any;
-  makeApiRequestAsync: (
-    url: String,
-    method: ApiMethod,
-    payload?: Record<string, any>,
-    options?: ActionOption
-  ) => void;
-  makeApiRequest: (
-    url: String,
-    method: ApiMethod,
-    payload?: Record<string, any>,
-    options?: ActionOption
-  ) => void;
+  makeApiRequestAsync: (data: {
+    url: String;
+    method: ApiMethod;
+    payload?: Record<string, any>;
+    options?: ActionOption;
+  }) => void;
+  makeApiRequest: (data: {
+    url: String;
+    method: ApiMethod;
+    payload?: Record<string, any>;
+    options?: ActionOption;
+  }) => void;
+  getBtcFees: () => Promise<any>;
 }
 
 interface UseApiRequestProps {
@@ -38,32 +40,32 @@ export const useApiRequest = (parameter: UseApiRequestProps): UseApiRequest => {
     };
   });
 
-  const makeApiRequest = (
-    url: String,
-    method: ApiMethod = 'get',
-    payload?: Record<string, any> | undefined,
-    options?: ActionOption
-  ) => {
+  const makeApiRequest = (data: {
+    url: String;
+    method?: ApiMethod;
+    payload?: Record<string, any> | undefined;
+    options?: ActionOption;
+  }) => {
     dispatch(
-      makeServerRequest(url, method, payload, {
+      makeServerRequest(data.url, data.method ?? 'get', data.payload, {
         ...defaultOptions,
-        ...options,
+        ...data.options,
         key: key,
       })
     );
   };
-  const makeApiRequestAsync = async (
-    url: String,
-    method: ApiMethod = 'get',
-    payload?: Record<string, any>,
-    options?: ActionOption
-  ) => {
+  const makeApiRequestAsync = async (data: {
+    url: String;
+    method?: ApiMethod;
+    payload?: Record<string, any> | undefined;
+    options?: ActionOption;
+  }) => {
     return new Promise((resolve, reject) => {
       dispatch(
-        makeServerRequest(url, method, payload, {
+        makeServerRequest(data.url, data.method ?? 'get', data.payload, {
           ...defaultOptions,
-          ...options,
-          key: key + url,
+          ...data.options,
+          key: key + data.url,
           onFinish: (d) => {
             console.log('RESPONSE', d);
             resolve(d);
@@ -79,9 +81,18 @@ export const useApiRequest = (parameter: UseApiRequestProps): UseApiRequest => {
     });
   };
 
+  const getBtcFees = async (): Promise<any> => {
+    return new Promise((resolve, _) => {
+      makeApiRequest({
+        url: APP_URL.bitcoin.fee,
+        options: { onFinish: (v) => resolve(v) },
+      });
+    });
+  };
   return {
     makeApiRequest,
     makeApiRequestAsync,
     apiResponse,
+    getBtcFees,
   };
 };

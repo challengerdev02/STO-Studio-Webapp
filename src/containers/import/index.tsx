@@ -13,8 +13,8 @@ import {
   resolveToWalletAddress,
   getParsedNftAccountsByOwner,
 } from '@nfteyez/sol-rayz';
-import { parseIpfsUrl } from '@/shared/utils';
 import { SOLANA_CHAIN_ID } from '@/shared/constants';
+import { parseIpfsUrl } from '@/shared/utils';
 
 export const ImportContainer = () => {
   const router = useRouter();
