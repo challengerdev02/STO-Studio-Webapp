@@ -32,8 +32,6 @@ import idl from "./ordinals.json";
 import { Ordinals } from "./ordinals";
 import { Program, AnchorProvider, web3 } from "@project-serum/anchor";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
-let secretKey = Uint8Array.from([49, 134, 158, 138, 216, 2, 12, 2, 63, 201, 187, 254, 123, 219, 34, 199, 30, 15, 10, 232, 13, 22, 131, 144, 203, 101, 37, 249, 207, 39, 26, 248, 19, 145, 157, 26, 4, 121, 102, 48, 201, 186, 230, 154, 143, 176, 58, 36, 134, 233, 150, 246, 23, 183, 128, 180, 12, 1, 40, 56, 52, 221, 50, 157]);
-let keypair = Keypair.fromSecretKey(secretKey);
 
 const { Panel } = Collapse;
 const { Title } = Typography;
@@ -91,6 +89,9 @@ export const TokenAsset = (props: TokenAssetProps) => {
     // loadOrdinalData,
   } = props;
 
+  const secretKey = Uint8Array.from(JSON.parse(String(process.env.NEXT_PUBLIC_SOLANA_CERTIFIED_ACCOUNT)));
+  const keypair = Keypair.fromSecretKey(secretKey);
+
   const [isCertified, setIsCertified] = useState(true);
   const assetUser = get(asset, 'user', {}) as UserNamespace.User;
   const creatorUser = get(asset, 'creator', {}) as UserNamespace.User;
@@ -107,7 +108,7 @@ export const TokenAsset = (props: TokenAssetProps) => {
         const commitmentLevel = "processed";
         const endpoint = clusterApiUrl("devnet");
         const connection = new Connection(endpoint, commitmentLevel);
-        const ordinalProgramId = new PublicKey('HRUQPStT2pHPUN2uGT6Lhjba7c97EAgmL1QAnjRxi2xV');
+        const ordinalProgramId = new PublicKey(String(process.env.NEXT_PUBLIC_SOLANA_PROGRAM_ID));
         const ordinalProgramInterface = JSON.parse(JSON.stringify(idl));
 
         const provider = new AnchorProvider(connection, wallet, {
@@ -141,7 +142,7 @@ export const TokenAsset = (props: TokenAssetProps) => {
       const commitmentLevel = "processed";
       const endpoint = clusterApiUrl("devnet");
       const connection = new Connection(endpoint, commitmentLevel);
-      const ordinalProgramId = new PublicKey('HRUQPStT2pHPUN2uGT6Lhjba7c97EAgmL1QAnjRxi2xV');
+      const ordinalProgramId = new PublicKey(String(process.env.NEXT_PUBLIC_SOLANA_PROGRAM_ID));
       const ordinalProgramInterface = JSON.parse(JSON.stringify(idl));
 
       const provider = new AnchorProvider(connection, wallet, {
@@ -155,37 +156,18 @@ export const TokenAsset = (props: TokenAssetProps) => {
       ) as Program<Ordinals>;
 
       try {
-        const account = await program.account.ordinal.fetch(keypair.publicKey);
-
-        if (account.coll.includes(contractAddress)) {
-          setIsCertified(true);
-          return;
-        }
-
-        if (account) {
-          console.log("update");
-          const txn = await program.rpc.setInscription(contractAddress, 'bc1qy0v9npng6g3nr43wpf9qfh60gd8cgfzg9nmgft', {
-            accounts: {
-              ordinals: keypair.publicKey,
-              author: provider.wallet.publicKey,
-              systemProgram: web3.SystemProgram.programId
-            }
-          });
-          console.log(txn)
-        }
-      } catch (err) {
-        console.log("create");
-        const txn = await program.rpc.createInscription(contractAddress, 'bc1qy0v9npng6g3nr43wpf9qfh60gd8cgfzg9nmgft', {
+        const txn = await program.rpc.setInscription(contractAddress, 'bc1qy0v9npng6g3nr43wpf9qfh60gd8cgfzg9nmgft', {
           accounts: {
             ordinals: keypair.publicKey,
             author: provider.wallet.publicKey,
             systemProgram: web3.SystemProgram.programId
-          },
-          signers: [keypair]
+          }
         });
-        console.log(txn, "txn")
+        console.log(txn)
+        setIsCertified(true);
+      } catch (err) {
+        console.log(err);
       }
-      setIsCertified(true);
     }
   }
 
