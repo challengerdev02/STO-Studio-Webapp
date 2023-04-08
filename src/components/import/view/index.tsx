@@ -123,7 +123,7 @@ export const ImportView = (props: ImportViewProps) => {
                         <Space
                           onClick={() =>
                             router.push(
-                              chainId == SOLANA_CHAIN_ID
+                              chainId == process.env.NEXT_PUBLIC_SOLABA_CHAIN_ID
                                 ? `/collection/${signedAddress}/${nft.address}/${nft.tokenId}/solana`
                                 : `/collection/${signedAddress}/${nft.address}/${nft.tokenId}`
                             )
@@ -158,7 +158,7 @@ export const ImportView = (props: ImportViewProps) => {
                           }}
                           onClick={() =>
                             router.push(
-                              chainId == SOLANA_CHAIN_ID
+                              chainId == process.env.NEXT_PUBLIC_SOLABA_CHAIN_ID
                                 ? `/collection/${signedAddress}/${nft.address}/${nft.tokenId}/solana`
                                 : `/collection/${signedAddress}/${nft.address}/${nft.tokenId}`
                             )

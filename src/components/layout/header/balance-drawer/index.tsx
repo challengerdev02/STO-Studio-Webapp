@@ -242,6 +242,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     setBalance(parseFloat(balanceData));
   };
 
+<<<<<<< k-inscribe-collection
   const canSubmit = () => {
     if (isHandle == 'withdraw' && Number(amount ?? 0) == 0) return false;
     if (isHandle == 'withdraw' && Number(amount ?? 0) > btcBalance)
@@ -377,6 +378,8 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     </Space>
   );
 
+=======
+>>>>>>> master
   return (
     <StyledDrawer
       title={null}

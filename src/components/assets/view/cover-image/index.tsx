@@ -60,7 +60,7 @@ export const AssetViewCoverImage = (props: AssetViewCoverImageProps) => {
         style={{ paddingLeft: 10, paddingRight: 10, minHeight: 40 }}
       >
         {props.blockchain ? (
-          props.blockchain == String(SOLANA_CHAIN_ID) ? (
+          props.blockchain == process.env.NEXT_PUBLIC_SOLABA_CHAIN_ID ? (
             <img src={chain!['icon']} height={24} width={24} />
           ) : (
             chain!['icon']
