@@ -174,7 +174,7 @@ export const ViewSeries = (props: ViewSeriesProps) => {
               text={new Intl.NumberFormat('en-US', {
                 notation: 'compact',
                 compactDisplay: 'short',
-              }).format(item.asset.likes)}
+              }).format(Number(item.asset.likes))}
               key="list-vertical-like-o"
             />,
             // <IconText
@@ -295,7 +295,7 @@ export const ViewSeries = (props: ViewSeriesProps) => {
                     text={new Intl.NumberFormat('en-US', {
                       notation: 'compact',
                       compactDisplay: 'short',
-                    }).format((item.asset.likes))}
+                    }).format(Number(item.asset.likes))}
                     key="list-vertical-like-o"
                   />
                 </div>
