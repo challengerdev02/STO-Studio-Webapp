@@ -4,6 +4,7 @@ import { ImageView } from '@/components/isomorphic/image-viewer[thumbnail]/main-
 import React from 'react';
 import { SUPPORTED_NETWORKS } from '../../../../blockchain/evm/utils';
 import { get } from 'lodash';
+import { SOLANA_CHAIN_ID } from '@/shared/constants';
 
 const { Text } = Typography;
 interface AssetViewCoverImageProps {

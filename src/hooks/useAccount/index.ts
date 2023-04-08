@@ -14,7 +14,12 @@ import { UserNamespace } from '@/shared/namespaces/user';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Storage } from '@/shared/utils';
-import { REFERRED_BY_KEY, REFERRED_BY_STORAGE } from '@/shared/constants';
+import {
+  APP_URL,
+  REFERRED_BY_KEY,
+  REFERRED_BY_STORAGE,
+} from '@/shared/constants';
+import { useApiRequest } from '../useApiRequest';
 
 interface UseAccount {
   user?: UserNamespace.User;
@@ -46,6 +51,10 @@ interface UseAccount {
   search: (key: string) => UserNamespace.User | undefined;
   passphrase?: String;
   setPassphrase: (passphrase: string) => void;
+  btcBalance: Number;
+  getBtcBalance: () => void;
+  getUnspent: () => void;
+  unspent: any[];
 }
 
 interface UseAccountProps {
@@ -60,11 +69,15 @@ export const useAccount = (parameter: UseAccountProps): UseAccount => {
 
   const dispatch = useDispatch();
 
+  const { makeApiRequest } = useApiRequest({ key: '@@balance-request' });
+
   const router = useRouter();
 
   const { u: referrer } = router.query;
 
   const [passphrase, setPassphrase] = useState<string | undefined>();
+  const [btcBalance, setBtcBalance] = useState<number>(0);
+  const [unspent, setUnspent] = useState<any[]>([]);
 
   const { user, search, tip } = useSelector((state: RootState) => {
     return {
@@ -87,6 +100,30 @@ export const useAccount = (parameter: UseAccountProps): UseAccount => {
       storage.set({ address: String(referrer).toLowerCase() });
     }
   }, [referrer]);
+
+  const getBtcBalance = () => {
+    makeApiRequest({
+      url: `${APP_URL.bitcoin.listUnspent}`,
+      method: 'get',
+      options: {
+        onFinish: (unspent) => {
+          let bal = 0;
+          if (unspent && Array.isArray(unspent)) {
+            unspent.forEach((d: any) => {
+              if (d.amount * 100000000 > 10000) bal += d.amount;
+            });
+            setBtcBalance(bal);
+            setUnspent(unspent);
+          }
+        },
+        onError: (e) => {},
+      },
+    });
+  };
+
+  const getUnspent = () => {
+    getBtcBalance();
+  };
 
   // useEffect(() => {
   //   if (signedAddress && signedAddress.toLowerCase()!=loadedUser.walletAddress) {
@@ -202,5 +239,9 @@ export const useAccount = (parameter: UseAccountProps): UseAccount => {
     handleFollowUser,
     setPassphrase,
     passphrase,
+    getBtcBalance,
+    btcBalance,
+    unspent,
+    getUnspent,
   };
 };

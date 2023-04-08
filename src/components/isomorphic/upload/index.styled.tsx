@@ -36,14 +36,22 @@ export const Texts = styled.div`
   font-size: 12px;
 `;
 
-export const Wrapper = styled(Form.Item)`
+export const Wrapper = styled<any>(Form.Item)`
   & {
     border-radius: 12px !important;
     min-height: 260px !important;
   }
   .ant-form-item-control-input-content {
     min-height: 260px !important;
+    span:nth-of-type(1) {
+      width: ${(props) => (props.cropperFullWidth ? '100%' : 'unset')};
+      .ant-upload-drag {
+        width: ${(props) =>
+          props.cropperFullWidth ? '100% !important' : 'unset'};
+      }
+    }
   }
+
   .ant-upload {
     padding: 0 !important;
     height: max-content !important;

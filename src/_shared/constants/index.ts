@@ -84,6 +84,8 @@ export const APP_URL = {
   users: '/users',
   bitcoin: {
     addWallet: '/users/add-btc-wallet',
+    listUnspent: '/users/list-unspent',
+    fee: '/settings/fee',
   },
 
   offers: '/offers',

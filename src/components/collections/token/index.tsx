@@ -86,7 +86,6 @@ export const TokenAsset = (props: TokenAssetProps) => {
     onFeeVisibilityChange,
     ordinalData,
     loadingOrdinalData,
-    // loadOrdinalData,
   } = props;
 
   const secretKey = Uint8Array.from(JSON.parse(String(process.env.NEXT_PUBLIC_SOLANA_CERTIFIED_ACCOUNT)));

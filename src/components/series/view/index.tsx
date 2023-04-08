@@ -18,11 +18,9 @@ import {
   Space,
   Tooltip,
   Typography,
+  Spin
 } from 'antd';
 import {
-  CoverPhoto,
-  CoverPhotoWrapper,
-  AltCoverPhoto,
   UserName,
 } from '@/components/account/profile/index.styled';
 import { truncateEthAddress } from '@/shared/utils';
@@ -39,7 +37,6 @@ import { SeriesNamespace } from '@/shared/namespaces/series';
 import { clamp, get, toLower } from 'lodash';
 import {
   BookFlippingPreview,
-  ImagePlaceholder,
   MainLoader,
 } from '@/components';
 import { isMobile, isTablet } from 'react-device-detect';
@@ -47,7 +44,6 @@ import Link from 'next/link';
 import { BookNamespace } from '@/shared/namespaces/book';
 import { UserNamespace } from '@/shared/namespaces/user';
 import { enumerateUser } from '@/components/sale/view/columns';
-import NextImage from 'next/image';
 import Meta from 'antd/lib/card/Meta';
 
 interface ViewSeriesProps {
@@ -59,6 +55,10 @@ interface ViewSeriesProps {
   onSubscribe: (value?: boolean) => void;
   onRevise: (value?: boolean) => void;
   getNextPage: (page: any) => void;
+  onFeeVisibilityChange: (v: boolean) => void;
+  loadOrdinalData: () => void;
+  loadingOrdinalData: boolean;
+  ordinalData: any;
 }
 export const ViewSeries = (props: ViewSeriesProps) => {
   const {
@@ -70,6 +70,9 @@ export const ViewSeries = (props: ViewSeriesProps) => {
     onSubscribe,
     onRevise,
     getNextPage,
+    onFeeVisibilityChange,
+    ordinalData,
+    loadingOrdinalData,
   } = props;
 
   const episodeData = get(seriesDetails, 'episodeData');
@@ -292,7 +295,7 @@ export const ViewSeries = (props: ViewSeriesProps) => {
                     text={new Intl.NumberFormat('en-US', {
                       notation: 'compact',
                       compactDisplay: 'short',
-                    }).format(item.asset.likes)}
+                    }).format((item.asset.likes))}
                     key="list-vertical-like-o"
                   />
                 </div>
@@ -331,7 +334,16 @@ export const ViewSeries = (props: ViewSeriesProps) => {
 
   return (
     <>
-      <MainWrapper data-testid="series-view-wrapper">
+      <MainWrapper
+        data-testid="series-view-wrapper"
+        style={{
+          width: '100%',
+          paddingTop: 0,
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         {loading && (
           <Wrapper>
             {' '}
@@ -346,215 +358,240 @@ export const ViewSeries = (props: ViewSeriesProps) => {
         )}
         {!loading && (
           <BannerWrapper>
-            <NextImage
+            <img
               src={seriesDetails?.banner}
               className="banner-image"
-              layout="fill"
+              // layout="fill"
+              // height={'100%'}
+              // width={'100%'}
+              height={600 / 2}
+              style={{ objectFit: 'cover' }}
+              // layout={'intrinsic'}
               alt="banner image"
             />
           </BannerWrapper>
         )}
+        {/*<div>*/}
         {!loading && (
-          <SeriesViewWrapper style={{ zIndex: 10, position: 'relative' }}>
+          <SeriesViewWrapper
+            style={{ zIndex: 10, position: 'relative', width: '80%' }}
+          >
             <Space
               direction={'vertical'}
               size={50}
               align={isMobile ? 'center' : undefined}
             >
               <Space
-                size={20}
-                className="meta-flex w-100"
-                align={isMobile ? 'center' : 'start'}
-                style={{ justifyContent: isMobile ? 'center' : 'start' }}
-                wrap={isMobile || isTablet}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start'
+                }}
               >
-                <div
-                  style={{
-                    width: isMobile ? '100%' : 250,
-                    height: isMobile ? '100%' : undefined,
-                  }}
-                >
-                  <Image
-                    width={250}
-                    height={250}
-                    // width={'100%'}
-                    className={'book-cover-image'}
-                    preview={false}
-                    src={seriesDetails.image}
-                    fallback={
-                      'https://avatarfiles.alphacoders.com/984/thumb-98474.gif'
-                    }
-                    placeholder={true}
-                    alt=""
-                  />
-                </div>
-
                 <Space
-                  direction={'vertical'}
-                  size={28}
-                  className={'meta-flex meta-flex-col meta-flex-s-b'}
+                  size={20}
+                  className="meta-flex w-100"
+                  align={isMobile ? 'center' : 'start'}
+                  style={{ justifyContent: isMobile ? 'center' : 'start' }}
+                  wrap={isMobile || isTablet}
                 >
-                  <Space
-                    size={20}
-                    direction={'vertical'}
-                    className="meta-flex meta-flex-col w-100"
-                    align={isMobile ? 'center' : 'start'}
+                  <div
                     style={{
-                      marginTop: '20px',
-                      justifyContent: isMobile ? 'center' : 'start',
+                      width: isMobile ? '100%' : 250,
+                      height: isMobile ? '100%' : undefined,
                     }}
                   >
-                    {/*<Space className={'meta-flex meta-flex-s-b'} wrap>*/}
-                    <div>
-                      <UserName data-testid="username">
-                        {seriesDetails.title}
-                      </UserName>
-                    </div>
-                    {/*</Space>*/}
-                    <Tooltip title={'View account'} placement={'bottomLeft'}>
-                      By{' '}
-                      <Link
-                        href={`/${
-                          seriesDetails?.user?.username ??
-                          seriesDetails?.walletAddress
-                        }`}
-                      >
-                        <a>
-                          {seriesDetails?.user?.username ??
-                            truncateEthAddress(
-                              `${seriesDetails.walletAddress}`
-                            )}
-                        </a>
-                      </Link>
-                    </Tooltip>
+                    <Image
+                      width={250}
+                      height={250}
+                      // width={'100%'}
+                      className={'book-cover-image'}
+                      preview={false}
+                      src={seriesDetails.image}
+                      fallback={
+                        'https://avatarfiles.alphacoders.com/984/thumb-98474.gif'
+                      }
+                      placeholder={true}
+                      alt=""
+                    />
+                  </div>
 
-                    <Typography.Paragraph
-                      ellipsis={{
-                        rows: 4,
-                        suffix: '...',
-                        expandable: true,
+                  <Space
+                    direction={'vertical'}
+                    size={28}
+                    className={'meta-flex meta-flex-col meta-flex-s-b'}
+                  >
+                    <Space
+                      size={20}
+                      direction={'vertical'}
+                      className="meta-flex meta-flex-col w-100"
+                      align={isMobile ? 'center' : 'start'}
+                      style={{
+                        marginTop: '20px',
+                        justifyContent: isMobile ? 'center' : 'start',
                       }}
                     >
-                      {seriesDetails.description}
-                    </Typography.Paragraph>
-                  </Space>
-                  <Space
-                    size={20}
-                    align={isMobile ? 'center' : 'start'}
-                    className={'w-100 '}
-                    style={{
-                      marginLeft: '5px',
-                      justifyContent: isMobile ? 'center' : 'start',
-                    }}
-                  >
-                    <Tooltip
-                      title={`${new Intl.NumberFormat().format(
-                        seriesDetails.views ?? 0
-                      )} Views`}
-                    >
-                      <Text strong style={{ color: 'var(--heading-color)' }}>
-                        {new Intl.NumberFormat('en-US', {
-                          notation: 'compact',
-                          compactDisplay: 'short',
-                        }).format(seriesDetails.views ?? 0)}{' '}
-                        Views
-                      </Text>
-                    </Tooltip>
-                    <Tooltip
-                      title={`${new Intl.NumberFormat().format(
-                        seriesDetails.subscribers
-                      )} Subscribers`}
-                    >
-                      <Text strong style={{ color: 'var(--heading-color)' }}>
-                        {new Intl.NumberFormat('en-US', {
-                          notation: 'compact',
-                          compactDisplay: 'short',
-                        }).format(seriesDetails.subscribers ?? 0)}{' '}
-                        Subscribers
-                      </Text>
-                    </Tooltip>
-                    <Tooltip
-                      title={`${new Intl.NumberFormat().format(
-                        seriesDetails.likes
-                      )} Likes`}
-                    >
-                      <Text strong style={{ color: 'var(--heading-color)' }}>
-                        {new Intl.NumberFormat('en-US', {}).format(
-                          seriesDetails.likes ?? 0
-                        )}{' '}
-                        Likes
-                      </Text>
-                    </Tooltip>
-                  </Space>
-                  <Space size={20}>
-                    {signedWalletAddress !== null && (
-                      <Tooltip
-                        placement={'bottom'}
-                        title="Get notified of new episodes"
-                      >
-                        <Button
-                          type="primary"
-                          shape="round"
-                          onClick={() => onSubscribe(!seriesDetails.subscribed)}
-                          size={'small'}
-                          data-testid="series-widget"
-                          loading={subscribing}
-                          disabled={
-                            toLower(signedWalletAddress) ==
-                            toLower(seriesDetails.walletAddress)
-                          }
+                      {/*<Space className={'meta-flex meta-flex-s-b'} wrap>*/}
+                      <div>
+                        <UserName data-testid="username">
+                          {seriesDetails.title}
+                        </UserName>
+                      </div>
+                      {/*</Space>*/}
+                      <Tooltip title={'View account'} placement={'bottomLeft'}>
+                        By{' '}
+                        <Link
+                          href={`/${seriesDetails?.user?.username ??
+                            seriesDetails?.walletAddress
+                            }`}
                         >
-                          {seriesDetails.subscribed
-                            ? 'Unsubscribe'
-                            : 'Subscribe'}
-                        </Button>
+                          <a>
+                            {seriesDetails?.user?.username ??
+                              truncateEthAddress(
+                                `${seriesDetails.walletAddress}`
+                              )}
+                          </a>
+                        </Link>
                       </Tooltip>
-                    )}
-                    {signedWalletAddress !== null && (
-                      <Tooltip
-                        placement={'bottom'}
-                        title="Give a tip to support this work"
+
+                      <Typography.Paragraph
+                        ellipsis={{
+                          rows: 4,
+                          suffix: '...',
+                          expandable: true,
+                        }}
                       >
-                        <Button
-                          type="default"
-                          shape="round"
-                          onClick={onTipOwner}
-                          size={'small'}
-                          data-testid="series-widget"
-                          disabled={
-                            toLower(signedWalletAddress) ==
-                            toLower(seriesDetails.walletAddress)
-                          }
-                        >
-                          Tip
-                        </Button>
+                        {seriesDetails.description}
+                      </Typography.Paragraph>
+                    </Space>
+                    <Space
+                      size={20}
+                      align={isMobile ? 'center' : 'start'}
+                      className={'w-100 '}
+                      style={{
+                        marginLeft: '5px',
+                        justifyContent: isMobile ? 'center' : 'start',
+                      }}
+                    >
+                      <Tooltip
+                        title={`${new Intl.NumberFormat().format(
+                          seriesDetails.views ?? 0
+                        )} Views`}
+                      >
+                        <Text strong style={{ color: 'var(--heading-color)' }}>
+                          {new Intl.NumberFormat('en-US', {
+                            notation: 'compact',
+                            compactDisplay: 'short',
+                          }).format(seriesDetails.views ?? 0)}{' '}
+                          Views
+                        </Text>
                       </Tooltip>
-                    )}
-                    {signedWalletAddress !== null &&
-                      toLower(signedWalletAddress) ==
-                        toLower(seriesDetails.walletAddress) && (
-                        <Tooltip placement={'bottom'} title="Edit Series">
+                      <Tooltip
+                        title={`${new Intl.NumberFormat().format(
+                          seriesDetails.subscribers
+                        )} Subscribers`}
+                      >
+                        <Text strong style={{ color: 'var(--heading-color)' }}>
+                          {new Intl.NumberFormat('en-US', {
+                            notation: 'compact',
+                            compactDisplay: 'short',
+                          }).format(seriesDetails.subscribers ?? 0)}{' '}
+                          Subscribers
+                        </Text>
+                      </Tooltip>
+                      <Tooltip
+                        title={`${new Intl.NumberFormat().format(
+                          seriesDetails.likes
+                        )} Likes`}
+                      >
+                        <Text strong style={{ color: 'var(--heading-color)' }}>
+                          {new Intl.NumberFormat('en-US', {}).format(
+                            seriesDetails.likes ?? 0
+                          )}{' '}
+                          Likes
+                        </Text>
+                      </Tooltip>
+                    </Space>
+                    <Space size={20}>
+                      {signedWalletAddress !== null && (
+                        <Tooltip
+                          placement={'bottom'}
+                          title="Get notified of new episodes"
+                        >
                           <Button
-                            type="default"
-                            shape="circle"
-                            // href={`/assets/series/${seriesDetails._id}/revise`}
-                            icon={<EditFilled />}
+                            type="primary"
+                            shape="round"
+                            onClick={() => onSubscribe(!seriesDetails.subscribed)}
                             size={'small'}
                             data-testid="series-widget"
-                            onClick={() => onRevise(true)}
-                          />
+                            loading={subscribing}
+                            disabled={
+                              toLower(signedWalletAddress) ==
+                              toLower(seriesDetails.walletAddress)
+                            }
+                          >
+                            {seriesDetails.subscribed
+                              ? 'Unsubscribe'
+                              : 'Subscribe'}
+                          </Button>
                         </Tooltip>
                       )}
-                    <Tooltip placement={'bottom'} title={'Share this series'}>
-                      <div>
-                        <ShareProfile
-                          message={'Check out this comic series on'}
-                          username={`assets/series/${seriesDetails._id}`}
-                        />
-                      </div>
-                    </Tooltip>
+                      {signedWalletAddress !== null && (
+                        <Tooltip
+                          placement={'bottom'}
+                          title="Give a tip to support this work"
+                        >
+                          <Button
+                            type="default"
+                            shape="round"
+                            onClick={onTipOwner}
+                            size={'small'}
+                            data-testid="series-widget"
+                            disabled={
+                              toLower(signedWalletAddress) ==
+                              toLower(seriesDetails.walletAddress)
+                            }
+                          >
+                            Tip
+                          </Button>
+                        </Tooltip>
+                      )}
+                      {signedWalletAddress !== null &&
+                        toLower(signedWalletAddress) ==
+                        toLower(seriesDetails.walletAddress) && (
+                          <Tooltip placement={'bottom'} title="Edit Series">
+                            <Button
+                              type="default"
+                              shape="circle"
+                              // href={`/assets/series/${seriesDetails._id}/revise`}
+                              icon={<EditFilled />}
+                              size={'small'}
+                              data-testid="series-widget"
+                              onClick={() => onRevise(true)}
+                            />
+                          </Tooltip>
+                        )}
+                      <Tooltip placement={'bottom'} title={'Share this series'}>
+                        <div>
+                          <ShareProfile
+                            message={'Check out this comic series on'}
+                            username={`assets/series/${seriesDetails._id}`}
+                          />
+                        </div>
+                      </Tooltip>
+                    </Space>
                   </Space>
                 </Space>
+                {loadingOrdinalData && <Spin />}
+                {!loadingOrdinalData &&
+                  toLower(signedWalletAddress) == toLower(seriesDetails.walletAddress) &&
+                  (!ordinalData || (ordinalData && !ordinalData?.revealTx)) && (
+                    <Button
+                      type='primary'
+                      style={{ width: '120px' }}
+                      onClick={() => onFeeVisibilityChange(true)}
+                    >Publish</Button>
+                  )}
               </Space>
               <div>
                 <Space
@@ -567,12 +604,14 @@ export const ViewSeries = (props: ViewSeriesProps) => {
                   <Button
                     type={isListView ? 'primary' : 'default'}
                     onClick={toggleView}
+                    shape={'round'}
                   >
                     List View
                   </Button>
                   <Button
                     type={!isListView ? 'primary' : 'default'}
                     onClick={toggleView}
+                    shape={'round'}
                   >
                     Grid View
                   </Button>
@@ -582,6 +621,7 @@ export const ViewSeries = (props: ViewSeriesProps) => {
             </Space>
           </SeriesViewWrapper>
         )}
+        {/*</div>*/}
       </MainWrapper>
       {selectedAsset && (
         <BookFlippingPreview

@@ -226,7 +226,7 @@ export const CreateSeriesContainer = (props: CreateSeriesContainerProps) => {
   const beforeUploadByImageType =
     (imageType: ImageType) => async (file: any) => {
       const dimensions: [number, number] =
-        imageType === ImageType.BannerImage ? [1800, 300] : [500, 500];
+        imageType === ImageType.BannerImage ? [1800, 600] : [500, 500];
       const isInDimensions = await onCheckImageDimension(file, dimensions);
       const isImageAndMatchSize = onBeforeImageUpload(file, 50000000);
       return isImageAndMatchSize && isInDimensions;

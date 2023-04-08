@@ -8,6 +8,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload } from 'antd';
 import type { RcFile, UploadProps } from 'antd/es/upload';
 import type { UploadFile } from 'antd/es/upload/interface';
+import { isDesktop } from 'react-device-detect';
 
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -87,6 +88,8 @@ interface IsomorphicUploadProps extends FormItemProps {
   description?: string | ReactNode;
   cropperProps?: Partial<CropperProps>;
   multiImage?: boolean;
+  takeFullWidth?: boolean;
+  aspectRatio?: number;
   // onChange?: (info: any) => void;
 }
 
@@ -98,6 +101,8 @@ export const IsomorphicUpload = (props: IsomorphicUploadProps) => {
     description,
     cropperProps,
     multiImage,
+    aspectRatio,
+    takeFullWidth,
     ...formItemProps
   } = props;
 
@@ -122,23 +127,23 @@ export const IsomorphicUpload = (props: IsomorphicUploadProps) => {
   return (
     <>
       {multiImage && (
-        <Wrapper {...formItemProps}>
+        <Wrapper {...formItemProps} cropperFullWidth={takeFullWidth}>
           {MultiImageUploader({ draggerProps })}
         </Wrapper>
       )}
       {!multiImage && (
         <>
           {allowCrop && (
-            <Wrapper {...formItemProps}>
+            <Wrapper {...formItemProps} cropperFullWidth={takeFullWidth}>
               <ImgCrop
                 quality={1}
-                // aspect={1 / 1}
+                aspect={aspectRatio}
                 grid
                 rotate
                 minZoom={1}
                 maxZoom={3}
                 modalTitle={'Crop'}
-                modalWidth={'50vw'}
+                modalWidth={isDesktop ? '60vw' : '90vw'}
                 cropperProps={cropperProps}
                 // beforeCrop={allowCrop}
               >
@@ -146,7 +151,11 @@ export const IsomorphicUpload = (props: IsomorphicUploadProps) => {
               </ImgCrop>
             </Wrapper>
           )}
-          {!allowCrop && <Wrapper {...formItemProps}>{dragger}</Wrapper>}
+          {!allowCrop && (
+            <Wrapper cropperFullWidth={takeFullWidth} {...formItemProps}>
+              {dragger}
+            </Wrapper>
+          )}
         </>
       )}
     </>

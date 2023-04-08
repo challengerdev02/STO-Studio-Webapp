@@ -31564,7 +31564,7 @@ html[data-theme='dark'] body {
   --disabled-color: rgba(212, 212, 213, 0.41);
   --item-hover-bg: var(--accent);
   --text-color: #b1b5c3;
-  --text-color-secondary: #777e90;
+  --text-color-secondary: #505561;
   --text-color-inverse: #000;
   --text-color-inverse-fade: rgba(0, 0, 0, 0.5);
   --icon-color: inherit;
@@ -31612,7 +31612,7 @@ html[data-theme='dark'] body {
   --empty-img-simple-ellipse: var(--border-color-base);
   --empty-img-simple-g: var(--accent);
   --empty-img-simple-path: transparent;
-  --input-placeholder-color: var(--text-color);
+  --input-placeholder-color: var(--text-color-secondary);
   --descriptions-item-label: var(--background-secondary);
   --notice-content-border: var(--border-color-base);
   --popover-arrow-border: var(--border-color-base);

@@ -53,6 +53,10 @@ html[data-theme='light'] .ant-input-number-handler-wrap {
 .ant-popover-content .ant-popover-inner-content {
   padding: 28px !important;
 }
+.ant-btn-primary:hover {
+  background: #cb45f7 !important;
+  border-color: #cb45f7 !important;
+}
 
 .ant-popover-content .list-item {
   color: var(--text-color) !important;

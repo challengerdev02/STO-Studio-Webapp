@@ -2,7 +2,7 @@ import { MainLoader, TokenAsset } from '@/components';
 import { useAccount, useExternalResource, useSale, useUIState } from '@/hooks';
 import { useRouter } from 'next/router';
 import { Fragment, useContext, useEffect, useState } from 'react';
-import { chain, get, map } from 'lodash';
+import { get, map } from 'lodash';
 import { useContract, useERC20Token } from '../../../blockchain/evm/hooks';
 import { signOffer, toEther } from '../../../blockchain/evm/utils';
 import { BaseWeb3Context } from '../../../blockchain/base';
@@ -59,20 +59,24 @@ export const TokenAssetContainer = () => {
     }
   );
 
-  const [loadingOrdinalData, setLoadingOrdinalData] = useState(true);
+  const [loadingOrdinalData, setLoadingOrdinalData] = useState(false);
   const [ordinalData, setOrdinalData] = useState<any>();
 
   const loadOrdinalData = () => {
     console.log('Loadding ordinal data');
     setLoadingOrdinalData(true);
-    makeApiRequest(`${APP_URL.assets.get_ordinal_data}`, 'get', undefined, {
-      params: { contractAddress: tokenHash, tokenId: tokenID, chainId },
-      onFinish: (d) => {
-        setOrdinalData(d.ordinalData);
-        setTimeout(() => setLoadingOrdinalData(false), 1000);
-      },
-      onError: (e) => {
-        setLoadingOrdinalData(false);
+    makeApiRequest({
+      url: `${APP_URL.assets.get_ordinal_data}`,
+      method: 'get',
+      options: {
+        params: { contractAddress: tokenHash, tokenId: tokenID, chainId },
+        onFinish: (d) => {
+          setOrdinalData(d.ordinalData);
+          setTimeout(() => setLoadingOrdinalData(false), 1000);
+        },
+        onError: () => {
+          setLoadingOrdinalData(false);
+        },
       },
     });
   };
@@ -129,7 +133,7 @@ export const TokenAssetContainer = () => {
     options: { uiKey: contractUIKey },
     abiName: 'ERC721',
   });
-  const { call: dataContractCall, contract: dataContract } = useContract({
+  const { contract: dataContract } = useContract({
     address: process.env.NEXT_PUBLIC_DATA_CONTRACT_ADDRESS,
     options: { uiKey: contractUIKey },
   });
@@ -173,13 +177,13 @@ export const TokenAssetContainer = () => {
     );
   };
 
-  const onGetPriceHistory = (page = 1, perPage = 10) => {
-    dataContractCall(
-      'getTokenPurchaseHistory',
-      { uiKey: getTokenPriceHistory },
-      ...[tokenHash as string, tokenID as string, page, perPage]
-    );
-  };
+  // const onGetPriceHistory = (page = 1, perPage = 10) => {
+  //   dataContractCall(
+  //     'getTokenPurchaseHistory',
+  //     { uiKey: getTokenPriceHistory },
+  //     ...[tokenHash as string, tokenID as string, page, perPage]
+  //   );
+  // };
 
   const onGetAssets = () => {
     if (saleID || tokenHash) {
