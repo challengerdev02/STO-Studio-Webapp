@@ -26,10 +26,8 @@ import { cleanInput, copyToClipboard } from '@/shared/utils';
 import QRCode from 'react-qr-code';
 import {
   CheckCircleFilled,
-  CheckCircleTwoTone,
   CopyFilled,
 } from '@ant-design/icons';
-import Title from 'antd/lib/typography/Title';
 
 interface GetFeeProps {
   contractAddress?: string;
@@ -97,6 +95,7 @@ export const GetFee = (props: GetFeeProps) => {
           }
         },
         onError: (e) => {
+          console.log(e);
           // if(timeout) {
           //   clearTimeout(timeout);
           //   timeout = null;
@@ -113,8 +112,8 @@ export const GetFee = (props: GetFeeProps) => {
     try {
       seed = await unlockOrdinalWallet(String(account));
 
-      const changeAddresses = await getChangeAddresses(seed);
-      const ordinalAddress = await getOrdinalAddress(seed);
+      const changeAddresses = getChangeAddresses(seed);
+      const ordinalAddress = getOrdinalAddress(seed);
       console.log('DESTINATION', ordinalAddress);
 
       makeApiRequest({
@@ -144,6 +143,7 @@ export const GetFee = (props: GetFeeProps) => {
             }
           },
           onError: (e) => {
+            console.log(e);
             setLoading(false);
           },
         },
@@ -174,6 +174,7 @@ export const GetFee = (props: GetFeeProps) => {
           setTimeout(() => setLoading(false), 1000);
         },
         onError: (e) => {
+          console.log(e);
           setLoading(false);
         },
       },
@@ -195,9 +196,9 @@ export const GetFee = (props: GetFeeProps) => {
     setLowBalance(
       Math.max(
         feeData.fees?.[selectedFee].network_sat +
-          tip_sat +
-          feeData.fees?.[selectedFee].platform_sat -
-          walletBalance * 100000000,
+        tip_sat +
+        feeData.fees?.[selectedFee].platform_sat -
+        walletBalance * 100000000,
         0
       )
     );
@@ -229,7 +230,7 @@ export const GetFee = (props: GetFeeProps) => {
     // }
   }, [walletBalance, selectedFee, tip]);
 
-  const feeDescriptions = {
+  const feeDescriptions: any = {
     slow: 'Hours to Days',
     medium: 'An hour or more',
     fast: 'Less than an hour',
@@ -405,12 +406,11 @@ export const GetFee = (props: GetFeeProps) => {
                         {' '}
                         <QRCode
                           size={256}
-                          value={`bitcoin:${
-                            user?.btcAccounts?.[0]?.address
-                          }?amount=${(
-                            lowBalance / 100000000 +
-                            0.00000001
-                          ).toFixed(8)}`}
+                          value={`bitcoin:${user?.btcAccounts?.[0]?.address
+                            }?amount=${(
+                              lowBalance / 100000000 +
+                              0.00000001
+                            ).toFixed(8)}`}
                           viewBox={`0 0 256 256`}
                         />
                       </Col>

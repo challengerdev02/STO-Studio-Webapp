@@ -2,7 +2,7 @@ import { MainLoader, TokenAsset } from '@/components';
 import { useAccount, useExternalResource, useSale, useUIState } from '@/hooks';
 import { useRouter } from 'next/router';
 import { Fragment, useContext, useEffect, useState } from 'react';
-import { chain, get, map } from 'lodash';
+import { get, map } from 'lodash';
 import { useContract, useERC20Token } from '../../../blockchain/evm/hooks';
 import { signOffer, toEther } from '../../../blockchain/evm/utils';
 import { BaseWeb3Context } from '../../../blockchain/base';
@@ -74,7 +74,7 @@ export const TokenAssetContainer = () => {
           setOrdinalData(d.ordinalData);
           setTimeout(() => setLoadingOrdinalData(false), 1000);
         },
-        onError: (e) => {
+        onError: () => {
           setLoadingOrdinalData(false);
         },
       },
@@ -133,7 +133,7 @@ export const TokenAssetContainer = () => {
     options: { uiKey: contractUIKey },
     abiName: 'ERC721',
   });
-  const { call: dataContractCall, contract: dataContract } = useContract({
+  const { contract: dataContract } = useContract({
     address: process.env.NEXT_PUBLIC_DATA_CONTRACT_ADDRESS,
     options: { uiKey: contractUIKey },
   });
@@ -177,13 +177,13 @@ export const TokenAssetContainer = () => {
     );
   };
 
-  const onGetPriceHistory = (page = 1, perPage = 10) => {
-    dataContractCall(
-      'getTokenPurchaseHistory',
-      { uiKey: getTokenPriceHistory },
-      ...[tokenHash as string, tokenID as string, page, perPage]
-    );
-  };
+  // const onGetPriceHistory = (page = 1, perPage = 10) => {
+  //   dataContractCall(
+  //     'getTokenPurchaseHistory',
+  //     { uiKey: getTokenPriceHistory },
+  //     ...[tokenHash as string, tokenID as string, page, perPage]
+  //   );
+  // };
 
   const onGetAssets = () => {
     if (saleID || tokenHash) {

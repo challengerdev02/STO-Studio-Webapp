@@ -79,7 +79,6 @@ export const TokenAsset = (props: TokenAssetProps) => {
     onFeeVisibilityChange,
     ordinalData,
     loadingOrdinalData,
-    loadOrdinalData,
   } = props;
 
   const assetUser = get(asset, 'user', {}) as UserNamespace.User;

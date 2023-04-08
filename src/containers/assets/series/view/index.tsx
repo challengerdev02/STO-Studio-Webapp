@@ -11,6 +11,9 @@ import { TipAccount } from '@/components/account/tip';
 import { notification } from 'antd';
 import Head from 'next/head';
 import { BaseWeb3Context } from '../../../../blockchain/base';
+import { GetFee } from '@/components/series/fee';
+import { APP_URL, STATE_KEYS } from '@/shared/constants';
+import { useApiRequest } from 'src/hooks/useApiRequest';
 
 export const ViewSeriesContainer = () => {
   const KEY = `@@series/view`;
@@ -21,8 +24,11 @@ export const ViewSeriesContainer = () => {
   const [tipViewVisibility, setTipViewVisibility] = useState<boolean>(false);
   const [seriesEditVisibility, setSeriesEditVisibility] =
     useState<boolean>(false);
-  const router = useRouter();
-  const { accounts, isConnected } = useContext(BaseWeb3Context);
+  const { makeApiRequest } = useApiRequest({ key: '@@fee-request' });
+  const { accounts, isConnected, chainId } = useContext(BaseWeb3Context);
+  const {
+    query: { chooseFee, seriesID: slug }
+  } = useRouter();
 
   const {
     handleGetHCOMIBalance,
@@ -39,27 +45,35 @@ export const ViewSeriesContainer = () => {
   //   options: { uiKey: CONTRACT_UI_KEY, key: KEY },
   // });
 
-  const { executeRecaptcha } = useGoogleReCaptcha();
-
   const [series, setSeries] = useState<any>({});
-
   const signedWalletAddress = accounts?.[0];
-
-  const slug: any = get(router, 'query.seriesID');
-
   const [seriesID, setSeriesID] = useState<string>();
+  const [loadingOrdinalData, setLoadingOrdinalData] = useState(false);
+  const [ordinalData, setOrdinalData] = useState<any>();
+  const [feeModalVisibility, setFeeModalVisibility] = useState(!!chooseFee);
 
-  useEffect(() => {
-    if (slug) {
-      const parts = slug.split('-');
-      if (parts[parts.length - 1] == seriesID) return;
-      setSeriesID(parts[parts.length - 1]);
-    }
-  }, [slug]);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const actionOptions = {
     uiKey: UI_KEY,
   };
+  const { handleGetDetails, seriesDetails, handleSubscribe } = useSeries({
+    key: KEY,
+    options: actionOptions,
+  });
+
+  const { user } = useAccount({
+    key: STATE_KEYS.currentUser,
+    autoFetch: true,
+  });
+
+  useEffect(() => {
+    if (slug) {
+      const parts = String(slug).split('-');
+      if (parts[parts.length - 1] == seriesID) return;
+      setSeriesID(parts[parts.length - 1]);
+    }
+  }, [slug]);
 
   const { uiLoaders } = useUIState();
   const loading = uiLoaders[UI_KEY];
@@ -67,10 +81,32 @@ export const ViewSeriesContainer = () => {
   const tippingOwner = uiLoaders[TIP_UI_KEY];
   const gettingBalance = uiLoaders[ERC20_KEY];
 
-  const { handleGetDetails, seriesDetails, handleSubscribe } = useSeries({
-    key: KEY,
-    options: actionOptions,
-  });
+  const loadOrdinalData = () => {
+    console.log('Loadding ordinal data');
+    setLoadingOrdinalData(true);
+    makeApiRequest({
+      url: `${APP_URL.assets.get_ordinal_data}`,
+      method: 'get',
+      options: {
+        params: { seriesId: seriesID, chainId },
+        onFinish: (d) => {
+          setOrdinalData(d.ordinalData);
+          setTimeout(() => setLoadingOrdinalData(false), 1000);
+        },
+        onError: () => {
+          setLoadingOrdinalData(false);
+        },
+      },
+    });
+  };
+
+  useEffect(() => {
+    loadOrdinalData();
+  }, []);
+
+  useEffect(() => {
+    if (!feeModalVisibility) loadOrdinalData();
+  }, [feeModalVisibility]);
 
   const onGetTipBalance = () => {
     if (isConnected && signedWalletAddress) {
@@ -94,8 +130,6 @@ export const ViewSeriesContainer = () => {
     body.amount = Web3.utils
       .toWei(Web3.utils.toBN(values['amount'] ?? '0'))
       .toString();
-    // console.table(body);
-    // //console.log(body);
 
     if (isConnected && seriesDetails.walletAddress) {
       handleTipUser(seriesDetails.walletAddress, body, {
@@ -163,8 +197,6 @@ export const ViewSeriesContainer = () => {
       (seriesID != seriesDetails._id ||
         seriesDetails.walletAddress == signedWalletAddress?.toLowerCase())
     ) {
-      // if (seriesID) {
-      // //console.log('Hello World');
       onGetSeriesDetails();
     }
   }, [seriesID]);
@@ -218,6 +250,17 @@ export const ViewSeriesContainer = () => {
         queryingContract={gettingBalance}
         loading={tippingOwner}
       />
+      <GetFee
+        chainId={String(chainId)}
+        seriesId={seriesID}
+        visibility={feeModalVisibility}
+        onVisibilityChange={(visible: boolean) =>
+          setFeeModalVisibility(visible)
+        }
+        user={user}
+        account={accounts?.[0]}
+        onPay={() => { }}
+      />
       <ViewSeries
         seriesDetails={series}
         loading={loading}
@@ -227,6 +270,12 @@ export const ViewSeriesContainer = () => {
         onSubscribe={onSubscribe}
         onRevise={onSeriesEditModalVisibilityChange}
         getNextPage={getNextPage}
+        onFeeVisibilityChange={(visible: boolean) =>
+          setFeeModalVisibility(visible)
+        }
+        loadOrdinalData={loadOrdinalData}
+        loadingOrdinalData={loadingOrdinalData}
+        ordinalData={ordinalData}
       />
     </>
   );
