@@ -48,7 +48,6 @@ import {
   constructTransferPsbt,
 } from 'src/blockchain/bitcoin';
 
-const { Psbt, payments } = bitcoin;
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;
 interface BalanceDrawerProps extends DrawerProps {
@@ -210,7 +209,6 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
   }, [amount]);
 
   useEffect(() => {
-    if (isHandle == 'ordinal');
     setAmount('');
     form.setFieldsValue({ amount: '' });
   }, [isHandle]);
@@ -242,10 +240,9 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     setBalance(parseFloat(balanceData));
   };
 
-<<<<<<< k-inscribe-collection
   const canSubmit = () => {
     if (isHandle == 'withdraw' && Number(amount ?? 0) == 0) return false;
-    if (isHandle == 'withdraw' && Number(amount ?? 0) > btcBalance)
+    if (isHandle == 'withdraw' && Number(amount ?? 0) > Number(btcBalance))
       return false;
     if (isHandle == 'ordinal' && !amount?.endsWith('i0')) return false;
 
@@ -378,8 +375,6 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
     </Space>
   );
 
-=======
->>>>>>> master
   return (
     <StyledDrawer
       title={null}
@@ -643,7 +638,7 @@ export const BalanceDrawer = (props: BalanceDrawerProps) => {
                           <Space direction="horizontal">
                             {['slow', 'medium', 'fast'].map(
                               (speed: string, index) => (
-                                <div style={{ width: 130 }}>
+                                <div style={{ width: 130 }} key={index}>
                                   <Space
                                     onClick={() => setSelectedFee(speed)}
                                     size={1}
