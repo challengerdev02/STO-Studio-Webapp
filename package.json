@@ -1,10 +1,6 @@
 {
   "name": "metacomics-frontend",
   "private": true,
-  "engines": {
-    "node": "20.x",
-    "yarn": "1.22.22"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
